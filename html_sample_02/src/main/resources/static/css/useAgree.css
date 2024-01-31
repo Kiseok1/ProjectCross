@@ -1,0 +1,92 @@
+	.frame{
+				
+				margin: 0 auto;
+				margin-bottom: 20px;
+				width: 70%;
+				height: auto;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				 align-items: flex-start;
+				border: 1px solid lightgrey;
+				border-radius: 25px;
+	}
+	.logo {
+				margin-bottom: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				font-size: 30px;
+				/* color:#50b7f5; */
+			}
+			
+			img{
+			
+			width: 300px;
+			height:130px;
+			object-fit: cover;
+			}
+			
+	.ul{
+	font-size: 10px;
+	margin-top: 0;
+	}
+	.line{
+	margin-top:7px;
+	border-bottom: 1px solid lightgrey;
+	}
+	.stitle{
+	font-size: 30px;
+	}
+	
+	.top{
+	width:70px;
+	height:60px;
+		border-radius: 50px;
+		border: 1px solid black;
+		position:fixed;
+		bottom:10px;
+		right:80px;
+		background: url("/images/top.png");
+	}
+	
+	.Sol{
+	
+	border: 1px solid black;
+	
+	
+	   height: 250px;
+		border: 1px solid lightgrey;
+		overflow-y: scroll; /* y축으로 오버플로우 되는 것을 scroll방식으로 바꾸는 것 */	
+	}	/*지금은 가로폭이 500으로 정해져 있어서 폭을 넘기면 아래로 내려오기 때문에 세로로 한 것임 */
+	
+	.AgreeChk{
+	text-align: center;
+	border-color: transparent;
+    color: white;
+    width:30%;
+	background-color: #BA68C8;
+	border-radius: 10px;
+	height: 50px;
+	
+	}
+	
+	.container{
+	 display: flex;
+	}
+	
+	.center {
+    justify-content: center;
+    }
+	
+	.AgreeChk:hover{
+	background-color: #AB47BC;
+	}
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,224 @@
+
+			* {
+				margin: auto;
+				padding: 0;
+			}
+
+		 img{
+			width: 300px;
+			height:150px;
+			object-fit: scale-down;
+		}
+
+
+			body {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.logo {
+				margin-bottom: 20px;
+				width: 380px;
+				height: 650px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				border: 1px solid lightgrey;
+				border-radius: 25px;
+			}
+			
+			
+			
+			
+			.logo1 {
+			    margin-top: 0px;
+			    color: blue;
+			    font-size: 50px;
+			    margin-bottom: 5px;
+			}
+			
+			.slogo{
+				margin-top: -10px;
+				text-align: center;
+			}
+						
+
+			.logo>h1 {
+				margin-top: -40px;
+			}
+
+			.inp {
+				margin:0;
+				width:190px;
+				display: block;
+				margin-bottom: 3px;
+				padding: 3px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+				height: 15px;
+			}
+		
+
+			.inp1 {
+				margin:0;
+				height: 15px;
+				margin-bottom: 3px;
+				padding: 3px;
+				width:190px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+			}
+			
+			.inp3 {
+				margin:3;
+				height: 15px;
+				margin-bottom: 3px;
+				padding: 3px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+			}
+			.inp4{
+				margin:3;
+				height: 15px;
+				margin-bottom: 3px;
+				padding: 3px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+				width: 100%;
+			}
+			
+			.inp2{
+				margin:0;
+				width: 133px;
+				margin-bottom: 3px;
+				padding: 4px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+			}
+			.emailinp2{
+				margin:0;
+				width: 190px;
+				margin-bottom: 3px;
+				padding: 3px;
+				height:15px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+			}
+			.inp_2_1{
+			margin:0;
+				width: 133px;
+				margin-bottom: 3px;
+				padding: 4px;
+				border: 1px solid lightgray;
+				border-radius: 13px;
+			}
+			.emailCheck1{
+				width:90px;
+			margin: 0 auto;
+			  border-bottom: 3px solid lightgray;
+				text-align: center;
+				border-color: transparent;
+				color: white;
+				background-color: #BA68C8;
+				border-radius: 15px;
+				padding: 2px;
+				font-size: 10px;
+			
+			}
+			
+			.emailCheck1:hover{
+				background-color: #AB47BC;
+			}
+			
+			.emailCheck{
+				width:223px;
+				margin-left:15%;
+			 	border-bottom: 3px solid lightgray;
+				text-align: center;
+				border-color: transparent;
+				color: white;
+				background-color: #BA68C8;
+				border-radius: 15px;
+				padding: 2px;
+				font-size: 10px;
+			}
+			
+			.emailCheck:hover{
+				background-color: #AB47BC;
+			}
+
+		.input{
+		 width:320px;
+		       
+		 }
+
+		
+			label {
+				font-size: 12px;
+			}
+
+			.inp::placeholder,
+			.inp1::placeholder,
+			.inp2::placeholder,
+			.inp3::placeholder,
+			.inp4::placeholder,
+			.emailinp2{
+				font-size: 0.8em;
+				color: gray;
+			}
+
+
+			.joinBtn {
+				margin-top: 20px;
+				width: 280px;
+
+			}
+
+			.join {
+				margin: 0 auto;
+				border-color: transparent;
+				color: white;
+				width:100%;
+				background-color: #BA68C8;
+				border-radius: 15px;
+				padding: 3px;
+			}
+			
+			.join:hover{
+			 background-color: #AB47BC;
+			}
+
+			.idCheck {
+			width:90px;
+			margin: 0 auto;
+			  border-bottom: 3px solid lightgray;
+				text-align: center;
+				border-color: transparent;
+				color: white;
+				background-color: #BA68C8;
+				border-radius: 15px;
+				padding: 2px;
+				font-size: 10px;
+			}
+			
+			.idCheck:hover{
+			 background-color: #AB47BC;
+			}
+			
+			
+			.foot{
+		   margin: auto;
+		   margin-top: 300px;
+	  	   width: 700px;
+		   text-align: center;
+		   padding: 15px;
+		   border: 1px solid lightgrey;
+	   	   border-radius: 17px;
+	       }
+	       
+	     
+	       
+	        
