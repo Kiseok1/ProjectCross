@@ -45,55 +45,6 @@ pre {
 </style>
 
 
-<script>
-
-
-
-$(function(){
-	
-	
-
-	
-	/*
-		var HelloButton = function (context) {
-		  var ui = $.summernote.ui;
-
-		  // create button
-		  var button = ui.button({
-		    contents: '<i class="fas fa-smile"/> Hello',
-		    tooltip: 'hello',
-		    click: function () {
-		      // invoke insertText method with 'hello' on editor module.
-		      context.invoke('editor.insertText', 'hello');
-		    }
-		  });
-
-		  return button.render();   // return button as jquery object
-		}
-	
-	
-	$('#summernote').summernote({
-		  placeholder: '무슨일이 일어나고 있나요?',
-		  disableDragAndDrop: true,
-		  tabsize: 2,
-		  height: 120,
-		  width:360,
-		
-		  toolbar: [
-		    ['post',['post']]
-		  ],
-		  buttons: {
-			  post: HelloButton
-			  }
-	});
-	
-	*/
-
-	
-})
-
-
-</script>
 
 
 
@@ -359,7 +310,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
+						<span class="material-icons ms_icons">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -448,7 +399,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
+						<span class="material-icons ms_icons">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -532,7 +483,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
+						<span class="material-icons ms_icons">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -603,7 +554,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
+						<span class="material-icons ms_icons">bar_chart</span>
 						<h3>100</h3>
 
 
