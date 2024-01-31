@@ -93,6 +93,7 @@ $(function(){
                  
 </head>
  <body>
+ <div id="view-box">
  	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
  	<style>
  		.Xicon{
@@ -168,7 +169,7 @@ $(function(){
  <main>
         <div class="header dropdown">
              <span class="material-icons">notifications</span>
-             	<span class="material-symbols-outlined dropdown_bar">pending</span>
+             	<span class="material-symbols-outlined dropdown_bar" style="position:absolute; right:1rem;">pending</span>
     	    	 <div class="dropdown_content">
         		 	<a href="">모두 읽은상태 표시</a>
         		 	<a href="">알람 설정</a>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	
+<link rel="stylesheet" href="/css/style_x_ui.css">
 
 
 
@@ -57,6 +57,7 @@
 	</script>
 <body>
 	
+	<div id="view-box">
 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 	<main>
 	<!--검색창 -->
@@ -581,7 +582,7 @@
 	</main>
 	<!-- main section end -->
 
-	
+	</div>
 
 
 </body>

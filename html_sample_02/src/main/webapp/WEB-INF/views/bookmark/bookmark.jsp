@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/style_x_ui.css">
 <link rel="stylesheet" href="/css/style_x_ui_yk.css">
 <link rel="stylesheet" href="/css/style_yk.css">
-<link rel="stylesheet" href="node_modules/reset.css/reset.css">
+<link rel="stylesheet" href="/node_modules/reset.css/reset.css">
 
 	
 
@@ -81,7 +81,27 @@
 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 	<main>
 		<div class="header">
-			<div style="width:100%; height:100%; display: flex; position:relative;">
+			<div style="width:100%; height:100%; position:relative;">
+				<h2>북마크</h2>
+				<div class="post_header-text">
+					<h3>
+						@qwerasd134<span class="header-icon-section">
+					</h3>
+				</div>
+		
+			</div>
+			<div class="dropdown">
+			  <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+			  	<span class="material-icons mateBtn" >more_horiz</span>
+		        <span class="visually-hidden">Toggle Dropdown</span>
+			  </div>
+			  <ul class="dropdown-menu dropdown-link-active-bg">
+			    <li><a class="dropdown-item" href="#">모든 북마크 지우기</a></li>
+			  </ul>
+			</div>
+	
+		<!--
+			<div style="width:100%; height:100%; position:relative;">
 				<h2>북마크</h2>
 				<div class="post_header-text">
 					<h3>
@@ -90,7 +110,7 @@
 				</div>
 				<div class="menuBtn">
 					<div class="dropdown_main">
-						<!-- 드롭다운 메뉴바 -->
+			
 						<div class="dropdown_bar">
 							<span class="material-icons more_horiz">more_horiz</span>
 						</div>
@@ -101,6 +121,7 @@
 	
 				</div>
 			</div>
+		  -->
 		</div>
 
 

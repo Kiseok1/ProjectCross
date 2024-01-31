@@ -22,6 +22,14 @@ html{
     box-sizing: border-box;
 }
 
+body {
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    scroll-behavior: smooth;
+
+}
+
 :root{
     --twitter-theme-color: #BA68C8;
     --twitter-background-color: #F3E5F5;
@@ -30,6 +38,9 @@ html{
     --twitter-line-color: #E6ECF0;
 }
 
+#view-box{
+	display: flex;justify-content: center;border-left: 1px solid var(--twitter-line-color);
+}
 
 .ms_icons, .container, .post_profile-image, .nav_logo, .tweet_box-image, .currLocation, .modal_currLocation{
 	cursor: pointer;
