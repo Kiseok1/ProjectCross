@@ -15,8 +15,8 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link rel="stylesheet" href="/css/style_x_ui.css">
-<link rel="stylesheet" href="/node_modules/reset.css/reset.css">
+<link rel="stylesheet" href="css/style_x_ui.css">
+<link rel="stylesheet" href="node_modules/reset.css/reset.css">
 
 
 
@@ -29,11 +29,11 @@
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-<script src="/js/cross/index.js"></script>
+<script src="js/cross/index.js"></script>
 
 <!-- include summernote css/js-->
-<link href="/css/summernote-lite.css" rel="stylesheet">
-<script src="/js/summernote-lite.js"></script>
+<link href="css/summernote-lite.css" rel="stylesheet">
+<script src="js/summernote-lite.js"></script>
 <style>
 pre {
 	white-space: pre-wrap;
@@ -99,14 +99,14 @@ $(function(){
 
 </head>
 <body>
-		<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 
-	<!-- <div id="view-box"
-		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);"> 
+	<div id="view-box"
+		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);">
 
-		 <nav style="margin-top: 20px;">
+
+		<nav style="margin-top: 20px;">
 			<div class="nav_logo-wrapper">
-				<img class="nav_logo" src="/images/cross.jpg">
+				<img class="nav_logo" src="images/cross.jpg">
 			</div>
 
 			<div class="profile-wrapper " style="">
@@ -175,7 +175,7 @@ $(function(){
 				<h2>로그아웃</h2>
 			</div>
 		</nav>
- -->
+
 
 		<main>
 			<div class="header">
@@ -186,7 +186,7 @@ $(function(){
 				<form>
 					<div class="tweet_box-input">
 						<div class="tweet_box-image rounded-5">
-							<img src="/images/profile01.jpg" alt="profile imagw">
+							<img src="images/profile01.jpg" alt="profile imagw">
 
 						</div>
 						<div id="text-area" class="rounded" style="position: relative;">
@@ -233,7 +233,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 						<div
 							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
@@ -292,7 +292,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 				</div>
 
 				<div class="post_body">
@@ -336,7 +336,7 @@ $(function(){
 
 									<div class="post_header-renote" style="display: flex;">
 										<div class="container img-xs rounded" style="">
-											<img src="/images/post-image.jpeg">
+											<img src="images/post-image.jpeg">
 										</div>
 										<div style="width: 200px; height: 50px;">
 											<p>Text Only</p>
@@ -359,7 +359,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -376,7 +376,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 						<div
 							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
@@ -415,27 +415,27 @@ $(function(){
 					<div class="container img-sm">
 						<div class="row row-cols-auto">
 							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 						</div>
 
 						<div class="row row-cols-auto">
 							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 						</div>
 					</div>
@@ -448,7 +448,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -463,7 +463,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 					</div>
 				</div>
@@ -498,25 +498,25 @@ $(function(){
 					<div class="container">
 						<div class="row row-cols-auto">
 							<div class="col-md-auto img-md rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 							<div class="col-md-auto">
 								<div class="row row-cols-auto">
 									<div class="col-md-auto img-sm">
-										<img src="/images/post-image.jpeg" class="rounded "
+										<img src="images/post-image.jpeg" class="rounded "
 											alt="java18" data-bs-toggle="modal"
 											data-bs-target="#exampleModal"
-											data-bs-whatever="/images/post-image.jpeg">
+											data-bs-whatever="images/post-image.jpeg">
 									</div>
 								</div>
 								<div class="row row-cols-auto">
 									<div class="col-md-auto img-sm">
-										<img src="/images/post-image.jpeg" class="rounded "
+										<img src="images/post-image.jpeg" class="rounded "
 											alt="java18" data-bs-toggle="modal"
 											data-bs-target="#exampleModal"
-											data-bs-whatever="/images/post-image.jpeg">
+											data-bs-whatever="images/post-image.jpeg">
 									</div>
 								</div>
 							</div>
@@ -532,7 +532,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -545,7 +545,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 
 					</div>
@@ -582,14 +582,14 @@ $(function(){
 					<div class="container">
 						<div class="row row-cols-auto ">
 							<div class="col-md-auto img-lg rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 							<div class="col-md-auto img-lg rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 						</div>
 					</div>
@@ -603,7 +603,7 @@ $(function(){
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -617,7 +617,7 @@ $(function(){
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
+					<img class="" src="images/profile01.jpg" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 
 					</div>
@@ -653,9 +653,9 @@ $(function(){
 					<div class="container">
 						<div class="row row-cols-auto ">
 							<div class="col-md-auto img-xl rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+								<img src="images/post-image.jpeg" class="rounded " alt="java18"
 									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
+									data-bs-whatever="images/post-image.jpeg">
 							</div>
 
 						</div>

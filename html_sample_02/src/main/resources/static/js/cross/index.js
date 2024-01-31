@@ -161,7 +161,7 @@ $(function() {
 
 				var reader = new FileReader();
 				reader.onload = function(e) {
-					var img = document.createElement("img");
+					var img = document.createElement("source");
 					//	console.log("isImageFile",e.target);
 					img.setAttribute("src", e.target.result);
 					img.setAttribute("class", "modal_userfile");
@@ -170,7 +170,7 @@ $(function() {
 					img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
 					img.setAttribute("data-set", name);
 					$("#modal_image-area").prepend(img);
-					
+
 
 				}
 				
@@ -325,7 +325,7 @@ $(function() {
 	});
 	
 	$(document).on("click", ".chart", function(e) {
-		alert(".chart");
+		location.href='analystic';
 	});	
 	
 
@@ -367,5 +367,7 @@ $(function() {
 		}
 
 	})
+	
+
 
 })
