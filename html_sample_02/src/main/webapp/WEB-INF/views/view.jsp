@@ -21,7 +21,7 @@
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-<script src="/js/cross/index.js"></script>
+<script src="js/cross/index.js"></script>
 
 <script>
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -34,8 +34,8 @@
     
 </head>
  <body>
- 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
- <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color)" >
+ 
+ <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color)" >
  
 
 	 <nav style="margin-top: 20px;" >
@@ -101,7 +101,7 @@
 	 		<span class="material-icons">logout</span>
 	 		<h2>로그아웃</h2>
 	 	</div>
-	 </nav> -->
+	 </nav>
 
 
  <main>
