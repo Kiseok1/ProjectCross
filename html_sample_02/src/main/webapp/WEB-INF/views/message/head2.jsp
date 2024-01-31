@@ -60,6 +60,8 @@ $(function(){
     
 </head>
  <body>
+ 
+ <div id="view-box">
  	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
  <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
  

@@ -35,9 +35,9 @@
 </head>
  <body>
  
- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color)" >
- 
-
+ <div id="view-box">
+ <%@ include file="/WEB-INF/views/sidebar.jsp" %>
+<!-- 
 	 <nav style="margin-top: 20px;" >
 	 	
 	 	<div class="nav_logo-wrapper" >
@@ -102,7 +102,7 @@
 	 		<h2>로그아웃</h2>
 	 	</div>
 	 </nav>
-
+ -->
 
  <main>
  

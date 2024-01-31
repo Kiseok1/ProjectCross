@@ -15,7 +15,7 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-<link rel="stylesheet" href="css/style_x_ui.css">
+<link rel="stylesheet" href="/css/style_x_ui.css">
 <link rel="stylesheet" href="node_modules/reset.css/reset.css">
 
 
@@ -51,9 +51,9 @@ pre {
 </head>
 <body>
 
-	<div id="view-box"
-		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);">
-
+	<div id="view-box">
+		<%@ include file="/WEB-INF/views/sidebar.jsp" %>
+<!-- 
 
 		<nav style="margin-top: 20px;">
 			<div class="nav_logo-wrapper">
@@ -126,7 +126,7 @@ pre {
 				<h2>로그아웃</h2>
 			</div>
 		</nav>
-
+ -->
 
 		<main>
 			<div class="header">
