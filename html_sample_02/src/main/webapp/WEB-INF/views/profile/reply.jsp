@@ -68,7 +68,7 @@
 
 					</div>
 					<div class="container video_contaner">
-						<video controls loop muted preload="auto" src="video/video01.mp4">
+						<video controls loop muted preload="auto" src="/video/video01.mp4">
 							
 							
 						</video>

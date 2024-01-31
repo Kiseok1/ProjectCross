@@ -180,7 +180,7 @@
                 </div>
                 <div class="container video_contaner">
 					<video controls loop muted poster="" preload="auto">
-					  <source src="video/video01.mp4" type="video/mp4">
+					  <source src="/video/video01.mp4" type="video/mp4">
 					  Video
 					</video>
                </div>

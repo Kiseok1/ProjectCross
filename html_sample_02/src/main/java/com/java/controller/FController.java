@@ -17,6 +17,7 @@ public class FController {
 	
 	@RequestMapping("/")
 	public String index() {
+		session.setAttribute("session_id", "aaa");
 		return "/index";
 	}
 	

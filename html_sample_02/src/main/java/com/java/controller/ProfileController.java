@@ -1,16 +1,31 @@
 package com.java.controller;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.java.dto.PostDto;
+import com.java.service.ProfileService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("profile")
 public class ProfileController {
 	
+	@Autowired HttpSession session;
 	
+	@Autowired ProfileService pService;
 
 	@RequestMapping("/content")
 	public String content() {
+		
+		String id = (String) session.getAttribute("session_id");
+		ArrayList<PostDto> list = pService.selectDefault(id);
+		
+		
 		return "/profile/content";
 	}
 	
