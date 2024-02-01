@@ -18,8 +18,8 @@
 }
 
 #message_wrap:hover{
- 	background-color: black;
- 	color: white;
+ 	background-color: #F3E5F5;
+ 	color: #BA68C8;
  
 }
 
@@ -283,7 +283,7 @@ main::-webkit-scrollbar{
 .check{
 	position: relative;
     left: 400px;
-    bottom: 155px;
+    bottom: 30px;
     display: none;
     cursor: pointer;
 }
@@ -299,8 +299,8 @@ main::-webkit-scrollbar{
 
 .followBtn{
 	position: relative;
-    left: 350px;
-    bottom: 50px;
+    left: 360px;
+    bottom: 40px;
     padding: 8px 16px;
     font-size: 14px;
     font-weight: bold;

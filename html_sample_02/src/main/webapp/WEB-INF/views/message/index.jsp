@@ -211,10 +211,9 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 							    let item = data[i];
 							    //태그 입력 시작
 							    let hdata = '<div class="post">';
-							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px;">';
-							    hdata +='<div class="user" style="border: 1px solid black; width: 60px; height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color);"><img src="/upload/'+item.profile_img+'" style="width: 60px; height: 60px; position: relative; right: 1px; bottom: 1px;"></div>';
-							    hdata +='</div>';
-							    hdata +='<div class="post_body">';
+							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 90px;">';
+							    hdata +='<img src="/upload/'+item.profile_img+'" style="width: 60px; height: 60px; position: relative; right: 1px; bottom: 20px;"></div>';
+							    hdata +='<div class="post_body" style="position: relative; right: 20px">';
 							    hdata +='<div class="post_header">';
 							    hdata +='<div class="post_header-text">';
 							    hdata +=' <h3>'+item.user_id+'';

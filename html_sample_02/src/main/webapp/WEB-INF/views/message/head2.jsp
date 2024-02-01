@@ -323,11 +323,11 @@ $(function(){
 	   <!-- 쪽지 부분 -->
 	   <c:forEach var="messCrossDto" items="${list2}">
        <div class="post">
-            <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px;">
-			<div class="user"><img src="/upload/${messCrossDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 6px; bottom: 2px;" ></div>
+            <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">
+			<div class="user"><img src="/upload/${messCrossDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>
 			</div>
             <div class="post_body">
-                <div class="post_header">
+                <div class="post_header" style="position: relative; top: 15px; left: 10px;">
                     <div class="post_header-text">
                         <h3>${messCrossDto.cross_userDto.name}
                             <span class="header-icon-section">
