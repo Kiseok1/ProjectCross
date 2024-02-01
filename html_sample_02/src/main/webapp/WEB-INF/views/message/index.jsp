@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>            
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,6 +131,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         <script>
        	$(function(){
+       		
        		$("#home-tab").click(function(){
        			location.href = "/message/index";
        		});//click
@@ -146,14 +150,15 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 	        $('input[type="search"]').click(function(){
 	             $('.welcom').hide();
 	             $('.message_post').show();
-	         });
-       		//click하지 않았을때는 post를 숨기고 .welcom 보이기
+	         }); 
+       		
+       		 //click하지 않았을때는 post를 숨기고 .welcom 보이기
 	        $(document).click(function(e) {
 	             if (!$(e.target).is('input[type="search"]')) {
 	                 $('.welcom').show();
 	                 $('.message_post').hide();
 	             }
-	         });
+	         }); 
             
        		
             // .post 클래스를 가진 요소를 클릭했을 때의 이벤트 리스너
@@ -181,10 +186,78 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 			  </ul> 
 		   </div>
         </div>
+        <!-- 검색 ajax -->
+        <script>
+        	$(function(){
+        		$("#searchInput").on("keyup",function(){
+        			var input = $(this).val().trim();
+        	        if (input === "") {
+        	            // 입력값이 없으면 검색 결과를 숨김
+        	            $("#searchResults").empty().hide();
+        	            return;
+        	        }
+        			//ajax 검색 데이터 가져오기
+        			$.ajax({
+						url:"/message/search",
+						type:"post",
+						data:{"input":input},
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							 // 이전 검색 결과를 삭제
+			                $("#searchResults").empty();
+			                if (data.length > 0) {	 
+							for (let i = 0; i < data.length; i++) {
+							    let item = data[i];
+							    //태그 입력 시작
+							    let hdata = '<div class="post">';
+							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px;">';
+							    hdata +='<div class="user" style="border: 1px solid black; width: 60px; height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color);"><img src="/upload/'+item.profile_img+'" style="width: 60px; height: 60px; position: relative; right: 1px; bottom: 1px;"></div>';
+							    hdata +='</div>';
+							    hdata +='<div class="post_body">';
+							    hdata +='<div class="post_header">';
+							    hdata +='<div class="post_header-text">';
+							    hdata +=' <h3>'+item.user_id+'';
+							    hdata +='<span class="header-icon-section">';
+							    hdata +='<span class="material-icons post_badge">verified</span>@'+item.name+'';
+							    hdata +='</span>';
+							    hdata +='</h3>';
+							    hdata +='</div>';
+							    hdata +='<div class="post_header-discription">';
+							    hdata +='<ul>';
+							    hdata +='<li>'+item.profile_txt+'입니다.</li>';
+							    hdata +='<li class="name">@'+item.name+'</li>';
+							    hdata +='</ul>';
+							    hdata +='<button class="followBtn">팔로우</button>';
+							    hdata +='</div>';
+							    hdata +='</div>';
+							    hdata +='</div>';
+							    hdata +='</div>';
+							    //생성된 HTML을 추가
+							    $("#searchResults").append(hdata);
+							}
+					        $("#searchResults").show();
+					    } else {
+					        $("#searchResults").hide();
+					    }
+					},
+						error:function(){
+							alert("실패");
+						}
+        				
+        				
+        			});//ajax
+        			
+        		});//searchInput
+        		
+        		
+        	});//jquery
+        </script>
+        
         <!-- 검색 -->
         <div class="d-flex align-items-center">
-         <form class="w-100 me-3" role="search">
-           <input style="width: 70%; margin-left: 10px; height: 30px; margin-bottom: 10px; margin-top: 10px;" type="search" class="form-control" placeholder="검색" aria-label="Search">
+         <form class="w-100 me-3" role="search" name="search">
+           <input style="width: 70%; margin-left: 10px; height: 30px; margin-bottom: 10px; margin-top: 10px;" type="search" class="form-control" placeholder="검색" aria-label="Search" name="searchInput" id="searchInput">
          </form>
         </div>
         <!-- 쪽지 쓰기 버튼 구성 -->
@@ -197,35 +270,8 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 			</div>
 			<br>
 		</div>
-		<div class="message_post">
-            <div class="message_profile-image">
-					<div class="user">
-					</div>
-				</div>
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header-text">
-                        <h3>Java
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@java
-                            </span>
-                        </h3>
-                    </div>
-
-                    <div class="post_header-discription">
-                        <p>
-                           <strong>lets_be_next</strong> 입니다.
-						   <br>
-						   <div class="name">
-						   	@nickname
-						   </div>
-						   <button class="followBtn">팔로우</button>
-                       </p>
-					  </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div id="searchResults">
+		</div>
 	<!-- 모달 창 -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">

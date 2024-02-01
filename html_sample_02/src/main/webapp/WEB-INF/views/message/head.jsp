@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +14,7 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-<link rel="stylesheet" href="/css/style_x_ui_jw.css">
+
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
 
@@ -21,6 +24,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 
 
 <style>
@@ -60,79 +64,12 @@ $(function(){
     
 </head>
  <body>
-  <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
- <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 
-
-	 <nav style="margin-top: 20px;" >
-	    <div class="nav_logo-wrapper" >
-       		<img class="nav_logo" src="images/apple.jpg" >
-        </div>
-        
-	 	<div class="profile-wrapper " style="">
-	 		<div class="profile-img">
-	 			<div style="" class="img-wrapper rounded-5">
-	 				
-	 			</div>
-	 		</div>
-	 		<div class="profile-name">
-	 			<div style="margin: 4px;"><h2>Name</h2></div>
-	 		</div>
-	 		<div class="profile-follow" style="display: flex; margin-top:20px;">
-	 			<div style="margin:0 4px;"><h4>팔로우</h4></div> 
-	 			<div style="margin:0;">100</div>
-
-	 			<div style="margin:0 4px 0 10px;"><h4>팔로워</h4></div> 
-	 			<div style="margin:0;">100</div>
-	 		</div>
-	 	
-	 	</div>
-	 
-	 
-
-
-        <div class="Menu_options active">
-            <span class="material-icons">home</span>
-            <h2>홈</h2>
-        </div>
-
-        <div class="Menu_options">
-            <span class="material-icons">person</span>
-            <h2>프로필</h2>
-        </div> 
-        
-        <div class="Menu_options">
-            <span class="material-icons">bookmark</span>
-            <h2>북마크</h2>
-        </div> 
-        
-        <div class="Menu_options" style="background-color: var(--twitter-background-color); border-radius: 30px; color: #b19cd9;">
-            <span class="material-icons">email</span>
-            <h2>메시지</h2>
-        </div>
-       
-        <div class="Menu_options">
-            <span class="material-icons">notifications</span>
-            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">27</span>
-        </div>
-
-		 <div class="Menu_options">
-            <span class="material-icons">tag</span>
-            <h2>검색</h2>
-        </div>
-		
-		<div><br></div>
-	 
-	 	<div class="Menu_options">
-	 		<span class="material-icons">logout</span>
-	 		<h2>로그아웃</h2>
-	 	</div>
-	 </nav> -->
-
-
+   <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
+ 	<%@ include file="/WEB-INF/views/sidebar.jsp" %> 
+ 	
+ 	<link rel="stylesheet" href="/css/style_x_ui_jw.css">
  <main>
-        <div class="header">
+         <div class="header">
             <span class="material-icons" style="font-size: 35px; color:#BA68C8">
 				email
 			</span>
@@ -142,21 +79,21 @@ $(function(){
         		/* 이동경로 */
         		$("#home-tab").click(function(){
 	       			location.href = "/message/index";
-	       		});//click
-	       		
-	       		$("#profile-tab").click(function(){
-	       			location.href = "/message/head";
-	       		});//click
-	       		
-	       		$("#contact-tab").click(function(){
-	       			location.href = "/message/head2";
-	       		});//click//nav contact-tab clik
+        		});//nav home-tab clik
+        		
+        		$("#profile-tab").click(function(){
+        			location.href = "/message/head";
+        		});//nav profile-tab clik
+        		
+        		$("#contact-tab").click(function(){
+        			location.href = "/message/head2";
+        		});//nav contact-tab clik
         		/* 이동경로 */
         		
         		//댓글 보기 모달창
-        		$(".message_post").click(function(){
+        		$(".post").click(function(){
         			// Get user information from the clicked post
-                    var userProfileImage = $(this).find('.message_profile-image .user').html();
+                    var userProfileImage = $(this).find('.post_profile-image .user').html();
 
                     // Update modal content with user information and post content
                     $('#exampleModal .modal-body .col-form-label').html(userProfileImage);
@@ -216,6 +153,7 @@ $(function(){
 		        <h5 class="modal-title" id="exampleModalLabel"></h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
+		      <!-- 받은 쪽지부분 -->
 		      <div class="modal-body">
 		        <form>
 		          <div class="mb-3" style="position: relative; right: 10px;">
@@ -225,14 +163,16 @@ $(function(){
                         <h3>name
                             <span class="header-icon-section">
                                 <span class="material-icons post_badge">verified</span>
-                                <br>
-                                <span id="date">1월 18일</span>
+                                <span id="date">01월02일</span>
                             </span>
                         </h3>
 	                </div>
 		          <div class="mb-3">
-		            <div class="form-control" id="message-text" style="">
-		            	<img src="/upload/2.jpg" style="width:80px;">
+		            <div class="form-control" id="message-text" style="overflow-y: auto; /* 세로 스크롤을 자동으로 추가합니다. */ max-height: 200px; ">
+		            	<ul>
+		            	  <li>안녕하세요.</li>
+		            	  <li><img alt="" src="/images/apple.jpg" style="width:80px; height:80px object-fit:cover;" ></li>
+		            	</ul>
 		            </div>
 		          </div>
 		        </div>
@@ -288,6 +228,8 @@ $(function(){
 		      </div>
 		    </div>
 		  </div>
+		  
+		 
         <!-- nav -->
         <div class="d-flex align-items-center" style="position:relative;">
         	 <div class="breadcrmb_div">
@@ -313,10 +255,11 @@ $(function(){
 	    <button class="delete-button" id="deleteBtn1" style="position: relative; left: 18px;">선택삭제</button>
 	    <button class="delete-button" id="deleteBtn2" >전체삭제</button>
 	 </div>
-	   <!-- 쪽지 부분 -->
-       <div class="message_post">
-            <div class="message_profile-image">
-			<div class="user"></div>
+	 
+	 
+	    <div id="message_wrap">
+            <div class="post_profile-image">
+				<div class="user"></div>
 			</div>
             <div class="post_body">
                 <div class="post_header">
@@ -328,31 +271,7 @@ $(function(){
                             </span>
                         </h3>
                     </div>
-                    <div class="post_header-discription">
-                        <ul>
-                           <li>안녕하세요!</li>
-                           <li>잘지내셨어요? 다름이 아니라...</li>
-                       </ul>
-                    </div>
-                    <span class="material-symbols-outlined check">check_circle</span>
-                </div>
-            </div>
-        </div>
-       <div class="message_post">
-            <div class="message_profile-image">
-			<div class="user"></div>
-			</div>
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header-text">
-                        <h3>name
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@name님께 받은 쪽지
-                                <span id="date">1월 18일</span>
-                            </span>
-                        </h3>
-                    </div>
-                    <div class="post_header-discription">
+                    <div class="message_header-discription">
                         <ul>
                            <li>뭐해? 오늘 시간 돼?</li>
                        </ul>
@@ -361,6 +280,46 @@ $(function(){
                 </div> <!-- post_header -->
             </div> <!-- post_body -->
         </div><!-- post -->
+        
+        <script>
+        	$(function(){
+        		$("#message_wrap").on("click",function(){
+        			alert("test");
+        		})
+        		
+        	})
+        </script>
+        
+	   <!-- 쪽지 부분 -->
+	   <c:forEach var="messCrossDto" items="${list}">
+       <div class="post">
+            <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px;">
+			<div class="user"><img src="/upload/${messCrossDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 6px; bottom: 2px;" ></div>
+			</div>
+            <div class="post_body">
+                <div class="post_header">
+                    <div class="post_header-text">
+                        <h3>${messCrossDto.cross_userDto.name}
+                            <span class="header-icon-section">
+                                <span class="material-icons post_badge">verified</span>${messCrossDto.messageDto.source_id}님께 받은 쪽지
+                                <span id="date"><fmt:formatDate value="${messCrossDto.messageDto.created}" pattern="MM월dd일"/> </span>
+                            </span>
+                        </h3>
+                    </div>
+                    <div class="post_header-discription">
+                        <ul>
+                           <li>${messCrossDto.messageDto.mcontent}</li>
+                       </ul>
+                    </div>
+                    <span class="material-symbols-outlined check">check_circle</span>
+                </div>
+            </div>
+        </div>
+        
+       </c:forEach>
+       
+
+        
 </main>
 
 </div>

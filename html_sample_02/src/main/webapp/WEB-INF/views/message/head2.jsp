@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>            
 <!DOCTYPE html>
 <html>
 <head>
@@ -133,7 +136,7 @@ $(function(){
 
 
  <main>
-        <div class="header">
+      <div class="header">
             <span class="material-icons" style="font-size: 35px; color:#BA68C8">
 				email
 			</span>
@@ -141,21 +144,22 @@ $(function(){
         <script>
         	$(function(){
         		$("#home-tab").click(function(){
-           			location.href = "/message/index";
-           		});//click
-           		
-           		$("#profile-tab").click(function(){
-           			location.href = "/message/head";
-           		});//click
-           		
-           		$("#contact-tab").click(function(){
-           			location.href = "/message/head2";
-           		});//click;//nav contact-tab clik
+	       			location.href = "/message/index";
+        			
+        		});//nav home-tab clik
+        		
+        		$("#profile-tab").click(function(){
+        			location.href = "/message/head";
+        		});//nav profile-tab clik
+        		
+        		$("#contact-tab").click(function(){
+        			location.href = "/message/head2";
+        		});//nav contact-tab clik
         		
         		
-        		$(".message_post").click(function(){
+        		$(".post").click(function(){
         			// Get user information from the clicked post
-                    var userProfileImage = $(this).find('.message_profile-image .user').html();
+                    var userProfileImage = $(this).find('.post_profile-image .user').html();
 
                     // Update modal content with user information and post content
                     $('#exampleModal .modal-body .col-form-label').html(userProfileImage);
@@ -233,7 +237,10 @@ $(function(){
 	                </div>
 		          <div class="mb-3">
 		            <div class="form-control" id="message-text" style="">
-		            	
+		            	<ul>
+		            	  <li>안녕하세요. 다름이 아니라 저번주에 정했던 미팅 약속을 부득이하게 취소하게 되어 연락드립니다.</li>
+		            	  <li><img alt="" src="/images/apple.jpg" style="width:80px; height:80px object-fit:cover;" ></li>
+		            	</ul>
 		            </div>
 		          </div>
 		        </div>
@@ -314,32 +321,33 @@ $(function(){
 	    <button class="delete-button" id="deleteBtn2" >전체삭제</button>
 	 </div>
 	   <!-- 쪽지 부분 -->
-       <div class="message_post">
-            <div class="message_profile-image">
-			<div class="user"></div>
+	   <c:forEach var="messCrossDto" items="${list2}">
+       <div class="post">
+            <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px;">
+			<div class="user"><img src="/upload/${messCrossDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 6px; bottom: 2px;" ></div>
 			</div>
             <div class="post_body">
                 <div class="post_header">
                     <div class="post_header-text">
-                        <h3>name
+                        <h3>${messCrossDto.cross_userDto.name}
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@name님께 보낸 쪽지
-                                <span id="date">1월 18일</span>
+                                <span class="material-icons post_badge">verified</span>${messCrossDto.messageDto.target_id}님께 보낸 쪽지
+                                <span id="date"><fmt:formatDate value="${messCrossDto.messageDto.created}" pattern="MM월dd일"/> </span>
                             </span>
                         </h3>
                     </div>
                     <div class="post_header-discription">
                         <ul>
-                           <li>안녕하세요!</li>
-                           <li>잘지내셨어요? 다름이 아니라...</li>
+                           <li>${messCrossDto.messageDto.mcontent}</li>
                        </ul>
                     </div>
                     <span class="material-symbols-outlined check">check_circle</span>
                 </div>
             </div>
         </div>
-       <div class="message_post">
-            <div class="message_profile-image">
+       </c:forEach>
+       <div class="post">
+            <div class="post_profile-image">
 			<div class="user"></div>
 			</div>
             <div class="post_body">
