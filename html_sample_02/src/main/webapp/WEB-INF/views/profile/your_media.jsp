@@ -39,7 +39,7 @@
 		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);">
 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 	 <div class="middlecontainer" >
-   	<%@ include file="/WEB-INF/views/profile/main.jsp" %>
+   	<%@ include file="/WEB-INF/views/profile/your_main.jsp" %>
    			<section class="tweets">
                <div class="heading">
                    <div class="heading_content">게시물</div>
