@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MessCrossDto {
+public class MessCrossMediaDto {
 
 	private MessageDto messageDto;
 	private Cross_userDto cross_userDto;
+	private MediaDto mediaDto;
 	
 }

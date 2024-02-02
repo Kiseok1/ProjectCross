@@ -18,10 +18,13 @@ $(function() {
 		var modalBodyInput = exampleModal.querySelector('.modal-body img')
 
 		modalTitle.textContent = recipient
-		modalBodyInput.src = recipient
+		modalBodyInput.src = recipient 
 	})
 
 
+	
+	
+	
 
 
 	const DEFAULT_HEIGHT = 16; // textarea 기본 height

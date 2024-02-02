@@ -149,14 +149,14 @@ pre{    white-space: pre-wrap;    background: #EEE;}
        		//click시 .welcom숨기기
 	        $('input[type="search"]').click(function(){
 	             $('.welcom').hide();
-	             $('.message_post').show();
+	             $('.post').show();
 	         }); 
        		
        		 //click하지 않았을때는 post를 숨기고 .welcom 보이기
 	        $(document).click(function(e) {
 	             if (!$(e.target).is('input[type="search"]')) {
 	                 $('.welcom').show();
-	                 $('.message_post').hide();
+	                 $('.post').hide();
 	             }
 	         }); 
             

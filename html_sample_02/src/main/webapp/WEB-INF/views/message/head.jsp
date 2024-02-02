@@ -90,18 +90,35 @@ $(function(){
         		});//nav contact-tab clik
         		/* 이동경로 */
         		
-        		//댓글 보기 모달창
         		$(".post").click(function(){
-        			// Get user information from the clicked post
-                    var userProfileImage = $(this).find('.post_profile-image .user').html();
+        			//ms_id
+        			//alert("id값 : "+$(this).attr("id"));
+        			let msg_id = $(this).attr("id");
+        			$.ajax({
+        				url:"/message/receiveOne",
+						type:"post",
+						data:{"msg_id":msg_id},
+						dataType:"json",
+						success:function(data){
+						  console.log(data);
+						  // 날짜 데이터를 JavaScript Date 객체로 변환
+						  var date = new Date(data.messageDto.created);
+						    
+					     // 원하는 형식으로 날짜를 변환하여 출력 (예: yyyy년 MM월 dd일)
+					     var formattedDate = (date.getMonth() + 1) + "월 " + date.getDate() + "일";
 
-                    // Update modal content with user information and post content
-                    $('#exampleModal .modal-body .col-form-label').html(userProfileImage);
-                    
-
-                    // Show the modal
+						  // 변환된 날짜를 해당 요소에 적용
+						  $("#date").text(formattedDate);
+						  $(".sender").children().attr("src","/upload/"+data.cross_userDto.profile_img);
+			              $("#Mcontent").text(data.messageDto.mcontent);
+			              $("#name").text("@"+data.messageDto.source_id);
+						},
+						error:function(){
+							alert("실패");
+						}
+        			});//ajax
+        			 // Show the modal
                     $('#exampleModal').modal('show');
-        			
         		});//post click
 
         		//선택삭제 모달창
@@ -144,8 +161,8 @@ $(function(){
         	});//jquery
         	
         </script>
-        <!-- 모달 창 -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- 모달 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
 		      <div class="modal-header" style="width: 495px;">
@@ -153,24 +170,26 @@ $(function(){
 		        <h5 class="modal-title" id="exampleModalLabel"></h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
-		      <!-- 받은 쪽지부분 -->
-		      <div class="modal-body">
+		      <div class="modal-body" style="height: 290px;">
 		        <form>
 		          <div class="mb-3" style="position: relative; right: 10px;">
-		          	<div class="sender"></div>
+		          	<div class="sender">
+		          		<img src="/upload/" style="width: 60px; height: 60px; position: relative; right: 1px;  border-radius: 30px;">
+		          	</div>
 		          </div>
 		          <div class="mb-3" style="position: relative; left: 65px; bottom: 50px;">
-                        <h3>name
+                        <h3 id="target_id">
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>
-                                <span id="date">01월02일</span>
+                                <span class="material-icons post_badge">verified</span><span id="name" style="right: 4px; position: relative;">@</span>
+                                <br>
+                                <span id="date">1월 18일</span>
                             </span>
                         </h3>
 	                </div>
 		          <div class="mb-3">
-		            <div class="form-control" id="message-text" style="overflow-y: auto; /* 세로 스크롤을 자동으로 추가합니다. */ max-height: 200px; ">
+		            <div class="form-control" id="message-text" style="">
 		            	<ul>
-		            	  <li>안녕하세요.</li>
+		            	  <li id="Mcontent">안녕하세요. 다름이 아니라 저번주에 정했던 미팅 약속을 부득이하게 취소하게 되어 연락드립니다.</li>
 		            	  <li><img alt="" src="/images/apple.jpg" style="width:80px; height:80px object-fit:cover;" ></li>
 		            	</ul>
 		            </div>
@@ -178,12 +197,10 @@ $(function(){
 		        </div>
 		        </form>
 		      </div>
-		      <div class="modal-footer" style="position: relative; top: 190px; right: 495px; width: 490px;">
-		         <button type="button" id="send_btn" class="btn btn-primary">보내기</button>
+		      <div class="modal-footer" style="position: relative; right: 495px; top: 170px; width: 490px;">
 		      </div>
 		    </div>
 		  </div>
-
         <!-- delete모달 창 -->
 		<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
@@ -255,32 +272,6 @@ $(function(){
 	    <button class="delete-button" id="deleteBtn1" style="position: relative; left: 18px;">선택삭제</button>
 	    <button class="delete-button" id="deleteBtn2" >전체삭제</button>
 	 </div>
-	 
-	 
-	    <div id="message_wrap">
-            <div class="post_profile-image">
-				<div class="user"></div>
-			</div>
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header-text">
-                        <h3>name
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@name님께 받은 쪽지
-                                <span id="date">1월 18일</span>
-                            </span>
-                        </h3>
-                    </div>
-                    <div class="message_header-discription">
-                        <ul>
-                           <li>뭐해? 오늘 시간 돼?</li>
-                       </ul>
-                    </div> <!-- message content -->
-                    <span class="material-symbols-outlined check">check_circle</span>
-                </div> <!-- post_header -->
-            </div> <!-- post_body -->
-        </div><!-- post -->
-        
         <script>
         	$(function(){
         		$("#message_wrap").on("click",function(){
@@ -291,24 +282,24 @@ $(function(){
         </script>
         
 	   <!-- 쪽지 부분 -->
-	   <c:forEach var="messCrossDto" items="${list}">
-       <div class="post">
+	   <c:forEach var="messCrossMediaDto" items="${list}">
+       <div class="post" id="${messCrossMediaDto.messageDto.msg_id}">
             <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">
-			<div class="user"><img src="/upload/${messCrossDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>
+			<div class="user"><img src="/upload/${messCrossMediaDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>
 			</div>
-            <div class="post_body">
+            <div class="post_body" style="position: relative; bottom: 6px;">
                 <div class="post_header" style="position: relative; top: 15px; left: 10px;">
                     <div class="post_header-text">
-                        <h3>${messCrossDto.cross_userDto.name}
+                        <h3>${messCrossMediaDto.cross_userDto.name}
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>${messCrossDto.messageDto.source_id}님께 받은 쪽지
-                                <span id="date"><fmt:formatDate value="${messCrossDto.messageDto.created}" pattern="MM월dd일"/> </span>
+                                <span class="material-icons post_badge">verified</span>${messCrossMediaDto.messageDto.source_id}님께 받은 쪽지
+                                <span id="date"><fmt:formatDate value="${messCrossMediaDto.messageDto.created}" pattern="MM월dd일"/> </span>
                             </span>
                         </h3>
                     </div>
                     <div class="post_header-discription">
                         <ul>
-                           <li>${messCrossDto.messageDto.mcontent}</li>
+                           <li>${messCrossMediaDto.messageDto.mcontent}</li>
                        </ul>
                     </div>
                     <span class="material-symbols-outlined check">check_circle</span>

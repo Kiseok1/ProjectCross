@@ -264,7 +264,6 @@ main::-webkit-scrollbar{
 	width: 60px;
     height: 60px;
     position: relative;
-    border: 1px solid black;
     color: var(--twitter-theme-color);
     border-radius: 30px;
     left: 5px;

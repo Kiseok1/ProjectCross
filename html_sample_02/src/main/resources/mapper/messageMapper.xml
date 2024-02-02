@@ -7,24 +7,35 @@
 <mapper namespace="com.java.mapper.MessageMapper">
 	
 	<!-- 받은 쪽지 전체 가져오기 messCrossDto-->
-	<select id="receiveAll" resultMap="messCrossDto">
+	<select id="receiveAll" resultMap="messCrossMediaDto">
 		 select message.*, cross_user.name, cross_user.profile_img from message,cross_user where message.source_id = cross_user.user_id and message.target_id='aaa' order by message.created desc		 
 	</select>
 
-	<!-- 보낸 쪽지 전체 가져오기 messCrossDto-->
-	<select id="sendAll" resultMap="messCrossDto">
-		 select message.*, cross_user.name, cross_user.profile_img from message,cross_user where message.target_id = cross_user.user_id and message.source_id='aaa' order by message.created desc		 
+	<!-- 받은 쪽지 하나 가져오기 messCrossDto-->
+	<select id="receiveOne" resultMap="messCrossMediaDto">
+		 select message.*, cross_user.name, cross_user.profile_img, media.file_name from message,cross_user,media where message.msg_id=media.msg_id and message.source_id = cross_user.user_id and message.msg_id = #{msg_id}		 
 	</select>
 
 	<!-- 보낸 쪽지 전체 가져오기 messCrossDto-->
+	<select id="sendAll" resultMap="messCrossMediaDto">
+		 select message.*, cross_user.name, cross_user.profile_img from message,cross_user where message.target_id = cross_user.user_id and message.source_id='aaa' order by message.created desc		 
+	</select>
+
+	<!-- 보낸 쪽지 하나 가져오기 messCrossDto-->
+	<select id="sendOne" resultMap="messCrossMediaDto">
+		 select message.*, cross_user.name, cross_user.profile_img, media.file_name from message,cross_user,media where message.msg_id=media.msg_id and message.target_id = cross_user.user_id and message.msg_id = #{msg_id}		 
+	</select>
+
+	<!-- 검색 전체 가져오기 messCrossDto-->
 	<select id="searchAll" resultType="com.java.dto.Cross_userDto">
 		 select * from cross_user where user_id like '%'||#{input}||'%' or name like '%'||#{input}||'%' 	 
 	</select>
 	
 	<!--resultMap 1.message선언 2.cross_user선언 3.합친것 선언 -->
-    <resultMap type="com.java.dto.MessCrossDto" id="messCrossDto">
+    <resultMap type="com.java.dto.MessCrossMediaDto" id="messCrossMediaDto">
 		<collection property="messageDto" resultMap="messageDtoMap" ></collection>
 		<collection property="cross_userDto" resultMap="cross_userDtoMap" ></collection>
+		<collection property="mediaDto" resultMap="mediaDtoMap" ></collection>
     </resultMap>
      <!-- 1.message선언 -->
     <resultMap type="com.java.dto.MessageDto" id="messageDtoMap">
@@ -40,5 +51,9 @@
 		<result column="user_id" property="user_id" />    
 		<result column="name" property="name" />    
 		<result column="profile_img" property="profile_img" />    
+    </resultMap>
+     <!-- 3.cross_user선언 -->
+    <resultMap type="com.java.dto.MediaDto" id="mediaDtoMap">
+		<result column="file_name" property="file_name" />    
     </resultMap>
 </mapper>
