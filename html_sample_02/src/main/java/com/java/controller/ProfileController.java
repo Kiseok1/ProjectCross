@@ -26,6 +26,7 @@ public class ProfileController {
 	
 	@Autowired ProfileService pService;
 
+	//프로필 페이지 이동
 	@RequestMapping("/content")
 	public String content(Model model) {
 		
@@ -72,6 +73,7 @@ public class ProfileController {
 		return "/profile/like";
 	}
 	
+	//상대방 프로필 이동
 	@RequestMapping("/your_content")
 	public String your_content(Model model) {
 		String your_id = "ddd";
@@ -129,6 +131,8 @@ public class ProfileController {
 		return "/profile/your_like";
 	}
 	
+	
+	//mypage 메인 이동
 	@RequestMapping("/mypage")
 	public String mypage(Model model) {
 		
@@ -140,6 +144,7 @@ public class ProfileController {
 		return "/profile/mypage";
 	}
 	
+	//mypage - 계정정보 이동
 	@RequestMapping("/mypage_account")
 	public String mypage_account(Model model) {
 		String id = (String) session.getAttribute("session_id");
@@ -148,6 +153,7 @@ public class ProfileController {
 		return "/profile/mypage_account";
 	}
 	
+	//mypage - 비밀번호 변경 이동
 	@RequestMapping("/mypage_pw_modify")
 	public String mypage_pw_modify(Model model) {
 		
@@ -159,6 +165,7 @@ public class ProfileController {
 		return "/profile/mypage_pw_modify";
 	}
 	
+	//mypage - 프로필 수정 이동
 	@RequestMapping("/profile_modify")
 	public String profile_modify(Model model) {
 		
@@ -170,6 +177,7 @@ public class ProfileController {
 		return "/profile/profile_modify";
 	}
 	
+	//계정정보 변경
 	@PostMapping("/accountUpdate")
 	@ResponseBody
 	public String accountUpdate(Cross_userDto udto,String org_id,Model model) {
@@ -180,6 +188,7 @@ public class ProfileController {
 		return result;
 	}
 	
+	//비밀번호 변경
 	@PostMapping("/pwUpdate")
 	@ResponseBody
 	public String pwUpdate(String cur_pw, String new_pw) {
@@ -196,6 +205,7 @@ public class ProfileController {
 		return result;
 	}
 	
+	//프로필 수정
 	@PostMapping("/profileUpdate")
 	@ResponseBody
 	public String profileUpdate(String name, String profile_txt, String user_loc, String user_url, String header_img, String profile_img) {
@@ -207,7 +217,7 @@ public class ProfileController {
 		return result;
 	}
 	
-	//내용부분 - 이미지 추가시 파일업로드
+	//프로필 수정 - 이미지 업로드
 	@PostMapping("imgUpload")
 	@ResponseBody
 	public String imgUpload(@RequestPart MultipartFile file) throws Exception  {
@@ -221,13 +231,24 @@ public class ProfileController {
 			String fupload = "c:/upload/";
 			File f = new File(fupload+upFName);
 			file.transferTo(f);
-			
-			//파일위치
-			
 		} 
-		
 		return upFName;
 	}
 	
+	//팔로우
+	@PostMapping("/followBtn")
+	@ResponseBody
+	public String followBtn(String stat, String target_id) {
+		String source_id = (String) session.getAttribute("session_id");
+		if(stat.equals("insert")) {
+			pService.insertFollow(source_id,target_id);
+		} else if(stat.equals("delete")) {
+			pService.deleteFollow(source_id,target_id);
+		}
+		
+		String result = "";
+		
+		return result;
+	}
 	
 }

@@ -39,8 +39,42 @@
     		$(".followbtn").click(function(){
     			if($(".followbtn").text()=="언팔로우"){
     				$(".followbtn").text("팔로우")
+    				console.log("팔로잉->팔로우(언팔)");
+    				let stat = "delete";
+    				let target_id="${udto2.user_id}";
+    				console.log(target_id)
+    				$.ajax({
+    					url:"/profile/followBtn",
+    					type:"post",
+    					data:{"stat":stat,"target_id":target_id},
+    					datatype:"text",
+    					success:function(data){
+    						alert("성공");
+    					},
+    					error:function(){
+    						alert("실패");
+    					}
+    				})
+    				
+    				
     			} else if($(".followbtn").text()=="팔로우"){
     				$(".followbtn").text("팔로잉")
+    				console.log("팔로우->팔로잉");
+    				let stat = "insert";
+    				let target_id="${udto2.user_id}";
+    				console.log(target_id)
+    				$.ajax({
+    					url:"/profile/followBtn",
+    					type:"post",
+    					data:{"stat":stat,"target_id":target_id},
+    					datatype:"text",
+    					success:function(data){
+    						alert("성공");
+    					},
+    					error:function(){
+    						alert("실패");
+    					}
+    				})
     			} 
     		})
     		
@@ -100,7 +134,7 @@
                     	<div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
                     	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div>
                     	
-                    	<div class="followbtn">팔로잉</div>
+                    	<div class="followbtn">팔로우</div>
                     </div>
                 </div>
                 <div class="bio">

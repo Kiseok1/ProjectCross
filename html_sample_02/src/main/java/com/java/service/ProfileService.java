@@ -20,4 +20,10 @@ public interface ProfileService {
 	//프로필 변경
 	void profileUpdate(String name, String profile_txt, String user_loc, String user_url, String header_img, String profile_img, String user_id);
 
+	//팔로우->팔로잉
+	void insertFollow(String source_id, String target_id);
+
+	//팔로잉->팔로우(언팔)
+	void deleteFollow(String source_id, String target_id);
+
 }
