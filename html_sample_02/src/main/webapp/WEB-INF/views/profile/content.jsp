@@ -100,7 +100,7 @@
 			</div> -->
 			
 			 <!-- Post -->
-
+			 <!--
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
@@ -113,7 +113,7 @@
 					</div>
 				</div>
 
-				<div class="post_body">
+				 <div class="post_body">
 					<div class="post_header">
 						<div class="post_header-text">
 							<h3>
@@ -189,7 +189,7 @@
 						<div class="">
 							<div class="">
 
-								<!--Renote Content -->
+								Renote Content
 
 								<div class="rounded-4"
 									style="width: 450px; border: 1px solid var(--twitter-line-color); padding: 1rem;"
@@ -230,7 +230,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -319,7 +319,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -403,7 +403,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -474,7 +474,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -541,7 +541,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -549,7 +549,73 @@
 
 				</div>
 
+			</div> -->
+			
+			<c:forEach var="pdto" items="${list}">
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/upload/${udto.profile_img}" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								${udto.name} <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@${udto.user_id}
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3><fmt:formatDate value="${pdto.created}" pattern="yy.MM.dd"/></h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>${pdto.pcontent}</p>
+						</div>
+
+					</div>
+
+					<div class="container">
+						<div class="row row-cols-auto ">
+							<div class="col-md-auto img-xl rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="post_footer">
+						<input type="hidden" value="${pdto.post_id}">
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						
+						<c:forEach var="like" items="${list2}">
+							<c:if test="${pdto.post_id==like.post_id}">
+								<span class="material-icons ms_icons favorite toggle">favorite_border</span>
+								<h3>100</h3>  
+							</c:if>
+						</c:forEach>
+						
+						
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+					</div>
+
+				</div>
+
 			</div>
+			</c:forEach>
         </div>
         </div>
        

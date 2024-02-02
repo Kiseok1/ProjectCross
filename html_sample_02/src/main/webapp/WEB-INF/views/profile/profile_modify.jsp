@@ -39,8 +39,8 @@
     <script>
     	$(function(){
     		let img_location = "";
-    		let header_img;
-    		let profile_img;
+    		let header_img="${udto.header_img}";
+    		let profile_img="${udto.profile_img}";
     		
     		$(".heading_media").click(function(){
     			location.href = "media2";

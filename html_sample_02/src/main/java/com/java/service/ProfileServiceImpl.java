@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
+import com.java.dto.PostLikeDto;
+import com.java.dto.User_followDto;
 import com.java.mapper.Cross_userMapper;
+import com.java.mapper.PostLikeMapper;
+import com.java.mapper.PostMapper;
 import com.java.mapper.ProfileMapper;
 import com.java.mapper.User_followMapper;
 
@@ -17,6 +21,8 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired ProfileMapper profileMapper;
 	@Autowired Cross_userMapper cross_userMapper;
 	@Autowired User_followMapper user_followMapper;
+	@Autowired PostLikeMapper postLikeMapper;
+	@Autowired PostMapper postMapper;
 
 	@Override
 	public ArrayList<PostDto> selectDefault(String id) {
@@ -68,5 +74,43 @@ public class ProfileServiceImpl implements ProfileService {
 		user_followMapper.deleteFollow(source_id,target_id);
 		
 	}
+
+	//팔로우 정보 가져오기
+	@Override
+	public User_followDto selectFollowInfo(String id, String your_id) {
+		User_followDto followDto = user_followMapper.selectFollowInfo(id,your_id);  
+		return followDto;
+	}
+
+	//좋아요 추가
+	@Override
+	public void likeUp(String user_id, String post_id) {
+		postLikeMapper.likeUp(user_id,post_id);
+		postMapper.likeUp(post_id);
+	}
+
+	//좋아요 삭제
+	@Override
+	public void likeDown(String user_id, String post_id) {
+		postLikeMapper.likeDown(user_id,post_id);
+		postMapper.likeDown(post_id);
+		
+	}
+
+	//좋아요 수
+	@Override
+	public int likeCount(String post_id) {
+		int likeCount = postLikeMapper.likeCount(post_id);
+		return likeCount;
+	}
+
+	//좋아요한 글
+	@Override
+	public ArrayList<PostLikeDto> selectLike(String id) {
+		ArrayList<PostLikeDto> list = postLikeMapper.selectLike(id);
+		return list;
+	}
+	
+	
 	
 }

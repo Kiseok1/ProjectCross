@@ -56,7 +56,7 @@
               </div>
               <div class="media_sub">
 				<div class="media_box_1"><img src="/images/lang1.jpg"></div>		               
-				<div class="media_box_2"><!-- <img src="/upload/img11.jpg"> --></div>		               
+				<div class="media_box_2"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		               
 				<div class="media_box_3"><!-- <img src="/upload/trip01.jpg"> --></div>		               
               </div>
            </section>

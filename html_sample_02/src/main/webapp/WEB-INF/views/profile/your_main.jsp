@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <!DOCTYPE html>
 <html>
 
@@ -9,6 +10,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Twitter Profile</title>
+    <script src="/js/cross/profile.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
@@ -21,20 +23,18 @@
     <script>
     	$(function(){
     		$(".heading_media").click(function(){
-    			location.href = "your_media";
+    			location.href = "/profile/your_media";
     		})
     		$(".heading_content").click(function(){
-    			location.href = "your_content";
+    			location.href = "/profile/your_content";
     		})
     		$(".heading_reply").click(function(){
-    			location.href = "your_reply";
+    			location.href = "/profile/your_reply";
     		})
     		$(".heading_like").click(function(){
-    			location.href = "your_like";
+    			location.href = "/profile/your_like";
     		})
-    		$(".editprofile").click(function(){
-    			location.href = "your_mypage";
-    		})
+    		
     		
     		$(".followbtn").click(function(){
     			if($(".followbtn").text()=="언팔로우"){
@@ -133,8 +133,12 @@
                     <div class="yourpage">
                     	<div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
                     	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div>
-                    	
-                    	<div class="followbtn">팔로우</div>
+                    	<c:if test="${followDto==null}">
+	                    	<div class="followbtn">팔로우</div>
+                    	</c:if>
+                    	<c:if test="${followDto!=null}">
+	                    	<div class="followbtn">팔로잉</div>
+                    	</c:if>
                     </div>
                 </div>
                 <div class="bio">
@@ -145,7 +149,13 @@
                     <p>${udto2.profile_txt}</p>
                     <span> 
                     	   <i class="fa fa-location-arrow "></i> ${udto2.user_loc} &nbsp
-                    	   <i class="fa-solid fa-arrow-up-right-from-square"></i> ${udto2.user_url} &nbsp 
+                    	   <c:if test="${not fn:contains(udto2.user_url, 'http')}">
+                    	   		<i class="fa-solid fa-arrow-up-right-from-square"></i> <a href="http://${udto2.user_url}">${udto2.user_url}</a> &nbsp 
+                    	   </c:if>
+                    	   <c:if test="${fn:contains(udto2.user_url, 'http')}">
+                    	   		<i class="fa-solid fa-arrow-up-right-from-square"></i> <a href="${udto2.user_url}">${udto2.user_url}</a> &nbsp 
+                    	   </c:if>
+                    	   <%-- <i class="fa-solid fa-arrow-up-right-from-square"></i> ${udto2.user_url} &nbsp  --%>
                            <i class="fa fa-calendar"></i> 2024.01.25
                     </span>
                     <div class="nawa">

@@ -325,7 +325,7 @@ $(function() {
 	});
 	
 	$(document).on("click", ".chart", function(e) {
-		location.href='analystic';
+		location.href='/analystic';
 	});	
 	
 

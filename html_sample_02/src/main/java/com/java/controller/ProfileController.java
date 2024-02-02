@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
+import com.java.dto.PostLikeDto;
+import com.java.dto.User_followDto;
 import com.java.service.ProfileService;
 
 import jakarta.servlet.http.HttpSession;
@@ -33,9 +35,11 @@ public class ProfileController {
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
 		ArrayList<PostDto> list = pService.selectDefault(id);
+		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
 		
 		model.addAttribute("udto",udto);
 		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
 		
 		return "/profile/content";
 	}
@@ -78,13 +82,22 @@ public class ProfileController {
 	public String your_content(Model model) {
 		String your_id = "ddd";
 		String id = (String) session.getAttribute("session_id");
+		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
-		ArrayList<PostDto> list = pService.selectDefault(id);
+		
+		//상대방 게시글 가져오기
+		ArrayList<PostDto> list = pService.selectDefault(your_id);
+		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
+		//팔로우 정보 가져오기
+		User_followDto followDto = pService.selectFollowInfo(id,your_id);
 		
 		model.addAttribute("udto",udto);
 		model.addAttribute("list",list);
 		model.addAttribute("udto2",udto2);
+		model.addAttribute("followDto",followDto);
+		model.addAttribute("list2",list2);
 		
 		return "/profile/your_content";
 	}
@@ -93,12 +106,17 @@ public class ProfileController {
 	public String your_media(Model model) {
 		String your_id = "ddd";
 		String id = (String) session.getAttribute("session_id");
+		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
+		//팔로우 정보 가져오기
+		User_followDto followDto = pService.selectFollowInfo(id,your_id);
 		
-		
-		model.addAttribute("udto",udto);
+		model.addAttribute("udto",udto);		
 		model.addAttribute("udto2",udto2);
+		model.addAttribute("followDto",followDto);
 		
 		return "/profile/your_media";
 	}
@@ -107,12 +125,17 @@ public class ProfileController {
 	public String your_reply(Model model) {
 		String your_id = "ddd";
 		String id = (String) session.getAttribute("session_id");
+		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
+		//팔로우 정보 가져오기
+		User_followDto followDto = pService.selectFollowInfo(id,your_id);
 		
-		
-		model.addAttribute("udto",udto);
+		model.addAttribute("udto",udto);		
 		model.addAttribute("udto2",udto2);
+		model.addAttribute("followDto",followDto);
 		
 		return "/profile/your_reply";
 	}
@@ -121,12 +144,17 @@ public class ProfileController {
 	public String your_like(Model model) {
 		String your_id = "ddd";
 		String id = (String) session.getAttribute("session_id");
+		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
+		//팔로우 정보 가져오기
+		User_followDto followDto = pService.selectFollowInfo(id,your_id);
 		
-		
-		model.addAttribute("udto",udto);
+		model.addAttribute("udto",udto);		
 		model.addAttribute("udto2",udto2);
+		model.addAttribute("followDto",followDto);
 		
 		return "/profile/your_like";
 	}
@@ -249,6 +277,25 @@ public class ProfileController {
 		String result = "";
 		
 		return result;
+	}
+	
+	//좋아요
+	@PostMapping("/likeUpdate")
+	@ResponseBody
+	public String likeUpdate(String stat, String post_id) {
+		int likeCount=0;
+		String user_id = (String) session.getAttribute("session_id");
+		if(stat.equals("likeUp")) {
+			pService.likeUp(user_id,post_id);
+			likeCount = pService.likeCount(post_id);
+		} else if(stat.equals("likeDown")) {
+			pService.likeDown(user_id,post_id);
+			likeCount = pService.likeCount(post_id);
+		}
+		
+		
+		
+		return likeCount+"";
 	}
 	
 }

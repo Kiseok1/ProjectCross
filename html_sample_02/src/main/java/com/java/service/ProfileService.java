@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
+import com.java.dto.PostLikeDto;
+import com.java.dto.User_followDto;
 
 public interface ProfileService {
 
@@ -25,5 +27,17 @@ public interface ProfileService {
 
 	//팔로잉->팔로우(언팔)
 	void deleteFollow(String source_id, String target_id);
+
+	//팔로우 정보 가져오기
+	User_followDto selectFollowInfo(String id, String your_id);
+
+	//좋아요 추가
+	void likeUp(String user_id, String post_id);
+	//좋아요 삭제
+	void likeDown(String user_id, String post_id);
+	//좋아요 수
+	int likeCount(String post_id);
+	//내가 좋아요 한 글
+	ArrayList<PostLikeDto> selectLike(String id);
 
 }

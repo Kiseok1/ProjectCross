@@ -180,7 +180,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -269,7 +269,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -353,7 +353,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -424,7 +424,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 
@@ -491,7 +491,7 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
+						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 
 

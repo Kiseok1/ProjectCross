@@ -100,7 +100,7 @@
 			</div> -->
 			
 			 <!-- Post -->
-
+<!-- 
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
@@ -189,7 +189,7 @@
 						<div class="">
 							<div class="">
 
-								<!--Renote Content -->
+								Renote Content
 
 								<div class="rounded-4"
 									style="width: 450px; border: 1px solid var(--twitter-line-color); padding: 1rem;"
@@ -549,7 +549,68 @@
 
 				</div>
 
+			</div> -->
+			
+			<c:forEach var="pdto" items="${list}">
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/upload/${udto2.profile_img}" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								${udto2.name} <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@${udto2.user_id}
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3><fmt:formatDate value="${pdto.created}" pattern="yy.MM.dd"/></h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>${pdto.pcontent}</p>
+						</div>
+
+					</div>
+
+					<div class="container">
+						<div class="row row-cols-auto ">
+							<div class="col-md-auto img-xl rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="post_footer">
+						<input type="hidden" value="${pdto.post_id}">
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
 			</div>
+			</c:forEach>
         </div>
         </div>
        
