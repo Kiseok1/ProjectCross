@@ -35,6 +35,38 @@
     <link rel="stylesheet" href="/css/style_x_ui.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+	
+	<script>
+		$(function(){
+			
+			/* 아이디 이메일 변경 */
+			var org_id= $(".input_id").val();
+			$(".savebtn").click(function(){
+				var user_id = $(".input_id").val();
+				var email = $(".input_email").val();
+
+				$.ajax({
+					url:"/profile/accountUpdate",
+					type:"post",
+					data:{"user_id":user_id,"email":email,"org_id":org_id},
+					datatype:"text",
+					success:function(data){
+						alert("계정 정보를 변경하였습니다.");
+						$(".handle").children().next().text("@"+user_id);
+						org_id=user_id;
+					},
+					error:function(){
+						alert("실패")
+					}
+				});//ajax
+				
+				
+			})
+			
+			
+		});//jquery
+	</script>
+	
     
 </head>
 
@@ -47,11 +79,11 @@
               <ul class="mypage_account"> 계정 > <strong>계정 정보</strong><br><br>
               	<label>사용자 아이디</label><br>
               	<!-- <div>@sample_id</div> -->
-              	<input type="text" class="input" value="@sample_id" readonly="readonly"><br>
+              	<input type="text" class="input_id" value="${udto.user_id}" ><br>
               	<br>
               	<label>이메일</label><br>
               	<!-- <div>sample_id@gmail.com</div> -->
-              	<input type="text" class="input" value="sample_id@gmail.com" readonly="readonly">
+              	<input type="text" class="input_email" value="${udto.email}" >
               </ul>
               <div class="savebtn">저장</div>
            </section>

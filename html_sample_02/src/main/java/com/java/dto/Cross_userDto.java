@@ -16,7 +16,7 @@ public class Cross_userDto {
 	private String password;
 	private String name;
 	private String email;
-	private String proflie_txt;
+	private String profile_txt;
 	private String profile_img;
 	private String header_img;
 	private String user_loc;

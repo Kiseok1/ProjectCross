@@ -21,19 +21,19 @@
     <script>
     	$(function(){
     		$(".heading_media").click(function(){
-    			location.href = "media";
+    			location.href = "your_media";
     		})
     		$(".heading_content").click(function(){
-    			location.href = "content";
+    			location.href = "your_content";
     		})
     		$(".heading_reply").click(function(){
-    			location.href = "reply";
+    			location.href = "your_reply";
     		})
     		$(".heading_like").click(function(){
-    			location.href = "like";
+    			location.href = "your_like";
     		})
     		$(".editprofile").click(function(){
-    			location.href = "mypage";
+    			location.href = "your_mypage";
     		})
     		
     		$(".followbtn").click(function(){
@@ -78,14 +78,24 @@
             <section class="headsec">
                 <a href="javascript:history.back()"><i class="fa fa-arrow-left" id="fa-arrow-left"></i></a>
                 <div>
-                    <h3>홍길동</h3>
+                    <h3>${udto2.name}</h3>
                     <span>38.7k 게시물</span>
                 </div>
             </section>
             <section class="twitterprofile">
                 <div class="headerprofileimage">
-                    <img src="/images/k2.jpg" alt="header" id="headerimage">
-                    <img src="/images/img2.jpg" alt="profile pic" id="profilepic">
+                	<c:if test="${udto2.header_img!=null}">
+                    	<img src="/upload/${udto2.header_img}" alt="header" id="headerimage">
+                	</c:if>
+                	<c:if test="${udto2.header_img==null}">
+                    	<img src="/images/header_default.jpg" alt="header" id="headerimage">
+                	</c:if>
+                	<c:if test="${udto2.profile_img!=null}">
+                    	<img src="/upload/${udto2.profile_img}" alt="profile pic" id="profilepic">
+                    </c:if>
+                	<c:if test="${udto2.profile_img==null}">
+                    	<img src="/images/header_default.jpg" alt="profile pic" id="profilepic">
+                    </c:if>
                     <div class="yourpage">
                     	<div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
                     	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div>
@@ -95,13 +105,13 @@
                 </div>
                 <div class="bio">
                     <div class="handle">
-                        <h3>홍길동</h3>
-                        <span>@gildong</span>
+                        <h3>${udto2.name}</h3>
+                        <span>@${udto2.user_id}</span>
                     </div>
-                    <p>안녕하세요 홍길동입니다.</p>
+                    <p>${udto2.profile_txt}</p>
                     <span> 
-                    	   <i class="fa fa-location-arrow "></i> 대한민국 &nbsp
-                    	   <i class="fa-solid fa-arrow-up-right-from-square"></i> www.naver.com &nbsp 
+                    	   <i class="fa fa-location-arrow "></i> ${udto2.user_loc} &nbsp
+                    	   <i class="fa-solid fa-arrow-up-right-from-square"></i> ${udto2.user_url} &nbsp 
                            <i class="fa fa-calendar"></i> 2024.01.25
                     </span>
                     <div class="nawa">

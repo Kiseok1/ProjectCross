@@ -39,25 +39,25 @@
             <section class="headsec">
                 <a href="javascript:history.back()"><i class="fa fa-arrow-left" id="fa-arrow-left"></i></a>
                 <div>
-                    <h3>홍길동</h3>
+                    <h3>${udto.name}</h3>
                     <span>38.7k 게시물</span>
                 </div>
             </section>
             <section class="twitterprofile">
                 <div class="headerprofileimage">
-                    <img src="/images/img2.jpg" alt="header" id="headerimage">
-                    <img src="/images/k2.jpg" alt="profile pic" id="profilepic">
+                    <img src="/upload/${udto.header_img}" alt="header" id="headerimage">
+                    <img src="/upload/${udto.profile_img}" alt="profile pic" id="profilepic">
                     <div class="editprofile">MY PAGE</div>
                 </div>
                 <div class="bio">
                     <div class="handle">
-                        <h3>홍길동</h3>
-                        <span>@gildong</span>
+                        <h3>${udto.name}</h3>
+                        <span>@${udto.user_id}</span>
                     </div>
-                    <div>안녕하세요 홍길동입니다.</div>
+                    <div>${udto.profile_txt}</div>
                     <span> 
-                    	   <i class="fa fa-location-arrow "></i> 대한민국 &nbsp
-                    	   <i class="fa-solid fa-arrow-up-right-from-square"></i> <a href="#">www.naver.com</a> &nbsp 
+                    	   <i class="fa fa-location-arrow "></i> ${udto.user_loc} &nbsp
+                    	   <i class="fa-solid fa-arrow-up-right-from-square"></i> <a href="#">${udto.user_url}</a> &nbsp 
                            <i class="fa fa-calendar"></i> 2024.01.25
                     </span>
                     <div class="nawa">

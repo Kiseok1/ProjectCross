@@ -45,6 +45,33 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
     
+    <script>
+    	$(function(){
+    		/* 비번 변경 */
+    		$(".savebtn").click(function(){
+	    		let cur_pw = $(".cur_pw").val();
+	    		let new_pw = $(".new_pw").val();
+	    		
+	    		$.ajax({
+	    			url:"/profile/pwUpdate",
+	    			type:"post",
+	    			data:{"cur_pw":cur_pw,"new_pw":new_pw},
+	    			datatype:"text",
+	    			success:function(data){
+	    				alert(data);
+	    				$(".cur_pw").val("");
+	    				$(".new_pw").val("");
+	    				$(".chk_pw").val("");
+	    				$(".cur_pw").focus();
+	    			},
+	    			error:function(){
+	    				alert("실패")
+	    			}
+	    		})
+    			
+    		});
+    	})    
+    </script>
     
 </head>
 
@@ -56,7 +83,7 @@
             <section class="mypage_main">
                <ul class="mypage_password"> 계정 > <strong>비밀번호 변경</strong><br>
                	<label>현재 비밀번호</label><br>
-               	<input type="password" name="cur_pw"><br>
+               	<input type="password" class="cur_pw"><br>
                	<label>새 비밀번호</label><br>
                	<input type="password" class="new_pw"><br>
                	<label>비밀번호 확인</label><br>
