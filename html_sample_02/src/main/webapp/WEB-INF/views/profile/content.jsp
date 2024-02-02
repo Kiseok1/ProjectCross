@@ -600,13 +600,22 @@
 						<span class="material-icons ms_icons repeat">repeat</span>
 						<h3>100</h3>
 						
+						<c:set var="chk" value="false"></c:set>
 						<c:forEach var="like" items="${list2}">
 							<c:if test="${pdto.post_id==like.post_id}">
-								<span class="material-icons ms_icons favorite toggle">favorite_border</span>
-								<h3>100</h3>  
+								<c:set var="chk" value="true"></c:set>
+								<c:if test="${chk==true}">
+									<span class="material-icons ms_icons favorite toggle">favorite_border</span>
+									<h3>100</h3>
+								</c:if>
 							</c:if>
 						</c:forEach>
-						
+							<c:if test="${chk==false}">
+								<span class="material-icons ms_icons favorite">favorite_border</span>
+								<h3>100</h3>
+								<c:set var="chk" value="false"></c:set>
+							</c:if>
+							
 						
 						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
