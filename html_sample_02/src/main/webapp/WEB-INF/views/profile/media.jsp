@@ -60,7 +60,7 @@
 				<div class="media_box_3"><!-- <img src="/upload/trip01.jpg"> --></div>		               
               </div>
            </section> --%>
-           	<div class="media_sub">
+           <div class="media_sub">
            <c:forEach var="pmuDto" items="${list}" varStatus="stat">
            		<c:set var="index" value="${stat.count}" />
            		<c:if test="${index%3!=0}">
@@ -82,7 +82,7 @@
            			<div class="media_sub">
            		</c:if>
            </c:forEach>
-            </div>
+           </div>
        </div>
       </div>
 </body>

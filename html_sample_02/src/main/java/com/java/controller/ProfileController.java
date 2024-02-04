@@ -116,10 +116,11 @@ public class ProfileController {
 		Cross_userDto udto2 = pService.selectOne(your_id);
 		//팔로우 정보 가져오기
 		User_followDto followDto = pService.selectFollowInfo(id,your_id);
-		
+		ArrayList<PostMediaUserDto> list = pService.selectMedia(your_id);
 		model.addAttribute("udto",udto);		
 		model.addAttribute("udto2",udto2);
 		model.addAttribute("followDto",followDto);
+		model.addAttribute("list",list);
 		
 		return "/profile/your_media";
 	}
