@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
+import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
 
 public interface ProfileService {
@@ -39,5 +40,8 @@ public interface ProfileService {
 	int likeCount(String post_id);
 	//내가 좋아요 한 글
 	ArrayList<PostLikeDto> selectLike(String id);
+
+	//미디어 불러오기
+	ArrayList<PostMediaUserDto> selectMedia(String id);
 
 }

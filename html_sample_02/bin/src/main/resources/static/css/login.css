@@ -1,0 +1,267 @@
+*{margin: auto; padding: auto;}
+
+.main{
+	 display: flex;
+	/*  margin-left: 37%;  */
+	 
+}
+
+.smain {
+   margin-top: 15vh; /* 뷰포트 높이(VH)의 50% 위치에 마진을 설정 */
+    margin-bottom: -0;
+    margin-left : 0;
+	padding: auto;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+}
+.side {
+   margin-top: 15vh; /* 뷰포트 높이(VH)의 50% 위치에 마진을 설정 */
+    margin-bottom: 20px;
+    margin-right : 0;
+	padding: auto;
+    width: 300px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+}
+
+
+.Join{
+	    margin: auto;
+  margin-top: 30vh; /* 뷰포트 높이(VH)의 50% 위치에 마진을 설정 */
+   margin-bottom: auto;
+	padding: auto;
+    width: 250px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 25px;
+}
+
+
+.food{
+	   margin: auto;
+       width: 700px;
+	   text-align: center;
+	  padding: auto;
+	  padding:15px;
+	   border: 1px solid lightgrey;
+      border-radius: 25px;
+}
+
+.logo {
+    margin-top: 100px;
+    color: #BA68C8;
+    font-size: 50px;
+    margin-bottom: 0px;
+    
+    
+}
+/* .slogo{
+	 margin-top: 0px;
+	
+} */
+
+#login {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    background-color: #BA68C8;
+    border-color: transparent;
+    color: white;
+    font-size: 20px;
+}
+
+#login:hover{
+	background-color: #AB47BC;
+}
+
+.account {
+    display: block;
+    margin-bottom: 3px;
+    padding: 5px;
+    border: 1px solid lightgray;
+    border-radius: 13px;
+}
+
+.login-form .group .check:checked + label{
+  color:#fff;
+}
+.login-form .group .text{
+  color:red;
+}
+.login-form .group .check:checked + label .icon{
+  background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+  transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+  transform:scale(1) rotate(-45deg);
+}
+
+.Fid .Fpw {
+width: 200px;
+/* background-color: #BA68C8; */
+border-color: transparent;
+color: white;
+display: inline-block; /* 추가: 같은 라인에 표시하기 위해 */
+}
+
+.Fid{
+	background-color: #BA68C8;
+}
+
+.Fpw{
+	background-color: #BA68C8;
+}
+
+.Fid:hover{
+	
+	background-color: #AB47BC;
+}
+
+.Fpw:hover{
+	
+	background-color: #AB47BC;
+}
+
+.idpw{
+	text-align: center;
+}
+.divuse{
+	text-align: center;
+	margin-top: 15px;
+}
+
+
+
+.Fid,.Fpw{
+	border-color: transparent;
+    color: white;
+    width:45%;
+	/* background-color: #50b7f5; */
+	border-radius: 10px;
+	font-size: 17px;
+	
+}
+
+
+
+
+
+
+
+
+.join{
+	text-align: center;
+	border-color: transparent;
+    color: white;
+    width:100%;
+	background-color: #BA68C8;
+	border-radius: 10px;
+	height: 50px;
+	font-size: 22px;
+}
+
+.join:hover{
+	background-color: #AB47BC;
+}
+
+.use{
+	border-color: transparent;
+    color: white;
+    width:100%;
+	background-color: #BA68C8;
+	border-radius: 10px;
+	
+	
+}
+
+.use:hover{
+	background-color: #AB47BC;
+}
+
+img{
+	width: 300px;
+	height:150px;
+	/* object-fit: cover; */
+	object-fit: scale-down;
+}
+
+.wrap2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 0;
+    width: 50%;
+    margin: 0 auto;
+}
+.kakaobutton {
+  width: 50px;
+  height: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 32px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  background-image: url('../images/kakao.png'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+.naverbutton {
+  width: 50px;
+  height: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #fff;
+  border: none;
+  border-radius: 32px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  background-image: url('../images/naver.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  }
+
+.wrap1 {
+    display: block;
+    margin-bottom: 3px;
+    padding: 3px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    border-color: transparent;
+}
+
+.use{
+	text-align: center;
+}
+
+#alert {
+    border-color: transparent;
+}

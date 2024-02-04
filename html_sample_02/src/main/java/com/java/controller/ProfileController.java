@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
+import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
 import com.java.service.ProfileService;
 
@@ -49,8 +50,10 @@ public class ProfileController {
 		
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
+		ArrayList<PostMediaUserDto> list = pService.selectMedia(id);
 		
 		model.addAttribute("udto",udto);
+		model.addAttribute("list",list);
 		
 		return "/profile/media";
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
+import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
 import com.java.mapper.Cross_userMapper;
 import com.java.mapper.PostLikeMapper;
@@ -108,6 +109,13 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public ArrayList<PostLikeDto> selectLike(String id) {
 		ArrayList<PostLikeDto> list = postLikeMapper.selectLike(id);
+		return list;
+	}
+
+	//미디어 불러오기
+	@Override
+	public ArrayList<PostMediaUserDto> selectMedia(String id) {
+		ArrayList<PostMediaUserDto> list = postMapper.selectMedia(id);
 		return list;
 	}
 	

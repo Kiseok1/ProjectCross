@@ -555,7 +555,12 @@
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/upload/${udto.profile_img}" alt="profile">
+					<c:if test="${udto.profile_img!=null}">
+						<img class="" src="/upload/${udto.profile_img}" alt="profile">
+					</c:if>
+					<c:if test="${udto.profile_img==null}">
+						<img class="" src="/images/proflie_default.png" alt="profile">
+					</c:if>
 					<div style="position: absolute; height: 100%; width: 80px;">
 
 					</div>
@@ -610,11 +615,11 @@
 								</c:if>
 							</c:if>
 						</c:forEach>
-							<c:if test="${chk==false}">
-								<span class="material-icons ms_icons favorite">favorite_border</span>
-								<h3>100</h3>
-								<c:set var="chk" value="false"></c:set>
-							</c:if>
+						<c:if test="${chk==false}">
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<c:set var="chk" value="false"></c:set>
+						</c:if>
 							
 						
 						<span class="material-icons ms_icons chart">bar_chart</span>

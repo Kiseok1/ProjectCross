@@ -555,7 +555,12 @@
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
-					<img class="" src="/upload/${udto2.profile_img}" alt="profile">
+					<c:if test="${udto2.profile_img!=null}">
+						<img class="" src="/upload/${udto.profile_img}" alt="profile">
+					</c:if>
+					<c:if test="${udto2.profile_img==null}">
+						<img class="" src="/images/proflie_default.png" alt="profile">
+					</c:if>
 					<div style="position: absolute; height: 100%; width: 80px;">
 
 					</div>
@@ -575,7 +580,7 @@
 						</div>
 
 						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
+							onclick="location.href='/viewContent'">
 							<p>${pdto.pcontent}</p>
 						</div>
 
@@ -599,8 +604,25 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons repeat">repeat</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
+						
+						<c:set var="chk" value="false"></c:set>
+						<c:forEach var="like" items="${list2}">
+							<c:if test="${pdto.post_id==like.post_id}">
+								<c:set var="chk" value="true"></c:set>
+								<c:if test="${chk==true}">
+									<span class="material-icons ms_icons favorite toggle">favorite_border</span>
+									<h3>100</h3>
+								</c:if>
+							</c:if>
+						</c:forEach>
+						<c:if test="${chk==false}">
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<c:set var="chk" value="false"></c:set>
+						</c:if>
+						
+						
+						
 						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
 

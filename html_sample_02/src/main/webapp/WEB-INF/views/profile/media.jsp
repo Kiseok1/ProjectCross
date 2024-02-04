@@ -48,9 +48,9 @@
                    <div class="heading_like">마음에 들어요</div>
                </div>
            	</section>
-            <section class="media_main">
+            <%-- <section class="media_main">
               <div class="media_sub">
-				<div class="media_box_1"><img src="/images/2.jpg"></div>		               
+				<div class="media_box_1"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>		               
 				<div class="media_box_2"><img src="/images/img11.jpg"></div>		               
 				<div class="media_box_3"><img src="/images/trip01.jpg"></div>		               
               </div>
@@ -59,7 +59,30 @@
 				<div class="media_box_2"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		               
 				<div class="media_box_3"><!-- <img src="/upload/trip01.jpg"> --></div>		               
               </div>
-           </section>
+           </section> --%>
+           	<div class="media_sub">
+           <c:forEach var="pmuDto" items="${list}" varStatus="stat">
+           		<c:set var="index" value="${stat.count}" />
+           		<c:if test="${index%3!=0}">
+           			<c:if test="${pmuDto.mediaDto.file_type!='mp4'}">
+           				<div class="media_box_${index%3}"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>		
+           			</c:if>
+           			<c:if test="${pmuDto.mediaDto.file_type=='mp4'}">
+           				<div class="media_box_${index%3}"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+           			</c:if>
+           		</c:if>
+           		<c:if test="${index%3==0}">
+           			<c:if test="${pmuDto.mediaDto.file_type!='mp4'}">
+           				<div class="media_box_3"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>
+           			</c:if>
+           			<c:if test="${pmuDto.mediaDto.file_type=='mp4'}">
+           				<div class="media_box_3"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+           			</c:if>
+           			</div>
+           			<div class="media_sub">
+           		</c:if>
+           </c:forEach>
+            </div>
        </div>
       </div>
 </body>

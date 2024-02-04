@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.Cross_userMapper">
+	
+	<select id="selectOne">
+		select * from cross_user where user_id=#{id}
+	</select>
+	
+	<update id="accountUpdate">
+		update cross_user set user_id=#{user_id}, email=#{email} where user_id=#{org_id}
+	</update>
+	
+	<update id="pwUpadte">
+		update cross_user set password=#{new_pw} where user_id=#{user_id}
+	</update>
+ 	
+	<update id="profileUpdate">
+		update cross_user set name=#{name}, profile_txt=#{profile_txt}, user_loc=#{user_loc}, user_url=#{user_url}, header_img=#{header_img}, profile_img=#{profile_img} where user_id=#{user_id}
+	</update>
+ 	
+</mapper>
