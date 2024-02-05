@@ -37,6 +37,22 @@ public class MessageController {
 		return list3;
 	}
 
+	@PostMapping("/search2")//검색  받은 쪽지결과 가져오기
+	@ResponseBody
+	public List<MessCrossMediaDto>search2(String input) {
+		System.out.println("MessageController search input : "+input);
+		List<MessCrossMediaDto> search2 = mService.search2(input);
+		return search2;
+	}
+
+	@PostMapping("/search3")//검색 보낸 쪽지결과 가져오기
+	@ResponseBody
+	public List<MessCrossMediaDto>search3(String input) {
+		System.out.println("MessageController search input : "+input);
+		List<MessCrossMediaDto> search3 = mService.search3(input);
+		return search3;
+	}
+
 	
 	@GetMapping("/head")
 	public String head(Model model) {
@@ -72,5 +88,23 @@ public class MessageController {
 		MessCrossMediaDto mcDto = mService.sendOne(msg_id);  
 		return mcDto;
 	}
+
+	@PostMapping("/deleteMSelect")//보낸글 선택삭제하기
+	@ResponseBody
+	public String deleteMSelect(int msg_id) {
+		  mService.deleteMSelect(msg_id);
+		  mService.deleteMedia(msg_id);
+		return "성공";
+	}
+	
+	@PostMapping("/UserData")//검색 결과 가져오기
+	@ResponseBody
+	public Cross_userDto UserData(String user_id) {
+		System.out.println("MessageController search input : "+user_id);
+		Cross_userDto CDto = mService.UserData(user_id);
+		return CDto;
+	}
+	
+	
 	
 }

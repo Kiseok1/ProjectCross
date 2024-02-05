@@ -23,6 +23,21 @@ public interface MService {
 
 	//받은글 한개 가져오기
 	MessCrossMediaDto receiveOne(int msg_id);
+	//유저 정보 모달창
+	Cross_userDto UserData(String user_id);
+
+	//받은쪽지 검색
+	List<MessCrossMediaDto> search2(String input);
+
+	//보낸쪽지 검색
+	List<MessCrossMediaDto> search3(String input);
+
+
+	//보낸글 선택삭제하기
+	void deleteMSelect(int msg_id);
+
+	void deleteMedia(int msg_id);
+	
 
 
 }

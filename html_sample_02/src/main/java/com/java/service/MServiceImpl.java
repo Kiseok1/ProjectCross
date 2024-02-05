@@ -46,4 +46,35 @@ public class MServiceImpl implements MService {
 		return mcDto;
 	}
 
+	@Override//모달창 데이터 받은글 가져오기
+	public Cross_userDto UserData(String user_id) {
+		Cross_userDto CDto = messageMapper.UserData(user_id);
+		return CDto;
+	}
+
+	@Override//받은쪽지 검색
+	public List<MessCrossMediaDto> search2(String input) {
+		List<MessCrossMediaDto> search2 = messageMapper.search2(input);
+		return search2;
+	}
+
+	@Override//보낸쪽지 검색
+	public List<MessCrossMediaDto> search3(String input) {
+		List<MessCrossMediaDto> search3 = messageMapper.search3(input);
+		return search3;
+	}
+
+	//보낸글 선택삭제하기
+	@Override
+	public void deleteMSelect(int msg_id) {
+		messageMapper.deleteMSelect(msg_id);
+		
+	}
+	@Override
+	public void deleteMedia(int msg_id) {
+		messageMapper.deleteMedia(msg_id);
+		
+	}
+	
+
 }

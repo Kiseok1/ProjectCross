@@ -28,6 +28,7 @@
  <!-- include summernote css/js-->
     <link href="css/summernote-lite.css" rel="stylesheet">
     <script src="js/summernote-lite.js"></script>
+    
 <style>
 
 input[type="file"] {
@@ -156,7 +157,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 	        $(document).click(function(e) {
 	             if (!$(e.target).is('input[type="search"]')) {
 	                 $('.welcom').show();
-	                 $('.post').hide();
+	                 $('.post').hide(); 
 	             }
 	         }); 
             
@@ -210,7 +211,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 							for (let i = 0; i < data.length; i++) {
 							    let item = data[i];
 							    //태그 입력 시작
-							    let hdata = '<div class="post">';
+							    let hdata = '<div class="post" id='+item.user_id+'>';
 							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 90px;">';
 							    hdata +='<img src="/upload/'+item.profile_img+'" style="width: 60px; height: 60px; position: relative; right: 1px; bottom: 20px;"></div>';
 							    hdata +='<div class="post_body" style="position: relative; right: 20px">';
@@ -247,10 +248,44 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         				
         			});//ajax
         			
+        			
+
+        			
+        			
         		});//searchInput
         		
         		
         	});//jquery
+        	
+        	$(document).on('click', '.post', function() {
+        	    // 클릭된 요소에서 필요한 데이터 추출
+        	    var user_id = $(this).closest(".post").attr('id');
+        	    
+        	    // 모달에 데이터 채우기
+        	    
+        	    // 모달 보이기
+        	   /* 유저 정보 모달창 ajax  */
+        			 $.ajax({
+        				url:"/message/UserData",
+						type:"post",
+						data:{"user_id":user_id},
+						dataType:"json",
+						success:function(data){
+							console.log(data);
+							$(".sender").children().attr("src","/upload/"+data.profile_img);
+							$("#name").text("@"+data.user_id);
+							
+							$('#messageModal').modal('show');
+						},error:function(){
+							alert("실패");
+						}
+							
+						
+        			});
+        	   
+        	     
+        	});
+        	
         </script>
         
         <!-- 검색 -->
@@ -271,48 +306,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		</div>
 		<div id="searchResults">
 		</div>
-	<!-- 모달 창 -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
-		      <div class="modal-header">
-		        <span class="material-icons" style="font-size: 35px; color:#BA68C8; position: relative; top: 5px;">email</span>
-		        <h5 class="modal-title" id="exampleModalLabel"></h5> <div class="modal_recieveId">받는 사람 : 홍길동</div>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		   <div class="message_tweet_box">
-            <form>
-                <div class="tweet_box-input">
-                	<div class="profile-img">
-			 			<div style="position: relative; right: 20px;" class="img-wrapper rounded-5">
-			 				
-			 			</div>
-			 		</div>
-                    <div id="message_text-area" class="rounded" style="position:relative;">
-                    <!-- 
-                    	<div id="write-box" style="outline:none; display: inline-block;width: 370px;"  contenteditable="true">
-                    	</div>
-                     -->
-                     	<textarea rows="" cols="" class="content" id="write-box"  style="outline:none; width: 390px; border: none; resize: none; overflow: hidden; position: relative; top: 10px" ></textarea>
-                    
-                    	<div id="image-area" style=""></div>
-                    	
-                    </div>
-
-
-                </div>
-
-                <div class="message_box-footer modal-footer" style="">
-                
-                    <label for="file" id="message_imgBtn" style="position: relative; right: 10px; bottom: 10px; cursor: pointer;">
-                    	<span class="material-symbols-outlined" style="font-size: 40px; color: var(--twitter-theme-color); ">image</span>
-                    </label>
-					<input type="file" id="file" multiple="multiple">
-			        <button type="button" id="send_btn" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; left: 310px; bottom: 25px;">보내기</button>
-
-
-                 		 <script>
+			 <script>
                  		 var fileCount = 0;
 
 					      $(function(){
@@ -419,8 +413,64 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 					    	  
 							})
 					    </script>
+		
+	<!-- 모달 창 -->
+		<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
+		      <div class="modal-header">
+		        <span class="material-icons" style="font-size: 35px; color:#BA68C8; position: relative; top: 5px;">email</span>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		   <div class="message_tweet_box">
+            <form>
+               	<div class="profile-img" style="top: 10px; position: relative;">
+		 			<div class="sender">
+		          		<img src="/upload/" style="width: 70px; height: 70px; position: relative; right: 1px;  border-radius: 40px; bottom: 10px;">
+		          	</div>
+		          </div>
+		          <div class="mb-3" style="position: relative; left: 80px; bottom: 15px;">
+	                       <h3 id="target_id">
+	                           <span class="header-icon-section">
+	                               <span class="material-icons post_badge">verified</span><span id="name" style="right: 4px; position: relative;">@</span>
+	                           </span>
+	                       </h3>
+	                </div>
+              </form>
+              <form>
+				<div class="tweet_box-input" style="position: relative; bottom: 30px;">
+					<div id="modal_text-area" class="rounded" style="position: relative; height: 250px;">
+
+						<textarea rows="" cols="" class="content" id="modal_write-box"
+							style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
+						<div id="modal_position_wrap" class="invis">
+							<div id="position-area" style="display: flex;">
+								<span class="material-icons">location_on</span>
+								<div id="modal_currLocation"></div>
+							</div>
+						</div>
+						<div class="userfile" id="modal_image-area" style=""></div>
+
+								</div>
+			
+			
+							</div>
+						</div>
+			
+				</div>
+
+                <div class="message_box-footer modal-footer" style="position: relative; bottom: 30px; height: 30px;">
+                    <label for="file" id="message_imgBtn" style="position: relative; right: 340px; bottom: 10px; cursor: pointer;">
+                    	<span class="material-symbols-outlined" style="font-size: 40px; color: var(--twitter-theme-color); ">image</span>
+						<input type="file" id="file" multiple="multiple">
+                    </label>
+			        <button type="button" id="send_btn" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; bottom: 10px; left: 5px;">보내기</button>
+					<!--모달 끝 -->
                 </div>
             </form>
+        </div>
+        </div>
         </div>
    	<script>
 	    $(function(){

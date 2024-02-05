@@ -294,6 +294,7 @@ main::-webkit-scrollbar{
 	position: relative; 
 	bottom: 50px;
 	overflow-y: auto; /* 세로 스크롤을 자동으로 추가합니다. */
+	padding-bottom: 15px;
 }
 
 .followBtn{
