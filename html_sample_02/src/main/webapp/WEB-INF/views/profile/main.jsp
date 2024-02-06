@@ -41,7 +41,7 @@
             <section class="headsec">
                 <a href="javascript:history.back()"><i class="fa fa-arrow-left" id="fa-arrow-left"></i></a>
                 <div>
-                    <h3>${udto.name}</h3>
+                    <h3>${udto.name}</h3> 
                     <span>38.7k 게시물</span>
                 </div>
             </section>

@@ -55,15 +55,464 @@
            	</section>
          <!-- Post -->
 
-			
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+						<div
+							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								Java <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@java
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>동영상</p>
+
+						</div>
+
+					</div>
+					<div class="container video_contaner">
+						<video controls loop muted preload="auto" src="/video/video01.mp4">
+							
+							
+						</video>
+					</div>
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons chat" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- 리트윗 -->
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								만두 <span class="header-icon-section"> @Mandoo </span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+
+							<p>흠터레스팅</p>
+
+						</div>
+
+					</div>
+					<div class="container">
+						<div class="">
+							<div class="">
+
+								<!--Renote Content -->
+
+								<div class="rounded-4"
+									style="width: 450px; border: 1px solid var(--twitter-line-color); padding: 1rem;"
+									onclick="location.href='viewContent'">
+									<div class="post_header">
+										<div class="post_header-text">
+											<h3>
+												만두 <span class="header-icon-section">@Mandoo</span>
+											</h3>
+											<div style="margin-left: 1rem; text-align: center;">
+												<h3>24.01.01</h3>
+											</div>
+										</div>
+									</div>
+
+									<div class="post_header-renote" style="display: flex;">
+										<div class="container img-xs rounded" style="">
+											<img src="/images/post-image.jpeg">
+										</div>
+										<div style="width: 200px; height: 50px;">
+											<p>Text Only</p>
+										</div>
+									</div>
+
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+			<!-- 이미지 4개 -->
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+						<div
+							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
+
+						</div>
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								Java <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@java
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+							<br>
+							<p>
+								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+								https://social.ora.cl/6015KoqQN <br> Features:
+								https://social.ora.cl/6016KoqQ4 <br> 이게&nbsp; 맞나 ?&nbsp;
+								&nbsp; &nbsp;<br> 이게&nbsp; 맞나 ?&nbsp; &nbsp; &nbsp;<br>
+							</p>
+						</div>
+
+					</div>
+					<div class="container img-sm">
+						<div class="row row-cols-auto">
+							<div class="col-md-auto">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+							<div class="col-md-auto">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+						</div>
+
+						<div class="row row-cols-auto">
+							<div class="col-md-auto">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+							<div class="col-md-auto">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+						</div>
+					</div>
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- 이미지 3개 -->
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								Java <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@java
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+							<br>
+							<p>
+								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+								https://social.ora.cl/6015KoqQN <br> Features:
+								https://social.ora.cl/6016KoqQ4 <br>
+							</p>
+						</div>
+
+					</div>
+
+					<div class="container">
+						<div class="row row-cols-auto">
+							<div class="col-md-auto img-md rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+							<div class="col-md-auto">
+								<div class="row row-cols-auto">
+									<div class="col-md-auto img-sm">
+										<img src="/images/post-image.jpeg" class="rounded "
+											alt="java18" data-bs-toggle="modal"
+											data-bs-target="#exampleModal"
+											data-bs-whatever="/images/post-image.jpeg">
+									</div>
+								</div>
+								<div class="row row-cols-auto">
+									<div class="col-md-auto img-sm">
+										<img src="/images/post-image.jpeg" class="rounded "
+											alt="java18" data-bs-toggle="modal"
+											data-bs-target="#exampleModal"
+											data-bs-whatever="/images/post-image.jpeg">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- 이미지 2개 -->
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								Java <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@java
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+							<br>
+							<p>
+								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+								https://social.ora.cl/6015KoqQN <br> Features:
+								https://social.ora.cl/6016KoqQ4 <br>
+							</p>
+						</div>
+
+					</div>
+
+
+					<div class="container">
+						<div class="row row-cols-auto ">
+							<div class="col-md-auto img-lg rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+							<div class="col-md-auto img-lg rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+						</div>
+					</div>
+
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<!-- 이미지 1개 -->
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="/images/profile01.jpg" alt="profile">
+					<div style="position: absolute; height: 100%; width: 80px;">
+
+					</div>
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								Java <span class="header-icon-section"> <span
+									class="material-icons post_badge">verified</span>@java
+								</span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+							</div>
+						</div>
+
+						<div class="post_header-discription"
+							onclick="location.href='viewContent'">
+							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+							<br>
+							<p>
+								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+								https://social.ora.cl/6015KoqQN <br> Features:
+								https://social.ora.cl/6016KoqQ4 <br>
+							</p>
+						</div>
+
+					</div>
+
+					<div class="container">
+						<div class="row row-cols-auto ">
+							<div class="col-md-auto img-xl rounded-4">
+								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
+									data-bs-toggle="modal" data-bs-target="#exampleModal"
+									data-bs-whatever="/images/post-image.jpeg">
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons chart">bar_chart</span>
+						<h3>100</h3>
+
+
+					</div>
+
+				</div>
+
+			</div>
 			
 			<script>
 				let count = 0;
 			</script>
 			<c:forEach var="pmuDto" items="${list}" varStatus="i" >
-				<div class="post ${i.index}" style="position: relative;">
+				<div class="post" style="position: relative;">
 
-				<%-- <div class="post_profile-image rounded-5">
+				<div class="post_profile-image rounded-5">
 					<img class="" src="/upload/${pmuDto.cross_userDto.profile_img}" alt="profile">
 					<div style="position: absolute; height: 100%; width: 80px;">
 
@@ -88,54 +537,46 @@
 							<p>${pmuDto.postDto.pcontent}</p>
 						</div>
 
-					</div> --%>
+					</div>
 					
 					<script>
 						
 						let post_id${i.index}= ${pmuDto.postDto.post_id};
 						let file_name${i.index}="${pmuDto.mediaDto.file_name}";
-						let file_type${i.index}="${pmuDto.mediaDto.file_type}";
-						let pcontent${i.index}="${pmuDto.postDto.pcontent}";
-						let post_userId${i.index}="${pmuDto.postDto.user_id}";
-						let post_name${i.index}="${pmuDto.postDto.user_id}";
-						let post_profileImg${i.index}="${pmuDto.cross_userDto.profile_img}";
-						let post_created${i.index}="${pmuDto.postDto.created}";
 						console.log(post_id${i.index})
 						if(${i.index==0}){
 							count ++;
 							console.log(count);
-						} else if(!${i.last} && post_id${i.index}==post_id${i.index-1}){
+						} else if(post_id${i.index}==post_id${i.index-1}){
 							count ++;
 							console.log(count);
-						} else if (${i.last}){
-							console.log("last")
-							count ++;
+						} else {
 							if(count ==4 ){
 								let hdata = "";
 								
-								/* hdata += '<div class="post ${i.index}" style="position: relative;">'; */
+								/* hdata += '<div class="post" style="position: relative;">';
 								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index}+'" alt="profile">';
+								hdata += '<img class="" src="/upload/${pmuDto.cross_userDto.profile_img}" alt="profile">';
 								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
+								hdata += '<div class="post_header ${i.index}">';
 								hdata += '<div class="post_header-text">';
 								hdata += '<h3>';
-								hdata += post_userId${i.index}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index};
+								hdata += '${pmuDto.postDto.user_id} <span class="header-icon-section"> <span';
+								hdata += 'class="material-icons post_badge">verified</span>@${pmuDto.postDto.user_id}';
 								hdata += '</span>';
 								hdata += '</h3>';
 								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index}+'</h3>';
+								hdata += '<h3>${pmuDto.postDto.created}</h3>';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_header-discription"';
 								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index}+'</p>';
+								hdata += '<p>${pmuDto.postDto.pcontent}</p>';
 								hdata += '</div>';
-								hdata += '</div>';
+								hdata += '</div>'; */
 								
 								hdata += '<div class="container img-sm_0">';
 								hdata += '<div class="row row-cols-auto">';
@@ -175,37 +616,33 @@
 								hdata += '<h3>100</h3>';
 								hdata += '</div>';
 								
-								$(".${i.index}").html(hdata);
-								$(".${i.index-1}").remove();
-								$(".${i.index-2}").remove();
-								$(".${i.index-3}").remove();
-								count =1;
+								$(".${i.index-1}").after(hdata);
 							} else if(count==3){
 								let hdata = "";
 								
-								/* hdata += '<div class="post" style="position: relative;">'; */
+								/* hdata += '<div class="post" style="position: relative;">';
 								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index}+'" alt="profile">';
+								hdata += '<img class="" src="/upload/${pmuDto.cross_userDto.profile_img}" alt="profile">';
 								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
+								hdata += '<div class="post_header ${i.index}">';
 								hdata += '<div class="post_header-text">';
 								hdata += '<h3>';
-								hdata += post_userId${i.index}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index};
+								hdata += '${pmuDto.postDto.user_id} <span class="header-icon-section"> <span';
+								hdata += 'class="material-icons post_badge">verified</span>@${pmuDto.postDto.user_id}';
 								hdata += '</span>';
 								hdata += '</h3>';
 								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index}+'</h3>';
+								hdata += '<h3>${pmuDto.postDto.created}</h3>';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_header-discription"';
 								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index}+'</p>';
+								hdata += '<p>${pmuDto.postDto.pcontent}</p>';
 								hdata += '</div>';
-								hdata += '</div>'; 
+								hdata += '</div>'; */
 								
 								hdata += '<div class="container">';
 								hdata += '<div class="row row-cols-auto">';
@@ -234,48 +671,33 @@
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '</div>';
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index}").html(hdata);
-								$(".${i.index-1}").remove();
-								$(".${i.index-2}").remove();
-								count =1;
+								$(".${i.index-1}").after(hdata);
 							} else if (count==2){
 								let hdata = "";
 								
-								/* hdata += '<div class="post" style="position: relative;">';  */
+								/* hdata += '<div class="post" style="position: relative;">';
 								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index}+'" alt="profile">';
+								hdata += '<img class="" src="/upload/${pmuDto.cross_userDto.profile_img}" alt="profile">';
 								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
+								hdata += '<div class="post_header ${i.index}">';
 								hdata += '<div class="post_header-text">';
 								hdata += '<h3>';
-								hdata += post_userId${i.index}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index};
+								hdata += '${pmuDto.postDto.user_id} <span class="header-icon-section"> <span';
+								hdata += 'class="material-icons post_badge">verified</span>@${pmuDto.postDto.user_id}';
 								hdata += '</span>';
 								hdata += '</h3>';
 								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index}+'</h3>';
+								hdata += '<h3>${pmuDto.postDto.created}</h3>';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_header-discription"';
 								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index}+'</p>';
+								hdata += '<p>${pmuDto.postDto.pcontent}</p>';
 								hdata += '</div>';
-								hdata += '</div>';
+								hdata += '</div>'; */
 								
 								hdata += '<div class="container">';
 								hdata += '<div class="row row-cols-auto ">';
@@ -291,343 +713,49 @@
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '</div>';
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index}").html(hdata);
-								$(".${i.index-1}").remove();
-								count =1;
+								$(".${i.index-1}").after(hdata);
 							} else{
 								let hdata = "";
 								
-								/* hdata += '<div class="post" style="position: relative;">'; */
+								/* hdata += '<div class="post" style="position: relative;">';
 								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index}+'" alt="profile">';
+								hdata += '<img class="" src="/upload/${pmuDto.cross_userDto.profile_img}" alt="profile">';
 								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
+								hdata += '<div class="post_header ${i.index}">';
 								hdata += '<div class="post_header-text">';
 								hdata += '<h3>';
-								hdata += post_userId${i.index}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index};
+								hdata += '${pmuDto.postDto.user_id} <span class="header-icon-section"> <span';
+								hdata += 'class="material-icons post_badge">verified</span>@${pmuDto.postDto.user_id}';
 								hdata += '</span>';
 								hdata += '</h3>';
 								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index}+'</h3>';
+								hdata += '<h3>${pmuDto.postDto.created}</h3>';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '<div class="post_header-discription"';
 								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index}+'</p>';
+								hdata += '<p>${pmuDto.postDto.pcontent}</p>';
 								hdata += '</div>';
-								hdata += '</div>';
-								
-								if (file_type${i.index}=='mp4'){
-									
-									hdata += '<div class="container video_contaner">';
-									hdata += '<video controls loop muted preload="auto" src="/video/video01.mp4">';
-									hdata += '</video>';
-									hdata += '</div>';
-		
-								} else{
-									hdata += '<div class="container">';
-									hdata += '<div class="row row-cols-auto ">';
-									hdata += '<div class="col-md-auto img-xl rounded-4">';
-									hdata += '<img src="/upload/'+file_name${i.index}+'" class="rounded " alt="java18"';
-									hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-									hdata += 'data-bs-whatever="/upload/'+file_name${i.index}+'">';
-									hdata += '</div>';
-									hdata += '</div>';
-									hdata += '</div>';									
-								}
-								
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index}").html(hdata);
-								count =1;
-							}
-						} else {
-							if(count ==4 ){
-								let hdata = "";
-								
-								/* hdata += '<div class="post ${i.index}" style="position: relative;">'; */
-								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
-								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
-								hdata += '<div class="post_header-text">';
-								hdata += '<h3>';
-								hdata += post_userId${i.index-1}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index-1};
-								hdata += '</span>';
-								hdata += '</h3>';
-								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index-1}+'</h3>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_header-discription"';
-								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index-1}+'</p>';
-								hdata += '</div>';
-								hdata += '</div>';
-								
-								hdata += '<div class="container img-sm_0">';
-								hdata += '<div class="row row-cols-auto">';
-								hdata += '<div class="col-md-auto">';
-								hdata += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata += '</div>';
-								hdata += '<div class="col-md-auto">';
-								hdata += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="row row-cols-auto">';
-								hdata += '<div class="col-md-auto">';
-								hdata += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
-								hdata += '</div>';
-								hdata += '<div class="col-md-auto">';
-								hdata += '<img src="/upload/'+file_name${i.index-4}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-4}+'">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '</div>';
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								$(".${i.index-3}").remove();
-								$(".${i.index-4}").remove();
-								count =1;
-							} else if(count==3){
-								let hdata = "";
-								
-								/* hdata += '<div class="post" style="position: relative;">'; */
-								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
-								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
-								hdata += '<div class="post_header-text">';
-								hdata += '<h3>';
-								hdata += post_userId${i.index-1}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index-1};
-								hdata += '</span>';
-								hdata += '</h3>';
-								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index-1}+'</h3>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_header-discription"';
-								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index-1}+'</p>';
-								hdata += '</div>';
-								hdata += '</div>'; 
-								
-								hdata += '<div class="container">';
-								hdata += '<div class="row row-cols-auto">';
-								hdata += '<div class="col-md-auto img-md_0 rounded-4">';
-								hdata += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata += '</div>';
-								hdata += '<div class="col-md-auto">';
-								hdata += '<div class="row row-cols-auto">';
-								hdata += '<div class="col-md-auto img-sm_0">';
-								hdata += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded "';
-								hdata += 'alt="java18" data-bs-toggle="modal"';
-								hdata += 'data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="row row-cols-auto">';
-								hdata += '<div class="col-md-auto img-sm_0">';
-								hdata += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded "';
-								hdata += 'alt="java18" data-bs-toggle="modal"';
-								hdata += 'data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '</div>';
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								$(".${i.index-3}").remove();
-								count =1;
-							} else if (count==2){
-								let hdata = "";
-								
-								/* hdata += '<div class="post" style="position: relative;">';  */
-								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
-								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
-								hdata += '<div class="post_header-text">';
-								hdata += '<h3>';
-								hdata += post_userId${i.index-1}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index-1};
-								hdata += '</span>';
-								hdata += '</h3>';
-								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index-1}+'</h3>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_header-discription"';
-								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index-1}+'</p>';
-								hdata += '</div>';
-								hdata += '</div>';
+								hdata += '</div>'; */
 								
 								hdata += '<div class="container">';
 								hdata += '<div class="row row-cols-auto ">';
-								hdata += '<div class="col-md-auto img-lg_0 rounded-4">';
-								hdata += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
+								hdata += '<div class="col-md-auto img-xl rounded-4">';
+								hdata += '<img src="/upload/'+file_name${i.index}+'" class="rounded " alt="java18"';
 								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata += '</div>';
-								hdata += '<div class="col-md-auto img-lg_0 rounded-4">';
-								hdata += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
-								hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
+								hdata += 'data-bs-whatever="/upload/'+file_name${i.index}+'">';
 								hdata += '</div>';
 								hdata += '</div>';
 								hdata += '</div>';
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								count =1;
-							} else{
-								let hdata = "";
-								
-								/* hdata += '<div class="post" style="position: relative;">'; */
-								hdata += '<div class="post_profile-image rounded-5">';
-								hdata += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
-								hdata += '<div style="position: absolute; height: 100%; width: 80px;">';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_body">';
-								hdata += '<div class="post_header">';
-								hdata += '<div class="post_header-text">';
-								hdata += '<h3>';
-								hdata += post_userId${i.index-1}+' <span class="header-icon-section"> <span';
-								hdata += 'class="material-icons post_badge">verified</span>@'+post_name${i.index-1};
-								hdata += '</span>';
-								hdata += '</h3>';
-								hdata += '<div style="margin-left: 1rem; text-align: center;">';
-								hdata += '<h3>'+post_created${i.index-1}+'</h3>';
-								hdata += '</div>';
-								hdata += '</div>';
-								hdata += '<div class="post_header-discription"';
-								hdata += 'onclick="location.href=viewContent">';
-								hdata += '<p>'+pcontent${i.index-1}+'</p>';
-								hdata += '</div>';
-								hdata += '</div>';
-								
-								if (file_type${i.index-1}=='mp4'){
-									
-									hdata += '<div class="container video_contaner">';
-									hdata += '<video controls loop muted preload="auto" src="/video/video01.mp4">';
-									hdata += '</video>';
-									hdata += '</div>';
+								$(".${i.index-1}").after(hdata);
 		
-								} else{
-									hdata += '<div class="container">';
-									hdata += '<div class="row row-cols-auto ">';
-									hdata += '<div class="col-md-auto img-xl rounded-4">';
-									hdata += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-									hdata += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-									hdata += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-									hdata += '</div>';
-									hdata += '</div>';
-									hdata += '</div>';									
-								}
-								
-								
-								hdata += '<div class="post_footer">';
-								hdata += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons repeat">repeat</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '<span class="material-icons ms_icons chart">bar_chart</span>';
-								hdata += '<h3>100</h3>';
-								hdata += '</div>';
-								
-								$(".${i.index-1}").html(hdata);
-								count =1;
 							}
 							
-							
-							
+							count =1;
+							console.log(count);
 						}
 					</script>
 					
@@ -643,7 +771,7 @@
 					</div>  --%>
 
 
-					<!-- <div class="post_footer">
+					<div class="post_footer">
 						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
 						<h3>100</h3>
 						<span class="material-icons ms_icons repeat">repeat</span>
@@ -652,9 +780,9 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons chart">bar_chart</span>
 						<h3>100</h3>
-					</div> 
+					</div>
 
-				</div> -->
+				</div>
 
 			</div>
 			</c:forEach> 

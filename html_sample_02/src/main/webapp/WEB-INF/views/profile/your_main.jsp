@@ -49,7 +49,7 @@
     					data:{"stat":stat,"target_id":target_id},
     					datatype:"text",
     					success:function(data){
-    						alert("성공");
+    						
     					},
     					error:function(){
     						alert("실패");

@@ -13,10 +13,17 @@
  	</update>
  	
  	<select id="selectMedia" resultMap="pmuDto">
- 		select a.*, b.name, b.profile_img, c.media_id, c.file_name, c.file_type 
+ 		select a.*, b.name, b.profile_img, c.post_id,c.media_id, c.file_name, c.file_type 
 		from post a, cross_user b, media c
 		where b.user_id=a.user_id and a.post_id=c.post_id and b.user_id=#{id}
-		order by a.created
+		order by a.created desc
+ 	</select>
+ 	
+ 	<select id="selectLikePost" resultMap="pmuDto">
+ 		select distinct a.*, b.name, b.profile_img, c.post_id, c.media_id, c.file_name, c.file_type 
+		from post a, cross_user b, media c, post_like d
+		where b.user_id=d.user_id and a.post_id=c.post_id and b.user_id=#{id} 
+		order by a.created desc
  	</select>
  	
  	
@@ -51,6 +58,7 @@
  	</resultMap>
  	
  	<resultMap type="com.java.dto.MediaDto" id="mediaDtoMap">
+ 		<result column="post_id" property="post_id" />
  		<result column="media_id" property="media_id" />
  		<result column="file_name" property="file_name" />
  		<result column="file_type" property="file_type" />

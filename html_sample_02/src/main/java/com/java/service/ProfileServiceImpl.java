@@ -118,6 +118,17 @@ public class ProfileServiceImpl implements ProfileService {
 		ArrayList<PostMediaUserDto> list = postMapper.selectMedia(id);
 		return list;
 	}
+
+	//좋아요한 글 불러오기
+	@Override
+	public ArrayList<PostMediaUserDto> selectLikePost(String id) {
+		ArrayList<PostMediaUserDto> list = postMapper.selectLikePost(id);
+		return list;
+	}
+	
+	
+	
+	
 	
 	
 	

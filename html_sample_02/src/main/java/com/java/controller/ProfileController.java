@@ -75,7 +75,9 @@ public class ProfileController {
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
 		
+		ArrayList<PostMediaUserDto> list = pService.selectLikePost(id);
 		model.addAttribute("udto",udto);
+		model.addAttribute("list",list);
 		
 		return "/profile/like";
 	}
@@ -214,8 +216,19 @@ public class ProfileController {
 	@ResponseBody
 	public String accountUpdate(Cross_userDto udto,String org_id,Model model) {
 		String result = "";
-		
-		pService.accountUpdate(udto,org_id);
+		String new_id = udto.getUser_id();
+		Cross_userDto chkDto = pService.selectOne(new_id);
+		if(chkDto==null) {
+			pService.accountUpdate(udto,org_id);
+			result = "계정정보를 변경하였습니다.";
+			session.setAttribute("session_id", new_id);
+		} else if(chkDto.getUser_id().equals((String)session.getAttribute("session_id"))){
+			pService.accountUpdate(udto,org_id);
+			result = "계정정보를 변경하였습니다.";
+			session.setAttribute("session_id", new_id);
+		} else {
+			result = "이미 존재하는 ID입니다.";
+		}
 
 		return result;
 	}
@@ -231,7 +244,8 @@ public class ProfileController {
 			pService.pwUpdate(cur_pw,new_pw,user_id);
 			result = "패스워드를 변경하였습니다.";
 		} else {
-			result = "입력하신 패스워드가 기존패스워드와 일치하지 않습니다.";
+			result = "입력하신 '현재 비밀번호'가 \n"
+					+ "'기존 비밀번호'와 일치하지 않습니다.";
 		}
 				
 		return result;

@@ -44,4 +44,7 @@ public interface ProfileService {
 	//미디어 불러오기
 	ArrayList<PostMediaUserDto> selectMedia(String id);
 
+	//좋아요한 글 불러오기
+	ArrayList<PostMediaUserDto> selectLikePost(String id);
+
 }

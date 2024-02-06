@@ -275,7 +275,9 @@
 	    	    		  $(".location_input").val(user_loc);
 	    	    		  $(".website_input").val(user_url);
 	    	    		  $(".profile-name").children().children().text(name);
-	    				  alert(data);
+	    				 
+	    				  $("#writeModal").modal("show");
+		    			  $("#modal_write-box").text(data);
 	    			  },
 	    			  error:function(data){
 	    				  alert("실패");
@@ -368,6 +370,54 @@
 
 		</div>
 		</div>
+		
+		<!-- modal -->
+	    <div class="modal" id="writeModal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="height: 2rem;">
+						<h5 class="modal-title"></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="tweet_box">
+							<form>
+								<div class="tweet_box-input">
+									<div id="" class="rounded" style="position: relative; margin:auto;">
+	
+										<textarea rows="" cols="" class="content" id="modal_write-box"
+											style="outline: none; width: 380px; border: none; resize: none; overflow: hidden; text-align: center; "></textarea>
+										<div id="modal_position_wrap" class="invis">
+											<div id="position-area" style="display: flex;">
+												<span class="material-icons">location_on</span>
+												<div id="modal_currLocation"></div>
+											</div>
+										</div>
+										<div id="modal_image-area" style=""></div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
+<script async
+	src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js"
+	crossorigin="anonymous"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.min.js",
+        "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.esm.min.js"
+      }
+    }
+    </script>
+<script type="module">
+      import * as bootstrap from 'bootstrap'
 
+      new bootstrap.Popover(document.getElementById('popoverButton'))
+    </script>
 </html>
