@@ -177,8 +177,6 @@ pre {
 			</div>
 
 
-
-
 			<!-- Post -->
 
 			<div class="post" style="position: relative;">
@@ -228,8 +226,9 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk1">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
 					</div>
@@ -237,6 +236,15 @@ pre {
 				</div>
 
 			</div>
+			
+			<script>
+			 $(function(){
+				
+				$("#bookChk").click(function(){
+				    alert("z");
+				});
+			 });
+			</script>
 
 
 
@@ -310,8 +318,9 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk2">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
 					</div>
@@ -399,8 +408,9 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk3">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
 					</div>
@@ -483,8 +493,9 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk4">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
 					</div>
@@ -554,8 +565,9 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk5">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
 					</div>
@@ -621,8 +633,10 @@ pre {
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						<div id="bookChk6">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
+						
 
 
 					</div>
@@ -630,6 +644,8 @@ pre {
 				</div>
 
 			</div>
+			
+			
 
 
 		</main>
@@ -941,6 +957,7 @@ pre {
 			</div>
 		</div>
 	</div>
+
 
 
 
