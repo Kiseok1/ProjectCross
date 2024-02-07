@@ -42,7 +42,7 @@
                 <a href="javascript:history.back()"><i class="fa fa-arrow-left" id="fa-arrow-left"></i></a>
                 <div>
                     <h3>${udto.name}</h3> 
-                    <span>38.7k 게시물</span>
+                    <span></span>
                 </div>
             </section>
             <section class="twitterprofile">
@@ -75,7 +75,7 @@
                     	   <c:if test="${fn:contains(udto.user_url, 'http')}">
                     	   		<i class="fa-solid fa-arrow-up-right-from-square"></i> <a href="${udto.user_url}">${udto.user_url}</a> &nbsp 
                     	   </c:if>
-                           <i class="fa fa-calendar"></i> 2024.01.25
+                           <!-- <i class="fa fa-calendar"></i> 2024.01.25 -->
                     </span>
                     <div class="nawa">
                         <div class="followers"> 100 <span>Following</span></div>

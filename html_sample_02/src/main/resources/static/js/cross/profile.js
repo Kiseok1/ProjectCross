@@ -4,6 +4,7 @@
 $(function(){
 	$(".favorite").click(function(){
 		let post_id=$(this).parent().children().val();
+		let loc = $(this).next();
 		let stat = "";
 		if($(this).hasClass("toggle")){
 			stat = "likeUp"
@@ -19,7 +20,8 @@ $(function(){
 			data:{"post_id":post_id,"stat":stat},
 			datatype:"text",
 			success:function(data){
-				alert(data);
+				
+				$(loc).text(data);
 			},
 			error:function(){
 				alert("실패");

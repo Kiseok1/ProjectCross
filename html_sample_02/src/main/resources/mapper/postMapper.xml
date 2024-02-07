@@ -3,6 +3,16 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.java.mapper.PostMapper">
+	
+	<select id="selectDefault" resultMap="pmuDto">
+		select a.*, c.name, c.profile_img, d.file_name, d.file_type
+		from post a 
+		left join cross_user c on a.user_id=c.user_id
+		left join media d on a.post_id=d.post_id
+		where a.user_id=#{id}
+		order by a.created desc
+	</select>
+	
 		
  	<update id="likeUp">
  		update post set plike=plike+1 where post_id=#{post_id} 
@@ -19,10 +29,20 @@
 		order by a.created desc
  	</select>
  	
- 	<select id="selectLikePost" resultMap="pmuDto">
+ 	<!-- <select id="selectLikePost" resultMap="pmuDto">
  		select distinct a.*, b.name, b.profile_img, c.post_id, c.media_id, c.file_name, c.file_type 
 		from post a, cross_user b, media c, post_like d
 		where b.user_id=d.user_id and a.post_id=c.post_id and b.user_id=#{id} 
+		order by a.created desc
+ 	</select>  -->
+ 	
+ 	<select id="selectLikePost" resultMap="pmuDto">
+ 		select a.*, b.like_id, c.name, c.profile_img, d.file_name, d.file_type
+		from post a 
+		left join post_like b on a.post_id=b.post_id
+		left join cross_user c on a.user_id=c.user_id
+		left join media d on a.post_id=d.post_id
+		where b.user_id=#{id}
 		order by a.created desc
  	</select>
  	

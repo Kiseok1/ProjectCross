@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import com.java.dto.User_followDto;
 import com.java.service.ProfileService;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.Builder.Default;
 
 @Controller
 @RequestMapping("profile")
@@ -35,7 +37,7 @@ public class ProfileController {
 		
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
-		ArrayList<PostDto> list = pService.selectDefault(id);
+		ArrayList<PostMediaUserDto> list = pService.selectDefault(id);
 		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
 		
 		model.addAttribute("udto",udto);
@@ -76,8 +78,10 @@ public class ProfileController {
 		Cross_userDto udto = pService.selectOne(id);
 		
 		ArrayList<PostMediaUserDto> list = pService.selectLikePost(id);
+		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
 		model.addAttribute("udto",udto);
 		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
 		
 		return "/profile/like";
 	}
@@ -91,7 +95,7 @@ public class ProfileController {
 		Cross_userDto udto = pService.selectOne(id);
 		
 		//상대방 게시글 가져오기
-		ArrayList<PostDto> list = pService.selectDefault(your_id);
+		ArrayList<PostMediaUserDto> list = pService.selectDefault(your_id);
 		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
 		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);

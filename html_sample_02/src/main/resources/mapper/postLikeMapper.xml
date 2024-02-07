@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="selectLike">
-		select * from post_like where user_id=#{id}
+		select * from post_like where user_id=#{id} 
 	</select>
  	
 </mapper>

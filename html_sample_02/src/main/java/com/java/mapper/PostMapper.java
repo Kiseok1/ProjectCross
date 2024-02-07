@@ -4,11 +4,15 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.java.dto.PostDto;
 import com.java.dto.PostMediaUserDto;
 
 @Mapper
 public interface PostMapper {
 
+	//작성글 가져오기
+	ArrayList<PostMediaUserDto> selectDefault(String id);
+	
 	//post 좋아요 카운트Up
 	void likeUp(String post_id);
 	//post 좋아요 카운트Down

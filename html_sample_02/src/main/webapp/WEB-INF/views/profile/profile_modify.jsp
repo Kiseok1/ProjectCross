@@ -358,11 +358,11 @@
                 		<input class="website_input" maxlength="100" value="${udto.user_url}">
                 	</div>
                 	
-                	<div class="profile_modify_outline_birthday">
+                	<!-- <div class="profile_modify_outline_birthday">
                 		생일
                 		<br>
                 		<div class="birthday_div">2024년 1월 25일</div>
-                	</div>
+                	</div> -->
    		            <div class="savebtn">저장</div>
                 </div>
                

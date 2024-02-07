@@ -10,7 +10,8 @@ import com.java.dto.User_followDto;
 
 public interface ProfileService {
 
-	ArrayList<PostDto> selectDefault(String id);
+	//작성글 가져오기
+	ArrayList<PostMediaUserDto> selectDefault(String id);
 
 	Cross_userDto selectOne(String id);
 

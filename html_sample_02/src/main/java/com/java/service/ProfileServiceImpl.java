@@ -25,9 +25,13 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired PostLikeMapper postLikeMapper;
 	@Autowired PostMapper postMapper;
 
+	//작성글 가져오기
 	@Override
-	public ArrayList<PostDto> selectDefault(String id) {
-		ArrayList<PostDto> list = profileMapper.selectDefault(id);
+	public ArrayList<PostMediaUserDto> selectDefault(String id) {
+		ArrayList<PostMediaUserDto> list = postMapper.selectDefault(id);
+		PostMediaUserDto dummy = new PostMediaUserDto();
+		dummy.setPostDto(new PostDto());
+		list.add(dummy);
 		return list;
 	}
 
@@ -109,6 +113,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public ArrayList<PostLikeDto> selectLike(String id) {
 		ArrayList<PostLikeDto> list = postLikeMapper.selectLike(id);
+		
 		return list;
 	}
 
@@ -123,6 +128,9 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public ArrayList<PostMediaUserDto> selectLikePost(String id) {
 		ArrayList<PostMediaUserDto> list = postMapper.selectLikePost(id);
+		PostMediaUserDto dummy = new PostMediaUserDto();
+		dummy.setPostDto(new PostDto());
+		list.add(dummy);
 		return list;
 	}
 	

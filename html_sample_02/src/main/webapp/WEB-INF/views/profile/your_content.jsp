@@ -37,6 +37,7 @@
     <link rel='stylesheet' type='text/css' href='/css/profile.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/style_x_ui.css">
+    <link rel="stylesheet" href="/css/style_x_ui_ks.css">
 
     
 </head>
@@ -57,501 +58,267 @@
                </div>
            </section>
            
-           <!-- <div class="post">
-			<div class="post_profile-image">
-				<img src="/upload/k2.jpg" alt="java-logo">
-
-			</div>
-
-			<div class="post_body">
-				<div class="post_header">
-					<div class="post_header-text">
-						<h3>
-							Java <span class="header-icon-section"> <span
-								class="material-icons post_badge">verified</span>@java
-							</span>
-						</h3>
-					</div>
-
-					<div class="post_header-discription">
-						<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-						<br>
-						<p>
-							Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-							notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-							https://social.ora.cl/6015KoqQN <br> Features:
-							https://social.ora.cl/6016KoqQ4 <br>
-						</p>
-					</div>
-
-				</div>
-				<img src="/images/post-image.jpeg" alt="java18">
-
-				<div class="post_footer">
-
-					<span class="material-icons" style="cursor: pointer; color: #BA68C8;">chat</span> <span
-						class="material-icons" style="cursor: pointer; color: #BA68C8;">repeat</span> <span
-						class="material-icons like" style="cursor: pointer; color: #BA68C8;">favorite_border</span> <span
-						class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark</span>
-
-
-				</div>
-      		 </div>
-			</div> -->
+           <script>
+				let count = 0;
+				let chk = 0;
+				let postLikeNo=[];
+				let hdata_head="";
+				let hdata_foot="";
+			</script>
 			
-			 <!-- Post -->
-<!-- 
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;">
-						<div
-							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
-
-						</div>
-					</div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>동영상</p>
-
-						</div>
-
-					</div>
-					<div class="container video_contaner">
-						<video controls loop muted preload="auto" src="/video/video01.mp4">
-							
-							
-						</video>
-					</div>
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons chat" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								만두 <span class="header-icon-section"> @Mandoo </span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-
-							<p>흠터레스팅</p>
-
-						</div>
-
-					</div>
-					<div class="container">
-						<div class="">
-							<div class="">
-
-								Renote Content
-
-								<div class="rounded-4"
-									style="width: 450px; border: 1px solid var(--twitter-line-color); padding: 1rem;"
-									onclick="location.href='viewContent'">
-									<div class="post_header">
-										<div class="post_header-text">
-											<h3>
-												만두 <span class="header-icon-section">@Mandoo</span>
-											</h3>
-											<div style="margin-left: 1rem; text-align: center;">
-												<h3>24.01.01</h3>
-											</div>
-										</div>
-									</div>
-
-									<div class="post_header-renote" style="display: flex;">
-										<div class="container img-xs rounded" style="">
-											<img src="/images/post-image.jpeg">
-										</div>
-										<div style="width: 200px; height: 50px;">
-											<p>Text Only</p>
-										</div>
-									</div>
-
-
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-
-
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;">
-						<div
-							style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
-
-						</div>
-					</div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br> 이게&nbsp; 맞나 ?&nbsp;
-								&nbsp; &nbsp;<br> 이게&nbsp; 맞나 ?&nbsp; &nbsp; &nbsp;<br>
-							</p>
-						</div>
-
-					</div>
-					<div class="container img-sm">
-						<div class="row row-cols-auto">
-							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-						</div>
-
-						<div class="row row-cols-auto">
-							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-						</div>
-					</div>
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;">
-					</div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-					<div class="container">
-						<div class="row row-cols-auto">
-							<div class="col-md-auto img-md rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<div class="row row-cols-auto">
-									<div class="col-md-auto img-sm">
-										<img src="/images/post-image.jpeg" class="rounded "
-											alt="java18" data-bs-toggle="modal"
-											data-bs-target="#exampleModal"
-											data-bs-whatever="/images/post-image.jpeg">
-									</div>
-								</div>
-								<div class="row row-cols-auto">
-									<div class="col-md-auto img-sm">
-										<img src="/images/post-image.jpeg" class="rounded "
-											alt="java18" data-bs-toggle="modal"
-											data-bs-target="#exampleModal"
-											data-bs-whatever="/images/post-image.jpeg">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;">
-
-					</div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-
-					<div class="container">
-						<div class="row row-cols-auto ">
-							<div class="col-md-auto img-lg rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto img-lg rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-			<div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="/images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;">
-
-					</div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-					<div class="container">
-						<div class="row row-cols-auto ">
-							<div class="col-md-auto img-xl rounded-4">
-								<img src="/images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="/images/post-image.jpeg">
-							</div>
-
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div> -->
+			<c:forEach var="likeNo" items="${list2}">
+				<script>
+					postLikeNo.push(${likeNo.post_id});
+				</script>
+			</c:forEach>
 			
-			<c:forEach var="pdto" items="${list}">
+			<c:forEach var="pmuDto" items="${list}" varStatus="i" >
+				
+				<div class="post ${i.index}" style="position: relative;">
+					<fmt:formatDate value="${pmuDto.postDto.created}" pattern="yy.MM.dd" var="post_created"/>
+					<script>
+						
+						let post_id${i.index}= ${pmuDto.postDto.post_id};
+						let file_name${i.index}="${pmuDto.mediaDto.file_name}";
+						let file_type${i.index}="${pmuDto.mediaDto.file_type}";
+						let pcontent${i.index}="${pmuDto.postDto.pcontent}";
+						let post_userId${i.index}="${pmuDto.postDto.user_id}";
+						let post_name${i.index}="${pmuDto.cross_userDto.name}";
+						let post_profileImg${i.index}="${pmuDto.cross_userDto.profile_img}";
+						if("${pmuDto.cross_userDto.profile_img}"==""){
+							post_profileImg${i.index}="proflie_default.png";
+						}
+						let post_reply${i.index}="${pmuDto.postDto.pstep}";
+						let post_renote${i.index}="${pmuDto.postDto.renote}";
+						let post_like${i.index}="${pmuDto.postDto.plike}";
+						let post_hit${i.index}="${pmuDto.postDto.hit}";
+						let post_created${i.index}="${post_created}";
+						
+						if(!${i.first}){
+							hdata_head ="";
+							hdata_head += '<div class="post_profile-image rounded-5">';
+							hdata_head += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
+							hdata_head += '<div style="position: absolute; height: 100%; width: 80px;">';
+							hdata_head += '</div>';
+							hdata_head += '</div>';
+							hdata_head += '<div class="post_body">';
+							hdata_head += '<div class="post_header">';
+							hdata_head += '<div class="post_header-text">';
+							hdata_head += '<h3>';
+							hdata_head += post_name${i.index-1}+' <span class="header-icon-section"> <span ';
+							hdata_head += 'class="material-icons post_badge">verified</span>@'+post_userId${i.index-1};
+							hdata_head += '</span>';
+							hdata_head += '</h3>';
+							hdata_head += '<div style="margin-left: 1rem; text-align: center;">';
+							hdata_head += '<h3>'+post_created${i.index-1}+'</h3>';
+							hdata_head += '</div>';
+							hdata_head += '</div>';
+							hdata_head += '<div class="post_header-discription"';
+							hdata_head += 'onclick="location.href=\'/viewContent\'">';
+							hdata_head += '<p>'+pcontent${i.index-1}+'</p>';
+							hdata_head += '</div>';
+							hdata_head += '</div>';
+							
+							hdata_foot = "";
+							hdata_foot += '<div class="post_footer">';
+							hdata_foot += '<input type="hidden" value="'+post_id${i.index-1}+'">';
+							hdata_foot += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
+							hdata_foot += '<h3>'+post_reply${i.index-1}+'</h3>';
+							hdata_foot += '<span class="material-icons ms_icons repeat">repeat</span>';
+							hdata_foot += '<h3>'+post_renote${i.index-1}+'</h3>';
+							
+							//좋아요 여부에 따른 하트모양 구분
+							for(var j=0;j<postLikeNo.length;j++){
+								//console.log("배열 : "+postLikeNo[j]);
+								//console.log("post_id :"+post_id${i.index-1});
+								if(postLikeNo[j]==post_id${i.index-1}){
+									//console.log("일치");
+									hdata_foot += '<span class="material-icons ms_icons favorite toggle">favorite_border</span>';
+									chk = 1;
+								}
+							}
+							
+							if(chk==0){
+								hdata_foot += '<span class="material-icons ms_icons favorite">favorite_border</span>';
+							}
+							
+							hdata_foot += '<h3>'+post_like${i.index-1}+'</h3>';
+							hdata_foot += '<span class="material-icons ms_icons chart">bar_chart</span>';
+							hdata_foot += '<h3>'+post_hit${i.index-1}+'</h3>';
+							hdata_foot += '</div>';
+							chk=0;
+							
+						}
+						
+						if(${i.index==0}){
+							count ++;
+							
+						} else if(!${i.last} && post_id${i.index}==post_id${i.index-1}){
+							count ++;
+							
+						} else {
+							if(count ==4 ){
+								let hdata = "";
+								let hdata_media = "";
+								
+								hdata_media += '<div class="container img-sm_0">';
+								hdata_media += '<div class="row row-cols-auto">';
+								hdata_media += '<div class="col-md-auto">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
+								hdata_media += '</div>';
+								hdata_media += '<div class="col-md-auto">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '<div class="row row-cols-auto">';
+								hdata_media += '<div class="col-md-auto">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
+								hdata_media += '</div>';
+								hdata_media += '<div class="col-md-auto">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-4}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-4}+'">';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								
+								hdata += hdata_head;
+								hdata += hdata_media;
+								hdata += hdata_foot;
+								
+								
+								$(".${i.index-1}").html(hdata);
+								$(".${i.index-2}").remove();
+								$(".${i.index-3}").remove();
+								$(".${i.index-4}").remove();
+								count =1;
+							} else if(count==3){
+								let hdata = "";
+								let hdata_media = "";
+								
+								hdata_media += '<div class="container">';
+								hdata_media += '<div class="row row-cols-auto">';
+								hdata_media += '<div class="col-md-auto img-md_0 rounded-4">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
+								hdata_media += '</div>';
+								hdata_media += '<div class="col-md-auto">';
+								hdata_media += '<div class="row row-cols-auto">';
+								hdata_media += '<div class="col-md-auto img-sm_0">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded "';
+								hdata_media += 'alt="java18" data-bs-toggle="modal"';
+								hdata_media += 'data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '<div class="row row-cols-auto">';
+								hdata_media += '<div class="col-md-auto img-sm_0">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded "';
+								hdata_media += 'alt="java18" data-bs-toggle="modal"';
+								hdata_media += 'data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								
+								hdata += hdata_head;
+								hdata += hdata_media;
+								hdata += hdata_foot;
+								
+								$(".${i.index-1}").html(hdata);
+								$(".${i.index-2}").remove();
+								$(".${i.index-3}").remove();
+								count =1;
+							} else if (count==2){
+								let hdata = "";
+								let hdata_media = "";
+								
+								hdata_media += '<div class="container">';
+								hdata_media += '<div class="row row-cols-auto ">';
+								hdata_media += '<div class="col-md-auto img-lg_0 rounded-4">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
+								hdata_media += '</div>';
+								hdata_media += '<div class="col-md-auto img-lg_0 rounded-4">';
+								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
+								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								hdata_media += '</div>';
+								
+								hdata += hdata_head;
+								hdata += hdata_media;
+								hdata += hdata_foot;
+								
+								$(".${i.index-1}").html(hdata);
+								$(".${i.index-2}").remove();
+								count =1;
+							} else if(count==1 && file_name${i.index-1}!=""){ 
+								
+								let hdata = "";
+								let hdata_media = "";
+								
+								if (file_type${i.index-1}=='mp4'){
+									
+									hdata_media += '<div class="container video_contaner">';
+									hdata_media += '<video controls loop muted preload="auto" src="/video/video01.mp4">';
+									hdata_media += '</video>';
+									hdata_media += '</div>';
+		
+								} else{
+									hdata_media += '<div class="container">';
+									hdata_media += '<div class="row row-cols-auto ">';
+									hdata_media += '<div class="col-md-auto img-xl rounded-4">';
+									hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
+									hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
+									hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
+									hdata_media += '</div>';
+									hdata_media += '</div>';
+									hdata_media += '</div>';									
+								}
+								
+								hdata += hdata_head;
+								hdata += hdata_media;
+								hdata += hdata_foot;
+								
+								$(".${i.index-1}").html(hdata);
+								count =1;
+							} else {
+								let hdata = "";
+
+								hdata += hdata_head;
+								hdata += hdata_foot;
+								
+								$(".${i.index-1}").html(hdata);
+								count=1;
+							}
+						}//if문 종료
+						
+						// list마지막 더미데이터 삭제
+						if(${i.last}){
+							$(".${i.index}").remove();
+						}
+						
+					</script>
+
+			</div>
+			</c:forEach> 
+			
+        </div>
+        </div>
+           
+			<%-- <c:forEach var="pdto" items="${list}">
 			<div class="post" style="position: relative;">
 
 				<div class="post_profile-image rounded-5">
@@ -634,7 +401,7 @@
 			</div>
 			</c:forEach>
         </div>
-        </div>
+        </div> --%>
        
 
       <!-- Modal -->
