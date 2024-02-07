@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.Cross_userDto;
+import com.java.dto.MediaDto;
 import com.java.dto.MessCrossMediaDto;
 import com.java.dto.MessageDto;
 import com.java.mapper.MessageMapper;
@@ -75,6 +76,32 @@ public class MServiceImpl implements MService {
 		messageMapper.deleteMedia(msg_id);
 		
 	}
+
+	@Override//메시지 저장하기
+	public void mInsert(MediaDto mdto2) {
+		messageMapper.mInsert(mdto2);
+		
+	}
+	@Override
+	public void mInsert2(MessageDto mdto) {
+		messageMapper.mInsert2(mdto);
+		
+		
+	}
+
+	@Override//check update
+	public MessCrossMediaDto checkUpdate(int msg_id, String stat) {
+		messageMapper.checkUpdate(msg_id);
+		MessCrossMediaDto mcDto = null;
+		if(stat.equals("send")) {
+			mcDto = messageMapper.sendOne(msg_id);
+		} else {
+			mcDto = messageMapper.receiveOne(msg_id); 			
+		}
+		
+		return mcDto;
+	}
+
 	
 
 }

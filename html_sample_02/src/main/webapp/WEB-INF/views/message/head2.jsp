@@ -24,7 +24,7 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
+<script src="/js/cross/head_jw.js"></script>
 
 <style>
 
@@ -66,74 +66,6 @@ $(function(){
  
  <div id="view-box">
  	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
- <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 
-
-	 <nav style="margin-top: 20px;" >
-	    <div class="nav_logo-wrapper" >
-       		<img class="nav_logo" src="images/apple.jpg" >
-        </div>
-        
-	 	<div class="profile-wrapper " style="">
-	 		<div class="profile-img">
-	 			<div style="" class="img-wrapper rounded-5">
-	 				
-	 			</div>
-	 		</div>
-	 		<div class="profile-name">
-	 			<div style="margin: 4px;"><h2>Name</h2></div>
-	 		</div>
-	 		<div class="profile-follow" style="display: flex; margin-top:20px;">
-	 			<div style="margin:0 4px;"><h4>팔로우</h4></div> 
-	 			<div style="margin:0;">100</div>
-
-	 			<div style="margin:0 4px 0 10px;"><h4>팔로워</h4></div> 
-	 			<div style="margin:0;">100</div>
-	 		</div>
-	 	
-	 	</div>
-	 
-	 
-
-
-        <div class="Menu_options active">
-            <span class="material-icons">home</span>
-            <h2>홈</h2>
-        </div>
-
-        <div class="Menu_options">
-            <span class="material-icons">person</span>
-            <h2>프로필</h2>
-        </div> 
-        
-        <div class="Menu_options">
-            <span class="material-icons">bookmark</span>
-            <h2>북마크</h2>
-        </div> 
-        
-        <div class="Menu_options" style="background-color: var(--twitter-background-color); border-radius: 30px; color: #b19cd9;">
-            <span class="material-icons">email</span>
-            <h2>메시지</h2>
-        </div>
-       
-        <div class="Menu_options">
-            <span class="material-icons">notifications</span>
-            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">27</span>
-        </div>
-
-		 <div class="Menu_options">
-            <span class="material-icons">tag</span>
-            <h2>검색</h2>
-        </div>
-		
-		<div><br></div>
-	 
-	 	<div class="Menu_options">
-	 		<span class="material-icons">logout</span>
-	 		<h2>로그아웃</h2>
-	 	</div>
-	 </nav> -->
-
 
  <main>
       <div class="header">
@@ -143,16 +75,16 @@ $(function(){
         </div>
         <script>
         	$(function(){
-        		
         		/* 검색하기 */
         		$("#searchInput3").on("keyup",function(){
         			var input = $(this).val().trim();
         	        if (input === "") {
-        	            // 입력값이 없으면 검색 결과를 숨김
+        	        	// 입력값이 없으면 검색 결과를 숨김
         	            $("#searchResults").empty().hide();
-        	            
+        	            $(".main").show();
+        	            return;
         	        }else{
-        	        	$(".post").remove();
+        	        	$(".main").hide();
         	        }
         			//ajax 검색 데이터 가져오기
         			$.ajax({
@@ -185,7 +117,15 @@ $(function(){
 							    hdata +='</div>';
 							    hdata +='<div class="post_header-discription">';
 							    hdata +='<ul>';
-							    hdata +='<li>'+item.messageDto.mcontent+'</li>';
+
+		                	    if (item.messageDto.checked == 0) {
+		                	        // checked 값이 0인 경우 스타일 적용
+		                	        hdata += '<li style="font-weight:bold; color: grey;">' + item.messageDto.mcontent + '</li>';
+		                	    } else {
+		                	        // 그 외의 경우 일반적인 스타일 적용
+		                	        hdata += '<li>' + item.messageDto.mcontent + '</li>';
+		                	    }
+
 							    hdata +='</ul>';
 							    hdata +='</div>';
 							    hdata +='<span class="material-symbols-outlined check">check_circle</span>';
@@ -211,21 +151,6 @@ $(function(){
         			
         		});//searchInput
         		
-        		//이동
-        		$("#home-tab").click(function(){
-	       			location.href = "/message/index";
-        			
-        		});//nav home-tab clik
-        		
-        		$("#profile-tab").click(function(){
-        			location.href = "/message/head";
-        		});//nav profile-tab clik
-        		
-        		$("#contact-tab").click(function(){
-        			location.href = "/message/head2";
-        		});//nav contact-tab clik
-        		
-        		
         		// 데이터를 가져와서 모달 열기 함수
         		function openModalWithData(element) {
         		    let msg_id = element.attr('id');
@@ -247,13 +172,31 @@ $(function(){
 						  $(".sender").children().attr("src","/upload/"+data.cross_userDto.profile_img);
 			              $("#Mcontent").text(data.messageDto.mcontent);
 			              $("#name").text("@"+data.messageDto.target_id);
-			              if (data.mediaDto.file_name === null) {
+			              if (data.mediaDto.file_name === null || !data.mediaDto.file_name.match(/\.(jpg|jpeg|gif|png)$/i)) {
 			            	    $("#File").hide();
 			            	    
 			            	} else {
-			            		$("#File").show();
-			            	    $("#File").children().attr("src", "/upload/" + data.mediaDto.file_name);
-			            	}
+			            		 $('#File').show();
+				                   // 파일 이름이 쉼표로 구분된 문자열을 포함하고 있다고 가정합니다.
+				                    var fileNames = data.mediaDto.file_name.split(',');
+									console.log(fileNames[0]);
+									console.log(fileNames[1]);
+				                    // 파일 이름 배열을 순회합니다.
+				                    for (var i = 0; i < Math.min(4, fileNames.length); i++) {
+				                        var fileName = fileNames[i].trim(); // 앞뒤의 공백을 제거합니다.
+				                        // 해당 인덱스에 해당하는 자식 요소를 선택합니다. (예: #File > img:nth-child(1))
+				                        var childElement = $('#File').children().eq(i);
+				                        // 자식 요소의 src 속성을 설정합니다.
+				                        childElement.attr('src', '/upload/' + fileName);
+				                        // 자식 요소를 표시합니다.
+				                        childElement.show();
+				                    }
+
+				                    // 제공된 파일 이름이 4개 미만인 경우 남은 자식 요소를 숨깁니다.
+				                    $('#File').children().slice(Math.min(4, fileNames.length)).hide();
+
+				                    
+				                }
 						},
 						error:function(){
 							alert("실패");
@@ -262,7 +205,7 @@ $(function(){
         		    // Show the modal
         		    $('#exampleModal').modal('show');
         		}
-
+        		
         		// #searchResults의 .post를 클릭했을 때 모달 열기 및 데이터 표시
         		$('#searchResults').on('click', '.post', function() {
         		    openModalWithData($(this));
@@ -270,77 +213,27 @@ $(function(){
 
         		// .post를 클릭했을 때 모달 열기 및 데이터 표시
         		$('.post').click(function() {
+        			let msg_id =Number($(this).attr('id'))	;
+        			console.log(msg_id);
+			        $.ajax({
+			            url: '/message/checkUpdate',
+			            type: 'post',
+			            data: { 'msg_id': msg_id, "stat":"send" },
+			            dataType: 'json',
+			            success: function(data) {
+			            	alert("성공");
+			            	console.log(data.messageDto.checked);
+			            	if(data.messageDto.checked == 1){
+			            		$(this).find('.post_header-discription li').css('font-weight', '');
+			            		$(this).find('.post_header-discription li').css('color', 'black');
+			            	}
+			            },
+			            error:function(){
+			            	alert("실패");	
+			            }
+			            });//ajax
         		    openModalWithData($(this));
-        		});
-
-        		
-        		//선택삭제 모달창
-        		$("#deleteBtn1").click(function(){
-
-                    // Show the modal
-                    $('#exampleModal2').modal('show');
-        			
-        		});//deleteBtn1 click
-        		
-        		// 확인 버튼 클릭 시 선택된 쪽지 삭제
-        		$('#send_btn').click(function() {
-        		    // 빨간색으로 선택된 .check 요소를 찾아 그 부모인 .post 요소를 찾고, 각 .post 요소의 ID를 가져와 서버로 전송하여 삭제
-        		    $('.check').filter(function() {
-        		        return $(this).css('color') === 'rgb(255, 0, 0)';
-        		    }).each(function() {
-        		        var msg_id = $(this).closest('.post').attr('id');
-        		        // 서버로 쪽지 삭제 요청을 전송하는 코드 작성
-        		        $.ajax({
-        		            url: '/message/deleteMSelect',
-        		            type: 'post',
-        		            data: { 'msg_id': msg_id },
-        		            dataType: 'text',
-        		            success: function(data) {
-        		            		console.log(data);
-        		                    // 삭제 성공 시 해당 쪽지를 화면에서 제거
-        		                    $('#' + msg_id).remove();
-        		            },
-        		            error: function() {
-        		                alert('삭제 요청을 처리하는 중 오류가 발생했습니다.');
-        		            }
-        		        });
-        		    });
-        		    // 모달 닫기
-        		    $('#exampleModal2').modal('hide');
-        		});
-
-        		
-        		
-        		//선택삭제 모달창
-        		$("#deleteBtn2").click(function(){
-
-                    // Show the modal
-                    $('#exampleModal3').modal('show');
-        			
-        		});//deleteBtn1 click
-        		
-        	    // .post 클래스를 가진 요소를 클릭했을 때의 이벤트 리스너
-        		// Click event for #check
-        	    $('.check').click(function(event){
-        	        // 클릭 이벤트의 기본 동작 방지
-        	        event.preventDefault();
-        	        //상위 요소로 이벤트 전파 중지
-        	        event.stopPropagation();
-        	     	
-        	        // Get the current color of #check
-        	        var currentColor = $(this).css('color');
-        	        // 빨간색과 원래 색상 간 전환
-                    if (currentColor === 'rgb(255, 0, 0)') {
-                        $(this).css('color', ''); // 기본 색상으로 재설정
-                        $(this).css('display', ''); // 빨간색으로 설정
-                        $(this).closest('.post').removeClass('hover');
-                    } else {
-                        $(this).css('color', 'red'); // 빨간색으로 설정
-                        $(this).css('display', 'inline-block'); // 빨간색으로 설정
-                        $(this).closest('.post').addClass('hover');
-                    }
-	                
-        	    });//check
+        		});//post click
         	    
         	});//jquery
         	
@@ -348,13 +241,13 @@ $(function(){
         <!-- 모달 -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
+		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem; height: 400px;">
 		      <div class="modal-header" style="width: 495px;">
 		        <span class="material-icons" style="font-size: 35px; color:#BA68C8; position: relative; top: 5px;">email</span>
 		        <h5 class="modal-title" id="exampleModalLabel"></h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
-		      <div class="modal-body" style="height: 290px;">
+		      <div class="modal-body" style="height:  290px;">
 		        <form>
 		          <div class="mb-3" style="position: relative; right: 10px;">
 		          	<div class="sender">
@@ -371,7 +264,7 @@ $(function(){
                         </h3>
 	                </div>
 		          <div class="mb-3">
-		            <div class="form-control" id="message-text" style="">
+		            <div class="form-control" id="message-text" style="height: 200px;">
 		            	<ul>
 		            	  <li id="Mcontent">안녕하세요. 다름이 아니라 저번주에 정했던 미팅 약속을 부득이하게 취소하게 되어 연락드립니다.</li>
 		            	  <li id="File"><img src="/upload/" style="width: 120px; height: 125px; position: relative; top: 10px;" ></li>
@@ -424,7 +317,7 @@ $(function(){
 	                </div>
 		        </div>
 		        <div  style="position: relative; bottom: 25px; left: 150px;">
-		         <button type="button" id="send_btn" class="btn btn-primary">확인</button>
+		         <button type="button" id="Allsend_btn" class="btn btn-primary">확인</button>
 		      	</div>
 		       </form>
 		      </div>
@@ -464,7 +357,7 @@ $(function(){
 	   </div> 
 	   <!-- 쪽지 부분 -->
 	   <c:forEach var="messCrossMediaDto" items="${list2}">
-       <div class="post" id="${messCrossMediaDto.messageDto.msg_id}">
+       <div class="post main" id="${messCrossMediaDto.messageDto.msg_id}">
             <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">
 			<div class="user"><img src="/upload/${messCrossMediaDto.cross_userDto.profile_img}" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>
 			</div>
@@ -480,7 +373,12 @@ $(function(){
                     </div>
                     <div class="post_header-discription">
                         <ul>
-                           <li>${messCrossMediaDto.messageDto.mcontent}</li>
+	                       <c:if test="${messCrossMediaDto.messageDto.checked eq 0}">
+							   <li style="font-weight:bold; color: grey;">${messCrossMediaDto.messageDto.mcontent}</li>
+						   </c:if>
+						   <c:if test="${messCrossMediaDto.messageDto.checked ne 0}">
+							   <li>${messCrossMediaDto.messageDto.mcontent}</li>
+						   </c:if>
                        </ul>
                     </div>
                     <span class="material-symbols-outlined check">check_circle</span>

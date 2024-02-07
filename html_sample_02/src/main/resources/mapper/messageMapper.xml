@@ -39,6 +39,18 @@
 		delete media where msg_id = #{msg_id}
 	</delete>
 	
+	<insert id="mInsert2">
+		insert into message values(message_seq.nextval,'aaa',#{target_id},#{mcontent},0,sysdate)
+	</insert>
+	
+	<insert id="mInsert">		
+		insert into media values(media_seq.nextval, null,message_seq.currval,#{file_name},'null',0,sysdate,sysdate)
+	</insert>
+	
+	<update id="checkUpdate">
+		 update message set checked = 1 where msg_id=#{msg_id}
+	</update>
+	
 	<!-- 검색 받은 쪽지 가져오기 messCrossDto-->
 	<select id="search2" resultMap="messCrossMediaDto">
 		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.source_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.target_id='aaa' and (message.source_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 

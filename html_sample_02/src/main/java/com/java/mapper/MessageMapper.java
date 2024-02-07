@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.java.dto.Cross_userDto;
+import com.java.dto.MediaDto;
 import com.java.dto.MessCrossMediaDto;
 import com.java.dto.MessageDto;
 
@@ -39,6 +40,14 @@ public interface MessageMapper {
 	//보낸글 선택삭제하기
 	void deleteMSelect(int msg_id);
 	void deleteMedia(int msg_id);
+
+	//메시지 저장하기
+	
+	void mInsert2(MessageDto mdto);
+	void mInsert(MediaDto mdto2);
+
+	//check update
+	void checkUpdate(int msg_id);
 	
 
 

@@ -7,7 +7,6 @@
  * Author: sajith dilshan <sajithd784@gmail.com>
  */
 
-
 #message_wrap{
     display: flex;
     align-items: flex-start;
@@ -269,7 +268,7 @@ main::-webkit-scrollbar{
     left: 5px;
 }
 
-#send_btn{
+#send_btn {
 	background-color: #BA68C8; 
 	border: 1px solid var(--twitter-background-color); 
 	position: relative; 
@@ -277,6 +276,15 @@ main::-webkit-scrollbar{
 	bottom: 5px; 
 	border-radius: 30px;
 	
+}
+
+#Allsend_btn{
+	background-color: #BA68C8; 
+	border: 1px solid var(--twitter-background-color); 
+	position: relative; 
+	left: 10px; 
+	bottom: 5px; 
+	border-radius: 30px;
 }
 
 .check{

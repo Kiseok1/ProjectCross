@@ -25,9 +25,7 @@
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
- <!-- include summernote css/js-->
-    <link href="css/summernote-lite.css" rel="stylesheet">
-    <script src="js/summernote-lite.js"></script>
+<script src="/js/cross/index_jw.js"></script>
     
 <style>
 
@@ -55,75 +53,6 @@ pre{    white-space: pre-wrap;    background: #EEE;}
  
  <div id="view-box">
  	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
- <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 
-
-	 <nav style="margin-top: 20px;" >
-	    <div class="nav_logo-wrapper" >
-       		<img class="nav_logo" src="images/apple.jpg">
-        </div>
-        
-	 	<div class="profile-wrapper " style="">
-	 		<div class="profile-img">
-	 			<div style="" class="img-wrapper rounded-5">
-	 				
-	 			</div>
-	 		</div>
-	 		<div class="profile-name">
-	 			<div style="margin: 4px;"><h2>Name</h2></div>
-	 		</div>
-	 		<div class="profile-follow" style="display: flex; margin-top:20px;">
-	 			<div style="margin:0 4px;"><h4>팔로우</h4></div> 
-	 			<div style="margin:0;">100</div>
-
-	 			<div style="margin:0 4px 0 10px;"><h4>팔로워</h4></div> 
-	 			<div style="margin:0;">100</div>
-	 		</div>
-	 	
-	 	</div>
-	 
-	 
-
-
-        <div class="Menu_options active">
-            <span class="material-icons">home</span>
-            <h2>홈</h2>
-        </div>
-
-        <div class="Menu_options">
-            <span class="material-icons">person</span>
-            <h2>프로필</h2>
-        </div> 
-        
-        <div class="Menu_options">
-            <span class="material-icons">bookmark</span>
-            <h2>북마크</h2>
-        </div> 
-        
-        <div class="Menu_options" style="background-color: var(--twitter-background-color); border-radius: 30px; color: #b19cd9;">
-            <span class="material-icons">email</span>
-            <h2>메시지</h2>
-        </div>
-       
-        <div class="Menu_options">
-            <span class="material-icons">notifications</span>
-            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">27</span>
-        </div>
-
-		 <div class="Menu_options">
-            <span class="material-icons">tag</span>
-            <h2>검색</h2>
-        </div>
-		
-		<div><br></div>
-	 
-	 	<div class="Menu_options">
-	 		<span class="material-icons">logout</span>
-	 		<h2>로그아웃</h2>
-	 	</div>
-	 </nav> -->
-
-
  <main>
         <div class="header">
             <span class="material-icons" style="font-size: 35px; color:#BA68C8">
@@ -189,102 +118,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         <!-- 검색 ajax -->
         <script>
-        	$(function(){
-        		$("#searchInput").on("keyup",function(){
-        			var input = $(this).val().trim();
-        	        if (input === "") {
-        	            // 입력값이 없으면 검색 결과를 숨김
-        	            $("#searchResults").empty().hide();
-        	            return;
-        	        }
-        			//ajax 검색 데이터 가져오기
-        			$.ajax({
-						url:"/message/search",
-						type:"post",
-						data:{"input":input},
-						dataType:"json",
-						success:function(data){
-							console.log(data);
-							 // 이전 검색 결과를 삭제
-			                $("#searchResults").empty();
-			                if (data.length > 0) {	 
-							for (let i = 0; i < data.length; i++) {
-							    let item = data[i];
-							    //태그 입력 시작
-							    let hdata = '<div class="post" id='+item.user_id+'>';
-							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 90px;">';
-							    hdata +='<img src="/upload/'+item.profile_img+'" style="width: 60px; height: 60px; position: relative; right: 1px; bottom: 20px;"></div>';
-							    hdata +='<div class="post_body" style="position: relative; right: 20px">';
-							    hdata +='<div class="post_header">';
-							    hdata +='<div class="post_header-text">';
-							    hdata +=' <h3>'+item.user_id+'';
-							    hdata +='<span class="header-icon-section">';
-							    hdata +='<span class="material-icons post_badge">verified</span>@'+item.name+'';
-							    hdata +='</span>';
-							    hdata +='</h3>';
-							    hdata +='</div>';
-							    hdata +='<div class="post_header-discription">';
-							    hdata +='<ul>';
-							    hdata +='<li>'+item.profile_txt+'입니다.</li>';
-							    hdata +='<li class="name">@'+item.name+'</li>';
-							    hdata +='</ul>';
-							    hdata +='<button class="followBtn">팔로우</button>';
-							    hdata +='</div>';
-							    hdata +='</div>';
-							    hdata +='</div>';
-							    hdata +='</div>';
-							    //생성된 HTML을 추가
-							    $("#searchResults").append(hdata);
-							}
-					        $("#searchResults").show();
-					    } else {
-					        $("#searchResults").hide();
-					    }
-					},
-						error:function(){
-							alert("실패");
-						}
-        				
-        				
-        			});//ajax
-        			
-        			
-
-        			
-        			
-        		});//searchInput
-        		
-        		
-        	});//jquery
         	
-        	$(document).on('click', '.post', function() {
-        	    // 클릭된 요소에서 필요한 데이터 추출
-        	    var user_id = $(this).closest(".post").attr('id');
-        	    
-        	    // 모달에 데이터 채우기
-        	    
-        	    // 모달 보이기
-        	   /* 유저 정보 모달창 ajax  */
-        			 $.ajax({
-        				url:"/message/UserData",
-						type:"post",
-						data:{"user_id":user_id},
-						dataType:"json",
-						success:function(data){
-							console.log(data);
-							$(".sender").children().attr("src","/upload/"+data.profile_img);
-							$("#name").text("@"+data.user_id);
-							
-							$('#messageModal').modal('show');
-						},error:function(){
-							alert("실패");
-						}
-							
-						
-        			});
-        	   
-        	     
-        	});
         	
         </script>
         
@@ -306,113 +140,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		</div>
 		<div id="searchResults">
 		</div>
-			 <script>
-                 		 var fileCount = 0;
 
-					      $(function(){
-										    	  
-					    	  const DEFAULT_HEIGHT = 16; // textarea 기본 height
-					    	  
-					    	  $("#currLocation").on("click",function(){
-					    		  $("#locationModal").modal("show");
-					    	  })
-					    	  
-					    	  $("#write-box").on("keydown",function(e){
-					    		  console.log($(e.target).val());
-					    	//	  console.log(e.target.style);
-					    		  let text = $(e.target).val();
-					    		  e.target.style.height=0;
-					    		  e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight + 'px';
-//					    		 
-								 if(text.length > 150)
-								 {
-								  console.log("글자수입력제한");
-								  $(e.target).val(($(e.target).val().substring(0, 150)));
-								  e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight - 32 + 'px';
-								 }
-
-					    		 
-					    	  })
-					    	  
-					    	  $("#message_text-area").click(function(){
-					    		  $("#write-box").focus();
-					    	  })
-					    	  
-					    	  $("#file").on("change",function(e){
-					    		//  console.log(e);
-					    		//  console.log(e.target.files.length);
-					    		  var felement = e.target.files;
-					    			 $("#image-area").html("");
-					    			 fileCount=0;
-					    		  for(var i = 0 ; i < e.target.files.length ; i++)
-				    			  {
-					    			  if(fileCount>3)
-			    			  	        {
-			    			  	        	alert("파일은 최대 네개까지만 첨부가능합니다.");
-			    			  	        	break;
-			    			  	        }
-				    			  		
-				    			  		var file = e.target.files[i];
-				    			  		
-				    			  		let name=file.name;
-				    			  		
-				    			  		//console.log(name);
-				    			  		
-				    			  	    if(isImageFile(file)) {
-				    			  	    	
-				    			  	      var reader = new FileReader(); 
-				    			  	      reader.onload = function(e) {	
-				    			  	    	 var img = document.createElement("img");
-				    			  	    //	console.log("isImageFile",e.target);
-				    			  	         img.setAttribute("src", e.target.result);
-				    			  	       	 img.setAttribute("class", "userfile");
-				    			  	       	 img.setAttribute("onmouseover","this.src='/images/cancel.png'");
-				    			  	       	 img.setAttribute("onmouseout","this.src='"+e.target.result+"'");
-				    			  	       	 img.setAttribute("style","width:80px; height:80px; object-fit:cover;");
-				    						 img.setAttribute("data-set",name);	  	       
-				    			  	       	 $("#image-area").prepend(img);
-				    			  	        
-				    			  	       
-				    			  	      }
-					    			  	reader.readAsDataURL(file);
-				    			  	    }
-				    			  	  fileCount++;
-
-				    			  }
-					    	  })
-					    	  
-
-					    	  function isImageFile(file) {
-								  // 파일명에서 확장자를 가져옴
-								  var ext = file.name.split(".").pop().toLowerCase(); 
-								  return ($.inArray(ext, ["jpg", "jpeg", "gif", "png"]) === -1) ? false : true;
-								}
-					    	  
-					    	  $(document).on("click",".userfile",function(e){
-					    			  
-					    		  	const files = $("#file")[0].files;
-					    		  	const dataTranster = new DataTransfer();
-					    		  	const removeTargetId = $(e.target).attr("data-set");
-					    		  	
-					    		  	console.log("target : " , e);
-					    	  		
-					    	  		
-					    	  		 Array.from(files).forEach(file => {
-					    	  			console.log(removeTargetId+" "+file.name);
-					    	  			 if(removeTargetId!=file.name)
-				    	  				 {
-					    	  				dataTranster.items.add(file);
-				    	  				 }
-					                 });
-					    	  		$("#file")[0].files = dataTranster.files;
-					    	  		$(e.target).remove();
-					    	  		console.log($("#file")[0].files);
-					    	  });
-					    	  
-					    	  
-					    	  
-							})
-					    </script>
 		
 	<!-- 모달 창 -->
 		<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -424,7 +152,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		      </div>
 		      <div class="modal-body">
 		   <div class="message_tweet_box">
-            <form>
+            <form action="doMInsert" name="insertFrm" method="post" enctype="multipart/form-data">
                	<div class="profile-img" style="top: 10px; position: relative;">
 		 			<div class="sender">
 		          		<img src="/upload/" style="width: 70px; height: 70px; position: relative; right: 1px;  border-radius: 40px; bottom: 10px;">
@@ -433,16 +161,15 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		          <div class="mb-3" style="position: relative; left: 80px; bottom: 15px;">
 	                       <h3 id="target_id">
 	                           <span class="header-icon-section">
-	                               <span class="material-icons post_badge">verified</span><span id="name" style="right: 4px; position: relative;">@</span>
+	                               <span class="material-icons post_badge">verified</span><span id="name" name="target_id" style="right: 4px; position: relative;">@</span>
+	                               <input type="hidden" name="target_id" id="name1">
 	                           </span>
 	                       </h3>
 	                </div>
-              </form>
-              <form>
 				<div class="tweet_box-input" style="position: relative; bottom: 30px;">
 					<div id="modal_text-area" class="rounded" style="position: relative; height: 250px;">
 
-						<textarea rows="" cols="" class="content" id="modal_write-box"
+						<textarea rows="" cols="" class="content" name="mcontent" id="modal_write-box"
 							style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
 						<div id="modal_position_wrap" class="invis">
 							<div id="position-area" style="display: flex;">
@@ -450,11 +177,8 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 								<div id="modal_currLocation"></div>
 							</div>
 						</div>
-						<div class="userfile" id="modal_image-area" style=""></div>
-
+						<div class="userfile" id="modal_image-area" name="files" style=""></div>
 								</div>
-			
-			
 							</div>
 						</div>
 			
@@ -463,9 +187,9 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                 <div class="message_box-footer modal-footer" style="position: relative; bottom: 30px; height: 30px;">
                     <label for="file" id="message_imgBtn" style="position: relative; right: 340px; bottom: 10px; cursor: pointer;">
                     	<span class="material-symbols-outlined" style="font-size: 40px; color: var(--twitter-theme-color); ">image</span>
-						<input type="file" id="file" multiple="multiple">
+						<input type="file" id="file" name="files" multiple="multiple">
                     </label>
-			        <button type="button" id="send_btn" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; bottom: 10px; left: 5px;">보내기</button>
+			        <button type="submit" id="send_btn" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; bottom: 10px; left: 5px;">보내기</button>
 					<!--모달 끝 -->
                 </div>
             </form>
@@ -473,11 +197,6 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         </div>
    	<script>
-	    $(function(){
-	   	 $("#send_btn").click(function(){
-	   		 alert("ttt");
-	   	 });
-	    });
    	</script>
  </main>
  
