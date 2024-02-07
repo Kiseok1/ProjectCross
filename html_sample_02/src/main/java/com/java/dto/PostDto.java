@@ -17,7 +17,7 @@ public class PostDto {
 	private String user_id;
 	private String pcontent;
 	private String plocation;
-	private int like;
+	private int plike;
 	private int renote;
 	private int pgroup;
 	private int pstep;

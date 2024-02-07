@@ -118,8 +118,7 @@ CROSS는 CROSS Companies에 포함된 제품으로서, CROSS Companies는 보다
 		</ul>
 		</div>
 		<br><br>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="Y">동의합니다.</label>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="N">동의하지 않습니다.</label>
+		<label><input type="checkbox" for="aGree" id="aGree" name="aGree" value="Y">동의합니다.</label>
 		<br><br>
 		<div class="title2">
 		</div>
@@ -143,8 +142,7 @@ CROSS는 CROSS Companies에 포함된 제품으로서, CROSS Companies는 보다
 		</div>
 		
 		<br><br>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="Y">동의합니다.</label>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="N">동의하지 않습니다.</label>
+		<label><input type="checkbox" for="aGree" id="aGree" name="aGree1" value="Y">동의합니다.</label>
 		<br><br>
 		<div class="title3">
 		<div class="Sol">
@@ -258,8 +256,7 @@ CROSS에서 회원님의 신원을 공개할 필요는 없지만, 회원님은 �
 		</ul>
 		</div>
 		<br><br>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="Y">동의합니다.</label>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="N">동의하지 않습니다.</label>
+		<label><input type="checkbox" for="aGree" id="aGree" name="aGree2" value="Y">동의합니다.</label>
 		<br><br>
 		
 		<div class="Sol">
@@ -338,8 +335,7 @@ CROSS에서 회원님의 신원을 공개할 필요는 없지만, 회원님은 �
 		</ul>
 		</div>
 		<br><br>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="Y">동의합니다.</label>
-		<label><input type="radio" for="aGree" id="aGree" name="aGree" value="N">동의하지 않습니다.</label>
+		<label><input type="checkbox" for="aGree" id="aGree" name="aGree3" value="Y">동의합니다.</label>
 		<br><br>
 		<div class="Sol">
 		
@@ -372,7 +368,16 @@ CROSS에서 회원님의 신원을 공개할 필요는 없지만, 회원님은 �
 	<script>
 	 $(function(){
 		$("#AgreeChk").click(function(){
-			location.href="joinMember";
+		var checkbox = $('input:checkbox:checked').length;
+		if(checkbox == 4) {
+			alert("다음페이지로 이동합니다.");
+			location.href ="joinMember";
+		}else{
+			alert("약관을 모두 동의하셔야 진행이 가능합니다.");
+			
+		}
+			
+			
 		}); 
 	 });
 	

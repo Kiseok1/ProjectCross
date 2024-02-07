@@ -16,7 +16,7 @@
 
 </head>
 <body>
-
+	<div id="view-box">
 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 
 	<main>
