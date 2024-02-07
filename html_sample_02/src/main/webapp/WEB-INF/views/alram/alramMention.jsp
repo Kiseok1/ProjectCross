@@ -164,11 +164,25 @@ $(function(){
 	 	</div>
 	 </nav>
 
+<script>
+	$(function(){
+		$(".alramCheck").click(function(){
+			$.ajax({
+				url:"alramChecked",
+				type:"post",
+				success:function(){
+					alert("성공");
+				}
+			});//ajax
+		});//click
+	});//jquery
+</script>
  <main>
         <div class="header dropdown">
              <span class="material-icons">notifications</span>
              	<span class="material-symbols-outlined dropdown_bar">pending</span>
     	    	 <div class="dropdown_content">
+        		 	<a class="alramCheck" href="">모두 읽은상태 표시</a>
         		 	<a href="alramSet">알람 설정</a>
 			     </div>	
         </div>
@@ -180,11 +194,11 @@ $(function(){
 			    onclick="location.href='alram'">전체</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
-			    <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true">확인완료</button>
+			    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"
+			    onclick="location.href='alramCheck'">확인완료</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
-			    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
-			    onclick="location.href='alramMention'">언급</button>
+			    <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="ture">언급</button>
 			  </li>
 			  <li class="nav-item" role="presentation">
 			    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
@@ -192,7 +206,6 @@ $(function(){
 			  </li>
 		  </ul> 
 		 </div>
-		 
 		  <!--삭제 알람 모달창  -->
 		 <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -269,6 +282,7 @@ $(function(){
 </div>
  <!--모달창  끝 -->
 		 
+		 
 		<c:forEach var="Adto" items="${list}">
         <div class="post" id="${Adto.alram_id}">
             <div class="post_profile-image">
@@ -279,17 +293,15 @@ $(function(){
             <div class="post_body">
                 <div class="post_header">
                     <div class="post_header-text">
-                        <h3>${Adto.source_id }
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@java
-                            </span>
+                        <h3>${Adto.source_id}<span class="header-icon-section">
+                           <span class="material-icons post_badge">verified</span>@java</span>
                         </h3>
                     </div>
                     <c:if test="${Adto.checked == '0'}">
-                    <div class="noCheck">
+                    <div id="${Adto.source_id}" class="noCheck">
                     </c:if>
                     <c:if test="${Adto.checked == '1'}">
-                    <div class="yesCheck">
+                    <div id="${Adto.source_id}" class="yesCheck">
                     </c:if>
                         <p>
                             ${Adto.user_id}님
@@ -336,14 +348,13 @@ $(function(){
 						   </c:if>
 						   <span class="material-icons Xicon" >highlight_off</span>
                      <div class="Xcontent">
-					     <a class="alramDelect" data-bs-toggle="modal" data-bs-target="#DeleteModal">알림삭제</a>
+					      <a class="alramDelect" data-bs-toggle="modal" data-bs-target="#DeleteModal">알림삭제</a>
 					    <a class="alramBan" data-bs-toggle="modal" data-bs-target="#BanModal">알림차단</a>
                      </div>
                   </div>	
                </div>
         </div>
 	</c:forEach>
-
     </main>
     <!-- main section end -->
     

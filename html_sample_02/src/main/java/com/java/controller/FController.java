@@ -13,11 +13,14 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class FController {
 	
-	@Autowired HttpSession session;
+	@Autowired
+	HttpSession session;
 	
-	@RequestMapping("/")
-	public String index() {
-		return "/index";
+	@RequestMapping("/")	
+	public String index(){
+		session.setAttribute("session_id","aaa");
+		System.out.println("sessionId :"+session.getAttribute("session_id"));
+		return "index";
 	}
 	
 	@RequestMapping("viewContent")

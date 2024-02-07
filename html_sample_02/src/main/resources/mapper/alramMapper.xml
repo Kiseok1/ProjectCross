@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <!-- Mapper.java연결 -->
+    <mapper namespace="com.java.mapper.AlramMapper">
+    	<select resultType="com.java.dto.AlramDto" id="selectAlram">
+    		select * from alram where user_id = #{user_id} and checked = 0 or checked = 1
+    	</select>
+    	<select resultType="com.java.dto.AlramDto" id="selectChecked">
+    		select * from alram where user_id = #{user_id} and checked = 1 
+    	</select>
+    	<update id="alramDelect">
+    		update alram set checked = '2' where alram_id = #{alram_id}	
+    	</update>
+    	<update id="alramChecked">
+    		update alram set checked = '1' where user_id = #{user_id} and checked = '0'	
+    	</update>
+    	
+    	<select id="Mentionalram" resultType="com.java.dto.AlramDto">
+    		SELECT *  FROM alram WHERE (alram_type = 'retweet' OR alram_type = 'comment') AND (checked = 0 OR checked = 1)
+    	</select>
+    	<update id="alramBan">
+    		update alram set checked = '3' where source_id = #{source_id}
+    	</update>
+    	<select resultType="com.java.dto.AlramDto" id="selectBanUser">
+    		select DISTINCT source_id from alram a where user_id = 'aaa' and checked = 3 
+    	</select>
+    	
+    	<update id="UserUnBan">
+    		update alram set checked = '1' where source_id = #{source_id}
+    	</update>
+    	
+    	
+    </mapper>
