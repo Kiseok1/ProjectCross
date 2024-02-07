@@ -1,0 +1,12 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.PostLikeMapper">
+		
+	<insert id="repeatOn"  >
+		insert into renote (LIKE_ID, POST_ID, USER_ID,CREATED) 
+		values(renote_seq.nextval, #{post_id}, #{user_id}, sysdate)
+	</insert>
+
+</mapper>
