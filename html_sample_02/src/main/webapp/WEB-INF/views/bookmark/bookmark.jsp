@@ -163,6 +163,7 @@
 							
 						</video>
 					</div>
+					
 
 					<div class="post_footer">
 
@@ -172,8 +173,11 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons chart">bar_chart</span>
-						<h3>100</h3>
+						
+						<div id="bookChk">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark</span>
+						</div>
+						
 
 
 					</div>
@@ -254,8 +258,10 @@
 						<h3>100</h3>
 						<span class="material-icons ms_icons favorite">favorite_border</span>
 						<h3>100</h3>
-						<span class="material-icons ms_icons">bar_chart</span>
-						<h3>100</h3>
+						
+						<div id="bookChk">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark</span>
+						</div>
 
 
 					</div>

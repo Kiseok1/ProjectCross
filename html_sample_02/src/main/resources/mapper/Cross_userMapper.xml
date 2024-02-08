@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.Cross_userMapper">
+
+<select id="login" resultType="com.java.dto.Cross_userDto">
+ select * from cross_user where user_id=#{user_id} and password=#{password}
+</select>
+
+<select id="findId" resultType="com.java.dto.Cross_userDto">
+ select * from Cross_user where email=#{email}
+</select>
+
+<update id="savePW">
+update Cross_user set password=#{pw} where email=#{email}
+</update>		
+		
+ 	
+</mapper>

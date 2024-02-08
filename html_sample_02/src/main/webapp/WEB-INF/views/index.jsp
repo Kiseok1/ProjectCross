@@ -103,11 +103,6 @@ pre {
 				</form>
 			</div>
 
-
-
-
-
-
 			<!-- Post -->
 			<div id="post_wrap">
 
@@ -146,6 +141,7 @@ pre {
 									</div>
 								</div>
 
+<!-- <<<<<<< HEAD -->
 								<div class="post_header-discription"
 									onclick="location.href='/viewContent?post_id=${plist[status.index].post_id}'">
 									<p>${plist[status.index].pcontent}</p>
@@ -160,6 +156,62 @@ pre {
 									
 									
 								</div>
+<!-- =======
+						</div>
+
+					</div>
+					<div class="container video_contaner">
+						<video controls loop muted preload="auto" src="video/video01.mp4">
+							
+							
+						</video>
+					</div>
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons chat" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<div id="bookChk1">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+			
+			<script>
+			 $(function(){
+				
+				$("#bookChk").click(function(){
+				    alert("z");
+				});
+			 });
+			</script>
+
+
+
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="images/profile01.jpg" alt="profile">
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								만두 <span class="header-icon-section"> @Mandoo </span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+>>>>>>> refs/remotes/origin/hyg -->
 							</div>
 
 							<c:if
@@ -381,7 +433,9 @@ pre {
 								src="/video/video01.mp4">
 
 
+
 							</video>
+
 						</div>
 
 						<div class="post_footer">
@@ -411,6 +465,7 @@ pre {
 						<img class="" src="/images/profile01.jpg" alt="profile">
 					</div>
 
+
 					<div class="post_body">
 						<div class="post_header">
 							<div class="post_header-text">
@@ -420,6 +475,7 @@ pre {
 								<div style="margin-left: 1rem; text-align: center;">
 									<h3>24.01.01</h3>
 								</div>
+
 							</div>
 
 							<div class="post_header-discription"
@@ -679,9 +735,11 @@ pre {
 
 				<div class="post" style="position: relative;">
 
+
 					<div class="post_profile-image rounded-5">
 						<img class="" src="/images/profile01.jpg" alt="profile">
 						<div style="position: absolute; height: 100%; width: 80px;">
+
 
 						</div>
 					</div>
@@ -821,6 +879,8 @@ pre {
 				</div>
 
 			</div>
+
+
 		</main>
 		<!-- main section end -->
 
@@ -1137,6 +1197,7 @@ pre {
 			</div>
 		</div>
 	</div>
+
 
 
 
