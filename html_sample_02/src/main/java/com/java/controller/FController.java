@@ -33,7 +33,6 @@ public class FController {
 	@Autowired
 	MediaService mediaService;
 
-	
 	@RequestMapping("/")
 	public String index(Model model) {
 		
@@ -65,6 +64,7 @@ public class FController {
 		
 		
 		return url;
+
 
 	}
 	
@@ -294,17 +294,12 @@ public class FController {
 
 		System.out.println("return Post ID : " + post_id );
 		
-
-
-		
-		
 		 jobj.put("post", postDto); 
 		 jobj.put("files",MergeName); 
 		 jobj.put("type", types); 
 		 jobj.put("nof", numberOfFiles); 
 		 jobj.put("name", session.getAttribute("session_name"));
 		 jobj.put("profile",session.getAttribute("session_image"));
-		 
 		
 		return jobj;
 	}
