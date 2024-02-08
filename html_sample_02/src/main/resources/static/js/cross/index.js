@@ -17,8 +17,9 @@ $(function() {
 		var modalBodyInput = exampleModal.querySelector('.modal-body img')
 
 		modalTitle.textContent = recipient
-		modalBodyInput.src = recipient
+		modalBodyInput.src = recipient 
 	})
+
 	const DEFAULT_HEIGHT = 16; // textarea 기본 height
 
 	$("#currLocation").on("click", function() {
@@ -74,6 +75,8 @@ $(function() {
 	$("#file").on("change", function(e) {
 		//  console.log(e);
 		//  console.log(e.target.files.length);
+		
+		alert("test2");
 		var felement = e.target.files;
 		$("#image-area").html("");
 		fileCount = 0;
@@ -136,6 +139,7 @@ $(function() {
 	$("#modalFile").on("change", function(e) {
 		//  console.log(e);
 		//  console.log(e.target.files.length);
+		alert("test");
 		var felement = e.target.files;
 		$("#modal_image-area").html("");
 		fileCount = 0;
