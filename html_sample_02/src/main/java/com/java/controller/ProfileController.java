@@ -2,6 +2,7 @@ package com.java.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
 import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
+import com.java.service.PostService;
 import com.java.service.ProfileService;
 
 import jakarta.servlet.http.HttpSession;
@@ -30,20 +32,36 @@ public class ProfileController {
 	@Autowired HttpSession session;
 	
 	@Autowired ProfileService pService;
+	
+	@Autowired PostService postService;
 
 	//프로필 페이지 이동
 	@RequestMapping("/content")
 	public String content(Model model) {
+		 String id = (String) session.getAttribute("session_id"); 
+		 Cross_userDto udto = pService.selectOne(id); 
+		 ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		 ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		  
+		 model.addAttribute("udto",udto); 
+		 model.addAttribute("list",list);
+		 model.addAttribute("list2",list2);
 		
-		String id = (String) session.getAttribute("session_id");
-		Cross_userDto udto = pService.selectOne(id);
-		ArrayList<PostMediaUserDto> list = pService.selectDefault(id);
-		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		 Map<String, Object> map =  pService.getMypost(id);
 		
-		model.addAttribute("udto",udto);
-		model.addAttribute("list",list);
-		model.addAttribute("list2",list2);
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("recount", map.get("recount")); 
+		 model.addAttribute("renoted", map.get("renoted"));
+		 model.addAttribute("facount", map.get("facount")); 
+		 model.addAttribute("favorited", map.get("favorited"));
+		 model.addAttribute("replycount", map.get("replycount"));
 		
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
+	
 		return "/profile/content";
 	}
 	

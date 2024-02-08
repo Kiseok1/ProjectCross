@@ -1,6 +1,7 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
@@ -47,5 +48,8 @@ public interface ProfileService {
 
 	//좋아요한 글 불러오기
 	ArrayList<PostMediaUserDto> selectLikePost(String id);
+
+	//내가 작성한 글 불러오기
+	Map<String, Object> getMypost(String id);
 
 }

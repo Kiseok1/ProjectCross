@@ -1,3 +1,4 @@
+
 package com.java.mapper;
 
 import java.util.ArrayList;
@@ -21,3 +22,4 @@ public interface PostLikeMapper {
 	
 	
 }
+

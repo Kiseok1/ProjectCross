@@ -72,7 +72,23 @@
 						
 						$("#login").click(function(){
 								alert("로그인 되었습니다.");
-								location.href="/";
+								
+								$.ajax({
+									type: "POST",
+									url: "/login/ajaxLogin",
+									data:"data",
+									dataType: "text",
+									error: function() {
+										alert('통신실패!!');
+									},
+									success: function(data) {
+										location.href="/";
+										//	 $("#position_wrap").removeClass("invis");    
+										//	 $("#currLocation").html(data);
+									}
+
+								});
+								
 							
 						});
 						

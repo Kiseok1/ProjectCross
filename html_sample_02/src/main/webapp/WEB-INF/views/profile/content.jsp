@@ -24,7 +24,6 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
- 
 
     <link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -59,262 +58,207 @@
                </div>
            </section>
            
-			<script>
-				let count = 0;
-				let chk = 0;
-				let postLikeNo=[];
-				let hdata_head="";
-				let hdata_foot="";
-			</script>
-			
-			<c:forEach var="likeNo" items="${list2}">
-				<script>
-					postLikeNo.push(${likeNo.post_id});
-				</script>
-			</c:forEach>
-			
-			<c:forEach var="pmuDto" items="${list}" varStatus="i" >
-				
-				<div class="post ${i.index}" style="position: relative;">
-					<fmt:formatDate value="${pmuDto.postDto.created}" pattern="yy.MM.dd" var="post_created"/>
-					<script>
-						
-						let post_id${i.index}= ${pmuDto.postDto.post_id};
-						let file_name${i.index}="${pmuDto.mediaDto.file_name}";
-						let file_type${i.index}="${pmuDto.mediaDto.file_type}";
-						let pcontent${i.index}="${pmuDto.postDto.pcontent}";
-						let post_userId${i.index}="${pmuDto.postDto.user_id}";
-						let post_name${i.index}="${pmuDto.cross_userDto.name}";
-						let post_profileImg${i.index}="${pmuDto.cross_userDto.profile_img}";
-						if("${pmuDto.cross_userDto.profile_img}"==""){
-							post_profileImg${i.index}="proflie_default.png";
-						}
-						let post_reply${i.index}="${pmuDto.postDto.pstep}";
-						let post_renote${i.index}="${pmuDto.postDto.renote}";
-						let post_like${i.index}="${pmuDto.postDto.plike}";
-						let post_hit${i.index}="${pmuDto.postDto.hit}";
-						let post_created${i.index}="${post_created}";
-						
-						if(!${i.first}){
-							hdata_head ="";
-							hdata_head += '<div class="post_profile-image rounded-5">';
-							hdata_head += '<img class="" src="/upload/'+post_profileImg${i.index-1}+'" alt="profile">';
-							hdata_head += '<div style="position: absolute; height: 100%; width: 80px;">';
-							hdata_head += '</div>';
-							hdata_head += '</div>';
-							hdata_head += '<div class="post_body">';
-							hdata_head += '<div class="post_header">';
-							hdata_head += '<div class="post_header-text">';
-							hdata_head += '<h3>';
-							hdata_head += post_name${i.index-1}+' <span class="header-icon-section"> <span ';
-							hdata_head += 'class="material-icons post_badge">verified</span>@'+post_userId${i.index-1};
-							hdata_head += '</span>';
-							hdata_head += '</h3>';
-							hdata_head += '<div style="margin-left: 1rem; text-align: center;">';
-							hdata_head += '<h3>'+post_created${i.index-1}+'</h3>';
-							hdata_head += '</div>';
-							hdata_head += '</div>';
-							hdata_head += '<div class="post_header-discription"';
-							hdata_head += 'onclick="location.href=\'/viewContent\'">';
-							hdata_head += '<p>'+pcontent${i.index-1}+'</p>';
-							hdata_head += '</div>';
-							hdata_head += '</div>';
-							
-							hdata_foot = "";
-							hdata_foot += '<div class="post_footer">';
-							hdata_foot += '<input type="hidden" value="'+post_id${i.index-1}+'">';
-							hdata_foot += '<span class="material-icons ms_icons" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>';
-							hdata_foot += '<h3>'+post_reply${i.index-1}+'</h3>';
-							hdata_foot += '<span class="material-icons ms_icons repeat">repeat</span>';
-							hdata_foot += '<h3>'+post_renote${i.index-1}+'</h3>';
-							
-							//좋아요 여부에 따른 하트모양 구분
-							for(var j=0;j<postLikeNo.length;j++){
-								//console.log("배열 : "+postLikeNo[j]);
-								//console.log("post_id :"+post_id${i.index-1});
-								if(postLikeNo[j]==post_id${i.index-1}){
-									//console.log("일치");
-									hdata_foot += '<span class="material-icons ms_icons favorite toggle">favorite</span>';
-									chk = 1;
-								}
-							}
-							
-							if(chk==0){
-								hdata_foot += '<span class="material-icons ms_icons favorite">favorite_border</span>';
-							}
-							
-							hdata_foot += '<h3>'+post_like${i.index-1}+'</h3>';
-							hdata_foot += '<span class="material-icons ms_icons chart">bar_chart</span>';
-							hdata_foot += '<h3>'+post_hit${i.index-1}+'</h3>';
-							hdata_foot += '</div>';
-							chk=0;
-							
-						}
-						
-						if(${i.index==0}){
-							count ++;
-							
-						} else if(!${i.last} && post_id${i.index}==post_id${i.index-1}){
-							count ++;
-							
-						} else {
-							if(count ==4 ){
-								let hdata = "";
-								let hdata_media = "";
-								
-								hdata_media += '<div class="container img-sm_0">';
-								hdata_media += '<div class="row row-cols-auto">';
-								hdata_media += '<div class="col-md-auto">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata_media += '</div>';
-								hdata_media += '<div class="col-md-auto">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '<div class="row row-cols-auto">';
-								hdata_media += '<div class="col-md-auto">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
-								hdata_media += '</div>';
-								hdata_media += '<div class="col-md-auto">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-4}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-4}+'">';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								
-								hdata += hdata_head;
-								hdata += hdata_media;
-								hdata += hdata_foot;
-								
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								$(".${i.index-3}").remove();
-								$(".${i.index-4}").remove();
-								count =1;
-							} else if(count==3){
-								let hdata = "";
-								let hdata_media = "";
-								
-								hdata_media += '<div class="container">';
-								hdata_media += '<div class="row row-cols-auto">';
-								hdata_media += '<div class="col-md-auto img-md_0 rounded-4">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata_media += '</div>';
-								hdata_media += '<div class="col-md-auto">';
-								hdata_media += '<div class="row row-cols-auto">';
-								hdata_media += '<div class="col-md-auto img-sm_0">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded "';
-								hdata_media += 'alt="java18" data-bs-toggle="modal"';
-								hdata_media += 'data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '<div class="row row-cols-auto">';
-								hdata_media += '<div class="col-md-auto img-sm_0">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-3}+'" class="rounded "';
-								hdata_media += 'alt="java18" data-bs-toggle="modal"';
-								hdata_media += 'data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-3}+'">';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								
-								hdata += hdata_head;
-								hdata += hdata_media;
-								hdata += hdata_foot;
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								$(".${i.index-3}").remove();
-								count =1;
-							} else if (count==2){
-								let hdata = "";
-								let hdata_media = "";
-								
-								hdata_media += '<div class="container">';
-								hdata_media += '<div class="row row-cols-auto ">';
-								hdata_media += '<div class="col-md-auto img-lg_0 rounded-4">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-								hdata_media += '</div>';
-								hdata_media += '<div class="col-md-auto img-lg_0 rounded-4">';
-								hdata_media += '<img src="/upload/'+file_name${i.index-2}+'" class="rounded " alt="java18"';
-								hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-								hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-2}+'">';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								hdata_media += '</div>';
-								
-								hdata += hdata_head;
-								hdata += hdata_media;
-								hdata += hdata_foot;
-								
-								$(".${i.index-1}").html(hdata);
-								$(".${i.index-2}").remove();
-								count =1;
-							} else if(count==1 && file_name${i.index-1}!=""){ 
-								
-								let hdata = "";
-								let hdata_media = "";
-								
-								if (file_type${i.index-1}=='mp4'){
+			<!-- Post -->
+			<div id="post_wrap">
+
+
+				<c:forEach var="pdto" items="${plist}" varStatus="status">
+					<div class="post" style="position: relative;">
+
+						<div class="post_profile-image rounded-5">
+							<img class="" src="/upload/${ulist[status.index].profile_img}"
+								alt="profile">
+							<div style="position: absolute; height: 100%; width: 80px;">
+
+								<c:if
+									test="${plist[status.index].post_id == plist[status.index+1].pindent}">
+									<div
+										style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
+									</div>
+								</c:if>
+
+							</div>
+						</div>
+
+						<div class="post_body">
+							<div class="post_header">
+								<div class="post_header-text">
+									<h3>
+										${ulist[status.index].name}<span class="header-icon-section">@${ulist[status.index].user_id}
+										</span>
+									</h3>
+									<div style="margin-left: 1rem; text-align: center;">
+										<h3>${plist[status.index].created}</h3>
+									</div>
+								</div>
+
+								<div class="post_header-discription"
+									onclick="location.href='/viewContent?post_id=${plist[status.index].post_id}'">
+									<p>${plist[status.index].pcontent}</p>
+									<c:if test="${plist[status.index].plocation!=null}">
+										<div class="" style="color:gray">
+											<div style="display: flex;">
+												<span class="material-icons">location_on</span>
+												<div>${plist[status.index].plocation}</div>
+											</div>
+										</div>
+									</c:if>
 									
-									hdata_media += '<div class="container video_contaner">';
-									hdata_media += '<video controls loop muted preload="auto" src="/video/video01.mp4">';
-									hdata_media += '</video>';
-									hdata_media += '</div>';
-		
-								} else{
-									hdata_media += '<div class="container">';
-									hdata_media += '<div class="row row-cols-auto ">';
-									hdata_media += '<div class="col-md-auto img-xl rounded-4">';
-									hdata_media += '<img src="/upload/'+file_name${i.index-1}+'" class="rounded " alt="java18"';
-									hdata_media += 'data-bs-toggle="modal" data-bs-target="#exampleModal"';
-									hdata_media += 'data-bs-whatever="/upload/'+file_name${i.index-1}+'">';
-									hdata_media += '</div>';
-									hdata_media += '</div>';
-									hdata_media += '</div>';									
-								}
-								
-								hdata += hdata_head;
-								hdata += hdata_media;
-								hdata += hdata_foot;
-								
-								$(".${i.index-1}").html(hdata);
-								count =1;
-							} else {
-								let hdata = "";
+									
+								</div>
+							</div>
 
-								hdata += hdata_head;
-								hdata += hdata_foot;
-								
-								$(".${i.index-1}").html(hdata);
-								count=1;
-							}
-						}//if문 종료
-						
-						// list마지막 더미데이터 삭제
-						if(${i.last}){
-							$(".${i.index}").remove();
-						}
-						
-					</script>
+							<c:if
+								test="${fn:contains(mlist[status.index].file_type,'video')}">
+								<div class="container video_contaner">
+									<video controls loop muted preload="auto"
+										src="/upload/${mlist[status.index].file_name}">
+									</video>
+								</div>
+							</c:if>
 
-			</div>
-			</c:forEach> 
+							<c:if
+								test="${fn:contains(mlist[status.index].file_type,'image')}">
+								<c:set var="img"
+									value="${fn:split(mlist[status.index].file_name,',')}" />
+								<c:if test="${fn:length(img)==1}">
+									<div class="container">
+										<div class="row row-cols-auto ">
+											<div class="col-md-auto img-xl rounded-4">
+												<img src="/upload/${mlist[status.index].file_name}"
+													class="rounded " alt="java18" data-bs-toggle="modal"
+													data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${mlist[status.index].file_name}">
+											</div>
+
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==2}">
+									<div class="container">
+										<div class="row row-cols-auto ">
+											<div class="col-md-auto img-lg rounded-4">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto img-lg rounded-4">
+												<img src="/upload/${img[1]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[1]}">
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==3}">
+									<div class="container">
+										<div class="row row-cols-auto">
+											<div class="col-md-auto img-md rounded-4">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto">
+												<div class="row row-cols-auto">
+													<div class="col-md-auto img-sm">
+														<img src="/upload/${img[1]}" class="rounded " alt="java18"
+															data-bs-toggle="modal" data-bs-target="#exampleModal"
+															data-bs-whatever="/upload/${img[1]}">
+													</div>
+												</div>
+												<div class="row row-cols-auto">
+													<div class="col-md-auto img-sm">
+														<img src="/upload/${img[2]}" class="rounded " alt="java18"
+															data-bs-toggle="modal" data-bs-target="#exampleModal"
+															data-bs-whatever="/upload/${img[2]}">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==4}">
+									<div class="container img-sm">
+										<div class="row">
+											<div class="col-md-auto">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto">
+												<img src="/upload/${img[1]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[1]}">
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-auto">
+												<img src="/upload/${img[2]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[2]}">
+											</div>
+											<div class="col-md-auto">
+												<img src="/upload/${img[3]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[3]}">
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+							</c:if>
+
+							<div class="post_footer">
+
+								<span class="material-icons ms_icons chat"
+									data-bs-toggle="modal" data-bs-target="#writeModal" 
+									data-post_id="${plist[status.index].post_id}" 
+									data-group="${plist[status.index].pgroup}" 
+									data-step="${plist[status.index].pstep}" 
+									data-indent="${plist[status.index].pindent}">chat</span>
+								<h3>${replycount[status.index]}</h3>
+									
+								<c:if test="${renoted[status.index]<1}">
+									<span class="material-icons ms_icons repeat"
+									data-post_id="${plist[status.index].post_id}">repeat</span>
+							
+								</c:if>
+								<c:if test="${renoted[status.index]>=1}">
+									<span class="material-icons ms_icons repeat toggle"
+									data-post_id="${plist[status.index].post_id}">repeat</span>
+							
+								</c:if>
+							
+								<h3>${recount[status.index]}</h3>
+								
+								<c:if test="${favorited[status.index]<1}">
+									<span class="material-icons ms_icons favorite"
+									data-post_id="${plist[status.index].post_id}">favorite_border</span>
+							
+								</c:if>
+								<c:if test="${favorited[status.index]>=1}">
+									<span class="material-icons ms_icons favorite toggle"
+									data-post_id="${plist[status.index].post_id}">favorite</span>
+							
+								</c:if>
+									
+								<h3>${facount[status.index]}</h3>
+								
+								<span class="material-icons ms_icons chart"
+								data-post_id="${plist[status.index].post_id}">bar_chart</span>
+								<h3>${plist[status.index].hit+1}</h3>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</c:forEach>
 			
         </div>
         </div>
@@ -435,7 +379,6 @@
 									<div class="col col-5 mt-1">주소</div>
 								</div>
 
-
 								<div class="w-100"></div>
 
 								<div class="row  align-items-start selAddr"
@@ -455,6 +398,7 @@
 	</div>
 
 
+<!-- Write Modal -->
 	<div class="modal" id="writeModal" tabindex="-1">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -463,13 +407,16 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<div class="modal-body">
-					<div class="tweet_box">
-						<form>
-							<div class="tweet_box-input">
-								<div id="modal_text-area" class="rounded" style="position: relative;">
+				<form id="modalForm" action="/modalSendPost" method="post" enctype="multipart/form-data">
+				<div id="modal_hidden"></div>
+					<div class="modal-body">
+						<div class="tweet_box">
 
-									<textarea rows="" cols="" class="content" id="modal_write-box"
+							<div class="tweet_box-input">
+								<div id="modal_text-area" class="rounded"
+									style="position: relative;">
+
+									<textarea rows="" cols="" class="content" id="modal_write-box" name="pcontent"
 										style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
 									<div id="modal_position_wrap" class="invis">
 										<div id="position-area" style="display: flex;">
@@ -480,33 +427,31 @@
 									<div id="modal_image-area" style=""></div>
 
 								</div>
-
-
 							</div>
-
-
-						</form>
-					</div>
-
-				</div>
-				<div class="modal-footer">
-					<div class="modal_box-footer" style="">
-
-
-						<label for="modalFile" id="modalImgBtn" class="btn btn-sm btn-dark">사진등록</label>
-						<input type="file" id="modalFile" multiple="multiple"> 
-						<label for="modalRegPosition" id="modalregBtn" class="btn btn-sm btn-dark"
-							data-bs-toggle="modal" data-bs-target="#locationModal2"
-							data-bs-whatever="Test">위치등록</label> 
-						<input type="button" id="madalRegPosition">
-						<button class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
-
+						</div>
 
 					</div>
-				</div>
+					<div class="modal-footer">
+						<div class="modal_box-footer" style="">
+
+
+							<label for="modalFile" id="modalImgBtn"
+								class="btn btn-sm btn-dark">사진등록</label> 
+								<input type="file" name="files"	id="modalFile" multiple="multiple"> 
+								<label for="modalRegPosition" id="modalregBtn"
+								class="btn btn-sm btn-dark" data-bs-toggle="modal"
+								data-bs-target="#locationModal2" data-bs-whatever="Test">위치등록</label>
+							<input type="hidden" class="btn btn-sm btn-dark" id="modalRegPosition" name="plocation">
+							<button id="modal_write-btn" class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
+
+
+						</div>
+					</div>
+				</form>
+
 			</div>
 		</div>
-	</div>
+	</div>	
 
 
 

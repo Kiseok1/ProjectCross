@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.Cross_userMapper">
+	
+	<!-- (게시글)게시글에 표시할 유저정보 불러오기 -->	
+	<select id="getUserProfile" resultType="com.java.dto.Cross_userDto">
+		select user_id,name,profile_img from cross_user where user_id=#{user_id}
+	</select>
+ 	
+ 	<!-- 유저정보 불러오기  -->
+ 	<select id="selectOne">
+		select * from cross_user where user_id=#{id}
+	</select>
+	
+	<!-- 계정정보 변경 -->
+	<update id="accountUpdate">
+		update cross_user set user_id=#{user_id}, email=#{email} where user_id=#{org_id}
+	</update>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="pwUpadte">
+		update cross_user set password=#{new_pw} where user_id=#{user_id}
+	</update>
+ 	
+ 	<!-- 프로필 수정 -->
+	<update id="profileUpdate">
+		update cross_user set name=#{name}, profile_txt=#{profile_txt}, user_loc=#{user_loc}, user_url=#{user_url}, header_img=#{header_img}, profile_img=#{profile_img} where user_id=#{user_id}
+	</update>
+ 	
+</mapper>

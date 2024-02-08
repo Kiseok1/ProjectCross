@@ -1,29 +1,37 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.java.dto.Cross_userDto;
+import com.java.dto.MediaDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
 import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
 import com.java.mapper.Cross_userMapper;
+import com.java.mapper.MediaMapper;
 import com.java.mapper.PostLikeMapper;
 import com.java.mapper.PostMapper;
 import com.java.mapper.ProfileMapper;
 import com.java.mapper.User_followMapper;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
+	@Autowired HttpSession session;
 	@Autowired ProfileMapper profileMapper;
 	@Autowired Cross_userMapper cross_userMapper;
 	@Autowired User_followMapper user_followMapper;
 	@Autowired PostLikeMapper postLikeMapper;
 	@Autowired PostMapper postMapper;
+	@Autowired MediaMapper mediaMapper;
 
 	//작성글 가져오기
 	@Override
@@ -132,6 +140,47 @@ public class ProfileServiceImpl implements ProfileService {
 		dummy.setPostDto(new PostDto());
 		list.add(dummy);
 		return list;
+	}
+
+	//내가 작성한글 불러오기
+	@Override
+	public Map<String, Object> getMypost(String id) {
+		
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Cross_userDto> ulist = new ArrayList<>();
+		ArrayList<MediaDto> mlist = new ArrayList<>();
+		ArrayList<Integer> recount = new ArrayList<>();
+		ArrayList<Integer> renoted = new ArrayList<>();
+		ArrayList<Integer> facount = new ArrayList<>();
+		ArrayList<Integer> favorited = new ArrayList<>();
+		ArrayList<Integer> replycount = new ArrayList<>();
+				
+		//내가 작성한 포스트 가져오기
+		ArrayList<PostDto> plist = postMapper.getMypost(id);
+		
+		for(int i = 0 ; i < plist.size() ; i++)
+		{
+			//plist 활용 
+			ulist.add(cross_userMapper.getUserProfile(plist.get(i).getUser_id())); //포스트에 표시할 유저정보
+			mlist.add(mediaMapper.getMedia(plist.get(i).getPost_id())); //포스트에 표시할 미디어 
+			recount.add(postMapper.getRenoteCounter(plist.get(i).getPost_id())); //리트윗 수 가져오기
+			renoted.add(postMapper.myRenoteCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 리트윗 했는지 여부
+			facount.add(postMapper.getFavorCounter(plist.get(i).getPost_id())); //좋아요 수 가져오기
+			favorited.add(postMapper.myFavorCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 좋아요 했는지 여부
+			replycount.add(postMapper.getReplyCounter(plist.get(i).getPost_id())); //답글 수 가져오기
+			postMapper.updateHit(plist.get(i).getPost_id()); //노출수 1증가
+		}
+		
+		map.put("plist", plist);
+		map.put("ulist", ulist);
+		map.put("mlist", mlist);
+		map.put("recount", recount);
+		map.put("renoted", renoted);
+		map.put("facount", facount);
+		map.put("favorited", favorited);
+		map.put("replycount", replycount);
+		
+		return map;
 	}
 	
 	

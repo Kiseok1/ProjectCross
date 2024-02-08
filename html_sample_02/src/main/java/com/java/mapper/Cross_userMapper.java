@@ -1,3 +1,4 @@
+
 package com.java.mapper;
 
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import com.java.dto.PostDto;
 @Mapper
 public interface Cross_userMapper {
 
+	//정환(기석)작업
+	//
 	ArrayList<PostDto> selectDefault(String id);
 
 	//개인정보 가져오기
@@ -24,4 +27,8 @@ public interface Cross_userMapper {
 	//프로필 변경
 	void profileUpdate(String name, String profile_txt, String user_loc, String user_url, String header_img, String profile_img, String user_id);
 
+	//향연 작업
+	//게시글에 표시할 개인정보 불러오기
+	Cross_userDto getUserProfile(String user_id);
 }
+

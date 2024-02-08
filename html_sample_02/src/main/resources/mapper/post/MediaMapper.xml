@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.MediaMapper">
+	
+	<!-- 미디어 저장(포스트) -->	
+	<insert id="sendPost"  >
+		insert into media (MEDIA_ID, POST_ID, FILE_NAME, FILE_TYPE, FILE_SIZE, CREATED, UPDATED) 
+		values(
+		MEDIA_SEQ.nextval, #{post_id}, #{file_name},#{file_type},#{file_size},sysdate,sysdate
+		)
+	</insert>
+	
+	<!-- post에 표시할 미디어 불러오기 -->
+	<select id="getMedia" resultType="com.java.dto.MediaDto">
+		select * from media where post_id = #{post_id}
+	</select>
+ 	
+</mapper>

@@ -3,13 +3,13 @@
  */
 $(function(){
 	$(".favorite").click(function(){
-		let post_id=$(this).parent().children().val();
+		let post_id=$(this).attr("data-post_id");
 		let loc = $(this).next();
 		let stat = "";
 		if($(this).hasClass("toggle")){
-			stat = "likeUp"
-		} else {
 			stat = "likeDown"
+		} else {
+			stat = "likeUp"
 		}
 		
 		console.log(stat);

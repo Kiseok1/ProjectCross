@@ -543,7 +543,7 @@ height:80px;
 
 .row:hover{
 
-background-color: var(--bs-primary-border-subtle);
+
 cursor: pointer;
 }
 
