@@ -1,5 +1,7 @@
+
 package com.java.service;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -178,4 +180,48 @@ public  class PostServiceImpl implements PostService {
 		
 	}
 
+	//인기순으로 게시글 정렬
+	@Override
+	public List<PostDto> selectLike() {
+		List<PostDto> list = postMapper.selectLike();
+		return list;
+	}
+	//최신순으로 게시글 정렬
+	@Override
+	public List<PostDto> selectnewest() {
+		List<PostDto> list = postMapper.selectnewest();
+		return list;
+	}
+	//유저 전부 가져오기
+	@Override
+	public List<Cross_userDto> selectAlluser() {
+		List<Cross_userDto> list = postMapper.selectAlluser();
+		return list;
+	}
+	//게시글 검색(최신)
+	@Override
+	public List<PostDto> selectKeyWord(String keyword) {
+		List<PostDto> list = postMapper.selectKeyWord(keyword);
+		return list;
+	}
+	//게시글 검색(인기)
+	@Override
+	public List<PostDto> selectKeyWord_Like(String keyword) {
+		List<PostDto> list = postMapper.selectKeyWord_Like(keyword);
+		return list;
+	}
+	//유저 검색
+	@Override
+	public List<Cross_userDto> selectKeyWord_user(String keyword) {
+		List<Cross_userDto> list = postMapper.selectKeyWord_user(keyword);
+		return list;
+	}
+	//좋아요 증가
+	@Override
+	public void likeUp(int post_id) {
+		postMapper.likeUp(post_id);
+		
+	}
+
 }
+

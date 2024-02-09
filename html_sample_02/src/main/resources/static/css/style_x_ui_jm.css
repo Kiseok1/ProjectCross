@@ -199,7 +199,7 @@ main{
 }
 
 
-.header{
+.header_alram{
     position: sticky;
     width:600px;
     top: 0;
@@ -222,7 +222,7 @@ main::-webkit-scrollbar{
 
 }
 
-.header h2{
+.header_alram h2{
     font-weight: bold;
     font-size: 20px;
 }

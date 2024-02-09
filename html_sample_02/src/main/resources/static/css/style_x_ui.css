@@ -184,7 +184,8 @@ main::-webkit-scrollbar{
 
 .tweet_box-input img{
     height: 45px;
-    
+    /* 추가 */
+    width: 45px;
 }
 
 .tweet_box{
@@ -237,8 +238,10 @@ main::-webkit-scrollbar{
 
 .post_profile-image img{
 
-    width:45px;
-
+    /* width:45px; */
+	/* 추가 */
+    width: 41px;
+	height: 41px;
 }
 
 .post{

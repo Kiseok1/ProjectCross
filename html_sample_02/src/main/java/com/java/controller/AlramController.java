@@ -14,8 +14,9 @@ import com.java.dto.AlramDto;
 import com.java.service.AlramService;
 
 import jakarta.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("alram")
+@RequestMapping("/alram")
 public class AlramController {
 @Autowired
 AlramService alramService;

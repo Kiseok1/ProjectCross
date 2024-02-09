@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.JoinMemberMapper">
+<select	id="idCheck" resultType="com.java.dto.Cross_userDto">
+ select * from cross_user where user_id=#{user_id}
+</select>
+
+<insert id="joinCheck">
+	insert into Cross_user(user_id,name,password,email)
+	values(#{user_id},#{name},#{password},#{email})
+</insert>
+		
+ 	
+</mapper>

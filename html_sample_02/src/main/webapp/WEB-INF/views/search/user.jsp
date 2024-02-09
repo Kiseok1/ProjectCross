@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -39,35 +40,48 @@
 	});
     
 	</script>
-
+		<div id="view-box">
 		<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 
 
 	<main>
 		<!--검색창 -->
 		<div class="aside_input">
-			<span class="material-icons aside_search-icon">search</span> <input
-				type="text" placeholder="검색">
+			<span class="material-icons aside_search-icon">search</span>
+			<form action="user" id="search_frm" method="post">
+			<input type="text" id="keyword" name="keyword" placeholder="검색">
+			</form>
+			<script>
+			   $(function() {
+			       $(".aside_input input").keyup(function(e) {
+			           if (e.keyCode == 13) {
+			               alert($("#keyword").val());
+			               search_frm.submit();
+			           }
+			       });
+			   });
+		</script>
 		</div>
 		<!--검색창 -->
 		<!--카테고리-->
 		<div class="category_menu" >
-			<a href="search_in"><div class="search_in" >인기</div></a>
-			<a href="search" ><div class="Latest_mini">최신</div></a>
+			<a href="search_in?keyword=${map.keyword}"><div class="search_in" >인기</div></a>
+			<a href="search?keyword=${map.keyword}" ><div class="Latest_mini">최신</div></a>
 			<a href="user" ><div class="user_mini" >사용자<div class="underscore"></div></div></a>
 			<a href="images" ><div class="media_mini" >미디어</div></a>			
 		</div>
 		<!--카테고리 -->
+		<c:forEach var="Udto" items="${map.list}">
 		<div class="post">
 			<div class="search_post_profile-image">
-			<div class="user_profile"><img src="/images/2.jpg"></div>	
+			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
 			</div>
 			<div class="post_body">
 				<div class="post_header">
 					 <div class="post_header">
 				<!-- 이름들어가는 자리 -->
 					<div class="search_user_head" >
-						<h3>이름 <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@아이디</span>
+						<h3>${Udto.name} <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@${Udto.user_id}</span>
 						</h3>
 					</div>
 			    <!-- 이름들어가는 자리 -->
@@ -88,82 +102,16 @@
 			
 				</div>
 				<div class="user_Introduction">
-				 asdasdasdasd
+				<c:if test="${Udto.profile_txt !=null}">
+				 ${Udto.profile_txt}
+				</c:if>
+				<c:if test="${Udto.profile_txt ==null}">
+					유저 소개말이 없습니다.
+				</c:if>
 				</div>
 			</div>
 		</div>
-		<!--추천 유저 카테고리 -->
-		<!--카테고리 -->
-		<div class="post">
-			<div class="search_post_profile-image">
-			<div class="user_profile"><img src="/images/apple.jpg"></div>	
-			</div>
-			<div class="post_body">
-				<div class="post_header">
-					 <div class="post_header">
-				<!-- 이름들어가는 자리 -->
-					<div class="search_user_head" >
-						<h3>이름 <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@아이디</span>
-						</h3>
-					</div>
-			    <!-- 이름들어가는 자리 -->
-					
-				<!-- 드롭다운 -->
-					<div class="post_header-discription">
-						<div class="dropdown_bar" >
-						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
-						  <button class="followBtn">팔로우</button>
-						  <div class="dropdown_content" >
-						 		<a href="">팔로워</a>
-						 		<a href="">차단하기</a>
-						  </div>
-						</div>
-					</div>
-				<!-- 드롭다운 -->
-				</div>
-			
-				</div>
-				<div class="user_Introduction">
-				 asdasdasdasd
-				</div>
-			</div>
-		</div>
-		<!--추천 유저 카테고리 -->
-		<!--카테고리 -->
-		<div class="post">
-			<div class="search_post_profile-image">
-			<div class="user_profile"><img src="/images/lang1.jpg"></div>	
-			</div>
-			<div class="post_body">
-				<div class="post_header">
-					 <div class="post_header">
-				<!-- 이름들어가는 자리 -->
-					<div class="search_user_head" >
-						<h3>이름 <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@아이디</span>
-						</h3>
-					</div>
-			    <!-- 이름들어가는 자리 -->
-					
-				<!-- 드롭다운 -->
-					<div class="post_header-discription">
-						<div class="dropdown_bar" >
-						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
-						  <button class="followBtn">팔로우</button>
-						  <div class="dropdown_content" >
-						 		<a href="">팔로워</a>
-						 		<a href="">차단하기</a>
-						  </div>
-						</div>
-					</div>
-				<!-- 드롭다운 -->
-				</div>
-			
-				</div>
-				<div class="user_Introduction">
-				 asdasdasdasd
-				</div>
-			</div>
-		</div>
+	</c:forEach>
 		<!--추천 유저 카테고리 -->
 		
 		<div id="myModal" class="modal">

@@ -464,12 +464,16 @@ aside{
     padding: 10px;
     border-radius: 20px;
     margin-top: 10px;
+    /* 추가 */
+    width:550px;
 }
 
 .aside_input input{
     border: none;
     background-color: var(--twitter-background-color);
     outline: none;
+    /* 추가 */
+    width:500px;
 }
 
 .aside_search-icon{

@@ -55,9 +55,9 @@ $(function(){
 </head>
  <body>
  <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 
+ 	<%@ include file="/WEB-INF/views/sidebar.jsp" %> 
 
-	 <nav style="margin-top: 20px;" >
+	 <!-- <nav style="margin-top: 20px;" >
 	    <div class="nav_logo-wrapper" >
 	    	<img class="nav_logo" src="/images/apple.jpg">
         </div>
@@ -117,9 +117,9 @@ $(function(){
 	 		<span class="material-icons">logout</span>
 	 		<h2>로그아웃</h2>
 	 	</div>
-	 </nav>
+	 </nav> -->
  <main>
-        <div class="header headeralram dropdown">
+        <div class="header_alram headeralram dropdown">
              <span class="material-symbols-outlined">settings</span> 
              <h2>해당 알람 뮤트설정</h2>
         </div>

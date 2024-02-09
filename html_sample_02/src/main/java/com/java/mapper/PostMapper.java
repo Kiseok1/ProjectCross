@@ -1,10 +1,12 @@
 
 package com.java.mapper;
 
+import java.util.List;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostMediaUserDto;
 import com.java.dto.RenoteDto;
@@ -86,6 +88,23 @@ public interface PostMapper {
 
 	void favoriteOff(int post_id);
 
-	
+	//-----------------------------------------------------------------------
+
+	//현우,진민 작업
+	//인기순 게시글 정렬
+	List<PostDto> selectLike();
+	//최신순으로 게시글 정렬
+	List<PostDto> selectnewest();
+	//유저전부 가져오기
+	List<Cross_userDto> selectAlluser();
+	//게시글 검색(최신)
+	List<PostDto> selectKeyWord(String keyword);
+	//게시글 검색(인기)
+	List<PostDto> selectKeyWord_Like(String keyword);
+	//유저 검색
+	List<Cross_userDto> selectKeyWord_user(String keyword);
+	//좋아요 증가
+	void likeUp(int post_id);
+
 }
 

@@ -262,5 +262,27 @@
  		<result column="file_name" property="file_name" />
  		<result column="file_type" property="file_type" />
  	</resultMap>
+ 	
+ 	<!-- ////////////////////////////////////////////////////////////// -->
+ 	
+ 	<!-- 현우.진민 작업 -->
+ 	<select id="selectLike" resultType="com.java.dto.PostDto">
+		select * from post order by plike desc
+	</select>
+	<select id="selectnewest" resultType="com.java.dto.PostDto">
+		select * from post order by updated desc
+	</select>
+	<select id="selectAlluser" resultType="com.java.dto.Cross_userDto">
+		select * from cross_user
+	</select>
+	<select id="selectKeyWord" resultType="com.java.dto.PostDto">
+		select * from (select * from post  order by updated desc) a where pcontent  like '%'||#{keyword}||'%'
+	</select>
+	<select id="selectKeyWord_Like" resultType="com.java.dto.PostDto">
+		select * from (select * from post  order by plike desc) a where pcontent  like '%'||#{keyword}||'%'
+	</select>
+	<select id="selectKeyWord_user" resultType="com.java.dto.Cross_userDto">
+		select * from cross_user where user_id like '%'||#{keyword}||'%' or name like '%'||#{keyword}||'%' or profile_txt like '%'||#{keyword}||'%' 
+	</select>
 	
 </mapper>
