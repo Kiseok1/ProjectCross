@@ -188,6 +188,15 @@
 	<select id="getMypost">
 		select * from post where user_id=#{id} order by created desc
 	</select>
+	
+	<!-- 좋아요한 글 가져오기 -->
+	<select id="getMylike">
+		select a.*, b.like_id
+		from post a 
+		left join post_like b on a.post_id=b.post_id
+		where b.user_id=#{id}
+		order by a.created desc
+	</select>
 		
 	<!-- 좋아요 선택 plike 1증가 -->
  	<update id="likeUp">

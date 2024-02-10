@@ -46,10 +46,18 @@ public interface ProfileService {
 	//미디어 불러오기
 	ArrayList<PostMediaUserDto> selectMedia(String id);
 
-	//좋아요한 글 불러오기
-	ArrayList<PostMediaUserDto> selectLikePost(String id);
-
 	//내가 작성한 글 불러오기
 	Map<String, Object> getMypost(String id);
+
+	//좋아요한 글 가져오기
+	Map<String, Object> getMylike(String id);
+	
+	//좋아요한 글 가져오기
+	Map<String, Object> getMymedia(String id);
+	
+	//------------------------------------------------------
+	
+	//좋아요한 글 불러오기
+	ArrayList<PostMediaUserDto> selectLikePost(String id);
 
 }

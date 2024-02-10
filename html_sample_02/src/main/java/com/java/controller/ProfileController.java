@@ -67,14 +67,26 @@ public class ProfileController {
 	
 	@RequestMapping("/media")
 	public String media(Model model) {
+		String id = (String) session.getAttribute("session_id"); 
+		 Cross_userDto udto = pService.selectOne(id); 
+		 ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		 ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		  
+		 model.addAttribute("udto",udto); 
+		 model.addAttribute("list",list);
+		 model.addAttribute("list2",list2);
 		
-		String id = (String) session.getAttribute("session_id");
-		Cross_userDto udto = pService.selectOne(id);
-		ArrayList<PostMediaUserDto> list = pService.selectMedia(id);
+		 Map<String, Object> map =  pService.getMymedia(id);
 		
-		model.addAttribute("udto",udto);
-		model.addAttribute("list",list);
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("flist", map.get("flist"));
 		
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
+		 
 		return "/profile/media";
 	}
 	
@@ -91,16 +103,29 @@ public class ProfileController {
 	
 	@RequestMapping("/like")
 	public String like(Model model) {
+		 String id = (String) session.getAttribute("session_id"); 
+		 Cross_userDto udto = pService.selectOne(id); 
+		 ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		 ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		  
+		 model.addAttribute("udto",udto); 
+		 model.addAttribute("list",list);
+		 model.addAttribute("list2",list2);
 		
-		String id = (String) session.getAttribute("session_id");
-		Cross_userDto udto = pService.selectOne(id);
+		 Map<String, Object> map =  pService.getMylike(id);
 		
-		ArrayList<PostMediaUserDto> list = pService.selectLikePost(id);
-		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
-		model.addAttribute("udto",udto);
-		model.addAttribute("list",list);
-		model.addAttribute("list2",list2);
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("recount", map.get("recount")); 
+		 model.addAttribute("renoted", map.get("renoted"));
+		 model.addAttribute("facount", map.get("facount")); 
+		 model.addAttribute("favorited", map.get("favorited"));
+		 model.addAttribute("replycount", map.get("replycount"));
 		
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
 		return "/profile/like";
 	}
 	

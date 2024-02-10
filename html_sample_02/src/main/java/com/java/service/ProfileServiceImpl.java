@@ -1,5 +1,6 @@
 package com.java.service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -129,6 +130,8 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public ArrayList<PostMediaUserDto> selectMedia(String id) {
 		ArrayList<PostMediaUserDto> list = postMapper.selectMedia(id);
+		
+		
 		return list;
 	}
 
@@ -182,8 +185,86 @@ public class ProfileServiceImpl implements ProfileService {
 		
 		return map;
 	}
+
+	//좋아요한 글 가져오기
+	@Override
+	public Map<String, Object> getMylike(String id) {
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Cross_userDto> ulist = new ArrayList<>();
+		ArrayList<MediaDto> mlist = new ArrayList<>();
+		ArrayList<Integer> recount = new ArrayList<>();
+		ArrayList<Integer> renoted = new ArrayList<>();
+		ArrayList<Integer> facount = new ArrayList<>();
+		ArrayList<Integer> favorited = new ArrayList<>();
+		ArrayList<Integer> replycount = new ArrayList<>();
+		
+		//내가 좋아요한 포스트 가져오기
+		ArrayList<PostDto> plist = postMapper.getMylike(id);
+		
+		for(int i = 0 ; i < plist.size() ; i++)
+		{
+			//plist 활용 
+			ulist.add(cross_userMapper.getUserProfile(plist.get(i).getUser_id())); //포스트에 표시할 유저정보
+			mlist.add(mediaMapper.getMedia(plist.get(i).getPost_id())); //포스트에 표시할 미디어 
+			recount.add(postMapper.getRenoteCounter(plist.get(i).getPost_id())); //리트윗 수 가져오기
+			renoted.add(postMapper.myRenoteCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 리트윗 했는지 여부
+			facount.add(postMapper.getFavorCounter(plist.get(i).getPost_id())); //좋아요 수 가져오기
+			favorited.add(postMapper.myFavorCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 좋아요 했는지 여부
+			replycount.add(postMapper.getReplyCounter(plist.get(i).getPost_id())); //답글 수 가져오기
+			postMapper.updateHit(plist.get(i).getPost_id()); //노출수 1증가
+			
+		}
+		
+		
+		
+		map.put("plist", plist);
+		map.put("ulist", ulist);
+		map.put("mlist", mlist);
+		
+		
+		
+		return map;
+	}
 	
-	
+	//미디어 불러오기
+	@Override
+	public Map<String, Object> getMymedia(String id) {
+		
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Cross_userDto> ulist = new ArrayList<>();
+		ArrayList<MediaDto> mlist = new ArrayList<>();
+		ArrayList flist = new ArrayList<>();
+				
+		//내가 작성한 포스트 가져오기
+		
+		ArrayList<PostDto> plist = postMapper.getMypost(id);
+		
+		for(int i = 0 ; i < plist.size() ; i++)
+		{
+			//plist 활용 
+			ulist.add(cross_userMapper.getUserProfile(plist.get(i).getUser_id())); //포스트에 표시할 유저정보
+			mlist.add(mediaMapper.getMedia(plist.get(i).getPost_id())); //포스트에 표시할 미디어 
+			
+		}
+		
+		for(int i=0;i<mlist.size();i++) {
+			if(mlist.get(i).getFile_type().equals("image")) {
+				flist.add( mlist.get(i).getFile_name().split(",") );
+				System.out.println("파일다 : "+flist.get(i));
+			} else {
+				flist.add( mlist.get(i).getFile_name());
+				System.out.println("파일1 : "+flist.get(i));
+			}
+		}
+		
+		
+		map.put("plist", plist);
+		map.put("ulist", ulist);
+		map.put("mlist", mlist);
+		map.put("flist", flist);
+		
+		return map;
+	}
 	
 	
 	

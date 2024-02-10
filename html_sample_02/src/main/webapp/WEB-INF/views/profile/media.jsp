@@ -61,8 +61,10 @@
 				<div class="media_box_3"><!-- <img src="/upload/trip01.jpg"> --></div>		               
               </div>
            </section> --%>
+           
            <div class="media_sub">
-           <c:forEach var="pmuDto" items="${list}" varStatus="stat">
+           <!-- media 테이블 하나에 이미지 파일 하나 -->
+           <%-- <c:forEach var="pmuDto" items="${list}" varStatus="stat">
            		<c:set var="index" value="${stat.count}" />
            		<c:if test="${index%3!=0}">
            			<c:if test="${pmuDto.mediaDto.file_type!='mp4'}">
@@ -82,7 +84,31 @@
            			</div>
            			<div class="media_sub">
            		</c:if>
-           </c:forEach>
+           </c:forEach> --%>
+           
+           <!-- media 테이블 하나에 이미지 파일 여러개 split으로 분류 -->
+           <c:forEach var="flist" items="${flist}" varStatus="stat">
+           		<c:if test="${stat.index%3!=0}">
+	           		<c:if test="${fn:contains(flist[stat.index],'mp4')}">
+						<div class="media_box_${idx%3}"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+					</c:if>
+					<c:if test="${fn:contains(flist[stat.index],'mp4')}">
+						<div class="media_box_${idx%3}"><img src="/upload/${flist[stat]}"></div>	
+					</c:if>
+           		</c:if>
+           		<c:if test="${stat.index%3==0}">
+	           		<c:if test="${fn:contains(flist[stat.index],'mp4')}">
+						<div class="media_box_3"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+					</c:if>
+					<c:if test="${fn:contains(flist[stat.index],'mp4')}">
+						<div class="media_box_3"><img src="/upload/${flist[stat]}"></div>	
+					</c:if>
+					</div>
+           			<div class="media_sub">
+           		</c:if>
+           </c:forEach> 
+          
+          
            </div>
        </div>
       </div>

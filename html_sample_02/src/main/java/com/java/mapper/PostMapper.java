@@ -27,9 +27,10 @@ public interface PostMapper {
 	//미디어 불러오기
 	ArrayList<PostMediaUserDto> selectMedia(String id);
 	
+	
 	//좋아요한 글 불러오기
 	ArrayList<PostMediaUserDto> selectLikePost(String id);
-	
+	ArrayList<PostDto> getMylike(String id);
 	
 	
 	//-----------------------------------------------------
@@ -105,6 +106,8 @@ public interface PostMapper {
 	List<Cross_userDto> selectKeyWord_user(String keyword);
 	//좋아요 증가
 	void likeUp(int post_id);
+	
+	
 
 }
 
