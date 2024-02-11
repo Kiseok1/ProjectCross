@@ -215,13 +215,14 @@ public class ProfileServiceImpl implements ProfileService {
 			
 		}
 		
-		
-		
 		map.put("plist", plist);
 		map.put("ulist", ulist);
 		map.put("mlist", mlist);
-		
-		
+		map.put("recount", recount);
+		map.put("renoted", renoted);
+		map.put("facount", facount);
+		map.put("favorited", favorited);
+		map.put("replycount", replycount);
 		
 		return map;
 	}
@@ -233,7 +234,7 @@ public class ProfileServiceImpl implements ProfileService {
 		Map<String, Object> map = new HashMap<>();
 		ArrayList<Cross_userDto> ulist = new ArrayList<>();
 		ArrayList<MediaDto> mlist = new ArrayList<>();
-		ArrayList flist = new ArrayList<>();
+		ArrayList<String> flist = new ArrayList<>();
 				
 		//내가 작성한 포스트 가져오기
 		
@@ -248,15 +249,20 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		
 		for(int i=0;i<mlist.size();i++) {
-			if(mlist.get(i).getFile_type().equals("image")) {
-				flist.add( mlist.get(i).getFile_name().split(",") );
-				System.out.println("파일다 : "+flist.get(i));
-			} else {
-				flist.add( mlist.get(i).getFile_name());
-				System.out.println("파일1 : "+flist.get(i));
+			if(mlist.get(i)!=null) {
+				System.out.println("fff : "+mlist.get(i).getFile_name());
+				String[] file = mlist.get(i).getFile_name().split(",");
+				//System.out.println(file[0]);
+				for(int j=0;j<file.length;j++) {
+					flist.add(file[j]);
+					System.out.println("file["+j+"] : "+file[j]);
+				}
 			}
 		}
 		
+		for(int i=0;i<flist.size();i++) {
+			System.out.println(i+" : "+flist.get(i));
+		}
 		
 		map.put("plist", plist);
 		map.put("ulist", ulist);
