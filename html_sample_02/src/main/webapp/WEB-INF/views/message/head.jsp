@@ -75,21 +75,23 @@ $(function(){
 			</span>
         </div>
         <script>
-        	
         /* 클릭요소 및 ajax */
         	$(function(){
         		/* 검색하기 */
         		$("#searchInput2").on("keyup",function(){
         			var input = $(this).val().trim();
-        			if (input === "") {
+        	        if (input === "") {
         	            // 입력값이 없으면 검색 결과를 숨김
         	            $("#searchResults").empty().hide();
         	            $(".main").show();
         	            return;
-        	        }else{
-        	        	$(".main").hide();
+        	        } else {
+        	            $("#searchResults").show();
+        	            $(".main").hide();
         	        }
-        			//ajax 검색 데이터 가져오기
+        	        // 이전 검색 결과를 삭제
+        	        $("#searchResults").empty();
+        	        
         			$.ajax({
 						url:"/message/search2",
 						type:"post",
@@ -157,6 +159,22 @@ $(function(){
         			
         		});//searchInput
         		
+        		//input값이 있을 경우에는 다른 곳을 클릭해도 searchInput값만 나오게 하기
+        	    $(document).on("click", function(event){
+        	        // 클릭된 요소가 input 요소가 아니고, 검색 결과 영역이 아니라면
+        	        if (!$(event.target).is("#searchInput2") && !$(event.target).closest("#searchResults").length) {
+        	            // input 요소에 값이 있으면 검색 결과를 보여주고, 없으면 숨깁니다.
+        	            var inputVal = $("#searchInput2").val().trim();
+        	            if (inputVal !== "") {
+        	            	$("#searchResults").show();
+        		            $(".main").hide();
+        	            } else {
+        	            	$("#searchResults").empty().hide();
+        		            $(".main").show();
+        	            }
+        	        }
+        	    });        
+        		
         		 // 데이터를 가져와서 모달 열기 함수
 			    function openModalWithData(element) {
 			        let msg_id = element.attr('id');
@@ -177,7 +195,7 @@ $(function(){
 			                $('.sender').children().attr('src', '/upload/' + data.cross_userDto.profile_img);
 			                $('#Mcontent').text(data.messageDto.mcontent);
 			                $('#name').text('@' + data.messageDto.source_id);
-			                if (data.mediaDto.file_name === null) {
+			                if (data.mediaDto.file_name === null || !data.mediaDto.file_name.match(/\.(jpg|jpeg|gif|png)$/i)) {
 			                    $('#File').hide();
 			                } else {
 			                    $('#File').show();
@@ -216,25 +234,26 @@ $(function(){
 
 			    // .post를 클릭했을 때 모달 열기 및 데이터 표시
 			    $('.post').click(function() {
-			    	 let msg_id = $(this).attr('id');
-				        $.ajax({
-				            url: '/message/checkUpdate',
-				            type: 'post',
-				            data: { 'msg_id': msg_id, "stat":"receive" },
-				            dataType: 'json',
-				            success: function(data) {
-				            	console.log(data.messageDto.checked);
-				            	if(data.messageDto.checked == 1){
-				            		$(this).find('.post_header-discription li').css('font-weight', '');
-				            		$(this).find('.post_header-discription li').css('color', 'black');
-				            	}
-				            },
-				            error:function(){
-				            	alert("실패");	
-				            }
-				            });//ajax
-			    	openModalWithData($(this));
-			    });//post click
+			        let $post = $(this); // 클릭된 .post 요소를 변수에 저장
+			        let msg_id = $post.attr('id');
+			        $.ajax({
+			            url: '/message/checkUpdate',
+			            type: 'post',
+			            data: { 'msg_id': msg_id, "stat":"receive" },
+			            dataType: 'json',
+			            success: function(data) {
+			                console.log(data.messageDto.checked);
+			                if(data.messageDto.checked == 1){
+			                    $post.find('.post_header-discription li').css('font-weight', '');
+			                    $post.find('.post_header-discription li').css('color', 'black');
+			                }
+			            },
+			            error:function(){
+			                alert("실패");    
+			            }
+			        });
+			        openModalWithData($post);
+			    });//postclick
         	});//jquery
         	
         </script>
@@ -365,6 +384,20 @@ $(function(){
        <div id="searchResults">
 	   </div> 
 	   <!-- 쪽지 부분 -->
+	   <c:if test="${empty list}">
+	   <div class="welcom">
+			<span class="material-icons" style="font-size: 50px; padding: 20px; color:#BA68C8">
+				sentiment_satisfied_alt
+			</span>
+			<div>
+			    <span class="message">쪽지쓰기에 오신 것을 환영합니다</span>
+			</div>
+			<br>
+		</div>
+		<div id="searchResults">
+		</div>
+	   </c:if>
+	    <c:if test="${not empty list}">
 	   <c:forEach var="messCrossMediaDto" items="${list}">
        <div class="post main" id="${messCrossMediaDto.messageDto.msg_id}">
             <div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">
@@ -383,7 +416,7 @@ $(function(){
                     <div class="post_header-discription">
                        <ul>
 					    <c:if test="${messCrossMediaDto.messageDto.checked eq 0}">
-						    <li style="font-weight:bold; color: grey;">${messCrossMediaDto.messageDto.mcontent}</li>
+						    <li style="font-weight:bold; color:#BA68C8;">${messCrossMediaDto.messageDto.mcontent}</li>
 						</c:if>
 						<c:if test="${messCrossMediaDto.messageDto.checked ne 0}">
 						    <li>${messCrossMediaDto.messageDto.mcontent}</li>
@@ -394,11 +427,8 @@ $(function(){
                 </div>
             </div>
         </div>
-        
        </c:forEach>
-       
-
-        
+      </c:if>  
 </main>
 
 </div>

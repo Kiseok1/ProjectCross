@@ -65,6 +65,12 @@ $(function() {
 	});
 
 	
+	//exampleModal3이 사라지면
+	$('#exampleModal3').on('hidden.bs.modal', function (e) {
+    $('.check').css('color', ''); // 색상 스타일 초기화
+    $('.check').css('display', ''); // display 속성 초기화
+	});
+	
 	
 	//모두삭제 모달창
 	$("#deleteBtn2").click(function(){
@@ -119,5 +125,5 @@ $(function() {
              $('.main').show();
          }
      }); 
-            
+      
 });//jquery

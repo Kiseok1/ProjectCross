@@ -182,6 +182,7 @@ $(function() {
 							    hdata +='</ul>';
 							    hdata +='<button class="followBtn">팔로우</button>';
 							    hdata +='</div>';
+							    hdata += '<span class="material-symbols-outlined check" style="left: 450px; bottom: 78px;">check_circle</span>';
 							    hdata +='</div>';
 							    hdata +='</div>';
 							    hdata +='</div>';

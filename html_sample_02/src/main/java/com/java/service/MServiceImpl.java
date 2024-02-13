@@ -18,14 +18,14 @@ public class MServiceImpl implements MService {
 	@Autowired MessageMapper messageMapper;
 	
 	@Override//받은 쪽지 전체 가져오기
-	public ArrayList<MessCrossMediaDto> receiveAll() {
-		ArrayList<MessCrossMediaDto> list = messageMapper.receiveAll();
+	public ArrayList<MessCrossMediaDto> receiveAll(String id) {
+		ArrayList<MessCrossMediaDto> list = messageMapper.receiveAll(id);
 		return list;
 	}
 
 	@Override//보낸 쪽지 전체 가져오기
-	public List<MessCrossMediaDto> sendAll() {
-		List<MessCrossMediaDto> list2 = messageMapper.sendAll();
+	public List<MessCrossMediaDto> sendAll(String id) {
+		List<MessCrossMediaDto> list2 = messageMapper.sendAll(id);
 		return list2;
 	}
 
