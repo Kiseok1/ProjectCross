@@ -37,31 +37,7 @@
 
 <script src="/js/cross/index.js"></script>
 <script src="/js/cross/sidebar.js"></script>
-<script>
-	$(function(){
-		$(".translate").click(function(){
-			let text = $(this).parent().parent().parent().parent().next().find("p").text();
-			let loc = $(this).parent().parent().parent().parent().next().find("p");
-			
-			$.ajax({
-				url:"/profile/translate",
-				type:"post",
-				data:{"text":text},
-				datatype:"text",
-				success:function(data){
-					let translatedText = data.message.result.translatedText
-					console.log(translatedText);					
-					loc.text(translatedText);
-				},
-				error:function(){
-					alert("실패");
-				}
-				
-			});//ajax
-		})
-		
-	})//jquery
-</script>
+
 
 
 
@@ -139,7 +115,7 @@
 											</div>
 											<ul class="dropdown-menu dropdown-link-active-bg">
 												<li><div class="dropdown-item deleteOne" data-post_id="${plist[status.index].post_id}">삭제하기</div></li>
-												<li><div class="dropdown-item translate">번역하기</div></li>
+				
 											</ul>
 											
 										
@@ -155,7 +131,6 @@
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="#">팔로우하기</a></li>
 												<li><a class="dropdown-item" href="#">차단하기</a></li>
-												<li><div class="dropdown-item translate">번역하기</div></li>
 											</ul>
 										</c:if>
 																	
@@ -327,7 +302,7 @@
 								<h3>${facount[status.index]}</h3>
 								
 								<span class="material-icons ms_icons bookmark">bookmark_border</span>
-								<h3></h3>
+								<h3>100</h3>
 
 
 							</div>

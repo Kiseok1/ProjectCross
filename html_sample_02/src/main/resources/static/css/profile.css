@@ -225,6 +225,10 @@ figure:hover {
     display: flex;
 }
 
+.nawa div{
+	cursor: pointer;
+}
+
 .heading {
     display: flex;
     justify-content: space-around;

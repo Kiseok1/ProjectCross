@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.java.dto.Cross_userDto;
 import com.java.mapper.Cross_userMapper;
+import com.java.mapper.User_followMapper;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.Message.RecipientType;
@@ -25,6 +26,9 @@ public class TestServiceImpl implements TestService {
 	@Autowired
 	JavaMailSender mailSender;
 	
+	@Autowired
+	User_followMapper user_followMapper;
+	
 	@Override // 로그인확인
 	public int login(Cross_userDto cdto) {
 		int result = 0;
@@ -32,6 +36,8 @@ public class TestServiceImpl implements TestService {
 		if(cdto2 != null) {
 			session.setAttribute("session_id", cdto2.getUser_id());
 			session.setAttribute("session_name", cdto2.getName());
+			session.setAttribute("session_followerCount", user_followMapper.followerCount(cdto2.getUser_id()));
+			session.setAttribute("session_followingCount", user_followMapper.followingCount(cdto2.getUser_id()));
 			if(cdto2.getProfile_img()==null) {
 				session.setAttribute("session_image", "proflie_default.png");
 			} else {
@@ -39,7 +45,6 @@ public class TestServiceImpl implements TestService {
 			}
 			result = 1;
 		}
-		
 		return result;
 	}
 

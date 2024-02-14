@@ -5,13 +5,20 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Cross_userDto;
@@ -518,6 +525,65 @@ public class ProfileController {
 		
 		
 		return likeCount+"";
+	}
+	
+	//번역
+	@PostMapping("/translate")
+	@ResponseBody
+	public ResponseEntity<String> translate(String text) {
+		// 1
+	    RestTemplate restTemplate = new RestTemplate();
+	    
+	    //언어감지 메소드
+	    String source = DetectLang(text);
+	    source = source.substring(0,source.length()-2);
+	    System.out.println(source);
+	    
+	    // 2
+	    MultiValueMap<String, String> parameters = new LinkedMultiValueMap();
+	    if(source.equals("ko")) {
+	    	parameters.add("source", "ko");
+	    	parameters.add("target", "en");
+	    	parameters.add("text", text);	    	
+	    } else {
+	    	parameters.add("source", source);
+	    	parameters.add("target", "ko");
+	    	parameters.add("text", text);
+	    }
+
+		// 3
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	    headers.add("X-Naver-Client-Id", "");
+	    headers.add("X-Naver-Client-Secret", "");
+
+		// 4
+	    HttpEntity formEntity = new HttpEntity<>(parameters, headers);
+	    ResponseEntity<String> text2 = restTemplate.postForEntity("https://openapi.naver.com/v1/papago/n2mt", formEntity, String.class);
+		
+		System.out.println("번역2 : "+text2.getBody());
+		
+		return text2;
+	}
+	
+	//언어감지 메소드
+	public String DetectLang(String text) {
+		// 1
+	    RestTemplate restTemplate = new RestTemplate();
+	    // 2
+	    MultiValueMap<String, String> parameters = new LinkedMultiValueMap();
+	    parameters.add("query", text);
+	    //3
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+	    headers.add("X-Naver-Client-Id", "");
+	    headers.add("X-Naver-Client-Secret", "");
+	    // 4
+	    HttpEntity formEntity = new HttpEntity<>(parameters, headers);
+	    ResponseEntity<String> text2 = restTemplate.postForEntity("https://openapi.naver.com/v1/papago/detectLangs", formEntity, String.class);
+	    text = (text2.getBody().substring(13));
+	    
+		return text;
 	}
 	
 }

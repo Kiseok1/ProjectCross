@@ -80,6 +80,8 @@ public class ProfileServiceImpl implements ProfileService {
 	public void insertFollow(String source_id, String target_id) {
 		user_followMapper.insertFollow1(source_id,target_id);
 		user_followMapper.insertFollow2(source_id,target_id);
+		session.setAttribute("session_followerCount", user_followMapper.followerCount(source_id));
+		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));
 		
 	}
 
@@ -87,6 +89,8 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public void deleteFollow(String source_id, String target_id) {
 		user_followMapper.deleteFollow(source_id,target_id);
+		session.setAttribute("session_followerCount", user_followMapper.followerCount(source_id));
+		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));
 		
 	}
 

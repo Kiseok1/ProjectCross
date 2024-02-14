@@ -21,10 +21,10 @@
 	 		</div>
 	 		<div class="profile-follow" style="display: flex; margin-top:20px;">
 	 			<div style="margin:0 4px;" onclick="location.href='/profile/following?user_id=${user_id}'"><h4>팔로우</h4></div> 
-	 			<div style="margin:0;">100</div>
+	 			<div style="margin:0;">${session_followingCount}</div>
 
 	 			<div style="margin:0 4px 0 10px;" onclick="location.href='/profile/follower?user_id=${user_id}'"><h4>팔로워</h4></div> 
-	 			<div style="margin:0;">100</div>
+	 			<div style="margin:0;">${session_followerCount}</div>
 	 		</div>
 	 	
 	 	</div>
