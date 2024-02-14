@@ -308,7 +308,7 @@ $(function(){
 	                </div>
 		        </div>
 		        <div  style="position: relative; bottom: 25px; left: 150px;">
-		         <button type="button" id="send_btn" class="btn btn-primary">확인</button>
+		         <button type="button" id="send_btn" class="btn btn-primary" style="width: 100px; font-size: 18px; position: relative; top: 5px; left: 0px; ">확인</button>
 		      	</div>
 		       </form>
 		      </div>

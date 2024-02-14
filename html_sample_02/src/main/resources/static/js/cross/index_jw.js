@@ -141,6 +141,9 @@ $(function() {
 		console.log($("#file")[0].files);
 	});
 /* index 모달 끝*/
+
+
+
     /*search Input 검색 가져오기*/
 	$("#searchInput").on("keyup",function(){
         			var input = $(this).val().trim();
@@ -201,35 +204,8 @@ $(function() {
         				
         			});//ajax
         		});//searchInput
-       /*index 모달에 데이터 넣기*/		
-      $(document).on('click', '.post', function() {
-        	    // 클릭된 요소에서 필요한 데이터 추출
-        	    var user_id = $(this).closest(".post").attr('id');
-        	    
-        	    // 모달에 데이터 채우기
-        	    
-        	    // 모달 보이기
-        	   /* 유저 정보 모달창 ajax  */
-        			 $.ajax({
-        				url:"/message/UserData",
-						type:"post",
-						data:{"user_id":user_id},
-						dataType:"json",
-						success:function(data){
-							console.log(data);
-							$(".sender").children().attr("src","/upload/"+data.profile_img);
-							$("#name").text("@"+data.user_id);
-							$("#name1").val(data.user_id);
-							
-							$('#messageModal').modal('show');
-						},error:function(){
-							alert("실패");
-						}
-							
-						
-        			});
-        	   
-        	     
-        	});  		
+        		
+        
+       
 
 });//jquery

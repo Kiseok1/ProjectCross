@@ -7,6 +7,19 @@
  * Author: sajith dilshan <sajithd784@gmail.com>
  */
 
+.add{
+	font-size: 34px;
+	position: relative;
+    right: 150px;
+    color: #BA68C8;
+}
+
+.add:hover {
+  background-color: #F3E5F5; /* 마우스 호버 시 색상 변경 */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
 #message_wrap{
     display: flex;
     align-items: flex-start;
@@ -279,9 +292,10 @@ main::-webkit-scrollbar{
 #Allsend_btn{
 	background-color: #BA68C8; 
 	border: 1px solid var(--twitter-background-color); 
-	position: relative; 
-	left: 10px; 
-	bottom: 5px; 
+	width: 100px;
+	font-size: 18px;
+    position: relative;
+    top: 5px; 
 	border-radius: 30px;
 }
 
