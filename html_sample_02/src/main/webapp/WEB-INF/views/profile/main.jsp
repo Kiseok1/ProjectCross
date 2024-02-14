@@ -78,8 +78,8 @@
                            <!-- <i class="fa fa-calendar"></i> 2024.01.25 -->
                     </span>
                     <div class="nawa">
-                        <div class="followers"> 100 <span>Following</span></div>
-                        <div>100<span> Followers</span></div>
+                        <div class="followers" onclick="location.href='/profile/following?user_id=${user_id}'"> ${followingCount} <span>Following</span></div>
+                        <div onclick="location.href='/profile/follower?user_id=${user_id}'">${followerCount}<span> Followers</span></div>
                     </div>
                 </div>
             </section>

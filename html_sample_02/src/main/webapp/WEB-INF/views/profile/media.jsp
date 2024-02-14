@@ -90,18 +90,18 @@
            <c:forEach var="flist" items="${flist}" varStatus="stat">
            		<c:if test="${stat.count%3!=0}">
 	           		<c:if test="${fn:contains(flist,'mp4')}">
-						<div class="media_box_${stat.count%3}"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+						<div class="media_box_${stat.count%3}" onclick="location.href='/viewContent?post_id=${ilist[stat.index]}'"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
 					</c:if>
 					<c:if test="${!fn:contains(flist,'mp4')}">
-						<div class="media_box_${stat.count%3}"><img src="/upload/${flist}"></div>	
+						<div class="media_box_${stat.count%3}" onclick="location.href='/viewContent?post_id=${ilist[stat.index]}'"><img src="/upload/${flist}"></div>	
 					</c:if>
            		</c:if>
            		<c:if test="${stat.count%3==0}">
 	           		<c:if test="${fn:contains(flist,'mp4')}">
-						<div class="media_box_3"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+						<div class="media_box_3" onclick="location.href='/viewContent?post_id=${ilist[stat.index]}'"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
 					</c:if>
 					<c:if test="${!fn:contains(flist,'mp4')}">
-						<div class="media_box_3"><img src="/upload/${flist}"></div>	
+						<div class="media_box_3" onclick="location.href='/viewContent?post_id=${ilist[stat.index]}'"><img src="/upload/${flist}"></div>	
 					</c:if>
 					</div>
            			<div class="media_sub">

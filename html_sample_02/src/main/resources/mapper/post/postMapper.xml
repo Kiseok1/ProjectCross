@@ -189,6 +189,10 @@
 		select * from post where user_id=#{id} order by created desc
 	</select>
 	
+	<select id="getMyreply">
+		select * from post where user_id=#{id} and pstep>0 order by created desc
+	</select>
+	
 	<!-- 좋아요한 글 가져오기 -->
 	<select id="getMylike">
 		select a.*, b.like_id

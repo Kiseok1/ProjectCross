@@ -33,7 +33,11 @@ public interface ProfileService {
 
 	//팔로우 정보 가져오기
 	User_followDto selectFollowInfo(String id, String your_id);
-
+	Map<String, Object> selectFollow(String id);
+	
+	//팔로우 카운트 가져오기
+	Map<String, Object> selectFollowCount(String id);
+	
 	//좋아요 추가
 	void likeUp(String user_id, String post_id);
 	//좋아요 삭제
@@ -48,6 +52,9 @@ public interface ProfileService {
 
 	//내가 작성한 글 불러오기
 	Map<String, Object> getMypost(String id);
+	//내가 작성한 글 불러오기
+	
+	Map<String, Object> getMyreply(String id);
 
 	//좋아요한 글 가져오기
 	Map<String, Object> getMylike(String id);
@@ -59,5 +66,9 @@ public interface ProfileService {
 	
 	//좋아요한 글 불러오기
 	ArrayList<PostMediaUserDto> selectLikePost(String id);
+
+	
+
+	
 
 }

@@ -2,13 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge'> -->
+    <meta name='viewport' content='width=device-width, initial-scale=1'>   
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+		
     <title>CROSS</title>
     
     <script
@@ -20,7 +24,7 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
- 
+
     <link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 		rel="stylesheet"
@@ -34,240 +38,167 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/style_x_ui.css">
     <link rel="stylesheet" href="/css/style_x_ui_ks.css">
+    <link rel="stylesheet" href="/css/style_x_ui_hw.css">
+
+    <script>
+	 $(function(event){
+	     var dropdown = $(".dropdown_bar");
+	     var dropdownContent = $(".dropdown_content");
+	     $(".dropdown_bar").click(function(event) {
+	         event.stopPropagation(); // 클릭 이벤트 전파 방지
+	         if ($(this).find(".dropdown_content").css("display") === "block") {
+	        	 $(this).find(".dropdown_content").css("display", "none");
+	            	
+	         } else {
+	        	 $(this).find(".dropdown_content").css("display", "block");
+	         }
+	     });
+	     
+	     // 문서의 다른 부분을 클릭했을 때 드롭다운 메뉴를 닫음
+	     $(document).click(function() {
+	         dropdownContent.css("display", "none");
+	     });
+	     
+	     $(".folbtn").click(function(){
+	    	 	
+				if($(this).text()=="언팔로우"){
+					$(this).parent().prev().text("팔로우")
+					$(this).text("팔로워")
+					console.log("팔로잉->팔로우(언팔)");
+					let stat = "delete";
+					let target_id=$(this).attr("id");
+					
+					console.log(target_id)
+					$.ajax({
+						url:"/profile/followBtn",
+						type:"post",
+						data:{"stat":stat,"target_id":target_id},
+						datatype:"text",
+						success:function(data){
+							
+						},
+						error:function(){
+							alert("실패");
+						}
+					})
+					
+					
+				} else if($(this).text()=="팔로워"){
+					$(this).parent().prev().text("팔로잉")
+					$(this).text("언팔로우")
+					console.log("팔로우->팔로잉");
+					let stat = "insert";
+					let target_id=$(this).attr("id");
+					console.log(target_id)
+					$.ajax({
+						url:"/profile/followBtn",
+						type:"post",
+						data:{"stat":stat,"target_id":target_id},
+						datatype:"text",
+						success:function(data){
+							
+						},
+						error:function(){
+							alert("실패");
+						}
+					})
+				} 
+		 
+			})
+	     
+		});
+	 
+	
+	 
+	</script>
     
-      
+    
+    
     
 </head>
 
 <body>
+
 	<div id="view-box"
 		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);">
-		<%@ include file="/WEB-INF/views/sidebar.jsp" %>
-		<div class="middlecontainer" >
-   		<%@ include file="/WEB-INF/views/profile/main.jsp" %>
-        	<section class="tweets">
-              <div class="heading">
-                   <div class="heading_content">게시물</div>
-                   <div class="heading_reply">답글</div>
-                   <div class="heading_media">미디어</div>
-                   <div class="heading_like">마음에 들어요<div class="like_underbar"></div></div>
+	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
+	 <div class="middlecontainer" >
+		<section class="headsec">
+            <a href="javascript:history.back()"><i class="fa fa-arrow-left" id="fa-arrow-left"></i></a>
+            <div>
+                <h3>${udto.name}</h3> 
+                <span></span>
+            </div>
+        </section>
+		   <section class="tweets">
+               <div class="heading">
+                   <div class="heading_content" onclick="location.href='/profile/follower?id=${udto.user_id}'">팔로워<div class="content_underbar"></div></div>
+                   <div class="heading_like" onclick="location.href='/profile/following?id=${udto.user_id}'">팔로잉</div>
                </div>
-           	</section>
-         
-			<!-- Post -->
-			<div id="post_wrap">
-
-
-				<c:forEach var="pdto" items="${plist}" varStatus="status">
-					<div class="post" style="position: relative;">
-
-						<c:if test="${ulist[status.index].user_id!=session_id}">
-							<div class="post_profile-image rounded-5" onclick="location.href='your_content?user_id=${ulist[status.index].user_id}'">
-						</c:if>
-						<c:if test="${ulist[status.index].user_id==session_id}">
-							<div class="post_profile-image rounded-5" onclick="location.href='content?user_id=${ulist[status.index].user_id}'">
-						</c:if>						
-
-							<c:if test="${ulist[status.index].profile_img!=null}">
-								<img class="" src="/upload/${ulist[status.index].profile_img}"
-									alt="profile">
-							</c:if>
-							<c:if test="${ulist[status.index].profile_img==null}">
-								<img class="" src="/upload/proflie_default.png"
-									alt="profile">
-							</c:if>
-								
-							<div style="position: absolute; height: 100%; width: 80px;">
-
-								<c:if
-									test="${plist[status.index].post_id == plist[status.index+1].pindent}">
-									<div
-										style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
-									</div>
-								</c:if>
-
-							</div>
-						</div>
-
-						<div class="post_body">
-							<div class="post_header">
-								<div class="post_header-text">
-									<h3>
-										${ulist[status.index].name}<span class="header-icon-section">@${ulist[status.index].user_id}
-										</span>
-									</h3>
-									<div style="margin-left: 1rem; text-align: center;">
-										<h3>${plist[status.index].created}</h3>
-									</div>
-								</div>
-
-								<div class="post_header-discription"
-									onclick="location.href='/viewContent?post_id=${plist[status.index].post_id}'">
-									<p>${plist[status.index].pcontent}</p>
-									<c:if test="${plist[status.index].plocation!=null}">
-										<div class="" style="color:gray">
-											<div style="display: flex;">
-												<span class="material-icons">location_on</span>
-												<div>${plist[status.index].plocation}</div>
-											</div>
-										</div>
-									</c:if>
-									
-									
-								</div>
-							</div>
-
-							<c:if
-								test="${fn:contains(mlist[status.index].file_type,'video')}">
-								<div class="container video_contaner">
-									<video controls loop muted preload="auto"
-										src="/upload/${mlist[status.index].file_name}">
-									</video>
-								</div>
-							</c:if>
-
-							<c:if
-								test="${fn:contains(mlist[status.index].file_type,'image')}">
-								<c:set var="img"
-									value="${fn:split(mlist[status.index].file_name,',')}" />
-								<c:if test="${fn:length(img)==1}">
-									<div class="container">
-										<div class="row row-cols-auto ">
-											<div class="col-md-auto img-xl rounded-4">
-												<img src="/upload/${mlist[status.index].file_name}"
-													class="rounded " alt="java18" data-bs-toggle="modal"
-													data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${mlist[status.index].file_name}">
-											</div>
-
-										</div>
-									</div>
-								</c:if>
-
-								<c:if test="${fn:length(img)==2}">
-									<div class="container">
-										<div class="row row-cols-auto ">
-											<div class="col-md-auto img-lg rounded-4">
-												<img src="/upload/${img[0]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[0]}">
-											</div>
-											<div class="col-md-auto img-lg rounded-4">
-												<img src="/upload/${img[1]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[1]}">
-											</div>
-										</div>
-									</div>
-								</c:if>
-
-								<c:if test="${fn:length(img)==3}">
-									<div class="container">
-										<div class="row row-cols-auto">
-											<div class="col-md-auto img-md rounded-4">
-												<img src="/upload/${img[0]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[0]}">
-											</div>
-											<div class="col-md-auto">
-												<div class="row row-cols-auto">
-													<div class="col-md-auto img-sm">
-														<img src="/upload/${img[1]}" class="rounded " alt="java18"
-															data-bs-toggle="modal" data-bs-target="#exampleModal"
-															data-bs-whatever="/upload/${img[1]}">
-													</div>
-												</div>
-												<div class="row row-cols-auto">
-													<div class="col-md-auto img-sm">
-														<img src="/upload/${img[2]}" class="rounded " alt="java18"
-															data-bs-toggle="modal" data-bs-target="#exampleModal"
-															data-bs-whatever="/upload/${img[2]}">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-
-								<c:if test="${fn:length(img)==4}">
-									<div class="container img-sm">
-										<div class="row">
-											<div class="col-md-auto">
-												<img src="/upload/${img[0]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[0]}">
-											</div>
-											<div class="col-md-auto">
-												<img src="/upload/${img[1]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[1]}">
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-auto">
-												<img src="/upload/${img[2]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[2]}">
-											</div>
-											<div class="col-md-auto">
-												<img src="/upload/${img[3]}" class="rounded " alt="java18"
-													data-bs-toggle="modal" data-bs-target="#exampleModal"
-													data-bs-whatever="/upload/${img[3]}">
-											</div>
-										</div>
-									</div>
-								</c:if>
-
-							</c:if>
-
-							<div class="post_footer">
-
-								<span class="material-icons ms_icons chat"
-									data-bs-toggle="modal" data-bs-target="#writeModal" 
-									data-post_id="${plist[status.index].post_id}" 
-									data-group="${plist[status.index].pgroup}" 
-									data-step="${plist[status.index].pstep}" 
-									data-indent="${plist[status.index].pindent}">chat</span>
-								<h3>${replycount[status.index]}</h3>
-									
-								<c:if test="${renoted[status.index]<1}">
-									<span class="material-icons ms_icons repeat"
-									data-post_id="${plist[status.index].post_id}">repeat</span>
-							
-								</c:if>
-								<c:if test="${renoted[status.index]>=1}">
-									<span class="material-icons ms_icons repeat toggle"
-									data-post_id="${plist[status.index].post_id}">repeat</span>
-							
-								</c:if>
-							
-								<h3>${recount[status.index]}</h3>
-								
-								<c:if test="${favorited[status.index]<1}">
-									<span class="material-icons ms_icons favorite"
-									data-post_id="${plist[status.index].post_id}">favorite_border</span>
-							
-								</c:if>
-								<c:if test="${favorited[status.index]>=1}">
-									<span class="material-icons ms_icons favorite toggle"
-									data-post_id="${plist[status.index].post_id}">favorite</span>
-							
-								</c:if>
-									
-								<h3>${facount[status.index]}</h3>
-								
-								<span class="material-icons ms_icons chart"
-								data-post_id="${plist[status.index].post_id}">bar_chart</span>
-								<h3>${plist[status.index].hit+1}</h3>
-
-							</div>
-
-						</div>
-
+           </section>
+           
+		   <section>
+		   <c:forEach items="${follower}" var="Udto" varStatus="stat">
+		   	 <c:if test="${Udto.user_id!=session_id}">
+		   	<div class="post" onclick="location.href='your_content?user_id=${Udto.user_id}'">
+		   </c:if>
+		   <c:if test="${Udto.user_id==session_id}">
+		   	<div class="post" onclick="location.href='content?user_id=${Udto.user_id}'">
+		   </c:if>
+			<div class="search_post_profile-image">
+			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>
+			</div>
+			<div class="post_body">
+				<div class="post_header">
+					 <div class="post_header">
+				<!-- 이름들어가는 자리 -->
+					<div class="search_user_head" >
+						<h3>${Udto.name} <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@${Udto.user_id}</span>
+						</h3>
 					</div>
+			    <!-- 이름들어가는 자리 -->
+					
+				<!-- 드롭다운 -->
+					<div class="post_header-discription">
+						<div class="dropdown_bar" >
+						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
+						  <c:if test="${Udto.user_id!=session_id}">
+						  	  <c:if test="${Udto.user_id==followerDto[stat.index].target_id}">
+							  <button class="followBtn">팔로잉</button>
+							  <div class="dropdown_content" >
+							 		<div class="folbtn" id="${Udto.user_id}">언팔로우</div>
+							 		<div>차단하기</div>
+							  </div>
+						  	  </c:if>
+						  	  <c:if test="${Udto.user_id!=followerDto[stat.index].target_id}">
+							  <button class="followBtn">팔로우</button>
+							  <div class="dropdown_content" >
+							 		<div class="folbtn" id="${Udto.user_id}">팔로워</div>
+							 		<div>차단하기</div>
+							  </div>
+						  	  </c:if>
+						  </c:if>
+						</div>
+					</div>
+				<!-- 드롭다운 -->
+				</div>
+			
+				</div>
+				<div class="user_Introduction">
+				<c:if test="${Udto.profile_txt !=null}">
+				 ${Udto.profile_txt}
+				</c:if>
+				<c:if test="${Udto.profile_txt ==null}">
+					유저 소개말이 없습니다.
+				</c:if>
+				</div>
+			</div>
+		</div>
+		   </c:forEach>
+		   	</div>
+		   </section>
 
-				</c:forEach>
+				
 			
         </div>
         </div>

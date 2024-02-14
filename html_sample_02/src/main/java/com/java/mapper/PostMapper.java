@@ -19,6 +19,9 @@ public interface PostMapper {
 	ArrayList<PostMediaUserDto> selectDefault(String id); //구작업
 	ArrayList<PostDto> getMypost(String id); //신작업
 	
+	//답글 가져오기
+	ArrayList<PostDto> getMyreply(String id);
+	
 	//post 좋아요 카운트Up
 	void likeUp(String post_id);
 	//post 좋아요 카운트Down
@@ -106,6 +109,7 @@ public interface PostMapper {
 	List<Cross_userDto> selectKeyWord_user(String keyword);
 	//좋아요 증가
 	void likeUp(int post_id);
+	
 	
 	
 

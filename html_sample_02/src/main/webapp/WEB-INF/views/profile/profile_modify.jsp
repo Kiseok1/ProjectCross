@@ -271,6 +271,7 @@
 	    			  datatype:"text",
 	    			  success:function(data){
 	    				  $(".name_input").val(name);
+	    				  $(".profile-img").children().css("background-image","url(/upload/"+profile_img+")");
 	    				  $(".introduce_textarea").val(profile_txt);
 	    	    		  $(".location_input").val(user_loc);
 	    	    		  $(".website_input").val(user_url);

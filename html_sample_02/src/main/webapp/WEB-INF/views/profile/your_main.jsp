@@ -23,16 +23,16 @@
     <script>
     	$(function(){
     		$(".heading_media").click(function(){
-    			location.href = "/profile/your_media";
+    			location.href = "/profile/your_media?user_id=${udto2.user_id}";
     		})
     		$(".heading_content").click(function(){
-    			location.href = "/profile/your_content";
+    			location.href = "/profile/your_content?user_id=${udto2.user_id}";
     		})
     		$(".heading_reply").click(function(){
-    			location.href = "/profile/your_reply";
+    			location.href = "/profile/your_reply?user_id=${udto2.user_id}";
     		})
     		$(".heading_like").click(function(){
-    			location.href = "/profile/your_like";
+    			location.href = "/profile/your_like?user_id=${udto2.user_id}";
     		})
     		
     		
@@ -159,8 +159,8 @@
                            <!-- <i class="fa fa-calendar"></i> 2024.01.25 -->
                     </span>
                     <div class="nawa">
-                        <div class="followers"> 100 <span>Following</span></div>
-                        <div>100<span> Followers</span></div>
+                        <div class="followers" onclick="location.href='/profile/following?id=${udto2.user_id}'"> ${followingCount} <span>Following</span></div>
+                        <div onclick="location.href='/profile/follower?id=${udto2.user_id}'">${followerCount}<span> Followers</span></div>
                     </div>
                 </div>
             </section>

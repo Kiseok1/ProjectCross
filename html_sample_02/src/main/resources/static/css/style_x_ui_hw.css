@@ -606,6 +606,17 @@ background-color: #191970 !important;
     display: block;
     font-size: 16px;
 }
+
+.dropdown_content div {
+	
+    text-align: left;
+    color: var(--twitter-theme-color);
+    padding: 0.5rem;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
 /*드롭다운 스타일*/
 
 /* 모달 스타일 */

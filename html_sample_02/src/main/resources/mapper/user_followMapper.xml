@@ -19,5 +19,17 @@
 	<select id="selectFollowInfo">
 		select * from user_follow where source_id=#{id} and target_id=#{your_id} and user_id=#{id}
 	</select>
+	
+	<select id="selectFollow">
+		select * from user_follow where user_id=#{id}
+	</select>
+	
+	<select id="followerCount">
+		select count(*) from user_follow where user_id=#{id} and target_id=#{id}
+	</select>
+ 	
+ 	<select id="followingCount">
+		select count(*) from user_follow where user_id=#{id} and source_id=#{id}
+	</select>
  	
 </mapper>

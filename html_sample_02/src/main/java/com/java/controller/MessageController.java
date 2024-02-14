@@ -99,7 +99,7 @@ public class MessageController {
 		//답글 모두 가져오기
 		ArrayList<MessCrossMediaDto> list = mService.receiveAll();
 		model.addAttribute("list", list);
-		System.out.println("MessageController head source_id :"+list.get(0).getMessageDto().getSource_id());
+		//System.out.println("MessageController head source_id :"+list.get(0).getMessageDto().getSource_id());
 		
 		return "/message/head";
 	}

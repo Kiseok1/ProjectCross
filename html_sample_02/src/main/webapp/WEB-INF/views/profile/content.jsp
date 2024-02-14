@@ -64,10 +64,22 @@
 
 				<c:forEach var="pdto" items="${plist}" varStatus="status">
 					<div class="post" style="position: relative;">
-
-						<div class="post_profile-image rounded-5">
-							<img class="" src="/upload/${ulist[status.index].profile_img}"
-								alt="profile">
+						
+						<c:if test="${ulist[status.index].user_id!=session_id}">
+							<div class="post_profile-image rounded-5" onclick="location.href='your_content?user_id=${ulist[status.index].user_id}'">
+						</c:if>
+						<c:if test="${ulist[status.index].user_id==session_id}">
+							<div class="post_profile-image rounded-5" onclick="location.href='content?user_id=${ulist[status.index].user_id}'">
+						</c:if>
+							
+							<c:if test="${ulist[status.index].profile_img!=null}">
+								<img class="" src="/upload/${ulist[status.index].profile_img}"
+									alt="profile">
+							</c:if>
+							<c:if test="${ulist[status.index].profile_img==null}">
+								<img class="" src="/upload/proflie_default.png"
+									alt="profile">
+							</c:if>
 							<div style="position: absolute; height: 100%; width: 80px;">
 
 								<c:if

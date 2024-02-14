@@ -57,6 +57,9 @@ public class ProfileController {
 		 model.addAttribute("facount", map.get("facount")); 
 		 model.addAttribute("favorited", map.get("favorited"));
 		 model.addAttribute("replycount", map.get("replycount"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
+		 
 		
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
@@ -82,7 +85,10 @@ public class ProfileController {
 		 model.addAttribute("ulist", map.get("ulist"));
 		 model.addAttribute("mlist", map.get("mlist")); 
 		 model.addAttribute("flist", map.get("flist"));
-		
+		 model.addAttribute("ilist", map.get("ilist"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
+		 
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
 		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
@@ -93,11 +99,32 @@ public class ProfileController {
 	@RequestMapping("/reply")
 	public String reply(Model model) {
 		
-		String id = (String) session.getAttribute("session_id");
-		Cross_userDto udto = pService.selectOne(id);
+		 String id = (String) session.getAttribute("session_id"); 
+		 Cross_userDto udto = pService.selectOne(id); 
+		 ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		 ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		  
+		 model.addAttribute("udto",udto); 
+		 model.addAttribute("list",list);
+		 model.addAttribute("list2",list2);
 		
-		model.addAttribute("udto",udto);
+		 Map<String, Object> map =  pService.getMyreply(id);
 		
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("recount", map.get("recount")); 
+		 model.addAttribute("renoted", map.get("renoted"));
+		 model.addAttribute("facount", map.get("facount")); 
+		 model.addAttribute("favorited", map.get("favorited"));
+		 model.addAttribute("replycount", map.get("replycount"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
+		
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
+	
 		return "/profile/reply";
 	}
 	
@@ -122,6 +149,8 @@ public class ProfileController {
 		 model.addAttribute("facount", map.get("facount")); 
 		 model.addAttribute("favorited", map.get("favorited"));
 		 model.addAttribute("replycount", map.get("replycount"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
 		
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
@@ -131,11 +160,26 @@ public class ProfileController {
 	
 	//상대방 프로필 이동
 	@RequestMapping("/your_content")
-	public String your_content(Model model) {
-		String your_id = "ddd";
+	public String your_content(Model model,String user_id) {
+		
+		session.setAttribute("your_id", user_id); 			
+		String your_id = (String)session.getAttribute("your_id");
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		Map<String, Object> map =  pService.getMypost(your_id);
+			
+		model.addAttribute("plist", map.get("plist"));
+		model.addAttribute("ulist", map.get("ulist"));
+		model.addAttribute("mlist", map.get("mlist")); 
+		model.addAttribute("recount", map.get("recount")); 
+		model.addAttribute("renoted", map.get("renoted"));
+		model.addAttribute("facount", map.get("facount")); 
+		model.addAttribute("favorited", map.get("favorited"));
+		model.addAttribute("replycount", map.get("replycount"));
+		model.addAttribute("followingCount",map.get("followingCount"));
+		model.addAttribute("followerCount",map.get("followerCount"));
 		
 		//상대방 게시글 가져오기
 		ArrayList<PostMediaUserDto> list = pService.selectDefault(your_id);
@@ -155,11 +199,25 @@ public class ProfileController {
 	}
 	
 	@RequestMapping("/your_media")
-	public String your_media(Model model) {
-		String your_id = "ddd";
+	public String your_media(Model model,String user_id) {
+		String your_id = (String) session.getAttribute("your_id");
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		 Map<String, Object> map =  pService.getMymedia(your_id);
+			
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("flist", map.get("flist"));
+		 model.addAttribute("ilist", map.get("ilist"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
+		
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
 		
 		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
@@ -175,11 +233,24 @@ public class ProfileController {
 	}
 	
 	@RequestMapping("/your_reply")
-	public String your_reply(Model model) {
-		String your_id = "ddd";
+	public String your_reply(Model model,String user_id) {
+		String your_id = (String) session.getAttribute("your_id");
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		 Map<String, Object> map =  pService.getMyreply(your_id);
+			
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("recount", map.get("recount")); 
+		 model.addAttribute("renoted", map.get("renoted"));
+		 model.addAttribute("facount", map.get("facount")); 
+		 model.addAttribute("favorited", map.get("favorited"));
+		 model.addAttribute("replycount", map.get("replycount"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
 		
 		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
@@ -194,11 +265,24 @@ public class ProfileController {
 	}
 	
 	@RequestMapping("/your_like")
-	public String your_like(Model model) {
-		String your_id = "ddd";
+	public String your_like(Model model,String user_id) {
+		String your_id = (String) session.getAttribute("your_id");
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
+		
+		Map<String, Object> map =  pService.getMylike(your_id);
+		
+		 model.addAttribute("plist", map.get("plist"));
+		 model.addAttribute("ulist", map.get("ulist"));
+		 model.addAttribute("mlist", map.get("mlist")); 
+		 model.addAttribute("recount", map.get("recount")); 
+		 model.addAttribute("renoted", map.get("renoted"));
+		 model.addAttribute("facount", map.get("facount")); 
+		 model.addAttribute("favorited", map.get("favorited"));
+		 model.addAttribute("replycount", map.get("replycount"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
 		
 		//상대방 정보 가져오기
 		Cross_userDto udto2 = pService.selectOne(your_id);
@@ -212,6 +296,66 @@ public class ProfileController {
 		return "/profile/your_like";
 	}
 	
+	//팔로우 정보 가져오기
+	@RequestMapping("/following")
+	public String following(Model model, String id) {
+		if(id==null) {
+			id = (String) session.getAttribute("session_id"); 
+		}
+		
+		 Cross_userDto udto = pService.selectOne(id); 
+		 ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		 ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		 Map<String, Object> map = pService.selectFollow(id);
+		 			 
+		 model.addAttribute("udto",udto); 
+		 model.addAttribute("list",list);
+		 model.addAttribute("list2",list2);
+		
+		 model.addAttribute("following",map.get("following"));
+		 model.addAttribute("follower",map.get("follower"));			 
+		 model.addAttribute("followerDto",map.get("followerDto"));
+		 model.addAttribute("followingDto",map.get("followingDto"));
+		 model.addAttribute("followingCount",map.get("followingCount"));
+		 model.addAttribute("followerCount",map.get("followerCount"));
+		 
+		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
+	
+		return "/profile/following";
+	}
+	
+	@RequestMapping("/follower")
+	public String follower(Model model, String id) {
+		if(id==null) {
+			id = (String) session.getAttribute("session_id"); 
+		}
+		
+		Cross_userDto udto = pService.selectOne(id); 
+		ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
+		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
+		Map<String, Object> map = pService.selectFollow(id);
+		
+		model.addAttribute("udto",udto); 
+		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		
+		model.addAttribute("following",map.get("following"));
+		model.addAttribute("follower",map.get("follower"));			 
+		model.addAttribute("followerDto",map.get("followerDto"));
+		model.addAttribute("followingDto",map.get("followingDto"));
+		model.addAttribute("followingCount",map.get("followingCount"));
+		model.addAttribute("followerCount",map.get("followerCount"));
+		
+		model.addAttribute("user_id",session.getAttribute("session_id").toString());
+		model.addAttribute("user_profile",session.getAttribute("session_image").toString());
+		model.addAttribute("user_name",session.getAttribute("session_name").toString());
+		
+		return "/profile/follower";
+	}
+	
+	
 	
 	//mypage 메인 이동
 	@RequestMapping("/mypage")
@@ -219,8 +363,11 @@ public class ProfileController {
 		
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
+		Map<String, Object> map = pService.selectFollowCount(id);
 		
 		model.addAttribute("udto",udto);
+		model.addAttribute("followingCount",map.get("followingCount"));
+		model.addAttribute("followerCount",map.get("followerCount"));
 		
 		return "/profile/mypage";
 	}
@@ -230,7 +377,11 @@ public class ProfileController {
 	public String mypage_account(Model model) {
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
+		Map<String, Object> map = pService.selectFollowCount(id);
+		
 		model.addAttribute("udto",udto);
+		model.addAttribute("followingCount",map.get("followingCount"));
+		model.addAttribute("followerCount",map.get("followerCount"));
 		return "/profile/mypage_account";
 	}
 	
@@ -240,8 +391,11 @@ public class ProfileController {
 		
 		String id = (String) session.getAttribute("session_id");
 		Cross_userDto udto = pService.selectOne(id);
+		Map<String, Object> map = pService.selectFollowCount(id);
 		
 		model.addAttribute("udto",udto);
+		model.addAttribute("followingCount",map.get("followingCount"));
+		model.addAttribute("followerCount",map.get("followerCount"));
 		
 		return "/profile/mypage_pw_modify";
 	}
@@ -306,6 +460,9 @@ public class ProfileController {
 		Cross_userDto udto = pService.selectOne(user_id);
 		pService.profileUpdate(name,profile_txt,user_loc,user_url,header_img,profile_img,user_id);
 		String result = "변경이 완료되었습니다.";
+		
+		session.setAttribute("session_name", name);
+		session.setAttribute("session_image", profile_img);
 		
 		return result;
 	}
