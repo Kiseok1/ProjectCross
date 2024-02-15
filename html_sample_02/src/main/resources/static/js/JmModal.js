@@ -4,8 +4,8 @@
 $(function(){
 		/* 삭제 모달 */
 		 $(document).on('click', '.alramDelect', function() {
-	            var alram_id = $(this).closest(".post").attr('id');
-	            var alramPost = $(this).closest(".post");
+	            var alram_id = $(this).closest(".alram_post").attr('id');
+	            var alramPost = $(this).closest(".alram_post");
 			        $("#yesDelete").off().click(function () { // 이 부분에서 off() 함수를 사용하여 중복 클릭 방지합니다.
 			            $.ajax({
 			                url: "alramDelect",

@@ -4,11 +4,12 @@
     
     <!-- Mapper.java연결 -->
     <mapper namespace="com.java.mapper.AlramMapper">
-    	<select resultType="com.java.dto.AlramDto" id="selectAlram">
-    		select * from alram where user_id = #{user_id} and checked = 0 or checked = 1
+    
+    	<select id="selectAlram" resultMap="alramCrossUserDto">
+    		select alram.*, cross_user.name,cross_user.profile_img from alram,cross_user where alram.source_id = cross_user.user_id and alram.user_id = #{user_id} and (checked = 0 or checked = 1)
     	</select>
-    	<select resultType="com.java.dto.AlramDto" id="selectChecked">
-    		select * from alram where user_id = #{user_id} and checked = 1 
+    	<select resultMap="alramCrossUserDto" id="selectChecked">
+    		select alram.*, cross_user.name,cross_user.profile_img from alram,cross_user where alram.source_id = cross_user.user_id and alram.user_id = #{user_id} and checked = 1 
     	</select>
     	<update id="alramDelect">
     		update alram set checked = '2' where alram_id = #{alram_id}	
@@ -17,8 +18,8 @@
     		update alram set checked = '1' where user_id = #{user_id} and checked = '0'	
     	</update>
     	
-    	<select id="Mentionalram" resultType="com.java.dto.AlramDto">
-    		SELECT *  FROM alram WHERE (alram_type = 'retweet' OR alram_type = 'comment') AND (checked = 0 OR checked = 1)
+    	<select id="Mentionalram" resultMap="alramCrossUserDto">
+    		select alram.*, cross_user.name,cross_user.profile_img from alram,cross_user WHERE alram.source_id = cross_user.user_id and (alram.alram_type = 'retweet' OR alram.alram_type = 'comment') AND (alram.checked = 0 OR alram.checked = 1) and alram.user_id = #{user_id}
     	</select>
     	<update id="alramBan">
     		update alram set checked = '3' where source_id = #{source_id}
@@ -31,5 +32,26 @@
     		update alram set checked = '1' where source_id = #{source_id}
     	</update>
     	
+    	<!--resultMap 1.alram선언 2.cross_user선언-->
+    	<resultMap type="com.java.dto.AlramCrossUserDto" id="alramCrossUserDto">
+    		<collection property="alramDto" resultMap="alramDtoMap"></collection>
+    		<collection property="cross_userDto" resultMap="cross_userDtoMap"></collection>
+    	</resultMap>
+    	<!-- 1.alram선언 -->
+    	<resultMap type="com.java.dto.AlramDto" id="alramDtoMap">
+    		<result column="alram_id" property="alram_id"/>
+    		<result column="user_id" property="user_id"/>
+    		<result column="source_id" property="source_id"/>
+    		<result column="post_id" property="post_id"/>
+    		<result column="alram_type" property="alram_type"/>
+    		<result column="checked" property="checked"/>
+    		<result column="created" property="created"/>
+    	</resultMap>
+    	<!--2.cross_user 선언 -->
+    	<resultMap type="com.java.dto.Cross_userDto" id="cross_userDtoMap">
+    		<result column="user_id" property="user_id"/>
+    		<result column="name" property="name"/>
+    		<result column="profile_img" property="profile_img"/>
+    	</resultMap>
     	
     </mapper>
