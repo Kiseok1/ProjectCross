@@ -128,6 +128,7 @@ public class NaverController {
 		} catch (Exception e) { e.printStackTrace(); }
 
 		
+		
 		 System.out.println("네이버사용자정보 response_user : "+response_user);
 		 System.out.println("네이버사용자정보 naverDto id : "+naverDto.getId());
 		 System.out.println("네이버사용자정보 naverDto email : "+naverDto.getEmail());
