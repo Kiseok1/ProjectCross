@@ -306,7 +306,12 @@ $(function(){
 						   </div>
 		                    </div>
 	                       </p>
-							   <button class="followBtn">팔로우</button>
+							   <c:if test="${alramCrossUserDto.user_followDto.target_id != alramCrossUserDto.alramDto.source_id}">
+							    <button class="followBtn">팔로우</button>
+	                       	   </c:if>
+	                      	   <c:if test="${alramCrossUserDto.user_followDto.target_id == alramCrossUserDto.alramDto.source_id}">
+							    <button class="followBtn">팔로잉</button>
+	                           </c:if>
 						   </c:if>
 						   
 						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='comment'}">의 게시글에

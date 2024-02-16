@@ -13,5 +13,6 @@ public class AlramCrossUserDto {
 	
 	private AlramDto alramDto;
 	private Cross_userDto cross_userDto;
+	private User_followDto user_followDto;
 	
 }

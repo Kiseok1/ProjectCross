@@ -6,10 +6,15 @@
     <mapper namespace="com.java.mapper.AlramMapper">
     
     	<select id="selectAlram" resultMap="alramCrossUserDto">
-    		select alram.*, cross_user.name,cross_user.profile_img from alram,cross_user where alram.source_id = cross_user.user_id and alram.user_id = #{user_id} and (checked = 0 or checked = 1)
+    		select distinct alram.*, cross_user.name, cross_user.email, cross_user.profile_img,user_follow.target_id from alram join cross_user on alram.source_id = cross_user.user_id left join user_follow ON alram.user_id = user_follow.source_id and user_follow.target_id = alram.source_id 
+    		where alram.user_id = #{user_id} and checked = 0 or checked = 1
+    		order by alram.alram_id desc
+    		
     	</select>
     	<select resultMap="alramCrossUserDto" id="selectChecked">
-    		select alram.*, cross_user.name,cross_user.profile_img from alram,cross_user where alram.source_id = cross_user.user_id and alram.user_id = #{user_id} and checked = 1 
+    		select distinct alram.*, cross_user.name, cross_user.email, cross_user.profile_img,user_follow.target_id from alram join cross_user on alram.source_id = cross_user.user_id left join user_follow ON alram.user_id = user_follow.source_id and user_follow.target_id = alram.source_id 
+    		where alram.user_id = #{user_id} and checked = 1
+    		order by alram.alram_id desc
     	</select>
     	<update id="alramDelect">
     		update alram set checked = '2' where alram_id = #{alram_id}	
@@ -28,14 +33,13 @@
     		select DISTINCT source_id from alram a where user_id = 'aaa' and checked = 3 
     	</select>
     	
-    	<update id="UserUnBan">
-    		update alram set checked = '1' where source_id = #{source_id}
-    	</update>
+    	
     	
     	<!--resultMap 1.alram선언 2.cross_user선언-->
     	<resultMap type="com.java.dto.AlramCrossUserDto" id="alramCrossUserDto">
     		<collection property="alramDto" resultMap="alramDtoMap"></collection>
     		<collection property="cross_userDto" resultMap="cross_userDtoMap"></collection>
+    		<collection property="user_followDto" resultMap="user_followDtoMap"></collection>
     	</resultMap>
     	<!-- 1.alram선언 -->
     	<resultMap type="com.java.dto.AlramDto" id="alramDtoMap">
@@ -52,6 +56,15 @@
     		<result column="user_id" property="user_id"/>
     		<result column="name" property="name"/>
     		<result column="profile_img" property="profile_img"/>
+    	</resultMap>
+    	<!--3.user_followDto 선언 -->
+    	<resultMap type="com.java.dto.User_followDto" id="user_followDtoMap">
+    		<result column="follow_id" property="follow_id"/>
+    		<result column="user_id" property="user_id"/>
+    		<result column="source_id" property="source_id"/>
+    		<result column="target_id" property="target_id"/>
+    		<result column="created" property="created"/>
+    		<result column="updated" property="updated"/>
     	</resultMap>
     	
     </mapper>

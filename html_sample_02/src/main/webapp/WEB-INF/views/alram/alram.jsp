@@ -284,11 +284,63 @@ $(function(){
   </div>
 </div>
  <!--모달창  끝 -->
-		
+		 <script>
+      		$(function(){
+      			$(".followBtn").click(function(){
+      				var target_id = $(this).parent().parent().attr('id') //class:post_body의 id
+      				if($(this).text()=="팔로우") {
+		      			var stat = "insert"
+	      				$(this).text("팔로잉");
+		      					$.ajax({
+		        					url:"/profile/followBtn",
+		        					type:"post",
+		        					data:{"stat":stat,"target_id":target_id},
+		        					datatype:"text",
+		        					success:function(data){
+		        						alert("성공")
+		        					},
+		        					error:function(){
+		        						alert("실패");
+		        					}
+		        				});
+      					
+      				}else if($(this).text()=="팔로잉"){
+      					var target_id = $(this).parent().parent().attr('id') //class:post_body의 id
+    	      			$(this).text("팔로우");
+    	      			var stat = "delete"
+	      					$.ajax({
+	        					url:"/profile/followBtn",
+	        					type:"post",
+	        					data:{"stat":stat,"target_id":target_id},
+	        					datatype:"text",
+	        					success:function(data){
+	        						alert("성공")
+	        					},
+	        					error:function(){
+	        						alert("실패");
+	        					}
+	        				});
+      				}
+      			});//click
+      			
+      		});//jquery
+         </script>
+         <script>
+         	$(function(){
+         		$(".alram_post").click(function(){
+         			var user_id = $(this).find(".post_body").attr('id');
+         			location.href="../profile/your_content?user_id="+encodeURIComponent(user_id);
+         		});
+         	});
+         
+         </script>
+         
+         
+         
 		<c:forEach var="alramCrossUserDto" items="${list}">
         <div class="alram_post" id="${alramCrossUserDto.alramDto.alram_id}">
             <div class="alram_profile-image">
-					<div class="user" id="${alramCrossUserDto.alramDto.source_id}">
+					<div class="user" id="${alramCrossUserDto.alramDto.user_id}">
 					<c:if test="${alramCrossUserDto.cross_userDto.profile_img !=null}">
 						<img src="/upload/${alramCrossUserDto.cross_userDto.profile_img}" style="width: 50px; height: 50px;">
 					</c:if>
@@ -298,7 +350,7 @@ $(function(){
 					</div>
 			</div>
 
-            <div class="post_body">
+            <div class="post_body" id="${alramCrossUserDto.alramDto.source_id}" name="${alramCrossUserDto.alramDto.user_id}">
                 <div class="post_header">
                     <div class="post_header-text">
                         <h3>${alramCrossUserDto.cross_userDto.name}
@@ -321,7 +373,12 @@ $(function(){
 						   </div>
 		                    </div>
 	                       </p>
-							   <button class="followBtn">팔로우</button>
+	                       <c:if test="${alramCrossUserDto.user_followDto.target_id != alramCrossUserDto.alramDto.source_id}">
+							   <button id="BtnFoll" class="followBtn">팔로우</button>
+	                       </c:if>
+	                       <c:if test="${alramCrossUserDto.user_followDto.target_id == alramCrossUserDto.alramDto.source_id}">
+							   <button id="BtnFoll" class="followBtn">팔로잉</button>
+	                       </c:if>
 						   </c:if>
 						   
 						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='comment'}">의 게시글에

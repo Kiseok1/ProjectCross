@@ -131,8 +131,8 @@ public class ProfileController {
 	
 	//상대방 프로필 이동
 	@RequestMapping("/your_content")
-	public String your_content(Model model) {
-		String your_id = "ddd";
+	public String your_content(String user_id,Model model) {
+		String your_id = user_id;
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);
