@@ -26,5 +26,9 @@
 	<select id="selectLike">
 		select * from post_like where user_id=#{id} 
 	</select>
+	
+	<update id="accountUpdate1">
+		update post_like set user_id=#{user_id} where user_id=#{org_id}
+	</update>
 
 </mapper>

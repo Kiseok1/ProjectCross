@@ -35,6 +35,8 @@ public interface PostMapper {
 	ArrayList<PostMediaUserDto> selectLikePost(String id);
 	ArrayList<PostDto> getMylike(String id);
 	
+	//아이디 변경
+	void accountUpdate1(String user_id, String org_id);
 	
 	//-----------------------------------------------------
 	
@@ -109,6 +111,9 @@ public interface PostMapper {
 	List<Cross_userDto> selectKeyWord_user(String keyword);
 	//좋아요 증가
 	void likeUp(int post_id);
+	//게시글 검색(미디어)
+	List<PostDto> selectkeyword_media(String keyword);
+	
 	
 	
 	

@@ -24,5 +24,10 @@ public interface AlramMapper {
 	List<AlramDto> selectBanUser(String user_id);
 	//유저 차단해제
 	void UserUnBan(String source_id);
+	//아이디 변경
+	void accountUpdate1(String user_id, String org_id);
+	void accountUpdate2(String user_id, String org_id);
+	//팔로우 알람
+	void insertFollowAlram(String source_id, String target_id);
 
 }

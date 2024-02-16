@@ -4,8 +4,9 @@
 $(function(){
 		/* 삭제 모달 */
 		 $(document).on('click', '.alramDelect', function() {
-	            var alram_id = $(this).closest(".post").attr('id');
-	            var alramPost = $(this).closest(".post");
+	            var alram_id = $(this).closest(".alram_post").attr('id');
+	            var alramPost = $(this).closest(".alram_post");
+	           
 			        $("#yesDelete").off().click(function () { // 이 부분에서 off() 함수를 사용하여 중복 클릭 방지합니다.
 			            $.ajax({
 			                url: "alramDelect",
@@ -25,7 +26,7 @@ $(function(){
 			});
 			 /* 차단 모달 */
 			 $(document).on('click', '.alramBan', function() {
-			 	var source_id = $(this).closest(".post").find(".user").attr('id');
+			 	var source_id = $(this).closest(".alram_post").find(".user").attr('id');
 			        $("#yesBan").off().click(function () { // 이 부분에서 off() 함수를 사용하여 중복 클릭 방지합니다.
 			        	$.ajax({
 			 				url:"alramBan",
@@ -44,7 +45,7 @@ $(function(){
 			});
 			 /* 차단 해제 모달 */
 			 $(document).on('click', '.UnBanBtn', function() {
-			 	var source_id = $(this).closest(".post").find(".user").attr('id');
+			 	var source_id = $(this).closest(".alram_post").find(".user").attr('id');
 			        $("#yesUnBan").off().click(function () { // 이 부분에서 off() 함수를 사용하여 중복 클릭 방지합니다.
 			        	$.ajax({
 			 				url:"UserUnBan",

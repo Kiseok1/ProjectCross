@@ -22,56 +22,142 @@ public class SearchController {
 PostService PService;
 
 	@RequestMapping("/images")
-	public String images() {
+	public String images(Model model,String keyword) {
+		System.out.println("keyword :"+keyword);
+		List<PostDto> list = null;
+		Map<String, Object> map = new HashMap<>();
+		if(keyword==null || keyword.equals("")) {
+			map = PService.selectMedia();
+		}else {
+			map = PService.selectKeyWordMedia(keyword);
+		}
+		
+		model.addAttribute("plist", map.get("plist"));
+		model.addAttribute("ulist", map.get("ulist"));
+		model.addAttribute("mlist", map.get("mlist")); 
+		model.addAttribute("flist", map.get("flist"));
+		 model.addAttribute("ilist", map.get("ilist"));
+
+		map.put("list", list);
+		map.put("keyword",keyword);
+		model.addAttribute("map",map);
+		
 		return "/search/images";
 	}
+	
+	
+	//최신순 게시글 정렬 (기존)
+//	@RequestMapping("/search")
+//	public String search(Model model,String keyword) {
+//		System.out.println("keyword :"+keyword);
+//		List<PostDto> list = null;
+//		if(keyword==null) {
+//			list = PService.selectnewest();
+//		}else {
+//			list = PService.selectKeyWord(keyword);
+//		}
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("list", list);
+//		map.put("keyword",keyword);
+//		System.out.println("map :"+map);
+//		model.addAttribute("map",map);
+//		return "/search/search";
+//	}
+	
 	//최신순 게시글 정렬
 	@RequestMapping("/search")
 	public String search(Model model,String keyword) {
 		System.out.println("keyword :"+keyword);
 		List<PostDto> list = null;
-		if(keyword==null) {
-			list = PService.selectnewest();
-		}else {
-			list = PService.selectKeyWord(keyword);
-		}
 		Map<String, Object> map = new HashMap<>();
+		if(keyword==null || keyword.equals("")) {
+			map = PService.selectnewest2();
+		}else {
+			map = PService.selectKeyWord2(keyword);
+		}
+		
+		model.addAttribute("plist", map.get("plist"));
+		model.addAttribute("ulist", map.get("ulist"));
+		model.addAttribute("mlist", map.get("mlist")); 
+		model.addAttribute("recount", map.get("recount")); 
+		model.addAttribute("renoted", map.get("renoted"));
+		model.addAttribute("facount", map.get("facount")); 
+		model.addAttribute("favorited", map.get("favorited"));
+		model.addAttribute("replycount", map.get("replycount"));
+		
+
 		map.put("list", list);
 		map.put("keyword",keyword);
-		System.out.println("map :"+map);
 		model.addAttribute("map",map);
 		return "/search/search";
 	}
 	
-	//인기순 게시글 정렬
+	//인기순 게시글 정렬 (기존)
+//	@RequestMapping("/search_in")
+//	public String search_in(Model model,String keyword) {
+//		System.out.println("keyword :"+keyword);
+//		List<PostDto> list = null;
+//		if(keyword==null) {
+//			list = PService.selectLike();
+//		}else {
+//			list = PService.selectKeyWord_Like(keyword);
+//		}
+//		Map<String, Object> map = new HashMap<>();
+//		map.put("list", list);
+//		map.put("keyword",keyword);
+//		model.addAttribute("map",map);
+//		return "/search/search_in";
+//	}
+	
+	//인기순 게시글 정렬 
 	@RequestMapping("/search_in")
 	public String search_in(Model model,String keyword) {
 		System.out.println("keyword :"+keyword);
 		List<PostDto> list = null;
-		if(keyword==null) {
-			list = PService.selectLike();
-		}else {
-			list = PService.selectKeyWord_Like(keyword);
-		}
 		Map<String, Object> map = new HashMap<>();
+		if(keyword==null || keyword.equals("")) {
+			map = PService.selectLike2();
+		}else {
+			map = PService.selectKeyWord_Like2(keyword);
+		}
+		
+		model.addAttribute("plist", map.get("plist"));
+		model.addAttribute("ulist", map.get("ulist"));
+		model.addAttribute("mlist", map.get("mlist")); 
+		model.addAttribute("recount", map.get("recount")); 
+		model.addAttribute("renoted", map.get("renoted"));
+		model.addAttribute("facount", map.get("facount")); 
+		model.addAttribute("favorited", map.get("favorited"));
+		model.addAttribute("replycount", map.get("replycount"));
+		
 		map.put("list", list);
 		map.put("keyword",keyword);
 		model.addAttribute("map",map);
 		return "/search/search_in";
 	}
+	
+	
 	//유저목록 보여주기
 	@RequestMapping("/user")
 	public String user(Model model,String keyword) {
 		List<Cross_userDto> list = null;
-		if(keyword==null) {
-			list = PService.selectAlluser();
-		}else {
-			list = PService.selectKeyWord_user(keyword);
-		}
 		Map<String, Object> map = new HashMap<>();
+		
+		if(keyword==null || keyword.equals("")) {
+			map = PService.selectAlluser();
+		}else {
+			map = PService.selectKeyWord_user(keyword);
+		}
+		
+		
 		map.put("list", list);
 		map.put("keyword",keyword);
 		model.addAttribute("map",map);
+		model.addAttribute("following",map.get("following"));
+		model.addAttribute("follower",map.get("follower"));
+		
+		
+		
 		return "/search/user";
 	}
 	@PostMapping("/likeUp")

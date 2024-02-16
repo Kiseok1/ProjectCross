@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-    <script src="/js/cross/sidebar.js"></script>
+    <script src="/js/cross/sidebar.js"></script>   
 	<link rel="stylesheet" href="/css/style_x_ui.css">
 	
 	 <nav style="margin-top: 20px;" >

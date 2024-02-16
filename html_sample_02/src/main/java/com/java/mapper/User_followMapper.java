@@ -22,5 +22,10 @@ public interface User_followMapper {
 	//팔로워,팔로잉 수 가져오기
 	int followerCount(String id);
 	int followingCount(String id);
+	
+	//아이디 변경
+	void accountUpdate1(String user_id, String org_id);
+	void accountUpdate2(String user_id, String org_id);
+	void accountUpdate3(String user_id, String org_id);
 
 }

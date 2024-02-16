@@ -238,6 +238,10 @@
 		order by a.created desc
  	</select>
  	
+ 	<update id="accountUpdate1">
+		update post set user_id=#{user_id} where user_id=#{org_id}
+	</update>
+ 	
  	
  	<resultMap type="com.java.dto.PostMediaUserDto" id="pmuDto">
  		<collection property="postDto" resultMap="postDtoMap"></collection>
@@ -278,13 +282,24 @@
  	
  	<!-- ////////////////////////////////////////////////////////////// -->
  	
- 	<!-- 현우.진민 작업 -->
+ 	<!-- 현우.진민.기석(정환) 작업 -->
  	<select id="selectLike" resultType="com.java.dto.PostDto">
-		select * from post order by plike desc
+		<!-- select * from post order by plike desc  -->
+		<![CDATA[
+		select * from
+		(select row_number() over(order by plike desc, created desc) rnum, a.* from post a)
+		where rnum between 1 and 20 and sysdate-created<7
+		]]>
 	</select>
 	<select id="selectnewest" resultType="com.java.dto.PostDto">
-		select * from post order by updated desc
+		<!-- select * from post order by updated desc -->
+		<![CDATA[
+		select * from
+		(select row_number() over(order by created desc) rnum, a.* from post a)
+		where rnum between 1 and 20
+		]]>
 	</select>
+	
 	<select id="selectAlluser" resultType="com.java.dto.Cross_userDto">
 		select * from cross_user
 	</select>
@@ -296,6 +311,9 @@
 	</select>
 	<select id="selectKeyWord_user" resultType="com.java.dto.Cross_userDto">
 		select * from cross_user where user_id like '%'||#{keyword}||'%' or name like '%'||#{keyword}||'%' or profile_txt like '%'||#{keyword}||'%' 
+	</select>
+	<select id="selectkeyword_media" resultType="com.java.dto.PostDto">
+		select * from (select * from post order by created desc) a where pcontent  like '%'||#{keyword}||'%'
 	</select>
 	
 </mapper>

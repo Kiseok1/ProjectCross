@@ -14,8 +14,10 @@ import com.java.dto.PostDto;
 import com.java.dto.PostLikeDto;
 import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
+import com.java.mapper.AlramMapper;
 import com.java.mapper.Cross_userMapper;
 import com.java.mapper.MediaMapper;
+import com.java.mapper.MessageMapper;
 import com.java.mapper.PostLikeMapper;
 import com.java.mapper.PostMapper;
 import com.java.mapper.ProfileMapper;
@@ -33,8 +35,9 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired PostLikeMapper postLikeMapper;
 	@Autowired PostMapper postMapper;
 	@Autowired MediaMapper mediaMapper;
+	@Autowired AlramMapper alramMapper;
+	@Autowired MessageMapper messageMapper;
 	
-
 	//작성글 가져오기
 	@Override
 	public ArrayList<PostMediaUserDto> selectDefault(String id) {
@@ -58,7 +61,16 @@ public class ProfileServiceImpl implements ProfileService {
 		String user_id= udto.getUser_id();
 		String email = udto.getEmail();
 		cross_userMapper.accountUpdate(user_id,email,org_id);
-		
+		user_followMapper.accountUpdate1(user_id,org_id);
+		user_followMapper.accountUpdate2(user_id,org_id);
+		user_followMapper.accountUpdate3(user_id,org_id);
+		alramMapper.accountUpdate1(user_id,org_id);
+		alramMapper.accountUpdate2(user_id,org_id);
+		messageMapper.accountUpdate1(user_id,org_id);
+		messageMapper.accountUpdate2(user_id,org_id);
+		postMapper.accountUpdate1(user_id,org_id);
+		postLikeMapper.accountUpdate1(user_id,org_id);
+		//리트윗,북마크 추가해야함
 	}
 
 	//비번 변경
@@ -80,6 +92,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public void insertFollow(String source_id, String target_id) {
 		user_followMapper.insertFollow1(source_id,target_id);
 		user_followMapper.insertFollow2(source_id,target_id);
+		alramMapper.insertFollowAlram(source_id,target_id);
 		session.setAttribute("session_followerCount", user_followMapper.followerCount(source_id));
 		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));
 		

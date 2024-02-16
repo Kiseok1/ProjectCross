@@ -325,8 +325,8 @@ $(function(){
  <!--모달창  끝 -->
  
 		<c:forEach var="Adto" items="${list}">
-        <div class="post">
-            <div class="post_profile-image">
+        <div class="alram_post">
+            <div class="alram_profile-image">
 					<div class="user" id="${Adto.source_id}">
 					</div>
 			</div>

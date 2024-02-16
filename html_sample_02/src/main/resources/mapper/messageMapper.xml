@@ -93,4 +93,12 @@
 		<result column="file_name" property="file_name" />    
     </resultMap>
     
+    <update id="accountUpdate1">
+		update message set source_id=#{user_id} where source_id=#{org_id}
+	</update>
+	
+	<update id="accountUpdate2">
+		update message set target_id=#{user_id} where target_id=#{org_id}
+	</update>
+    
 </mapper>

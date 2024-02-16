@@ -48,6 +48,7 @@ HttpSession session;
 	@PostMapping("alramDelect")
 	@ResponseBody
 	public int alramDelect(int alram_id) {
+		System.out.println("알람삭제 : "+alram_id);
 		alramService.alramDelect(alram_id);
 		return alram_id;
 	}

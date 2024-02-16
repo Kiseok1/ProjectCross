@@ -37,6 +37,57 @@
      $(document).click(function() {
          dropdownContent.css("display", "none");
      });
+     
+     $(".folbtn").click(function(){
+ 	 	
+			if($(this).text()=="언팔로우"){
+				$(this).parent().prev().text("팔로우")
+				$(this).text("팔로워")
+				console.log("팔로잉->팔로우(언팔)");
+				let stat = "delete";
+				let target_id=$(this).attr("id");
+				
+				console.log(target_id)
+				$.ajax({
+					url:"/profile/followBtn",
+					type:"post",
+					data:{"stat":stat,"target_id":target_id},
+					datatype:"text",
+					success:function(data){
+						
+					},
+					error:function(){
+						alert("실패");
+					}
+				})
+				
+				
+			} else if($(this).text()=="팔로워"){
+				$(this).parent().prev().text("팔로잉")
+				$(this).text("언팔로우")
+				console.log("팔로우->팔로잉");
+				let stat = "insert";
+				let target_id=$(this).attr("id");
+				console.log(target_id)
+				$.ajax({
+					url:"/profile/followBtn",
+					type:"post",
+					data:{"stat":stat,"target_id":target_id},
+					datatype:"text",
+					success:function(data){
+						
+					},
+					error:function(){
+						alert("실패");
+					}
+				})
+			} 
+	 
+		})
+     
+     
+     
+     
 	});
     
 	</script>
@@ -55,7 +106,7 @@
 			   $(function() {
 			       $(".aside_input input").keyup(function(e) {
 			           if (e.keyCode == 13) {
-			               alert($("#keyword").val());
+			               //alert($("#keyword").val());
 			               search_frm.submit();
 			           }
 			       });
@@ -68,9 +119,12 @@
 			<a href="search_in?keyword=${map.keyword}"><div class="search_in" >인기</div></a>
 			<a href="search?keyword=${map.keyword}" ><div class="Latest_mini">최신</div></a>
 			<a href="user" ><div class="user_mini" >사용자<div class="underscore"></div></div></a>
-			<a href="images" ><div class="media_mini" >미디어</div></a>			
+			<a href="images?keyword=${map.keyword}" ><div class="media_mini" >미디어</div></a>			
 		</div>
 		<!--카테고리 -->
+		
+		
+		<%-- 
 		<c:forEach var="Udto" items="${map.list}">
 		<div class="post">
 			<div class="search_post_profile-image">
@@ -112,6 +166,98 @@
 			</div>
 		</div>
 	</c:forEach>
+	 --%>
+	
+		<c:forEach var="Udto" items="${following}">
+		<div class="post">
+			<div class="search_post_profile-image">
+			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			</div>
+			<div class="post_body">
+				<div class="post_header">
+					 <div class="post_header">
+				<!-- 이름들어가는 자리 -->
+					<div class="search_user_head" >
+						<h3>${Udto.name} <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@${Udto.user_id}</span>
+						</h3>
+					</div>
+			    <!-- 이름들어가는 자리 -->
+					
+				<!-- 드롭다운 -->
+					<div class="post_header-discription">
+						<div class="dropdown_bar" >
+						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
+
+						  <c:if test="${Udto.user_id!=session_id}">
+						  <button class="followBtn">팔로잉</button>
+						  <div class="dropdown_content" >
+						 		<div class="folbtn" id="${Udto.user_id}">언팔로우</div>
+						 		<a href="">차단하기</a>
+						  </div>
+						  </c:if>
+						
+						</div>
+					</div>
+				<!-- 드롭다운 -->
+				</div>
+			
+				</div>
+				<div class="user_Introduction">
+				<c:if test="${Udto.profile_txt !=null}">
+				 ${Udto.profile_txt}
+				</c:if>
+				<c:if test="${Udto.profile_txt ==null}">
+					유저 소개말이 없습니다.
+				</c:if>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+	
+		<c:forEach var="Udto" items="${follower}">
+		<div class="post">
+			<div class="search_post_profile-image">
+			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			</div>
+			<div class="post_body">
+				<div class="post_header">
+					 <div class="post_header">
+				<!-- 이름들어가는 자리 -->
+					<div class="search_user_head" >
+						<h3>${Udto.name} <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@${Udto.user_id}</span>
+						</h3>
+					</div>
+			    <!-- 이름들어가는 자리 -->
+					
+				<!-- 드롭다운 -->
+					<div class="post_header-discription">
+						<div class="dropdown_bar" >
+						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
+						  <button class="followBtn">팔로우</button>
+						  <div class="dropdown_content" >
+						 		<div class="folbtn" id="${Udto.user_id}">팔로워</div>
+						 		<a href="">차단하기</a>
+						  </div>
+						</div>
+					</div>
+				<!-- 드롭다운 -->
+				</div>
+			
+				</div>
+				<div class="user_Introduction">
+				<c:if test="${Udto.profile_txt !=null}">
+				 ${Udto.profile_txt}
+				</c:if>
+				<c:if test="${Udto.profile_txt ==null}">
+					유저 소개말이 없습니다.
+				</c:if>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
+	
+	
+	
 		<!--추천 유저 카테고리 -->
 		
 		<div id="myModal" class="modal">

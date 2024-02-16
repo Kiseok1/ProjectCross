@@ -284,8 +284,8 @@ $(function(){
 		 
 		 
 		<c:forEach var="Adto" items="${list}">
-        <div class="post" id="${Adto.alram_id}">
-            <div class="post_profile-image">
+        <div class="alram_post" id="${Adto.alram_id}">
+            <div class="alram_profile-image">
 					<div class="user" id="${Adto.source_id}">
 					</div>
 			</div>

@@ -31,5 +31,16 @@
     		update alram set checked = '1' where source_id = #{source_id}
     	</update>
     	
+    	<update id="accountUpdate1">
+    		update alram set user_id=#{user_id} where user_id=#{org_id}
+    	</update>
+    	
+    	<update id="accountUpdate2">
+    		update alram set source_id=#{user_id} where source_id=#{org_id}
+    	</update>
+    	
+    	<insert id="insertFollowAlram">
+    		insert into alram(alram_id,user_id,source_id,alram_type,checked,created) values (alram_seq.nextval, #{target_id}, #{source_id}, 'follow', 0, SYSDATE )
+    	</insert>
     	
     </mapper>

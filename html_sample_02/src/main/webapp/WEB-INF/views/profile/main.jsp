@@ -10,7 +10,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Twitter Profile</title>
-    <script src="/js/cross/profile.js"></script>
+    <!-- <script src="/js/cross/profile.js"></script> -->
 
     
     <script>
