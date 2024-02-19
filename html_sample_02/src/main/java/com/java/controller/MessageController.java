@@ -34,7 +34,7 @@ public class MessageController {
 	@Autowired
 	HttpSession session;
 	
-	@GetMapping("/index")
+	@RequestMapping("/index")
 	public String mindex() {
 		return "/message/index";
 	}
@@ -74,6 +74,34 @@ public class MessageController {
 		return "/message/index";
 	}
 
+	@PostMapping("/message/Group")
+	@ResponseBody
+	public String group(List<MultipartFile> files, String formData) throws Exception {
+		
+		String orgName = "";
+		String newName = "";
+		String mergeName = "";
+		int i=0;
+		for(MultipartFile file:files) {
+			//파일 첨부하기
+			orgName = file.getOriginalFilename();
+			System.out.println("MessageController 파일첨부 이름 : "+ orgName);
+			long time = System.currentTimeMillis();
+			newName = time + "_" + orgName; //중복방지를 위해 새로운 이름변경
+			String upload = "c:/upload/"; //파일 업로드 위치
+			File f = new File(upload+newName);
+			file.transferTo(f); //파일을 저장 위치에 저장시킴.
+			
+			//파일이름을 저장하기
+			if(i==0) mergeName += time+"_"+orgName;
+			else mergeName += ","+time+"_"+orgName;
+			i++;
+		}
+		System.out.println("dddddd"+formData);
+		
+		return "성공";
+	}
+	
 	@PostMapping("/search")//검색 결과 가져오기
 	@ResponseBody
 	public List<Cross_userDto>search(String input) {
