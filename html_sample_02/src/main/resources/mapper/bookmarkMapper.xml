@@ -6,7 +6,7 @@
 	
 	<!-- 계정정보 업데이트 -->
 	<update id="accountUpdate">
-		update post_like set user_id=#{user_id} where user_id=#{org_id}
+		update bookmark set user_id=#{user_id} where user_id=#{org_id}
 	</update>
 	
 	<!-- 북마크 체크 -->

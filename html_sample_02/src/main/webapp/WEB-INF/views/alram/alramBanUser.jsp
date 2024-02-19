@@ -175,10 +175,6 @@ $(function(){
 				}
 			});//ajax
 		});//click
-		$(".alramSet").click(function(){
-			alert("테스트");
-		});
-		
 		
 	});//jquery
 </script>
@@ -324,24 +320,30 @@ $(function(){
 </div>
  <!--모달창  끝 -->
  
-		<c:forEach var="Adto" items="${list}">
-        <div class="alram_post">
+
+		<c:forEach var="alramCrossUserDto" items="${list}">
+       <div class="alram_post" id="${alramCrossUserDto.alramDto.alram_id}">
             <div class="alram_profile-image">
-					<div class="user" id="${Adto.source_id}">
+					<div class="user" id="${alramCrossUserDto.alramDto.source_id}">
+					<c:if test="${alramCrossUserDto.cross_userDto.profile_img !=null}">
+						<img src="/upload/${alramCrossUserDto.cross_userDto.profile_img}" style="width: 50px; height: 50px;">
+					</c:if>
+					<c:if test="${alramCrossUserDto.cross_userDto.profile_img ==null}">
+						<img src="/images/proflie_default.png" style="width: 50px; height: 49px;"> 
+					</c:if>
 					</div>
 			</div>
-
-            <div class="post_body">
+            <div class="post_body" id="${alramCrossUserDto.alramDto.source_id}" name="${alramCrossUserDto.alramDto.user_id}">
                 <div class="post_header">
                     <div class="post_header-text">
-                        <h3>${Adto.source_id}
+                        <h3>${alramCrossUserDto.cross_userDto.name}
                             <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@java
+                                <span class="material-icons post_badge">verified</span>@${alramCrossUserDto.alramDto.source_id}
                             </span>
                         </h3>
                     </div>
 						   <div class="name">
-						   		안녕하세요.
+						   		${alramCrossUserDto.cross_userDto.profile_txt}
 						   </div>
 					   <button class="UnBanBtn" data-bs-toggle="modal" data-bs-target="#UnBanModal">차단해제</button>
                   </div>	

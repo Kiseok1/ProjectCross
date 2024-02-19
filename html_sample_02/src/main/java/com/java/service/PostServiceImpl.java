@@ -13,6 +13,7 @@ import com.java.dto.Cross_userDto;
 import com.java.dto.MediaDto;
 import com.java.dto.PostDto;
 import com.java.dto.User_followDto;
+import com.java.mapper.AlramMapper;
 import com.java.mapper.Cross_userMapper;
 import com.java.mapper.MediaMapper;
 import com.java.mapper.PostMapper;
@@ -31,6 +32,9 @@ public  class PostServiceImpl implements PostService {
 	MediaMapper mediaMapper;
 	@Autowired
 	User_followMapper user_followMapper;
+	@Autowired
+	AlramMapper alramMapper;
+	
 	
 	@Autowired HttpSession session;
 	
@@ -143,6 +147,12 @@ public  class PostServiceImpl implements PostService {
 		postMapper.upStep(postDto);
 		//포스트 답글 등록
 		int result = postMapper.sendModalPost(postDto);
+
+		PostDto targetDto = postMapper.getTargetId(postDto);
+		String source_id = session.getAttribute("session_id").toString();
+		if(!targetDto.getUser_id().equals(source_id)) {
+			alramMapper.insertReplyAlram(targetDto.getUser_id(),source_id,targetDto.getPost_id());
+		}
 		return result;
 	}
 

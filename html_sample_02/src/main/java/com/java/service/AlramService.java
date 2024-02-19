@@ -22,7 +22,7 @@ public interface AlramService {
 	//차단 유저 
 	void alramBan(String source_id);
 	//차단유저목록
-	List<AlramDto> selectBanUser(String user_id);
+	List<AlramCrossUserDto> selectBanUser(String user_id);
 	//유저 차단해제
 	void UserUnBan(String source_id);
 

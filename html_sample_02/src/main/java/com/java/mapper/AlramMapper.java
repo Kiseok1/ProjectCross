@@ -22,7 +22,7 @@ public interface AlramMapper {
 	//유저 밴
 	void alramBan(String source_id);
 	//차단유저목록
-	List<AlramDto> selectBanUser(String user_id);
+	List<AlramCrossUserDto> selectBanUser(String user_id);
 	//유저 차단해제
 	void UserUnBan(String source_id);
 	//아이디 변경
@@ -30,5 +30,11 @@ public interface AlramMapper {
 	void accountUpdate2(String user_id, String org_id);
 	//팔로우 알람
 	void insertFollowAlram(String source_id, String target_id);
+	//댓글 알람
+	void insertReplyAlram(String target_id, String source_id, int post_id);
+	//좋아요 알람
+	void insertLikeAlram(String target_id, String user_id, String post_id);
+	//알람차단유저 확인
+	void banCheck(String source_id);
 
 }

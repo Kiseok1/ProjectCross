@@ -9,5 +9,7 @@ public interface BookmarkMapper {
 	void bookmarkCheck(String post_id, String user_id);
 	//북마크 취소
 	void bookmarkCancel(String post_id, String user_id);
+	//계정정보 변경
+	void accountUpdate(String user_id, String org_id);
 
 }

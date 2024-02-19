@@ -384,8 +384,8 @@ $(function(){
 		                    </div>
 	                       </p>
 							   <div class="photo-frame">
-					        <a href="">
-					        	<img src="/images/page-profile-image.png">
+					        <a href="/viewContent?post_id=${alramCrossUserDto.alramDto.post_id}">
+					        	<img src="/images/cross.jpg">
 					        </a>
 					      </div>
 						   </c:if>
@@ -406,8 +406,9 @@ $(function(){
 						   	좋아합니다.
 		                    </div>
 	                       </p>
-						    <div class="like">
-						        <a href="">
+						    <div class="photo-frame">
+						        <a href="/viewContent?post_id=${alramCrossUserDto.alramDto.post_id}">
+						        	<img src="/images/cross.jpg">
 						        </a>
 					      	</div>
 						   </c:if>

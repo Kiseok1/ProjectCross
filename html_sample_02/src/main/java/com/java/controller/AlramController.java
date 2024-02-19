@@ -81,7 +81,7 @@ HttpSession session;
 	@GetMapping("alramBanUser")
 	public String alramBanUser(String user_id,Model model) {
 		user_id = (String)session.getAttribute("session_id");
-		List<AlramDto> list = alramService.selectBanUser(user_id);
+		List<AlramCrossUserDto> list = alramService.selectBanUser(user_id);
 		model.addAttribute("list",list);
 		return "alram/alramBanUser";
 	}

@@ -253,6 +253,17 @@
  		select count(*) from bookmark where user_id = #{user_id} and post_id= #{post_id}
  	</select>
  	
+ 	<!-- (답글)알람 대상 아이디 검색 -->
+ 	<select id="getTargetId">
+ 		select * from post where post_id=
+		(select pindent from post where post_id=#{post_id})
+ 	</select>
+ 	
+ 	<!-- (좋아요)알람 대상 아이디 검색 -->
+ 	<select id="getLikeTargetId">
+ 		select user_id from post where post_id=#{post_id}
+ 	</select>
+ 	
  	<update id="accountUpdate1">
 		update post set user_id=#{user_id} where user_id=#{org_id}
 	</update>

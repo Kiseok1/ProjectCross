@@ -29,20 +29,38 @@
     	<update id="alramBan">
     		update alram set checked = '3' where source_id = #{source_id}
     	</update>
-    	<select resultType="com.java.dto.AlramDto" id="selectBanUser">
-    		select DISTINCT source_id from alram a where user_id = #{user_id} and checked = 3 
+
+    	<select resultMap="alramCrossUserDto" id="selectBanUser">
+			select distinct alram.source_id, cross_user.name,cross_user.profile_img,cross_user.profile_txt from alram join cross_user on alram.source_id = cross_user.user_id
+			where checked = 3
     	</select>
+
+    	<update id="UserUnBan">
+    		update alram set checked = '1' where source_id = #{source_id}
+    	</update>
+    	
+    	<update id="banCheck">
+    		update alram set checked = '3' where source_id = #{source_id}
+    	</update>
     	   	
     	<update id="accountUpdate1">
     		update alram set user_id=#{user_id} where user_id=#{org_id}
     	</update>
-    	
+  	
     	<update id="accountUpdate2">
     		update alram set source_id=#{user_id} where source_id=#{org_id}
     	</update>
     	
     	<insert id="insertFollowAlram">
     		insert into alram(alram_id,user_id,source_id,alram_type,checked,created) values (alram_seq.nextval, #{target_id}, #{source_id}, 'follow', 0, SYSDATE )
+    	</insert>
+    	
+    	<insert id="insertReplyAlram">
+    		insert into alram values (alram_seq.nextval, #{target_id}, #{source_id}, #{post_id}, 'comment', 0, SYSDATE )
+    	</insert>
+    	
+    	<insert id="insertLikeAlram">
+    		insert into alram values (alram_seq.nextval, #{target_id}, #{user_id}, #{post_id}, 'like', 0, SYSDATE )
     	</insert>
     	
     	<!--resultMap 1.alram선언 2.cross_user선언-->
@@ -66,6 +84,7 @@
     		<result column="user_id" property="user_id"/>
     		<result column="name" property="name"/>
     		<result column="profile_img" property="profile_img"/>
+    		<result column="profile_txt" property="profile_txt"/>
     	</resultMap>
     	<!--3.user_followDto 선언 -->
     	<resultMap type="com.java.dto.User_followDto" id="user_followDtoMap">

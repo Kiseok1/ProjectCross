@@ -15,6 +15,7 @@ import com.java.dto.PostLikeDto;
 import com.java.dto.PostMediaUserDto;
 import com.java.dto.User_followDto;
 import com.java.mapper.AlramMapper;
+import com.java.mapper.BookmarkMapper;
 import com.java.mapper.Cross_userMapper;
 import com.java.mapper.MediaMapper;
 import com.java.mapper.MessageMapper;
@@ -37,6 +38,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired MediaMapper mediaMapper;
 	@Autowired AlramMapper alramMapper;
 	@Autowired MessageMapper messageMapper;
+	@Autowired BookmarkMapper bookmarkMapper;
 	
 	//작성글 가져오기
 	@Override
@@ -70,6 +72,7 @@ public class ProfileServiceImpl implements ProfileService {
 		messageMapper.accountUpdate2(user_id,org_id);
 		postMapper.accountUpdate1(user_id,org_id);
 		postLikeMapper.accountUpdate1(user_id,org_id);
+		bookmarkMapper.accountUpdate(user_id,org_id);
 		//리트윗,북마크 추가해야함
 	}
 
@@ -167,14 +170,15 @@ public class ProfileServiceImpl implements ProfileService {
 	public void likeUp(String user_id, String post_id) {
 		postLikeMapper.likeUp(user_id,post_id);
 		postMapper.likeUp(post_id);
+		String target_id = postMapper.getLikeTargetId(post_id);
+		alramMapper.insertLikeAlram(target_id,user_id,post_id);
 	}
 
 	//좋아요 삭제
 	@Override
 	public void likeDown(String user_id, String post_id) {
 		postLikeMapper.likeDown(user_id,post_id);
-		postMapper.likeDown(post_id);
-		
+		postMapper.likeDown(post_id);		
 	}
 
 	//좋아요 수
