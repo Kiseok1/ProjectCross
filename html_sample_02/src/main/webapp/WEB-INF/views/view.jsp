@@ -311,24 +311,27 @@
 							
 								</c:if>
 							
-							
 								<h3>${recount[status.index]}</h3>
 								
-								
-								
 								<c:if test="${favorited[status.index]<1}">
-									<span class="material-icons ms_icons favorite">favorite_border</span>
+									<span class="material-icons ms_icons favorite"
+									data-post_id="${plist[status.index].post_id}">favorite_border</span>
 							
 								</c:if>
 								<c:if test="${favorited[status.index]>=1}">
-									<span class="material-icons ms_icons favorite toggle">favorite</span>
+									<span class="material-icons ms_icons favorite toggle"
+									data-post_id="${plist[status.index].post_id}">favorite</span>
 							
 								</c:if>
 								<h3>${facount[status.index]}</h3>
 								
-								<span class="material-icons ms_icons bookmark">bookmark_border</span>
+								<c:if test="${bookmarked[status.index]<1}">
+									<span class="material-icons ms_icons bookmark">bookmark_border</span>
+								</c:if>							
+								<c:if test="${bookmarked[status.index]>=1}">
+									<span class="material-icons ms_icons bookmark toggle">bookmark</span>
+								</c:if>							
 								<h3></h3>
-
 
 							</div>
 

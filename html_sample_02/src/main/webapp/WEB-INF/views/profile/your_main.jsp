@@ -131,8 +131,8 @@
                     	<img src="/images/header_default.jpg" alt="profile pic" id="profilepic">
                     </c:if>
                     <div class="yourpage">
-                    	<div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
-                    	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div>
+                    	<!-- <div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
+                    	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div> -->
                     	<c:if test="${followDto==null}">
 	                    	<div class="followbtn">팔로우</div>
                     	</c:if>

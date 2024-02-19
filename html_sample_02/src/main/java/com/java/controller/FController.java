@@ -81,6 +81,7 @@ public class FController {
 		model.addAttribute("facount", postMap.get("facount")); 
 		model.addAttribute("favorited", postMap.get("favorited"));
 		model.addAttribute("replycount", postMap.get("replycount"));
+		model.addAttribute("bookmarked", postMap.get("bookmarked"));
 		
 		return "/view";
 	}

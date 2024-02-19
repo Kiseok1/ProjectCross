@@ -66,6 +66,9 @@ public interface PostService {
 	//미디어 검색(키워드)
 	Map<String, Object> selectKeyWordMedia(String keyword);
 
+	//북마크된 포스트 가져오기
+	Map<String, Object> getMyBookmark(String id);
+
 
 
 

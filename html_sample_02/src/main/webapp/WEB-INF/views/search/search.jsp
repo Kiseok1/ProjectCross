@@ -19,7 +19,7 @@
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/style_x_ui.css">
-<script src="/js/cross/profile.js"></script>
+<script src="/js/cross/index.js"></script>
 
 
 </head>
@@ -95,10 +95,10 @@
 					<div class="post" style="position: relative;">
 						
 						<c:if test="${ulist[status.index].user_id!=session_id}">
-							<div class="post_profile-image rounded-5" onclick="location.href='your_content?user_id=${ulist[status.index].user_id}'">
+							<div class="post_profile-image rounded-5" onclick="location.href='/profile/your_content?user_id=${ulist[status.index].user_id}'">
 						</c:if>
 						<c:if test="${ulist[status.index].user_id==session_id}">
-							<div class="post_profile-image rounded-5" onclick="location.href='content?user_id=${ulist[status.index].user_id}'">
+							<div class="post_profile-image rounded-5" onclick="location.href='/profile/content?user_id=${ulist[status.index].user_id}'">
 						</c:if>
 							
 							<c:if test="${ulist[status.index].profile_img!=null}">
@@ -310,6 +310,332 @@
 
 	</div>
 
+<!-- Modal -->
+
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-fullscreen">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">FileName</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+
+					<div class="mb-3">
+						<label for="recipient-name" class="col-form-label"><img></label>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="modal" id="locationModal" tabindex="-1"
+		aria-labelledby="locationModalLabel" aria-hidden="true"
+		data-bs-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title fs-6 fw-bold font-family-sans-serif"
+						id="locationModalLabel">지역 검색</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+
+					<div class="mb-3">
+						<label for="recipient-name" class="col-form-label ">검색:</label> <input
+							type="text" class="form-control" id="locSearch"
+							data-bs-keyboard="false">
+					</div>
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label  ">검색 결과:</label>
+						<div style="">
+
+							<div class="container text-center locArray"
+								style="overflow-y: scroll; height: 100px;">
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation1">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation2">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation3">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation4">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr">
+									<div class="col col-2 border-end border-secondary mt-1"
+										data-location="Loacation5">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr">
+									<div class="col col-2 border-end border-secondary mt-1"
+										data-location="Loacation6">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation7">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation8">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr"
+									data-location="Loacation9">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+<!-- Write Modal -->
+	<div class="modal" id="writeModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="height: 2rem;">
+					<h5 class="modal-title">답글쓰기</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<form id="modalForm" action="/modalSendPost" method="post" enctype="multipart/form-data">
+				<div id="modal_hidden"></div>
+					<div class="modal-body">
+						<div class="tweet_box">
+
+							<div class="tweet_box-input">
+								<div id="modal_text-area" class="rounded"
+									style="position: relative;">
+
+									<textarea rows="" cols="" class="content" id="modal_write-box" name="pcontent"
+										style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
+									<div id="modal_position_wrap" class="invis">
+										<div id="position-area" style="display: flex;">
+											<span class="material-icons">location_on</span>
+											<div id="modal_currLocation"></div>
+										</div>
+									</div>
+									<div id="modal_image-area" style=""></div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<div class="modal_box-footer" style="">
+
+
+							<label for="modalFile" id="modalImgBtn"
+								class="btn btn-sm btn-dark">사진등록</label> 
+								<input type="file" name="files"	id="modalFile" multiple="multiple"> 
+								<label for="modalRegPosition" id="modalregBtn"
+								class="btn btn-sm btn-dark" data-bs-toggle="modal"
+								data-bs-target="#locationModal2" data-bs-whatever="Test">위치등록</label>
+							<input type="hidden" class="btn btn-sm btn-dark" id="modalRegPosition" name="plocation">
+							<button id="modal_write-btn" class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
+
+
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>	
+
+
+
+
+
+
+
+
+	<div class="modal" id="locationModal2" tabindex="-1"
+		aria-labelledby="locationModalLabel2" aria-hidden="true"
+		data-bs-keyboard="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title fs-6 fw-bold font-family-sans-serif"
+						id="locationModalLabel2">지역 검색</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+
+					<div class="mb-3">
+						<label for="recipient-name" class="col-form-label ">검색:</label> 
+						<input	type="text" class="form-control" id="locSearch"
+							data-bs-keyboard="false">
+					</div>
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label  ">검색 결과:</label>
+						<div style="">
+
+							<div class="container text-center locArray"
+								style="overflow-y: scroll; height: 100px;">
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation1">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation2">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation3">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation4">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation5">
+									<div class="col col-2 border-end border-secondary mt-1"
+										data-location="Loacation5">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2">
+									<div class="col col-2 border-end border-secondary mt-1"
+										data-location="Loacation6">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation7">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation8">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+
+
+								<div class="w-100"></div>
+
+								<div class="row  align-items-start selAddr2"
+									data-location="Loacation9">
+									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
+									<div class="col col-5 mt-1">주소</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- Modal End --> 
+
 
 </body>
+<script async
+	src="https://cdn.jsdelivr.net/npm/es-module-shims@1/dist/es-module-shims.min.js"
+	crossorigin="anonymous"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "@popperjs/core": "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/esm/popper.min.js",
+        "bootstrap": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.esm.min.js"
+      }
+    }
+    </script>
+<script type="module">
+      import * as bootstrap from 'bootstrap'
+
+      new bootstrap.Popover(document.getElementById('popoverButton'))
+    </script>
+
 </html>

@@ -201,6 +201,16 @@
 		where b.user_id=#{id}
 		order by a.created desc
 	</select>
+	
+	<!-- 북마크된 게시글 가져오기 -->
+ 	<select id="getMyBookmark">
+ 		select a.*, b.bookmark_id
+		from post a 
+		left join bookmark b on a.post_id=b.post_id
+		where b.user_id=#{id}
+		order by a.created desc
+ 	</select>
+ 	
 		
 	<!-- 좋아요 선택 plike 1증가 -->
  	<update id="likeUp">
@@ -236,6 +246,11 @@
 		left join media d on a.post_id=d.post_id
 		where b.user_id=#{id}
 		order by a.created desc
+ 	</select>
+ 	
+ 	<!-- 사용자가 특정포스트(post_id)에 북마크 했는지 여부 -->
+ 	 <select id="myBookmarkCheck" resultType="int">
+ 		select count(*) from bookmark where user_id = #{user_id} and post_id= #{post_id}
  	</select>
  	
  	<update id="accountUpdate1">
