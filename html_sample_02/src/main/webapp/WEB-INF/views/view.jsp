@@ -326,10 +326,12 @@
 								<h3>${facount[status.index]}</h3>
 								
 								<c:if test="${bookmarked[status.index]<1}">
-									<span class="material-icons ms_icons bookmark">bookmark_border</span>
+									<span class="material-icons ms_icons bookmark"
+									data-post_id="${plist[status.index].post_id}">bookmark_border</span>
 								</c:if>							
 								<c:if test="${bookmarked[status.index]>=1}">
-									<span class="material-icons ms_icons bookmark toggle">bookmark</span>
+									<span class="material-icons ms_icons bookmark toggle"
+									data-post_id="${plist[status.index].post_id}">bookmark</span>
 								</c:if>							
 								<h3></h3>
 

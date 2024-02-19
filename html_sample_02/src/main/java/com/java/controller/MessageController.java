@@ -23,13 +23,16 @@ import com.java.dto.MessCrossMediaDto;
 import com.java.dto.MessageDto;
 import com.java.service.MService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("message")
 public class MessageController {
 	
 	@Autowired
 	MService mService;
-	
+	@Autowired
+	HttpSession session;
 	
 	@GetMapping("/index")
 	public String mindex() {
@@ -65,6 +68,7 @@ public class MessageController {
 		
 		//db연결
 		System.out.println("target id : "+mdto.getTarget_id());
+		mdto.setSource_id((String)session.getAttribute("session_id"));
 		mService.mInsert2(mdto);
 		mService.mInsert(mdto2);
 		return "/message/index";
@@ -97,9 +101,11 @@ public class MessageController {
 	@RequestMapping("/head")
 	public String head(Model model) {
 		//답글 모두 가져오기
-		ArrayList<MessCrossMediaDto> list = mService.receiveAll();
-		model.addAttribute("list", list);
-		//System.out.println("MessageController head source_id :"+list.get(0).getMessageDto().getSource_id());
+
+		ArrayList<MessCrossMediaDto> list = mService.receiveAll((String)session.getAttribute("session_id"));
+		 // list가 비어있는지 여부에 따라 result 설정
+	    model.addAttribute("list", list);
+
 		
 		return "/message/head";
 	}
@@ -125,7 +131,7 @@ public class MessageController {
 	@GetMapping("/head2")
 	public String head2(Model model) {
 		
-		List<MessCrossMediaDto> list2 = mService.sendAll();
+		List<MessCrossMediaDto> list2 = mService.sendAll((String)session.getAttribute("session_id"));
 		model.addAttribute("list2", list2);
 		
 		return "/message/head2";

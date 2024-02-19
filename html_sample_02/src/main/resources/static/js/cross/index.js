@@ -389,15 +389,32 @@ $(function() {
 
 	$(document).on("click",".bookmark", function(e) {
 
+		let postId = $(e.target).attr("data-post_id");
+		let stat = "";
+		
 		if ($(e.target).hasClass("toggle") == false) {
 			$(e.target).addClass("toggle");
 			$(e.target).text("bookmark");
-
+			stat = "check";
 		} else {
 			$(e.target).removeClass("toggle");
 			$(e.target).text("bookmark_border");
-
+			stat = "cancel";
 		}
+		
+		$.ajax({
+			url:"/bookmark/bookmarkUpdate",
+			type:"post",
+			data:{"post_id":postId,"stat":stat},
+			datatype:"text",
+			success:function(data){
+				
+				$(loc).text(data);
+			},
+			error:function(){
+				alert("실패");
+			}
+		});//ajax
 
 	})
 	

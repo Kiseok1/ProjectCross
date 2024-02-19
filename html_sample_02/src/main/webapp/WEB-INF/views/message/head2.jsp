@@ -75,81 +75,95 @@ $(function(){
         </div>
         <script>
         	$(function(){
-        		/* 검색하기 */
-        		$("#searchInput3").on("keyup",function(){
-        			var input = $(this).val().trim();
+        		   // input 필드 keyup 이벤트 핸들러 추가
+        	    $("#searchInput3").on("keyup",function(){
+        	        var input = $(this).val().trim();
         	        if (input === "") {
-        	        	// 입력값이 없으면 검색 결과를 숨김
+        	            // 입력값이 없으면 검색 결과를 숨김
         	            $("#searchResults").empty().hide();
         	            $(".main").show();
         	            return;
-        	        }else{
-        	        	$(".main").hide();
+        	        } else {
+        	            $("#searchResults").show();
+        	            $(".main").hide();
         	        }
-        			//ajax 검색 데이터 가져오기
-        			$.ajax({
-						url:"/message/search3",
-						type:"post",
-						data:{"input":input},
-						dataType:"json",
-						success:function(data){
-							console.log(data);
-							 // 이전 검색 결과를 삭제
-			                $("#searchResults").empty();
-			                if (data.length > 0) {	 
-							for (let i = 0; i < data.length; i++) {
-							    let item = data[i];
-							    var formattedDate = moment(item.messageDto.created).format('MM월DD일');
-							    //태그 입력 시작
-							    let hdata = ' <div class="post" id="'+item.messageDto.msg_id+'">';
-							    hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">';
-							    hdata +='<div class="user"><img src="/upload/'+item.cross_userDto.profile_img+'" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>';
-							    hdata +='</div>';
-							    hdata +='<div class="post_body" style="position: relative; bottom: 6px;">';
-							    hdata +='<div class="post_header" style="position: relative; top: 15px; left: 10px;">';
-							    hdata +='<div class="post_header-text">';
-							    hdata +='<h3>'+item.cross_userDto.name+'';
-							    hdata +='<span class="header-icon-section">';
-							    hdata +='<span class="material-icons post_badge">verified</span>'+item.messageDto.target_id+'님께 받은 쪽지 ';
-							    hdata += '<span id="date">' + formattedDate + '</span>';
-							    hdata +='</span>';
-							    hdata +='</h3>';
-							    hdata +='</div>';
-							    hdata +='<div class="post_header-discription">';
-							    hdata +='<ul>';
+        	        //ajax 검색 데이터 가져오기
+        	        $.ajax({
+        	            url:"/message/search3",
+        	            type:"post",
+        	            data:{"input":input},
+        	            dataType:"json",
+        	            success:function(data){
+        	                console.log(data);
+        	                // 이전 검색 결과를 삭제
+        	                $("#searchResults").empty();
+        	                if (data.length > 0) {    
+        	                    for (let i = 0; i < data.length; i++) {
+        	                        let item = data[i];
+        	                        var formattedDate = moment(item.messageDto.created).format('MM월DD일');
+        	                        //태그 입력 시작
+        	                        let hdata = ' <div class="post" id="'+item.messageDto.msg_id+'">';
+        	                        hdata +='<div class="post_profile-image" style="margin: 1rem; overflow: hidden; height: 60px; width: 70px; position: relative; left: 1px;">';
+        	                        hdata +='<div class="user"><img src="/upload/'+item.cross_userDto.profile_img+'" style="width: 60px;  height: 60px; position: relative; border-radius: 30px; color: var(--twitter-theme-color); right: 20px; bottom: 20px;" ></div>';
+        	                        hdata +='</div>';
+        	                        hdata +='<div class="post_body" style="position: relative; bottom: 6px;">';
+        	                        hdata +='<div class="post_header" style="position: relative; top: 15px; left: 10px;">';
+        	                        hdata +='<div class="post_header-text">';
+        	                        hdata +='<h3>'+item.cross_userDto.name+'';
+        	                        hdata +='<span class="header-icon-section">';
+        	                        hdata +='<span class="material-icons post_badge">verified</span>'+item.messageDto.target_id+'님께 받은 쪽지 ';
+        	                        hdata += '<span id="date">' + formattedDate + '</span>';
+        	                        hdata +='</span>';
+        	                        hdata +='</h3>';
+        	                        hdata +='</div>';
+        	                        hdata +='<div class="post_header-discription">';
+        	                        hdata +='<ul>';
 
-		                	    if (item.messageDto.checked == 0) {
-		                	        // checked 값이 0인 경우 스타일 적용
-		                	        hdata += '<li style="font-weight:bold; color: grey;">' + item.messageDto.mcontent + '</li>';
-		                	    } else {
-		                	        // 그 외의 경우 일반적인 스타일 적용
-		                	        hdata += '<li>' + item.messageDto.mcontent + '</li>';
-		                	    }
+        	                        if (item.messageDto.checked == 0) {
+        	                            // checked 값이 0인 경우 스타일 적용
+        	                            hdata += '<li style="font-weight:bold; color: grey;">' + item.messageDto.mcontent + '</li>';
+        	                        } else {
+        	                            // 그 외의 경우 일반적인 스타일 적용
+        	                            hdata += '<li>' + item.messageDto.mcontent + '</li>';
+        	                        }
 
-							    hdata +='</ul>';
-							    hdata +='</div>';
-							    hdata +='<span class="material-symbols-outlined check">check_circle</span>';
-							    hdata +='</div>';
-							    hdata +='</div>';
-							    hdata +='</div>';
-							    //생성된 HTML을 추가
-							    $("#searchResults").append(hdata);
-							    
-							}
-					        $("#searchResults").show();
-					       
-					    } else {
-					        $("#searchResults").hide();
-					    }
-					},
-						error:function(){
-							alert("실패");
-						}
-        				
-        				
-        			});//ajax
-        			
-        		});//searchInput
+        	                        hdata +='</ul>';
+        	                        hdata +='</div>';
+        	                        hdata +='<span class="material-symbols-outlined check">check_circle</span>';
+        	                        hdata +='</div>';
+        	                        hdata +='</div>';
+        	                        hdata +='</div>';
+        	                        //생성된 HTML을 추가
+        	                        $("#searchResults").append(hdata);
+        	                        
+        	                    }
+        	                    $("#searchResults").show();
+        	                   
+        	                } else {
+        	                    $("#searchResults").hide();
+        	                }
+        	            },
+        	            error:function(){
+        	                alert("실패");
+        	            }
+        	        });//ajax
+        	        
+        	    });//searchInput
+        	    
+        	    // input 요소에 값이 있으면 검색 결과를 보여주고, 없으면 숨깁니다.
+        	    $(document).on("click", function(event){
+        	        var inputVal = $("#searchInput3").val().trim();
+        	        // 클릭된 요소가 input 요소가 아니고, 검색 결과 영역이 아니라면
+        	        if (!$(event.target).is("#searchInput3") && !$(event.target).closest("#searchResults").length) {
+        	            if (inputVal !== "") {
+        	                $("#searchResults").show();
+        	                $(".main").hide();
+        	            } else {
+        	                $("#searchResults").empty().hide();
+        	                $(".main").show();
+        	            }
+        	        }
+        	    });              
         		
         		// 데이터를 가져와서 모달 열기 함수
         		function openModalWithData(element) {
@@ -213,27 +227,26 @@ $(function(){
 
         		// .post를 클릭했을 때 모달 열기 및 데이터 표시
         		$('.post').click(function() {
-        			let msg_id =Number($(this).attr('id'))	;
-        			console.log(msg_id);
+			        let $post = $(this); // 클릭된 .post 요소를 변수에 저장
+			        let msg_id = $post.attr('id');
 			        $.ajax({
 			            url: '/message/checkUpdate',
 			            type: 'post',
 			            data: { 'msg_id': msg_id, "stat":"send" },
 			            dataType: 'json',
 			            success: function(data) {
-			            	alert("성공");
-			            	console.log(data.messageDto.checked);
-			            	if(data.messageDto.checked == 1){
-			            		$(this).find('.post_header-discription li').css('font-weight', '');
-			            		$(this).find('.post_header-discription li').css('color', 'black');
-			            	}
+			                console.log(data.messageDto.checked);
+			                if(data.messageDto.checked == 1){
+			                    $post.find('.post_header-discription li').css('font-weight', '');
+			                    $post.find('.post_header-discription li').css('color', 'black');
+			                }
 			            },
 			            error:function(){
-			            	alert("실패");	
+			                alert("실패");    
 			            }
-			            });//ajax
-        		    openModalWithData($(this));
-        		});//post click
+			        });
+			        openModalWithData($post);
+			    });//postclick
         	    
         	});//jquery
         	
@@ -295,7 +308,7 @@ $(function(){
 	                </div>
 		        </div>
 		        <div  style="position: relative; bottom: 25px; left: 150px;">
-		         <button type="button" id="send_btn" class="btn btn-primary">확인</button>
+		         <button type="button" id="send_btn" class="btn btn-primary" style="width: 100px; font-size: 18px; position: relative; top: 5px; left: 0px; ">확인</button>
 		      	</div>
 		       </form>
 		      </div>
@@ -355,6 +368,20 @@ $(function(){
 	 </div>
 	  <div id="searchResults">
 	   </div> 
+	   <c:if test="${empty list2}">
+	   <div class="welcom">
+			<span class="material-icons" style="font-size: 50px; padding: 20px; color:#BA68C8">
+				sentiment_satisfied_alt
+			</span>
+			<div>
+			    <span class="message">쪽지쓰기에 오신 것을 환영합니다</span>
+			</div>
+			<br>
+		</div>
+		<div id="searchResults">
+		</div>
+	   </c:if>
+	   <c:if test="${not empty list2}">
 	   <!-- 쪽지 부분 -->
 	   <c:forEach var="messCrossMediaDto" items="${list2}">
        <div class="post main" id="${messCrossMediaDto.messageDto.msg_id}">
@@ -374,7 +401,7 @@ $(function(){
                     <div class="post_header-discription">
                         <ul>
 	                       <c:if test="${messCrossMediaDto.messageDto.checked eq 0}">
-							   <li style="font-weight:bold; color: grey;">${messCrossMediaDto.messageDto.mcontent}</li>
+							   <li style="font-weight:bold; color:#BA68C8;">${messCrossMediaDto.messageDto.mcontent}</li>
 						   </c:if>
 						   <c:if test="${messCrossMediaDto.messageDto.checked ne 0}">
 							   <li>${messCrossMediaDto.messageDto.mcontent}</li>
@@ -386,6 +413,7 @@ $(function(){
             </div>
         </div>
        </c:forEach>
+       </c:if>
 </main>
 
 </div>

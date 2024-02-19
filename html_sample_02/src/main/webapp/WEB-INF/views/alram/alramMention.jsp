@@ -282,30 +282,40 @@ $(function(){
 </div>
  <!--모달창  끝 -->
 		 
-		 
-		<c:forEach var="Adto" items="${list}">
-        <div class="alram_post" id="${Adto.alram_id}">
+
+		<c:forEach var="alramCrossUserDto" items="${list}">
+        <div class="alram_post" id="${alramCrossUserDto.alramDto.alram_id}">
             <div class="alram_profile-image">
-					<div class="user" id="${Adto.source_id}">
+					<div class="user" id="${alramCrossUserDto.alramDto.source_id}">
+					<c:if test="${alramCrossUserDto.cross_userDto.profile_img !=null}">
+						<img src="/upload/${alramCrossUserDto.cross_userDto.profile_img}" style="width: 50px; height: 50px;">
+					</c:if>
+					<c:if test="${alramCrossUserDto.cross_userDto.profile_img ==null}">
+						<img src="/images/proflie_default.png" style="width: 50px; height: 49px;"> 
+					</c:if>
+				
+
 					</div>
 			</div>
 
             <div class="post_body">
                 <div class="post_header">
                     <div class="post_header-text">
-                        <h3>${Adto.source_id}<span class="header-icon-section">
-                           <span class="material-icons post_badge">verified</span>@java</span>
+                        <h3>${alramCrossUserDto.cross_userDto.name}
+                            <span class="header-icon-section">
+                                <span class="material-icons post_badge">verified</span>@${alramCrossUserDto.alramDto.source_id}
+                            </span>
                         </h3>
                     </div>
-                    <c:if test="${Adto.checked == '0'}">
-                    <div id="${Adto.source_id}" class="noCheck">
+                    <c:if test="${alramCrossUserDto.alramDto.checked == '0'}">
+                    <div class="noCheck">
                     </c:if>
-                    <c:if test="${Adto.checked == '1'}">
-                    <div id="${Adto.source_id}" class="yesCheck">
+                    <c:if test="${alramCrossUserDto.alramDto.checked == '1'}">
+                    <div class="yesCheck">
                     </c:if>
                         <p>
-                            ${Adto.user_id}님
-						   <c:if test="${Adto.alram_type=='follow'}">을
+                           ${alramCrossUserDto.alramDto.user_id }님
+						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='follow'}">을
 						   <div class="name">
 						   		팔로우하기 시작했습니다.
 						   </div>
@@ -314,7 +324,7 @@ $(function(){
 							   <button class="followBtn">팔로우</button>
 						   </c:if>
 						   
-						   <c:if test="${Adto.alram_type=='comment'}">의 게시글에
+						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='comment'}">의 게시글에
 						   		댓글을 남겼습니다.
 		                    </div>
 	                       </p>
@@ -326,7 +336,7 @@ $(function(){
 						   </c:if>
 						   
 						   
-						   <c:if test="${Adto.alram_type=='retweet'}">을
+						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='retweet'}">을
 						   		리트윗하셨습니다!
 		                    </div>
 	                         <div class="photo-frame">
@@ -336,7 +346,7 @@ $(function(){
 						   </c:if>
 						   
 						   
-						   <c:if test="${Adto.alram_type=='like'}">의
+						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='like'}">의
 							게시물을
 						   	좋아합니다.
 		                    </div>
@@ -348,7 +358,7 @@ $(function(){
 						   </c:if>
 						   <span class="material-icons Xicon" >highlight_off</span>
                      <div class="Xcontent">
-					      <a class="alramDelect" data-bs-toggle="modal" data-bs-target="#DeleteModal">알림삭제</a>
+					    <a class="alramDelect" data-bs-toggle="modal" data-bs-target="#DeleteModal">알림삭제</a>
 					    <a class="alramBan" data-bs-toggle="modal" data-bs-target="#BanModal">알림차단</a>
                      </div>
                   </div>	

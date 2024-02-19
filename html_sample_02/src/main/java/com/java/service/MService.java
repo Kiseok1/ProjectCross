@@ -11,10 +11,10 @@ import com.java.dto.MessageDto;
 public interface MService {
 
 	//받은 쪽지 전체 가져오기
-	ArrayList<MessCrossMediaDto> receiveAll();
+	ArrayList<MessCrossMediaDto> receiveAll(String id);
 
 	//보낸 쪽지 전체 가져오기
-	List<MessCrossMediaDto> sendAll();
+	List<MessCrossMediaDto> sendAll(String id);
 
 	//검색 결과 가져오기
 	List<Cross_userDto> searchAll(String input);

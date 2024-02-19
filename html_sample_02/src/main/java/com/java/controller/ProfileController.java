@@ -171,6 +171,7 @@ public class ProfileController {
 		
 		session.setAttribute("your_id", user_id); 			
 		String your_id = (String)session.getAttribute("your_id");
+
 		String id = (String) session.getAttribute("session_id");
 		//본인 정보 가져오기
 		Cross_userDto udto = pService.selectOne(id);

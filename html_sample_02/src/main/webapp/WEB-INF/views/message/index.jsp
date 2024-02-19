@@ -81,11 +81,12 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 	             $('.welcom').hide();
 	             $('.post').show();
 	         }); 
-       		
+
        		 //click하지 않았을때는 post를 숨기고 .welcom 보이기
 	        $(document).click(function(e) {
 	             if (!$(e.target).is('input[type="search"]')) {
 	                 $('.welcom').show();
+	                 $('.group').hide();
 	                 $('.post').hide(); 
 	             }
 	         }); 
@@ -118,8 +119,91 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         <!-- 검색 ajax -->
         <script>
-        	
-        	
+        /*index 모달에 데이터 넣기*/		
+        $(document).on('click', '.post', function() {
+            // 클릭된 요소에서 필요한 데이터 추출
+            var user_id = $(this).closest(".post").attr('id');
+            
+            // 모달에 데이터 채우기
+            
+            // 모달 보이기
+            /* 유저 정보 모달창 ajax  */
+            $.ajax({
+                url: "/message/UserData",
+                type: "post",
+                data: { "user_id": user_id },
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    $(".sender").children().attr("src","/upload/"+data.profile_img);
+                    $("#name").text("@"+data.user_id);
+                    $("#name1").val(data.user_id);
+                    
+                    $('#messageModal').modal('show');
+                },
+                error: function() {
+                    alert("실패");
+                }
+            });
+        });
+		
+        $(function(){
+        	 var prev_data = "";
+        	 var initialDataLoaded = false; // 처음 데이터를 받았는지 여부를 나타내는 변수
+            $("#searchResults").on("click", ".check", function(event) {
+                var user_id = $(this).closest(".post").attr('id');
+                alert(user_id);
+               
+                // 데이터가 로드되지 않은 경우, AJAX 요청을 보냄
+                $.ajax({
+                    url: "/message/UserData",
+                    type: "post",
+                    data: { "user_id": user_id },
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        if (data) { // 단일 객체로 데이터를 받음
+                            var item = data; // 단일 객체이므로 item에 할당
+							
+                            var userDataHtml = '<div id="' + item.user_id + '_data">';
+                            userDataHtml += '<div class="profile-image" style="overflow: hidden; height: 40px; width: 40px; border-radius: 50%; position: relative; left: 5px; top: 3px;">';
+                            userDataHtml += '<img src="/upload/' + item.profile_img + '" style="width: 40px; height: 40px; position: relative; right: 1px; border-radius: 50%;"></div>';
+                            userDataHtml += '<div class="body" style="position: relative; bottom: 36px; left: 50px;">';
+                            userDataHtml += '<span class="header-icon-section" style="position: relative; right: 3px font-size: 10px;">@' + item.name + '';
+                            userDataHtml += '</span>';
+                            userDataHtml += '<h3 style="font-size: 12px;">' + item.user_id + '';
+                            userDataHtml += '<span class="material-icons badge" style="font-size: 12px; color: #BA68C8; position: relative; right: 5px; top: 3px;">verified</span>';
+                            userDataHtml += '</h3>';
+                            userDataHtml += '</div>';
+                            userDataHtml += '</div>';
+                            userDataHtml += '</div>';
+
+                            // 새로운 데이터를 옆으로 추가
+                            if (!initialDataLoaded) {
+                                $(".group").append(userDataHtml); // 처음 데이터를 추가
+                                $(".group").css("display","flex");
+                            } else {
+                                $(".group").append(userDataHtml);
+                                console.log(userDataHtml);
+                            }
+
+                            $(".group").show();
+                            initialDataLoaded = true;
+                        } else {
+                            $(".group").hide();
+                        }
+                    },
+                    error: function() {
+                        alert("실패");
+                    }
+                });
+
+                // .check 클릭 이벤트가 .post 클릭 이벤트를 중지시킴
+                event.stopPropagation();
+            });
+        });
+
+
         </script>
         
         <!-- 검색 -->
@@ -127,8 +211,11 @@ pre{    white-space: pre-wrap;    background: #EEE;}
          <form class="w-100 me-3" role="search" name="search">
            <input style="width: 70%; margin-left: 10px; height: 30px; margin-bottom: 10px; margin-top: 10px;" type="search" class="form-control" placeholder="검색" aria-label="Search" name="searchInput" id="searchInput">
          </form>
+         <span class="material-symbols-outlined add">person_add</span>
         </div>
         <!-- 쪽지 쓰기 버튼 구성 -->
+		<div class="group" style="display:none; width: 97%; margin-left: 10px; height: 48px; margin-bottom: 5px; color: #212529; background-color: #fff; border: 1px solid #ced4da; border-radius: 0.25rem;">
+		</div>
 		<div class="welcom">
 			<span class="material-icons" style="font-size: 50px; padding: 20px; color:#BA68C8">
 				sentiment_satisfied_alt
