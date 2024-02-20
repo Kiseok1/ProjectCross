@@ -73,16 +73,15 @@ public class MessageController {
 		mService.mInsert(mdto2);
 		return "/message/index";
 	}
-
-	@PostMapping("/message/Group")
-	@ResponseBody
-	public String group(List<MultipartFile> files, String formData) throws Exception {
-		
+	
+	@PostMapping("/Group")//게시글 저장하기
+	public String group(MessageDto mdto, MediaDto mdto2,
+			List<MultipartFile> files_g, Model model) throws Exception{
 		String orgName = "";
 		String newName = "";
 		String mergeName = "";
 		int i=0;
-		for(MultipartFile file:files) {
+		for(MultipartFile file:files_g) {
 			//파일 첨부하기
 			orgName = file.getOriginalFilename();
 			System.out.println("MessageController 파일첨부 이름 : "+ orgName);
@@ -97,10 +96,24 @@ public class MessageController {
 			else mergeName += ","+time+"_"+orgName;
 			i++;
 		}
-		System.out.println("dddddd"+formData);
 		
-		return "성공";
+		//게시글&파일 저장
+		mdto2.setFile_name(mergeName); //파일이름을 MediaDto에 저장시킴
+		System.out.println("MessageController 최종 파일첨부 이름 : "+mergeName);
+		
+		//db연결
+		System.out.println("target id : "+mdto.getTarget_id());
+		String[] target_ids = mdto.getTarget_id().split(",");
+		for(i=0;i<target_ids.length;i++) {
+			mdto.setTarget_id(target_ids[i]);
+			mdto.setSource_id((String)session.getAttribute("session_id"));
+			mService.mInsert2(mdto);
+			mService.mInsert(mdto2);
+		}
+		return "/message/index";
 	}
+	
+
 	
 	@PostMapping("/search")//검색 결과 가져오기
 	@ResponseBody
@@ -129,9 +142,11 @@ public class MessageController {
 	@RequestMapping("/head")
 	public String head(Model model) {
 		//답글 모두 가져오기
+
 		ArrayList<MessCrossMediaDto> list = mService.receiveAll((String)session.getAttribute("session_id"));
 		 // list가 비어있는지 여부에 따라 result 설정
 	    model.addAttribute("list", list);
+
 		
 		return "/message/head";
 	}

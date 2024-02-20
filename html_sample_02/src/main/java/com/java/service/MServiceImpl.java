@@ -84,8 +84,7 @@ public class MServiceImpl implements MService {
 	}
 	@Override
 	public void mInsert2(MessageDto mdto) {
-		messageMapper.mInsert2(mdto);
-		
+			messageMapper.mInsert2(mdto);
 		
 	}
 

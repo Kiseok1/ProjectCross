@@ -42,7 +42,6 @@ public interface MessageMapper {
 	void deleteMedia(int msg_id);
 
 	//메시지 저장하기
-	
 	void mInsert2(MessageDto mdto);
 	void mInsert(MediaDto mdto2);
 

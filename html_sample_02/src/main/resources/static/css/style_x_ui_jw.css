@@ -7,6 +7,13 @@
  * Author: sajith dilshan <sajithd784@gmail.com>
  */
 
+.gx {
+    position: relative;
+    font-size: 15px; 
+    left: 5px;
+} 
+.gx.hover {visibility:hidden;}
+.profile-image:hover ~ .gx.hover {visibility:visible;}
 
 .add{
 	font-size: 34px;
