@@ -39,16 +39,34 @@ html{
     text-align: center;
     text-decoration: none;
     border-radius: 25px;
-    background-color: var(--twitter-theme-color);
+    background-color: lightpink;
     color: #fff;
     cursor: pointer;
-    border-color: var(--twitter-theme-color);
+    border-color: pink;
    
 }
 
+.UnBanBtn{
+	position: relative;
+    left: 380px;
+    bottom: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    background-color: lightpink;
+    color: #fff;
+    cursor: pointer;
+    border-color: pink;
+}
+
+
+
 .nav_logo{
-    width: 70px;
-   /*  height: 50px; */
+    width: 50px;
+    height: 50px;
     color: var(--twitter-theme-color);
     fill: currentColor;
 }
@@ -68,6 +86,32 @@ html{
     align-items: center;
     cursor: pointer;
     height:50px;
+}
+
+.Alram_options{
+	display: flex;
+    align-items: center;
+    cursor: pointer;
+    height:50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.Alram_options h2{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+    
+    
+}
+
+.form-check{
+	font-size: 30px;
+	margin-bottom: 5px;
+}
+
+.form-check-input{
+	cursor: pointer;
 }
 
 .Menu_options .material-icons{
@@ -146,9 +190,16 @@ main{
     scrollbar-width: none;
 
 }
+.headeralram{
+	display: flex;
+}
 
-.header{
+.headeralram h2{
+	margin-left: 170px;
+}
 
+
+.header_alram{
     position: sticky;
     width:600px;
     top: 0;
@@ -171,7 +222,7 @@ main::-webkit-scrollbar{
 
 }
 
-.header h2{
+.header_alram h2{
     font-weight: bold;
     font-size: 20px;
 }
@@ -224,14 +275,14 @@ main::-webkit-scrollbar{
     margin-left: 5px; 
 }
 
-.alram_post_profile-image img{
+.post_profile-image img{
     border-radius: 50%;
     height: 40px;
     width:40px;
 
 }
 
-.alram_post{
+.post{
     display: flex;
     align-items: flex-start;
     border-bottom: 1px solid var(--twitter-background-color);
@@ -301,7 +352,6 @@ main::-webkit-scrollbar{
 
 .dropdown .material-icons {
 	font-size: 35px;
-	color: var(--twitter-theme-color);
 }
 
 .dropdown_bar {
@@ -349,8 +399,8 @@ main::-webkit-scrollbar{
     --bs-gutter-x: 0.1rem;
     }
 .profile-name {
-	/* margin-left: 4px;
-	margin-right: 4px; */
+	margin-left: 4px;
+	margin-right: 4px;
 }    
     
 .profile-follow {
@@ -387,6 +437,11 @@ main::-webkit-scrollbar{
 .noCheck{
 	font-weight: 700;
 }
+.yesCheck{
+	font-weight: 500; 
+	
+}
+
 
 
 .like{
@@ -407,7 +462,7 @@ main::-webkit-scrollbar{
     cursor:pointer;
     width:20px;
     display:none;
-    color:var(--twitter-theme-color);
+    color:red;
 }
 
 #view-box{
@@ -419,8 +474,8 @@ main::-webkit-scrollbar{
 
 .Xcontent{
 	position: relative;
-	left:350px;
-	z-index: 1;
+	z-index:1;
+	left:360px;
 	bottom:65px;
     display: none;
     margin-top: 5px;
@@ -530,7 +585,7 @@ main::-webkit-scrollbar{
 
 }
 
-.alram_post_profile-image{
+.post_profile-image{
     padding: 20px;
 }
 

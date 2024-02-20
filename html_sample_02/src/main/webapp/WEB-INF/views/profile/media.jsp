@@ -32,6 +32,7 @@
     <link rel='stylesheet' type='text/css' href='/css/profile.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/style_x_ui.css">
+        
 </head>
 
 <body>
@@ -39,7 +40,7 @@
 		style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-line-color);">
 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
 	 <div class="middlecontainer" >
-   	<%@ include file="/WEB-INF/views/profile/your_main.jsp" %>
+   	<%@ include file="/WEB-INF/views/profile/main.jsp" %>
    			<section class="tweets">
                <div class="heading">
                    <div class="heading_content">게시물</div>
@@ -48,18 +49,66 @@
                    <div class="heading_like">마음에 들어요</div>
                </div>
            	</section>
-            <section class="media_main">
+            <%-- <section class="media_main">
               <div class="media_sub">
-				<div class="media_box_1"><img src="/images/2.jpg"></div>		               
+				<div class="media_box_1"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>		               
 				<div class="media_box_2"><img src="/images/img11.jpg"></div>		               
 				<div class="media_box_3"><img src="/images/trip01.jpg"></div>		               
               </div>
               <div class="media_sub">
 				<div class="media_box_1"><img src="/images/lang1.jpg"></div>		               
-				<div class="media_box_2"><!-- <img src="/upload/img11.jpg"> --></div>		               
+				<div class="media_box_2"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		               
 				<div class="media_box_3"><!-- <img src="/upload/trip01.jpg"> --></div>		               
               </div>
-           </section>
+           </section> --%>
+           
+           <div class="media_sub">
+           <!-- media 테이블 하나에 이미지 파일 하나 -->
+           <%-- <c:forEach var="pmuDto" items="${list}" varStatus="stat">
+           		<c:set var="index" value="${stat.count}" />
+           		<c:if test="${index%3!=0}">
+           			<c:if test="${pmuDto.mediaDto.file_type!='mp4'}">
+           				<div class="media_box_${index%3}"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>		
+           			</c:if>
+           			<c:if test="${pmuDto.mediaDto.file_type=='mp4'}">
+           				<div class="media_box_${index%3}"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+           			</c:if>
+           		</c:if>
+           		<c:if test="${index%3==0}">
+           			<c:if test="${pmuDto.mediaDto.file_type!='mp4'}">
+           				<div class="media_box_3"><img src="/upload/${pmuDto.mediaDto.file_name}"></div>
+           			</c:if>
+           			<c:if test="${pmuDto.mediaDto.file_type=='mp4'}">
+           				<div class="media_box_3"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+           			</c:if>
+           			</div>
+           			<div class="media_sub">
+           		</c:if>
+           </c:forEach> --%>
+           
+           <!-- media 테이블 하나에 이미지 파일 여러개 split으로 분류 -->
+           <c:forEach var="flist" items="${flist}" varStatus="stat">
+           		<c:if test="${stat.count%3!=0}">
+	           		<c:if test="${fn:contains(flist,'mp4')}">
+						<div class="media_box_${stat.count%3}"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+					</c:if>
+					<c:if test="${!fn:contains(flist,'mp4')}">
+						<div class="media_box_${stat.count%3}"><img src="/upload/${flist}"></div>	
+					</c:if>
+           		</c:if>
+           		<c:if test="${stat.count%3==0}">
+	           		<c:if test="${fn:contains(flist,'mp4')}">
+						<div class="media_box_3"><video controls loop muted preload="auto" src="/video/video01.mp4"></div>		
+					</c:if>
+					<c:if test="${!fn:contains(flist,'mp4')}">
+						<div class="media_box_3"><img src="/upload/${flist}"></div>	
+					</c:if>
+					</div>
+           			<div class="media_sub">
+           		</c:if> 
+           </c:forEach> 
+          
+           </div>
        </div>
       </div>
 </body>

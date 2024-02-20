@@ -23,6 +23,7 @@
 
 
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b32a90eb17eb21978aacd0882239ee95&libraries=services"></script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -308,368 +309,6 @@
 
 
 
-
-	<!-- <div class="post" style="position: relative;">
-
-				<div class="post_profile-image rounded-5">
-					<img class="" src="images/profile01.jpg" alt="profile">
-					<div style="position: absolute; height: 100%; width: 80px;"></div>
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text" style="">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>24.01.01</h3>
-							</div>
-							<div class="dropdown dropBtn">
-
-								<div class="dropdown-toggle" type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-
-									<span class="material-icons mateBtn">more_horiz</span> <span
-										class="visually-hidden">Toggle Dropdown</span>
-								</div>
-								<ul class="dropdown-menu dropdown-link-active-bg">
-									<li><a class="dropdown-item" href="#">삭제하기</a></li>
-
-								</ul>
-
-							</div>
-
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-
-					<div class="container">
-						<div class="row row-cols-auto ">
-							<div class="col-md-auto img-lg rounded-4">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto img-lg rounded-4">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal"
-							data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons bookmark">bookmark_border</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-			</div>
-
-
-
-
-			<div class="post">
-				<div class="post_profile-image">
-					<img src="images/menu01.png" alt="profile">
-
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>등록일</h3>
-							</div>
-							<div class="dropdown dropBtn">
-
-								<div class="dropdown-toggle" type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-
-									<span class="material-icons mateBtn">more_horiz</span> <span
-										class="visually-hidden">Toggle Dropdown</span>
-								</div>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">팔로우하기</a></li>
-									<li><a class="dropdown-item" href="#">차단하기</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-					<div class="container img-sm">
-						<div class="row row-cols-auto">
-							<div class="col-md-auto">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-						</div>
-
-						<div class="row row-cols-auto">
-							<div class="col-md-auto">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-						</div>
-					</div>
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal"
-							data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons bookmark">bookmark_border</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-			<div class="post">
-				<div class="post_profile-image">
-					<img src="images/menu01.png" alt="profile">
-
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>등록일</h3>
-							</div>
-							<div class="dropdown dropBtn">
-
-								<div class="dropdown-toggle" type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-
-									<span class="material-icons mateBtn">more_horiz</span> <span
-										class="visually-hidden">Toggle Dropdown</span>
-								</div>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Action</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-					<div class="container">
-						<div class="row row-cols-auto">
-							<div class="col-md-auto img-md rounded-4">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-							<div class="col-md-auto">
-								<div class="row row-cols-auto">
-									<div class="col-md-auto img-sm">
-										<img src="images/post-image.jpeg" class="rounded "
-											alt="java18" data-bs-toggle="modal"
-											data-bs-target="#exampleModal"
-											data-bs-whatever="images/post-image.jpeg">
-									</div>
-								</div>
-								<div class="row row-cols-auto">
-									<div class="col-md-auto img-sm">
-										<img src="images/post-image.jpeg" class="rounded "
-											alt="java18" data-bs-toggle="modal"
-											data-bs-target="#exampleModal"
-											data-bs-whatever="images/post-image.jpeg">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal"
-							data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat ">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite_border</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons bookmark">bookmark_border</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
-
-
-
-
-
-
-			<div class="post">
-				<div class="post_profile-image">
-					<img src="images/menu01.png" alt="profile">
-
-				</div>
-
-				<div class="post_body">
-					<div class="post_header">
-						<div class="post_header-text">
-							<h3>
-								Java <span class="header-icon-section"> <span
-									class="material-icons post_badge">verified</span>@java
-								</span>
-							</h3>
-							<div style="margin-left: 1rem; text-align: center;">
-								<h3>등록일</h3>
-							</div>
-							<div class="dropdown dropBtn">
-
-								<div class="dropdown-toggle" type="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-
-									<span class="material-icons mateBtn">more_horiz</span> <span
-										class="visually-hidden">Toggle Dropdown</span>
-								</div>
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Action</a></li>
-									<li><a class="dropdown-item" href="#">Action</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="post_header-discription"
-							onclick="location.href='viewContent'">
-							<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
-							<br>
-							<p>
-								Download now: https://social.ora.cl/6012KoqQ0 <br> Release
-								notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
-								https://social.ora.cl/6015KoqQN <br> Features:
-								https://social.ora.cl/6016KoqQ4 <br>
-							</p>
-						</div>
-
-					</div>
-
-					<div class="container">
-						<div class="row row-cols-auto ">
-							<div class="col-md-auto img-xl rounded-4">
-								<img src="images/post-image.jpeg" class="rounded " alt="java18"
-									data-bs-toggle="modal" data-bs-target="#exampleModal"
-									data-bs-whatever="images/post-image.jpeg">
-							</div>
-
-						</div>
-					</div>
-
-
-					<div class="post_footer">
-
-						<span class="material-icons ms_icons" data-bs-toggle="modal"
-							data-bs-target="#writeModal">chat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons repeat">repeat</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons favorite">favorite</span>
-						<h3>100</h3>
-						<span class="material-icons ms_icons bookmark">bookmark</span>
-						<h3>100</h3>
-
-
-					</div>
-
-				</div>
-
-			</div>
- -->
-
-
 	<!-- Modal -->
 
 
@@ -706,9 +345,8 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
-				<form id="modalForm" action="/modalSendPost" method="post"
-					enctype="multipart/form-data">
-					<div id="modal_hidden"></div>
+				<form id="modalForm" action="/modalSendPost" method="post" enctype="multipart/form-data">
+				<div id="modal_hidden"></div>
 					<div class="modal-body">
 						<div class="tweet_box">
 
@@ -716,8 +354,7 @@
 								<div id="modal_text-area" class="rounded"
 									style="position: relative;">
 
-									<textarea rows="" cols="" class="content" id="modal_write-box"
-										name="pcontent"
+									<textarea rows="" cols="" class="content" id="modal_write-box" name="pcontent"
 										style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
 									<div id="modal_position_wrap" class="invis">
 										<div id="position-area" style="display: flex;">
@@ -729,10 +366,7 @@
 
 								</div>
 
-
 							</div>
-
-
 
 						</div>
 
@@ -742,15 +376,13 @@
 
 
 							<label for="modalFile" id="modalImgBtn"
-								class="btn btn-sm btn-dark">사진등록</label> <input type="file"
-								name="files" id="modalFile" multiple="multiple"> <label
-								for="modalRegPosition" id="modalregBtn"
+								class="btn btn-sm btn-dark">사진등록</label> 
+								<input type="file" name="files"	id="modalFile" multiple="multiple"> 
+								<label for="modalRegPosition" id="modalregBtn"
 								class="btn btn-sm btn-dark" data-bs-toggle="modal"
 								data-bs-target="#locationModal2" data-bs-whatever="Test">위치등록</label>
-							<input type="hidden" class="btn btn-sm btn-dark"
-								id="modalRegPosition" name="plocation">
-							<button id="modal_write-btn"
-								class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
+							<input type="hidden" class="btn btn-sm btn-dark" id="modalRegPosition" name="plocation">
+							<button id="modal_write-btn" class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
 
 
 						</div>
@@ -760,11 +392,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
 
 
 
@@ -783,88 +410,17 @@
 
 					<div class="mb-3">
 						<label for="recipient-name" class="col-form-label ">검색:</label> <input
-							type="text" class="form-control" id="locSearch"
+							type="text" class="form-control" id="locSearch2"
 							data-bs-keyboard="false">
 					</div>
 					<div class="mb-3">
 						<label for="message-text" class="col-form-label  ">검색 결과:</label>
 						<div style="">
 
-							<div class="container text-center locArray"
+							<div id="placesList2" class="container text-center locArray"
 								style="overflow-y: scroll; height: 100px;">
 
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation1">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation2">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation3">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation4">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation5">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation5">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation6">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation7">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation8">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation9">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
+								<!-- 키워드 검색결과 출력 -->
 							</div>
 
 						</div>

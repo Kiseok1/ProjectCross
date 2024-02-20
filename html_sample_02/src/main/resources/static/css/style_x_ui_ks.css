@@ -32,7 +32,7 @@ html{
 
 .nav_logo{
     width: 50px;
-    height: 50px;
+    /* height: 50px; */
     color: var(--twitter-theme-color);
     fill: currentColor;
 }
@@ -216,11 +216,20 @@ main::-webkit-scrollbar{
 
 
 .post_body .img-sm img{
-    width: 180px;
-    object-fit: contain;
+    width: 230px;
+    height : 129px;
+    object-fit: cover;
     border-radius: 20px;
 
 }
+
+.post_body .img-sm_0 img{
+    width: 230px;
+    height:129px;
+    object-fit: cover;
+    border-radius: 20px;
+
+} 
 
 .post_body .img-md{
 	
@@ -231,10 +240,29 @@ main::-webkit-scrollbar{
     margin-right:calc(var(--bs-gutter-x));
 }
 
+.post_body .img-md_0 img{
+    width: 230px;
+    height:262px;
+    object-fit: cover;
+    border-radius: 20px;
+
+} 
+
 .post_body .img-lg{
 	
 	width: 180px;
 	height : 200px;
+    position: relative;
+    overflow: hidden;
+    margin-left:calc(var(--bs-gutter-x)*0.5);
+    margin-right:calc(var(--bs-gutter-x)*0.5);
+
+}
+
+.post_body .img-lg_0{
+	
+	width: 230px;
+	height : 180px;
     position: relative;
     overflow: hidden;
     margin-left:calc(var(--bs-gutter-x)*0.5);
@@ -277,6 +305,18 @@ main::-webkit-scrollbar{
     transform: translate(-50%, -50%);
 
 }
+
+.post_body .img-lg_0 img{
+    width: 360px;
+    height:200px;
+    object-fit: cover;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+} 
 
 
 .post_body .img-md img{
@@ -330,9 +370,9 @@ main::-webkit-scrollbar{
 
 }
 
-.post_profile-image{
+/* .post_profile-image{
     padding: 20px;
-}
+} */
 
 
 /* == aside  */

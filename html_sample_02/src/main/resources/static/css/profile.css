@@ -544,6 +544,10 @@ figure:hover {
 	width:194px; height: 194px; 
 }
 
+.media_box_1 video{
+	width:194px; height: 194px; 
+}
+
 .media_box_2{
 	width: 194px; height: 194px; /* border: solid 1px blue; */ box-sizing: border-box; margin-left: 4px;
 }
@@ -552,11 +556,19 @@ figure:hover {
 	width:194px; height: 194px; 
 }
 
+.media_box_2 video{
+	width:194px; height: 194px; 
+}
+
 .media_box_3{
 	width: 194px; height: 194px; /* border: solid 1px green;  */box-sizing: border-box; margin-left: 4px;
 }
 
 .media_box_3 img{
+	width:194px; height: 194px; 
+}
+
+.media_box_3 video{
 	width:194px; height: 194px; 
 }
 

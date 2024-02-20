@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- MemberMapper.java 연결 -->
+<mapper namespace="com.java.mapper.MessageMapper">
+	
+	<!-- 받은 쪽지 전체 가져오기 messCrossDto-->
+	<select id="receiveAll" resultMap="messCrossMediaDto">
+		 select message.*, cross_user.name, cross_user.profile_img from message,cross_user where message.source_id = cross_user.user_id and message.target_id=#{id} order by message.created desc		 
+	</select>
+
+	<!-- 받은 쪽지 하나 가져오기 messCrossDto-->
+	<select id="receiveOne" resultMap="messCrossMediaDto">
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.source_id = cross_user.user_id left join media on message.msg_id = media.msg_id where message.msg_id = #{msg_id}		 		 
+	</select>
+
+	<!-- 보낸 쪽지 전체 가져오기 messCrossDto-->
+	<select id="sendAll" resultMap="messCrossMediaDto">
+		 select message.*, cross_user.name, cross_user.profile_img from message,cross_user where message.target_id = cross_user.user_id and message.source_id=#{id} order by message.created desc		 
+	</select>
+
+	<!-- 보낸 쪽지 하나 가져오기 messCrossDto-->
+	<select id="sendOne" resultMap="messCrossMediaDto">
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.target_id = cross_user.user_id left join media on message.msg_id = media.msg_id where message.msg_id = #{msg_id}		 
+	</select>
+
+	<!-- 검색 전체 가져오기 messCrossDto-->
+	<select id="searchAll" resultType="com.java.dto.Cross_userDto">
+		 select * from cross_user where user_id like '%'||#{input}||'%' or name like '%'||#{input}||'%' 	 
+	</select>
+
+	<!-- 보낸글 선택삭제하기 messCrossDto-->
+	<delete id="deleteMSelect">
+		delete message where msg_id = #{msg_id}
+	</delete>
+	<delete id="deleteMedia">
+		delete media where msg_id = #{msg_id}
+	</delete>
+	
+	<insert id="mInsert2">
+		insert into message values(message_seq.nextval,#{source_id},#{target_id},#{mcontent},0,sysdate)
+	</insert>
+	
+	<insert id="mInsert">		
+		insert into media values(media_seq.nextval, null,message_seq.currval,#{file_name},'null',0,sysdate,sysdate)
+	</insert>
+	
+	<update id="checkUpdate">
+		 update message set checked = 1 where msg_id=#{msg_id}
+	</update>
+	
+	<!-- 검색 받은 쪽지 가져오기 messCrossDto-->
+	<select id="search2" resultMap="messCrossMediaDto">
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.source_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.target_id='ccc' and (message.source_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
+	</select>
+
+	<!-- 검색 보낸 쪽지 가져오기 messCrossDto-->
+	<select id="search3" resultMap="messCrossMediaDto">
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.target_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.source_id='ccc' and (message.target_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
+	</select>
+	
+	<select id="UserData" resultType="com.java.dto.Cross_userDto">
+		select * from cross_user where user_id = #{user_id}
+	</select>
+	
+	
+	<!--resultMap 1.message선언 2.cross_user선언 3.합친것 선언 -->
+    <resultMap type="com.java.dto.MessCrossMediaDto" id="messCrossMediaDto">
+		<collection property="messageDto" resultMap="messageDtoMap" ></collection>
+		<collection property="cross_userDto" resultMap="cross_userDtoMap" ></collection>
+		<collection property="mediaDto" resultMap="mediaDtoMap" ></collection>
+    </resultMap>
+     <!-- 1.message선언 -->
+    <resultMap type="com.java.dto.MessageDto" id="messageDtoMap">
+		<result column="msg_id" property="msg_id" />    
+		<result column="source_id" property="source_id" />    
+		<result column="target_id" property="target_id" />    
+		<result column="mcontent" property="mcontent" />    
+		<result column="checked" property="checked" />    
+		<result column="created" property="created" />    
+    </resultMap>
+     <!-- 2.cross_user선언 -->
+    <resultMap type="com.java.dto.Cross_userDto" id="cross_userDtoMap">
+		<result column="user_id" property="user_id" />    
+		<result column="name" property="name" />    
+		<result column="profile_img" property="profile_img" />    
+    </resultMap>
+     <!-- 3.cross_user선언 -->
+    <resultMap type="com.java.dto.MediaDto" id="mediaDtoMap">
+		<result column="msg_id" property="msg_id" />    
+		<result column="file_name" property="file_name" />    
+    </resultMap>
+    
+</mapper>

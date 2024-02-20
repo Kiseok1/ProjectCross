@@ -29,6 +29,7 @@ public class PostDto {
 	private int viewhit18;
 	private Timestamp created;
 	private Timestamp updated;
+	private int quo_post_id;
 	
 	
 	

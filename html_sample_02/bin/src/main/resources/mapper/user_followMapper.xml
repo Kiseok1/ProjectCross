@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.java.mapper.User_followMapper">
+	
+	<insert id="insertFollow1">
+		insert into user_follow values (user_follow_seq.nextval, #{source_id}, #{source_id}, #{target_id}, sysdate, sysdate)
+	</insert>
+	
+	<insert id="insertFollow2">
+		insert into user_follow values (user_follow_seq.nextval, #{target_id}, #{source_id}, #{target_id}, sysdate, sysdate)
+	</insert>
+	
+	<delete id="deleteFollow">
+		delete from user_follow where source_id=#{source_id} and target_id=#{target_id}
+	</delete>
+	
+	<select id="selectFollowInfo">
+		select * from user_follow where source_id=#{id} and target_id=#{your_id} and user_id=#{id}
+	</select>
+ 	
+</mapper>

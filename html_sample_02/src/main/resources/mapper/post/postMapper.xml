@@ -5,7 +5,8 @@
 <mapper namespace="com.java.mapper.PostMapper">
 		
 
- 	
+ 	<!-- 향연 작업 -->
+ 	<!-- (홈) post 등록 -->
 	<insert id="sendPost"  >
 		<selectKey resultType="int" keyProperty="post_id" order="AFTER">
 			select post_seq.currval from dual
@@ -25,6 +26,7 @@
 			)
 	</insert>
 	
+	<!-- (홈) 답글 등록 -->
 	<insert id="sendModalPost"  >
 		<selectKey resultType="int" keyProperty="post_id" order="AFTER">
 			select post_seq.currval from dual
@@ -44,8 +46,10 @@
 			)
 	</insert>
 	
+
+	<!-- (홈) 사용자 포스트 타임라인 불러오기 -->
 	 <select id="getMyTimeline" resultType="com.java.dto.PostDto">
- 		select * from(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc,  created desc) rnum, 
+ 	<!--  select * from(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc,  created desc) rnum, 
  		ff.* from (select 
  		post.post_id, 
  		post.user_id, 
@@ -81,50 +85,81 @@
  		post.created, 
  		post.updated, 
  		post.renote, post.plike) ff) where rnum between 1 and 20
-
+ 		-->
+ 		select * from 
+		(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc) rnum, ff.* from
+		(select  * from (select * from 
+		(select post.post_id, post.user_id, post.pcontent, post.plocation, 
+		post.pgroup, post.pstep, post.pindent, post.hit, 
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, post.updated, post.renote, post.plike from 
+		( select * from user_follow  where source_id=#{id})uf, 
+		(select * from renote where user_id=#{id} )re, post  
+		where post.user_id = uf.target_id or post.user_id=#{id} or post.user_id=re.user_id
+		GROUP BY post.post_id, post.user_id, post.pcontent, post.plocation, 
+		post.pgroup, post.pstep, post.pindent, 
+		post.hit, post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, post.updated, post.renote, post.plike)
+		
+		union all select * from  (select * from 
+		(select post.post_id, post.user_id, post.pcontent, post.plocation, 
+		renote.post_order pgroup, post.pstep, post.pindent, post.hit, 
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, renote.created updated, post.renote, post.plike from 
+		renote inner join post on renote.post_id = post.post_id where renote.user_id = #{id}) repo)) 
+		order by updated desc)ff)
+		where rnum between (20*#{pageCounter})+1  and (20*#{pageCounter})+20
  	</select>
  	
+ 	<select id="getSelectedOne" resultType="com.java.dto.PostDto">
+ 		select * from post where post_id = #{post_id}
+ 	</select>
+ 	
+ 	<!-- 특정포스트(post_id) 타임라인 불러오기 -->
  	<select id="getSelected" resultType="com.java.dto.PostDto">
-
  		select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc, created desc) rnum, a.* from  (select * from post where post_id = #{post_id} or pindent = #{post_id})a
  	</select>
  	
+ 	<!-- 특정포스트 정보 불러오기(view0,view6,...) -->
  	<select id="getSeletedHit" resultType="com.java.dto.PostDto">
-
  		select * from post where post_id=#{post_id}
- 	
  	</select>
- 	
- 	
- 	
+ 
+ 	<!-- 특정포스트 최대step 불러오기 -->
  	 <select id="getMaxStep" resultType="com.java.dto.PostDto">
  		select MAX(pstep) from (select * from post where pgroup = #{post_id})
  	</select>
  	
+ 	<!-- 리트윗 수 가져오기 -->
  	<select id="getRenoteCounter" resultType="int">
  		select count(*) from renote where post_id = #{post_id}
  	</select>
  	
+ 	<!-- 특정포스트 리트윗 정보 불러오기 -->
  	 <select id="getRenote" resultType="com.java.dto.RenoteDto">
  		select * from renote where post_id = #{post_id}
  	</select>
  	
+ 	<!-- 사용자가 특정포스트(post_id)에 리트윗 했는지 여부 -->
  	 <select id="myRenoteCounter" resultType="int">
  		select count(*) from renote where user_id = #{user_id} and post_id= #{post_id}
  	</select>
  	
+ 	<!-- 좋아요 수 가져오기 -->
  	 <select id="getFavorCounter" resultType="int">
  		select count(*) from post_like where post_id = #{post_id}
  	</select>
  	
  	 <select id="getfavor" resultType="com.java.dto.RenoteDto">
- 		select * from post_like where post_id = #{post_id}
+  		select * from post_like where post_id = #{post_id}
  	</select>
  	
+ 	<!-- 사용자가 특정포스트(post_id)에 좋아요 했는지 여부 -->
  	 <select id="myFavorCounter" resultType="int">
  		select count(*) from post_like where user_id = #{user_id} and post_id= #{post_id}
  	</select>
  	
+ 	<!-- 답글 수 가져오기 -->
  	 <select id="getReplyCounter" resultType="int">
  		select count(*) from post where pindent=#{post_id}
  	</select>
@@ -133,18 +168,24 @@
  		select * from post where pindent=#{post_id}
  	</select>
  	
+ 	 <select id="getPostRenote" resultType="int">
+ 		select renote from post where post_id = #{post_id}
+ 	</select>
+ 	
+ 	<select id="getPostFavor" resultType="int">
+ 		select plike from post where post_id = #{post_id}
+ 	</select>
+ 	
 
- 	
- 	
+ 	<!-- 포스트 답글 등록시 기존포스트 step1 증가 -->
  	<update id="upStep">
  		update post set pstep=pstep+1 where pgroup=#{pgroup} and pstep>#{pstep}
  	</update>
  	
+ 	<!-- 노출수 1증가 -->
  	<update id="updateHit">
 		UPDATE post  SET hit = hit+1 where post_id=${post_id}
 	</update>
-	
-	
 	
  	<update id="repeatOn">
 		UPDATE post  SET renote = renote+1 where post_id=${post_id}
@@ -162,13 +203,162 @@
 		UPDATE post  SET plike = plike-1 where post_id=${post_id}
 	</update>
 	
-	
-	
- 	
+ 	<!-- 특정포스트 삭제 -->
  	<delete id="deleteOne">
 		delete from post where post_id=#{post_id}
 	</delete>
+
+
+	<insert id="addRenote">
+		insert into renote values(renote_seq.nextval, #{post_id}, #{user_id},sysdate, post_seq.nextval )
+	</insert>
+	
+	<delete id="delRenote">
+		delete from renote where user_id=#{user_id} and post_id=#{post_id}
+	</delete>
 	
 	
+	<insert id="addLike">
+		insert into post_like values(renote_seq.nextval, #{post_id}, #{user_id},sysdate)
+	</insert>
+	
+	<delete id="delLike">
+		delete from post_like where user_id=#{user_id} and post_id=#{post_id}
+	</delete>
+	
+	
+	
+	<update id="hitViewhit0">
+		UPDATE post  SET viewhit0 = viewhit0+1 where post_id=${post_id}
+	</update>
+	
+	<update id="hitViewhit6">
+		UPDATE post  SET viewhit6 = viewhit6+1 where post_id=${post_id}
+	</update>
+	
+	<update id="hitViewhit12">
+		UPDATE post  SET viewhit12 = viewhit12+1 where post_id=${post_id}
+	</update>
+	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
+	<!-- 정환(기석) 작업 -->
+	<!-- 기본 정보 가져오기 -->
+	<select id="selectDefault" resultMap="pmuDto">
+		select a.*, c.name, c.profile_img, d.file_name, d.file_type
+		from post a 
+		left join cross_user c on a.user_id=c.user_id
+		left join media d on a.post_id=d.post_id
+		where a.user_id=#{id}
+		order by a.created desc
+	</select>	
+	
+	<select id="getMypost">
+		select * from post where user_id=#{id} order by created desc
+	</select>
+	
+	<!-- 좋아요한 글 가져오기 -->
+	<select id="getMylike">
+		select a.*, b.like_id
+		from post a 
+		left join post_like b on a.post_id=b.post_id
+		where b.user_id=#{id}
+		order by a.created desc
+	</select>
+		
+	<!-- 좋아요 선택 plike 1증가 -->
+ 	<update id="likeUp">
+ 		update post set plike=plike+1 where post_id=#{post_id} 
+ 	</update>
+ 	
+ 	<!-- 좋아요 취소 plike 1감소 -->
+ 	<update id="likeDown">
+ 		update post set plike=plike-1 where post_id=#{post_id} 
+ 	</update>
+ 	
+ 	<!-- 미디어 불러오기 -->
+ 	<select id="selectMedia" resultMap="pmuDto">
+ 		select a.*, b.name, b.profile_img, c.post_id,c.media_id, c.file_name, c.file_type 
+		from post a, cross_user b, media c
+		where b.user_id=a.user_id and a.post_id=c.post_id and b.user_id=#{id}
+		order by a.created desc
+ 	</select>
+ 	
+ 	<!-- <select id="selectLikePost" resultMap="pmuDto">
+ 		select distinct a.*, b.name, b.profile_img, c.post_id, c.media_id, c.file_name, c.file_type 
+		from post a, cross_user b, media c, post_like d
+		where b.user_id=d.user_id and a.post_id=c.post_id and b.user_id=#{id} 
+		order by a.created desc
+ 	</select>  -->
+ 	
+ 	<!-- 좋아요한 글 가져오기 -->
+ 	<select id="selectLikePost" resultMap="pmuDto">
+ 		select a.*, b.like_id, c.name, c.profile_img, d.file_name, d.file_type
+		from post a 
+		left join post_like b on a.post_id=b.post_id
+		left join cross_user c on a.user_id=c.user_id
+		left join media d on a.post_id=d.post_id
+		where b.user_id=#{id}
+		order by a.created desc
+ 	</select>
+ 	
+ 	
+ 	<resultMap type="com.java.dto.PostMediaUserDto" id="pmuDto">
+ 		<collection property="postDto" resultMap="postDtoMap"></collection>
+ 		<collection property="cross_userDto" resultMap="cross_userDtoMap"></collection>
+ 		<collection property="mediaDto" resultMap="mediaDtoMap"></collection>
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.java.dto.PostDto" id="postDtoMap">
+ 		<result column="post_id" property="post_id" />
+ 		<result column="user_id" property="user_id" />
+ 		<result column="pcontent" property="pcontent" />
+ 		<result column="plocation" property="plocation" />
+ 		<result column="plike" property="plike" />
+ 		<result column="renote" property="renote" />
+ 		<result column="pgroup" property="pgroup" />
+ 		<result column="pstep" property="pstep" />
+ 		<result column="pindent" property="pindent" />
+ 		<result column="hit" property="hit" />
+ 		<result column="viewhit0" property="viewhit0" />
+ 		<result column="viewhit6" property="viewhit6" />
+ 		<result column="viewhit12" property="viewhit12" />
+ 		<result column="viewhit18" property="viewhit18" />
+ 		<result column="created" property="created" />
+ 		<result column="updated" property="updated" />
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.java.dto.Cross_userDto" id="cross_userDtoMap">
+ 		<result column="name" property="name" />
+ 		<result column="profile_img" property="profile_img" />
+ 	</resultMap>
+ 	
+ 	<resultMap type="com.java.dto.MediaDto" id="mediaDtoMap">
+ 		<result column="post_id" property="post_id" />
+ 		<result column="media_id" property="media_id" />
+ 		<result column="file_name" property="file_name" />
+ 		<result column="file_type" property="file_type" />
+ 	</resultMap>
+ 	
+ 	<!-- ////////////////////////////////////////////////////////////// -->
+ 	
+ 	<!-- 현우.진민 작업 -->
+ 	<select id="selectLike" resultType="com.java.dto.PostDto">
+		select * from post order by plike desc
+	</select>
+	<select id="selectnewest" resultType="com.java.dto.PostDto">
+		select * from post order by updated desc
+	</select>
+	<select id="selectAlluser" resultType="com.java.dto.Cross_userDto">
+		select * from cross_user
+	</select>
+	<select id="selectKeyWord" resultType="com.java.dto.PostDto">
+		select * from (select * from post  order by updated desc) a where pcontent  like '%'||#{keyword}||'%'
+	</select>
+	<select id="selectKeyWord_Like" resultType="com.java.dto.PostDto">
+		select * from (select * from post  order by plike desc) a where pcontent  like '%'||#{keyword}||'%'
+	</select>
+	<select id="selectKeyWord_user" resultType="com.java.dto.Cross_userDto">
+		select * from cross_user where user_id like '%'||#{keyword}||'%' or name like '%'||#{keyword}||'%' or profile_txt like '%'||#{keyword}||'%' 
+	</select>
 	
 </mapper>

@@ -4,9 +4,27 @@
   
 <mapper namespace="com.java.mapper.PostLikeMapper">
 		
+	<!--  -->	
 	<insert id="repeatOn"  >
 		insert into renote (LIKE_ID, POST_ID, USER_ID,CREATED) 
 		values(renote_seq.nextval, #{post_id}, #{user_id}, sysdate)
 	</insert>
+
+	<!--  -->
+	<insert id="likeUp">
+		insert into post_like values (post_like_seq.nextval,#{post_id},#{user_id},sysdate)
+	</insert>
+	
+	<delete id="likeDown">
+		delete from post_like where user_id=#{user_id} and post_id=#{post_id}
+	</delete>
+	
+	<select id="likeCount">
+		select count(*) from post_like where post_id=#{post_id}
+	</select>
+	
+	<select id="selectLike">
+		select * from post_like where user_id=#{id} 
+	</select>
 
 </mapper>

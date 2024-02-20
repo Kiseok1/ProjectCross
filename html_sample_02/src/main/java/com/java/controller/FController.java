@@ -2,11 +2,15 @@ package com.java.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.valves.JsonAccessLogValve;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
+import com.java.dto.Cross_userDto;
 import com.java.dto.MediaDto;
 import com.java.dto.PostDto;
 import com.java.service.MediaService;
@@ -33,12 +39,12 @@ public class FController {
 	@Autowired
 	MediaService mediaService;
 
-	
 	@RequestMapping("/")
 	public String index(Model model) {
 		
 		String url ="/index";
 		String id=null;
+		
 		
 		if(session.getAttribute("session_id")==null)
 		{
@@ -65,7 +71,80 @@ public class FController {
 		
 		
 		return url;
+
+
 	}
+	
+	@PostMapping("/getPostAjax")
+	@ResponseBody
+	public JSONObject getPostAjax(int pageCounter)
+	{
+		JSONObject jobj = new JSONObject();
+		String id=null;
+		System.out.println("pageCounter : "+pageCounter);
+		
+		
+		
+		
+		if(session.getAttribute("session_id")==null)
+		{
+			jobj = null;
+		}
+		else
+		{
+			id= session.getAttribute("session_id").toString();
+			Map<String, Object> map =  postService.getMyTimelineMore(id,pageCounter);
+			
+			
+			
+			
+			JSONArray plist = new JSONArray();
+			JSONArray ulist = new JSONArray();
+			JSONArray mlist = new JSONArray();
+			JSONArray recount = new JSONArray();
+			JSONArray renoted = new JSONArray();
+			JSONArray facount = new JSONArray();
+			JSONArray favorited = new JSONArray();
+			JSONArray replycount = new JSONArray();
+			
+			
+			jobj.put("pageCounter", pageCounter);
+			
+			for(int i = 0 ; i < ((ArrayList<PostDto>)map.get("plist")).size() ; i++)
+			{
+				plist.add(i, ((ArrayList<PostDto>)map.get("plist")).get(i) );
+				ulist.add(i, ((ArrayList<Cross_userDto>)map.get("ulist")).get(i) );
+				mlist.add(i, ((ArrayList<MediaDto>)map.get("mlist")).get(i) );
+				recount.add(i, ((ArrayList<Integer>)map.get("recount")).get(i) );
+				renoted.add(i, ((ArrayList<Integer>)map.get("renoted")).get(i) );
+				facount.add(i, ((ArrayList<Integer>)map.get("facount")).get(i) );
+				favorited.add(i, ((ArrayList<Integer>)map.get("favorited")).get(i) );
+				replycount.add(i, ((ArrayList<Integer>)map.get("replycount")).get(i) );
+			}
+			
+			
+			jobj.put("plist", plist);
+			jobj.put("ulist", ulist);
+			jobj.put("mlist", mlist); 
+			
+			jobj.put("recount", recount); 
+			jobj.put("renoted", renoted);
+			jobj.put("facount", facount); 
+			jobj.put("favorited", favorited);
+			jobj.put("replycount", replycount);
+			
+			
+			jobj.put("user_id",session.getAttribute("session_id").toString());
+			jobj.put("user_profile",session.getAttribute("session_image").toString());
+			jobj.put("user_name",session.getAttribute("session_name").toString());
+			
+
+		}
+		
+		
+		return jobj;
+	}
+	
 	
 	@RequestMapping("/viewContent")
 	public String view(int post_id, Model model) {
@@ -116,8 +195,6 @@ public class FController {
 		JSONObject jobj = new JSONObject();
 		
 		PostDto pdto = postService.getSeletedHit(post_id);
-		
-		
 
 		jobj.put("viewhit0", pdto.getViewhit0());
 		jobj.put("viewhit6", pdto.getViewhit6());
@@ -128,9 +205,8 @@ public class FController {
 		
 		return jobj;
 	}
-	
-	
 
+	
 	@PostMapping("sendPost")
 	@ResponseBody
 	public JSONObject sendPost(PostDto postDto, @RequestPart List<MultipartFile> files, Model model)
@@ -145,7 +221,6 @@ public class FController {
 		String MergeName="";
 		String types ="";
 		int totalsize=0;
-		
 
 		postDto.setUser_id(session.getAttribute("session_id").toString());
 		
@@ -207,18 +282,13 @@ public class FController {
 
 		System.out.println("return Post ID : " + post_id );
 		
-
-		
-		
-
-		
 		jobj.put("post", postDto);
 		jobj.put("files",MergeName);
 		jobj.put("type", types);
 		jobj.put("nof", numberOfFiles);
 		jobj.put("name", session.getAttribute("session_name"));
 		jobj.put("profile",session.getAttribute("session_image"));
-		
+
 		
 		return jobj;
 	}
@@ -303,17 +373,12 @@ public class FController {
 
 		System.out.println("return Post ID : " + post_id );
 		
-
-
-		
-		
 		 jobj.put("post", postDto); 
 		 jobj.put("files",MergeName); 
 		 jobj.put("type", types); 
 		 jobj.put("nof", numberOfFiles); 
 		 jobj.put("name", session.getAttribute("session_name"));
 		 jobj.put("profile",session.getAttribute("session_image"));
-		 
 		
 		return jobj;
 	}
@@ -332,32 +397,32 @@ public class FController {
 	@ResponseBody
 	public int repeatOn(int post_id)
 	{
-		postService.repeatOn(post_id);
-		return 0;
+		int count = postService.repeatOn(post_id);
+		return count;
 	}
 	
 	@PostMapping("repeatOff")
 	@ResponseBody
 	public int repeatOff(int post_id)
 	{
-		postService.repeatOff(post_id);
-		return 0;
+		int count = postService.repeatOff(post_id);
+		return count;
 	}
 	
 	@PostMapping("favoriteOn")
 	@ResponseBody
 	public int favoriteOn(int post_id)
 	{
-		postService.favoriteOn(post_id);
-		return 0;
+		int count = postService.favoriteOn(post_id);
+		return count;
 	}
 	
 	@PostMapping("favoriteOff")
 	@ResponseBody
 	public int favoriteOff(int post_id)
 	{
-		postService.favoriteOff(post_id);
-		return 0;
+		int count = postService.favoriteOff(post_id);
+		return count;
 	}
 	
 	

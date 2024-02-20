@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -15,6 +17,7 @@
 <link rel="stylesheet" href="/css/style_x_ui_jm.css">
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/js/JmModal.js"></script>
 
  <!-- include summernote css/js-->
 
@@ -89,24 +92,19 @@ $(function(){
         }); 
         
 	});
+	
+	
+	
 </script>
                  
 </head>
  <body>
- 
- <div id="view-box">
- 	<%@ include file="/WEB-INF/views/sidebar.jsp" %>
- 	<style>
- 		.Xicon{
- 		display: none;
- 		}
- 	</style>
- <!-- <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
- 
+ <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
+ 	<%@ include file="/WEB-INF/views/sidebar.jsp" %> 
 
-	 <nav style="margin-top: 20px;" >
+	 <!-- <nav style="margin-top: 20px;" >
 	    <div class="nav_logo-wrapper" >
-	    	<img class="nav_logo" src="images/apple.jpg">
+	    	<img class="nav_logo" src="/images/apple.jpg">
         </div>
         
 	 	<div class="profile-wrapper ">
@@ -150,7 +148,7 @@ $(function(){
        
         <div class="Menu_options">
             <span class="material-icons">notifications</span>
-            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">27</span>
+            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">new</span>
         </div>
 
 		 <div class="Menu_options">
@@ -166,18 +164,16 @@ $(function(){
 	 	</div>
 	 </nav> -->
 
-
  <main>
-        <div class="header dropdown">
+        <div class="header_alram dropdown">
              <span class="material-icons">notifications</span>
-             	<span class="material-symbols-outlined dropdown_bar" ="float: right; padding-top: 10px; font-size: 30px;">pending</span>
+             	<span class="material-symbols-outlined dropdown_bar">pending</span>
     	    	 <div class="dropdown_content">
-        		 	<a href="">모두 읽은상태 표시</a>
-        		 	<a href="">알람 설정</a>
+        		 	<a href="alramSet">알람 설정</a>
 			     </div>	
         </div>
 
-        <div class="breadcrmb_div">
+         <div class="breadcrmb_div">
 		  <ul class="nav nav-tabs" id="myTab" role="tablist">
 			  <li class="nav-item" role="presentation">
 			    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="false"
@@ -188,114 +184,166 @@ $(function(){
 			  </li>
 			  <li class="nav-item" role="presentation">
 			    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
-			    onclick="location.href='Mention'">언급</button>
+			    onclick="location.href='alramMention'">언급</button>
+			  </li>
+			  <li class="nav-item" role="presentation">
+			    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
+			    onclick="location.href='alramBanUser'">알람 차단유저</button>
 			  </li>
 		  </ul> 
 		 </div>
-        
-       
-         <div class="alram_post">
-            <div class="alram_post_profile-image">
-					<div class="user">
+		 
+		  <!--삭제 알람 모달창  -->
+		 <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="exampleModalLabel">알림</h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        알람을 삭제하시겠습니까?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" id="yesDelete">예</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="noDelect">아니오</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!--모달창  끝 -->
+			
+		<!--삭제 확인 모달창 --> 
+		 <div class="modal fade" id="DeleteCheckModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">알림</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        알람이 삭제되었습니다.
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+ <!--모달창  끝 -->
+
+		 <!--모달창  -->
+		 <div class="modal fade" id="BanModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h1 class="modal-title fs-5" id="exampleModalLabel">알림</h1>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        해당 유저의 알람을 차단하시겠습니까?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary"  id="yesBan">예</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="noBan">아니오</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+<!--모달창  끝 -->
+
+<!--차단 확인 모달창 --> 
+		 <div class="modal fade" id="BanCheckModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">알림</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        해당유저의 알람이 차단되었습니다.
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+ <!--모달창  끝 -->
+		 
+		<c:forEach var="Adto" items="${list}">
+        <div class="post" id="${Adto.alram_id}">
+            <div class="post_profile-image">
+					<div class="user" id="${Adto.source_id}">
 					</div>
-				</div>
+			</div>
+
             <div class="post_body">
                 <div class="post_header">
                     <div class="post_header-text">
-                        <h3>Java
+                        <h3>${Adto.source_id }
                             <span class="header-icon-section">
                                 <span class="material-icons post_badge">verified</span>@java
-                                <span id="date">1월 18일</span>
                             </span>
                         </h3>
                     </div>
-
-                    <div class="">
+                    <c:if test="${Adto.checked == '0'}">
+                    <div class="noCheck">
+                    </c:if>
+                    <c:if test="${Adto.checked == '1'}">
+                    <div class="yesCheck">
+                    </c:if>
                         <p>
-                           <strong>lets_be_next</strong> 님이 회원님의 게시물을
+                            ${Adto.user_id}님
+						   <c:if test="${Adto.alram_type=='follow'}">을
+						   <div class="name">
+						   		팔로우하기 시작했습니다.
+						   </div>
+		                    </div>
+	                       </p>
+							   <button class="followBtn">팔로우</button>
+						   </c:if>
+						   
+						   <c:if test="${Adto.alram_type=='comment'}">의 게시글에
+						   		댓글을 남겼습니다.
+		                    </div>
+	                       </p>
+							   <div class="photo-frame">
+					        <a href="">
+					        	<img src="/images/page-profile-image.png">
+					        </a>
+					      </div>
+						   </c:if>
+						   
+						   
+						   <c:if test="${Adto.alram_type=='retweet'}">을
+						   		리트윗하셨습니다!
+		                    </div>
+	                         <div class="photo-frame">
+						 		 <span class="large material-icons ms_icons repeat">repeat</span>
+					      	</div>
+                      		 </p>
+						   </c:if>
+						   
+						   
+						   <c:if test="${Adto.alram_type=='like'}">의
+							게시물을
 						   	좋아합니다.
-                       </p>
-                      <div class="like">
-					        <a href="">
-					        </a>
-					      </div>
-                       <span class="material-icons Xicon" >highlight_off</span>
-					<div class="Xcontent">
-					    <a href="#">알림삭제</a>
-					    <a href="#">알림차단</a>
+		                    </div>
+	                       </p>
+						    <div class="like">
+						        <a href="">
+						        </a>
+					      	</div>
+						   </c:if>
+						   <span class="material-icons Xicon" >highlight_off</span>
+                     <div class="Xcontent">
+					     <a class="alramDelect" data-bs-toggle="modal" data-bs-target="#DeleteModal">알림삭제</a>
+					    <a class="alramBan" data-bs-toggle="modal" data-bs-target="#BanModal">알림차단</a>
                      </div>
-                 </div>
-                </div>
-            </div>
+                  </div>	
+               </div>
         </div>
-        <div class="alram_post">
-            <div class="alram_post_profile-image">
-					<div class="user">
-					</div>
-				</div>
+	</c:forEach>
 
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header-text">
-                        <h3>Java
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@java
-                                <span id="date">1월 18일</span>
-                            </span>
-                        </h3>
-                    </div>
-
-                    <div class="">
-                        <p>
-                          <strong>lets_be_next</strong> 님이 댓글을 남겼습니다.
-						  <div class="photo-frame">
-					        <a href="">
-					        	<img src="images/page-profile-image.png">
-					        </a>
-					      </div>
-                       </p>
-					        <span class="material-icons Xicon" >highlight_off</span>
-                      <div class="Xcontent">
-					    <a href="#">알림삭제</a>
-					    <a href="#">알림차단</a>
-                      </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="alram_post">
-            <div class="alram_post_profile-image">
-					<div class="user">
-					</div>
-				</div>
-
-            <div class="post_body">
-                <div class="post_header">
-                    <div class="post_header-text">
-                        <h3>Java
-                            <span class="header-icon-section">
-                                <span class="material-icons post_badge">verified</span>@java
-                                <span id="date">1월 18일</span>
-                            </span>
-                        </h3>
-                    </div>
-
-                    <div class="">
-                        <p>
-                          <strong>lets_be_next</strong> 님이 리트윗하셨습니다!
-						  <div class="photo-frame">
-						  <span class="large material-icons ms_icons1 repeat" style="font-size:50px">repeat</span>
-					      </div>
-                       </p>
-					        <span class="material-icons Xicon" >highlight_off</span>
-                      <div class="Xcontent">
-					    <a href="#">알림삭제</a>
-					    <a href="#">알림차단</a>
-                      </div>
-                </div>
-            </div>
-        </div>
-        </div>
     </main>
     <!-- main section end -->
     

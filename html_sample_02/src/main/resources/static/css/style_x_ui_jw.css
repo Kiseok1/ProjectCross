@@ -7,6 +7,35 @@
  * Author: sajith dilshan <sajithd784@gmail.com>
  */
 
+.add{
+	font-size: 34px;
+	position: relative;
+    right: 150px;
+    color: #BA68C8;
+}
+
+.add:hover {
+  background-color: #F3E5F5; /* 마우스 호버 시 색상 변경 */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#message_wrap{
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--twitter-line-color);
+    padding-bottom: 10px;
+    
+ 
+}
+
+#message_wrap:hover{
+ 	background-color: #F3E5F5;
+ 	color: #BA68C8;
+ 
+}
+
+
  @font-face {
     font-family: "TwitterChirp";
     src: url("../fonts/chirp-regular-web.woff") format("woff2"),
@@ -30,7 +59,7 @@ html{
 
 .nav_logo{
     width: 50px;
-    /* height: 50px; */
+    height: 50px;
     color: var(--twitter-theme-color);
     fill: currentColor;
 }
@@ -156,7 +185,7 @@ main::-webkit-scrollbar{
 
 
 
-.message_tweet_box form{
+.tweet_box form{
     display: flex;
     flex-direction: column;
 }
@@ -175,7 +204,7 @@ main::-webkit-scrollbar{
     outline: none;
 }
 
-.message_tweet_box button{ 
+.tweet_box button{ 
     background-color: var(--twitter-theme-color);
     color: white;
     font-weight: bold;
@@ -245,13 +274,12 @@ main::-webkit-scrollbar{
 	width: 60px;
     height: 60px;
     position: relative;
-    border: 1px solid black;
     color: var(--twitter-theme-color);
     border-radius: 30px;
     left: 5px;
 }
 
-#send_btn{
+#send_btn {
 	background-color: #BA68C8; 
 	border: 1px solid var(--twitter-background-color); 
 	position: relative; 
@@ -261,10 +289,20 @@ main::-webkit-scrollbar{
 	
 }
 
+#Allsend_btn{
+	background-color: #BA68C8; 
+	border: 1px solid var(--twitter-background-color); 
+	width: 100px;
+	font-size: 18px;
+    position: relative;
+    top: 5px; 
+	border-radius: 30px;
+}
+
 .check{
 	position: relative;
     left: 400px;
-    bottom: 60px;
+    bottom: 30px;
     display: none;
     cursor: pointer;
 }
@@ -272,15 +310,17 @@ main::-webkit-scrollbar{
 
 #message-text{
 	width: 470px; 
-	height: 200px; 
+	max-height: 200px; 
 	position: relative; 
 	bottom: 50px;
+	overflow-y: auto; /* 세로 스크롤을 자동으로 추가합니다. */
+	padding-bottom: 15px;
 }
 
 .followBtn{
 	position: relative;
-    left: 350px;
-    bottom: 50px;
+    left: 340px;
+    bottom: 40px;
     padding: 8px 16px;
     font-size: 14px;
     font-weight: bold;
@@ -295,7 +335,7 @@ main::-webkit-scrollbar{
 	
 }
 
-.message_post{
+.post{
     display: flex;
     align-items: flex-start;
     border: 1px solid var(--twitter-background-color);
@@ -406,13 +446,6 @@ main::-webkit-scrollbar{
     margin-top: 4px;
 }
 
-.post_header-discription{
-    margin-bottom: 100px;
-    font-size: 15px;
-    position: relative;
-    height: 50px;
-}
-
 .post_body{ 
     flex: 1;
     padding: 10px;
@@ -422,19 +455,26 @@ main::-webkit-scrollbar{
 
 }
 
-.message_post:hover {
+.message_header-discription{
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+
+
+.post:hover{
     background-color: #F3E5F5; /* 호버 시 배경색 변경 */
     color: #BA68C8; /* 호버 시 글씨 색상 변경 */
    
 }
 
-.message_post.hover {
-    background-color: #F3E5F5; /* 호버 시 배경색 변경 */
-    color: #BA68C8; /* 호버 시 글씨 색상 변경 */
+.post.hovering {
+    background-color:black; /* 호버 시 배경색 변경 */
+    color: white; /* 호버 시 글씨 색상 변경 */
    
 }
 
-.message_post:hover .check{
+.post:hover .check{
     color: #BA68C8; /* 호버 시 글씨 색상 변경 */
     display: inline-block; 
    
@@ -445,7 +485,7 @@ main::-webkit-scrollbar{
     color: #BA68C8; /* 호버 시 빨간색으로 변경 */
 }
 
-.message_profile-image{
+.post_profile-image{
     padding: 20px;
     position: relative;
     right: 10px;
@@ -492,8 +532,8 @@ aside{
 }
 
 
-.message_box-footer {
-    display: block !important; 
+.box-footer{
+    display: block;
     margin-top: 10px;
     height: 40px;
     position: relative;
@@ -503,7 +543,7 @@ aside{
 
 <!--  -->
 
-#message_text-area{
+#text-area{
 	width:550px; 
 	height:350px;
 	border: 1px solid var(--twitter-background-color);
@@ -512,7 +552,7 @@ aside{
 	
 }
 
-#message_text-area img{
+#text-area img{
 	
 }
 
@@ -537,12 +577,6 @@ aside{
 	cursor: pointer;
 }
 
-.post_header-discription:hover {
-	
-	background-color:var(--twitter-background-color);
-	cursor: pointer;
-	
-}
 
 .text-bg-light{
 color: #e6ecf0 !important;
@@ -566,12 +600,6 @@ textarea {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
-.modal_recieveId{
-	margin-top:5px; margin-left: 20px;
-	
-}
-
 
 
 

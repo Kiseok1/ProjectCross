@@ -1,0 +1,273 @@
+/* Copyright © 2022 sajith-dilshan. All Rights Reserved.
+ * This project is licensed under the MIT License.
+ * Please find the license file in the root directory.
+ *
+ * style.css
+ *
+ * Author: sajith dilshan <sajithd784@gmail.com>
+ */
+
+
+ @font-face {
+    font-family: "TwitterChirp";
+    src: url("../fonts/chirp-regular-web.woff") format("woff2"),
+         url("../fonts/chirp-bold-web.woff") format("woff"),
+         url("../fonts/chirp-heavy-web.woff") format("woff");
+}
+
+html{
+    font-family: TwitterChirp, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.menu {
+	text-align: center;
+	width: 100%;
+}
+
+.more_horiz{
+	  position: relative;
+	  left:530px;
+	  bottom: 45px;
+}
+
+.dropdown_main {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+}
+
+.dropdown_bar {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.dropdown_content {
+    position: absolute;
+    left:400px;
+    top:-15px;
+    display: none;
+    margin-top: 5px;
+    width: 180px;
+    background: #E0E0E0;
+    border-radius: 5%;
+    box-shadow: 4px 4px 10px #c5b0b0;
+    animation: fade-in 1s ease;
+}
+
+.dropdown_content a {
+    text-align: left;
+    color: #ffffff;
+    padding: 0.5rem;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+:root{
+    --twitter-theme-color: #50b7f5;
+    --twitter-background-color: #e6ecf0;
+}
+
+
+.popularity_mini{
+	float: left;
+	width: 98px;
+	height: 53px;
+	border: 2px solid black;
+	padding-bottom: 16px;
+	border-radius:15px;
+	padding : 14px 0;
+}
+
+.Latest_mini{
+	float: left;
+	width: 98px;
+	height: 53px;
+	border: 2px solid black;
+	border-radius:15px;
+	padding : 14px 0;
+}
+.user_mini{
+	float:left;
+	width: 98px;
+	height: 53px;
+	border: 2px solid black;
+	border-radius:15px;
+	padding : 14px 0;
+}
+.media_mini{
+	float:left;
+	width: 98px;
+	height: 53px;
+	border: 2px solid black;
+	border-radius:15px;
+	padding : 14px 0;
+}
+
+.popularity_mini:hover {
+	color:white;
+	background: black;
+	
+	
+}
+.Latest_mini:hover {
+	color:white;
+	background: black;
+	
+
+}
+
+
+.follow_btn{
+	font-size:15px;
+	margin-left: 14px;
+		
+}
+
+.aboutme {
+	margin-bottom: 50px;
+}
+
+.follow{
+	background:black;
+	color:white;
+	text-align:right;
+	 display:flex;
+	 border-radius:20px;
+	 margin-left:500px;
+	 margin-right: 30px;
+	 margin-bottom: 30px;
+	 width:76px;
+	 height:32px;
+	 border: 1px solid black;
+}
+
+a{
+	color:black;
+}
+
+a:hover{
+	color:white;
+}
+.user_mini:hover {
+	color:white;
+	background: black;
+}	
+
+.media_mini:hover {
+	color:white;
+	background: black;
+	
+	
+}
+
+
+.Menu_options a{
+	color:black;
+	text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Menu_options a:hover{
+	color: var(--twitter-theme-color);
+	background-color: var(--twitter-background-color);
+	text-decoration: none;
+	border-radius: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.popularity{
+	margin:0 auto;
+	width:530px;
+	height:44px;
+	font-size:25px;
+	font-weight:600;
+	border-radius:20px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.nav_logo{
+    width: 50px;
+   /*  height: 50px; */
+    color: var(--twitter-theme-color);
+    fill: currentColor;
+}
+
+.Menu_options{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Menu_options .material-icons{
+    padding: 20px;
+}
+
+.Menu_options h2{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.Menu_options:hover{
+    background-color: var(--twitter-background-color);
+    border-radius: 30px;
+    color: var(--twitter-theme-color);
+}
+
+.tweet_btn{
+    width: 100%;
+    background-color: var(--twitter-theme-color);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 30px;
+    height: 50px;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+}
+
+/*nav{
+    flex: 0.2;
+    border-right: 1px solid var(--twitter-background-color); 
+    min-width: 250px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+} */
+
+/* == menu section */
+

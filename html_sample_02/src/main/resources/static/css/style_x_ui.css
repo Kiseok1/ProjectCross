@@ -61,8 +61,8 @@ body {
 }
 
 .locSelected, .locSelectedM{
-	font-size: 1.0rem; text-align: right;position: absolute; right: 40px;
-	width:0.5rem;
+	font-size: 1.0rem; text-align: right;
+	width:1rem; height:1rem;
 }
 
 .selected{
@@ -184,7 +184,8 @@ main::-webkit-scrollbar{
 
 .tweet_box-input img{
     height: 45px;
-    
+    /* 추가 */
+    width: 45px;
 }
 
 .tweet_box{
@@ -237,8 +238,10 @@ main::-webkit-scrollbar{
 
 .post_profile-image img{
 
-    width:45px;
-
+    /* width:45px; */
+	/* 추가 */
+    width: 41px;
+	height: 41px;
 }
 
 .post{
@@ -584,4 +587,17 @@ height:200px;
 
 .hitCounters{
 	border-bottom: 1px solid var(--twitter-line-color);
+}
+
+
+.addrHead{
+	
+	overflow: hidden;
+    white-space: nowrap;
+    width: 6rem;
+}
+
+.addrbody{
+	
+	width:18rem;
 }
