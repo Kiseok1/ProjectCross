@@ -120,11 +120,13 @@ public class KakaoController {
 	    //--- 로그인 시켜줌. member 테이블에 id : id, pass: id_1234567890
 	    session.setAttribute("session_id", kaKaoDto.getId());
 	    session.setAttribute("session_name", kaKaoDto.getProperties().getNickname());
+
 	    if(kaKaoDto.getProperties().getProfile_image()!=null) {
 	    	session.setAttribute("session_image", kaKaoDto.getProperties().getProfile_image());	    	
 	    } else {
 	    	session.setAttribute("session_image", "proflie_default.png");
 	    }
+
 
 
 		return "redirect:/";

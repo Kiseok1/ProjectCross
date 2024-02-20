@@ -2,6 +2,7 @@ package com.java.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.java.dto.KakaoDto.Properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,20 +18,25 @@ public class NaverDto {
 	
 	public String resultcode;
 	public String message;
-	public String id;
-	public String nickname;
-	public String name;
-	public String email;
-	public String gender;
-	public String age;
-	public String birthday;
-	public String profile_image;
-	public String birthyear;
-	public String mobile;
-		
-		
-		
+	public Responses response;
 	
+	@Data
+	public class Responses{
+		public String id;
+		public String nickname;
+		public String name;
+		public String email;
+		public String gender;
+		public String age;
+		public String birthday;
+		public String profile_image;
+		public String birthyear;
+		public String mobile;
+		public String mobile_e164;
+		
+	}
+	
+
 		
 
 	

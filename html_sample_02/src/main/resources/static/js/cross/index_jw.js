@@ -114,6 +114,74 @@ $(function() {
 
 		}
 	})
+	
+	$("#file_g").on("change", function(e) {
+	//  console.log(e);
+		//  console.log(e.target.files.length);
+		console.log($("#modal_image-area"));
+		
+		var felement = e.target.files;
+		$("#modal_image-area_g").html("");
+	
+		fileCount = 0;
+		for (var i = 0; i < e.target.files.length; i++) {
+
+			var file = e.target.files[i];
+
+			let name = file.name;
+
+			console.log(name);
+
+			if (isImageFile(file)) {
+				if (fileCount > 3) {
+					alert("이미지 파일은 최대 네개까지만 첨부가능합니다.");
+					break;
+				}
+
+
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = document.createElement("img");
+					//	console.log("isImageFile",e.target);
+					img.setAttribute("src", e.target.result);
+					img.setAttribute("class", "modal_userfile");
+					img.setAttribute("onmouseover", "this.src='/images/cancel.png'");
+					img.setAttribute("onmouseout", "this.src='" + e.target.result + "'");
+					img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
+					img.setAttribute("data-set", name);
+					$("#modal_image-area_g").prepend(img);
+					console.log("imageFileReader");
+
+
+				}
+				
+				reader.readAsDataURL(file);
+			}else if(isVideoFile(file)){
+				if (fileCount > 0) {
+					alert("영상 파일은 최대 하나까지만 첨부가능합니다.");
+					break;
+				}
+				
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var video = document.createElement("video");
+					console.log("isVideoFile",e.target);
+					video.setAttribute("src", e.target.result);
+					video.setAttribute("controls", "controls");
+					video.setAttribute("loop", "loop");
+					video.setAttribute("muted", "muted");
+					video.setAttribute("preload", "preload");
+					$("#modal_image-area").prepend(video);
+					console.log("FileReader");
+
+				}
+				
+				reader.readAsDataURL(file);
+			}
+			fileCount++;
+
+		}
+	})
 
 	function isImageFile(file) {
 		// 파일명에서 확장자를 가져옴
@@ -122,7 +190,7 @@ $(function() {
 	}
 	/*이미지 삭제 클릭시*/
 	$(document).on("click", ".modal_userfile", function(e) {
-
+		
 		const files = $("#file")[0].files;
 		const dataTranster = new DataTransfer();
 		const removeTargetId = $(e.target).attr("data-set");

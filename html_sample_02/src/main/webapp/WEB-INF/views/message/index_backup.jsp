@@ -147,46 +147,33 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         //그룹쪽지보내기
        $(document).on('click', '.add', function() {
 		    var userIds = []; // 사용자 ID를 저장할 배열
-		    var userIdstring = "";
 		    $(".group .user_data").each(function() {
 		        var userIdWithSuffix = $(this).attr("id"); // 각 요소의 id 속성으로 user_id 추출
 		        var userId = userIdWithSuffix.replace("_data", ""); // "_data"를 제거하여 user_id 추출
-		        userIds.push(userId);	        
+		        userIds.push(userId);
 		    });  
 		    // 가져온 사용자 ID 배열을 출력하거나 다른 작업을 수행할 수 있습니다.
 		    console.log("User IDs:", userIds);
-		    for(var i=0;i<userIds.length;i++){
-		    	if (i==0) {
-		    		userIdstring = userIds[i];
-		    	} else {
-		    		userIdstring += ","+userIds[i];
-		    	}
-		    }
-		    console.log(userIdstring);
-		    $("#name2").val(userIdstring);
+		    
 		    // 모달 창 띄우기 등 원하는 동작 수행
 		    $('#messageModal2').modal('show');
 		});
 
-      /*  $(document).on('click', '#send_btn_g', function() {
+       $(document).on('click', '#send_btn', function() {
     	   var userIds = []; // 사용자 ID를 저장할 배열
     	   $(".group .user_data").each(function() {
     	       var userIdWithSuffix = $(this).attr("id"); // 각 요소의 id 속성으로 user_id 추출
     	       var userId = userIdWithSuffix.replace("_data", ""); // "_data"를 제거하여 user_id 추출
     	       userIds.push(userId);
-    	   });  		  
-    	   
-    	   var file = $("#file_g").val();
-    	   alert(file);
-    	   var formData = new FormData();
+    	   });  
+		  
+    	   var file = $("#file").val();
+			
     	   
     	   // userIds 배열을 문자열로 변환하여 FormData에 추가
     	   var userIdsString = userIds.join(','); // userIds를 쉼표로 구분된 문자열로 변환
     	   formData.append('user_ids', userIdsString); // 변환된 문자열을 FormData에 추가
-		   //alert(formData.get('user_ids'));
-		   //alert(userIdsString);
 		   console.log(formData);
-		   
     	   // Ajax를 사용하여 서버로 데이터 전송
     	   $.ajax({
     	       url: "/message/Group",
@@ -195,20 +182,18 @@ pre{    white-space: pre-wrap;    background: #EEE;}
     	       processData: false, // 필요한 경우 FormData를 직렬화하지 않도록 설정
     	       contentType: false, // FormData의 Content-Type을 설정하지 않도록 설정
     	       success: function(response) {
-    	    	   alert("성공");
     	           // 성공적으로 서버 응답을 처리하는 코드
     	           console.log(formData);
 		    	   
     	       },
     	       error: function(xhr, status, error) {
     	           // 오류가 발생했을 때 처리하는 코드
-    	           alert("실패");
     	           console.error("실패");
     	       }
     	       
-    	   }); 
-    	   
-       	}); */
+    	   });
+    	   alert("tttt");
+       	});
        
        
 		//그룹정보 가져오기
@@ -217,7 +202,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         	 var initialDataLoaded = false; // 처음 데이터를 받았는지 여부를 나타내는 변수
             $("#searchResults").on("click", ".check", function(event) {
             	var user_id = $(this).closest(".post").attr('id');
-                //alert(user_id);
+                alert(user_id);
                
                 // 데이터가 로드되지 않은 경우, AJAX 요청을 보냄
                 $.ajax({
@@ -356,10 +341,10 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		      </div>
 		      <div class="modal-body">
 		   <div class="message_tweet_box">
-            <form action="Group" id="insertFrm" method="post" enctype="multipart/form-data">
-				<div class="tweet_box-input" style="position: relative; bottom: 20px;">
+            <form id="insertFrm" method="post" enctype="multipart/form-data">
+				<div class="tweet_box-inpu  t" style="position: relative; bottom: 20px;">
 					<div id="modal_text-area" class="rounded" style="position: relative; height: 250px;">
-						<input type="hidden" name="target_id" id="name2">
+
 						<textarea rows="" cols="" class="content" name="mcontent" id="modal_write-box"
 							style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
 						<div id="modal_position_wrap" class="invis">
@@ -368,7 +353,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 								<div id="modal_currLocation"></div>
 							</div>
 						</div>
-						<div class="userfile" id="modal_image-area_g" name="files" style=""></div>
+						<div class="userfile" id="modal_image-area" name="files" style=""></div>
 								</div>
 							</div>
 						</div>
@@ -376,11 +361,11 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 				</div>
 
                 <div class="message_box-footer modal-footer" style="position: relative; bottom: 30px; height: 30px;">
-                    <label for="file_g" id="message_imgBtn" style="position: relative; right: 340px; bottom: 10px; cursor: pointer;">
+                    <label for="file" id="message_imgBtn" style="position: relative; right: 340px; bottom: 10px; cursor: pointer;">
                     	<span class="material-symbols-outlined" style="font-size: 40px; color: var(--twitter-theme-color); ">image</span>
-						<input type="file" id="file_g" name="files_g" multiple="multiple">
+						<input type="file" id="file" name="files" multiple="multiple">
                     </label>
-			        <button id="send_btn_g" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; bottom: 10px; left: 5px;">보내기</button>
+			        <button id="send_btn" class="btn btn-primary" style="background-color: #BA68C8; border: 1px solid var(--twitter-background-color); position: relative; bottom: 10px; left: 5px;">보내기</button>
 					<!--모달 끝 -->
                 </div>
             </form>

@@ -276,7 +276,6 @@
 								<h3>${recount[status.index]}</h3>
 								
 								
-								
 								<c:if test="${favorited[status.index]<1}">
 									<span class="material-icons ms_icons favorite"
 									data-post_id="${plist[status.index].post_id}">favorite_border</span>
