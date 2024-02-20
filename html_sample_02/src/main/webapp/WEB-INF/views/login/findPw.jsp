@@ -109,7 +109,7 @@
 					$(".emailChk2").click(function(){
 						alert("인증번호를 확인합니다.");
 						let emailpwcode = $("#emailpwcode").val();
-						alert(emailpwcode);
+						/* alert(emailpwcode); */
 						
 						$.ajax({
 							url:"/login/emailPwfind",

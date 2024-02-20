@@ -112,19 +112,18 @@ public class LoginController {
 		//네이버로그인
 		@GetMapping("/naver")
 		@ResponseBody
-		public String Nav(String code) throws Exception {
+		public String oauth01(String code) {
 			//코드 값 받기
 			System.out.println("naver code : "+ code);
-			String content_type = "application/x-www-form-urlencoded;charset=utf-8";
 			String tokenUrl = "https://nid.naver.com/oauth2.0/token";
-			String client_secret = "EKdvvHgj_l";
+			String content_type = "application/x-www-form-urlencoded;charset=utf-8";
 			String grant_type = "authorization_code";
 			String client_id = "7g_j2G60OUulN4ds5aL_";
+			String client_secret = "EKdvvHgj_l";
+			String redirect_uri = "http://localhost:8000/naver/oauth01";
 			String state = "test";
-			String redirect_uri =  URLEncoder.encode("http://localhost:8000/naver/oauth01", "UTF-8");
-			
 			//code = code;
-			
+
 			//토큰키 받기
 			//java에서 url접속
 			//HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -132,24 +131,25 @@ public class LoginController {
 			RestTemplate rt = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("content_type",content_type);
-			
+
 			//body부분 - HttpBody MultiValueMap 오브젝트 생성
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 			params.add("grant_type", grant_type);
 			params.add("client_id", client_id);
 			params.add("client_secret", client_secret);
 			params.add("state", state);
+			params.add("redirect_uri", redirect_uri);
 			params.add("code", code);
-			
+
 			// HttpEntity에 HttpHeaders headers,MultiValueMap params을 1개로 합치기
 			HttpEntity<MultiValueMap<String, String>> naverTokenRequest = new HttpEntity<>(params,headers);
-			
+
 			//카카오서버로 url전송해서 토큰키return 받기
 			// 매개변수 : url링크, 전송방식-post, (headers,body),String.class형태로 전송
-			ResponseEntity<String> response = rt.exchange(tokenUrl, HttpMethod.POST, naverTokenRequest,String.class);
-			
-			System.out.println("네이버 요청 응답: "+response);
-			
+		    ResponseEntity<String> response = rt.exchange(tokenUrl, HttpMethod.POST, naverTokenRequest,String.class);
+
+		    System.out.println("네이버 토큰 요청 응답 : "+response);
+
 			return "success";
 		}
 

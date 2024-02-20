@@ -17,7 +17,7 @@
 	 			</div>
 	 		</div>
 	 		<div class="profile-name">
-	 			<div style="margin: 4px;"><h2>Name</h2></div>
+	 			<div style="margin: 4px;"><h2>name</h2></div>
 	 		</div>
 	 		<div class="profile-follow" style="display: flex; margin-top:20px;">
 	 			<div style="margin:0 4px;"><h4>팔로우</h4></div> 

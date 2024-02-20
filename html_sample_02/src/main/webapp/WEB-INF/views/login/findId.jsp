@@ -92,7 +92,7 @@
 					$(".emailChk2").click(function(){
 						alert("인증번호를 확인합니다.");
 						let Idcodechk = $("#Idcodechk").val();
-						alert(Idcodechk);
+						/* alert(Idcodechk); */
 						
 						let email1 = $("#email1").val();
 						let email2 = $("#email2").val();
