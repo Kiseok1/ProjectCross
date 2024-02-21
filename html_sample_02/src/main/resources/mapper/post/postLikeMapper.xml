@@ -31,4 +31,5 @@
 		update post_like set user_id=#{user_id} where user_id=#{org_id}
 	</update>
 
+
 </mapper>

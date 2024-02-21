@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0242a4a15da7682f7e63d97312b81c85&libraries=services"></script>
     <script src="/js/cross/sidebar.js"></script>   
 	<link rel="stylesheet" href="/css/style_x_ui.css">
+	
 	
 	 <nav style="margin-top: 20px;" >
 	    <div class="nav_logo-wrapper" >

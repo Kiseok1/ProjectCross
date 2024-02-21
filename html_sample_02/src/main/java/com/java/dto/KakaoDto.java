@@ -1,3 +1,4 @@
+
 package com.java.dto;
 
 import lombok.Data;
@@ -45,3 +46,4 @@ public class KakaoDto {
 
 
 }
+

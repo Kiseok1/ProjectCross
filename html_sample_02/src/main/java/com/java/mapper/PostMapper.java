@@ -1,11 +1,10 @@
-
 package com.java.mapper;
+
 
 import java.util.List;
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
-
 import com.java.dto.Cross_userDto;
 import com.java.dto.PostDto;
 import com.java.dto.PostMediaUserDto;
@@ -55,7 +54,9 @@ public interface PostMapper {
 	int sendPost(PostDto postDto);
 
 	//사용자 포스트 타임라인 불러오기
-	ArrayList<PostDto> getMyTimeline(String id);
+
+	ArrayList<PostDto> getMyTimeline(String id, int pageCounter);
+
 
 	//특정포스트(post_id) 타임라인 불러오기
 	ArrayList<PostDto> getSelected(int post_id);
@@ -103,7 +104,22 @@ public interface PostMapper {
 	void favoriteOn(int post_id);
 
 	void favoriteOff(int post_id);
+	
 
+	int getPostRenote(int post_id);
+
+	int getPostFavor(int post_id);
+
+	int addRenote(int post_id, String user_id);
+	int delRenote(int post_id, String user_id);
+	int addLike(int post_id, String user_id);
+	int delLike(int post_id, String user_id);
+	
+	int hitViewhit0(int post_id);
+	int hitViewhit6(int post_id);
+	int hitViewhit12(int post_id);
+	int hitViewhit18(int post_id);
+	
 	//-----------------------------------------------------------------------
 
 	//현우,진민 작업
@@ -121,13 +137,8 @@ public interface PostMapper {
 	List<Cross_userDto> selectKeyWord_user(String keyword);
 	//좋아요 증가
 	void likeUp(int post_id);
-	
-	
-	
-	
-	
-	
-	
+	PostDto getSelectedOne(int post_id);
 
 }
+
 

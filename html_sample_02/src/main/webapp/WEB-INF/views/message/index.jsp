@@ -144,6 +144,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                 }
             });
         });
+
         //그룹쪽지보내기
        $(document).on('click', '.add', function() {
 		    var userIds = []; // 사용자 ID를 저장할 배열
@@ -267,6 +268,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                 event.stopPropagation();
             });
         });
+
         </script>
         
         <!-- 검색 -->
@@ -346,6 +348,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         </div>
         </div>
+
 		<!-- messageModal2 -->
 		<div class="modal fade" id="messageModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
@@ -387,6 +390,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
         </div>
         </div>
+
    	<script>
    	</script>
  </main>

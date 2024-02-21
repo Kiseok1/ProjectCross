@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>            
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +68,7 @@ $(function(){
    <div id="view-box" style="display: flex; justify-content: center; border-left: 1px solid var(--twitter-background-color);" >
  	<%@ include file="/WEB-INF/views/sidebar.jsp" %> 
  	
+
  <main>
          <div class="header">
             <span class="material-icons" style="font-size: 35px; color:#BA68C8">

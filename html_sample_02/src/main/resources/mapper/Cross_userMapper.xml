@@ -16,5 +16,4 @@
 update Cross_user set password=#{pw} where email=#{email}
 </update>		
 		
- 	
 </mapper>

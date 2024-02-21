@@ -20,9 +20,9 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/css/style_x_ui.css">
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0242a4a15da7682f7e63d97312b81c85&libraries=services"></script>
 
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b32a90eb17eb21978aacd0882239ee95&libraries=services"></script>
 
 
 <script
@@ -39,7 +39,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <script src="/js/cross/index.js"></script>
-<!-- <script src="/js/cross/sidebar.js"></script> -->
+<script src="/js/cross/sidebar.js"></script>
 
 <style>
 pre {
@@ -147,7 +147,7 @@ pre {
 									</div>
 								</div>
 
-
+<!-- <<<<<<< HEAD -->
 								<div class="post_header-discription"
 									onclick="location.href='/viewContent?post_id=${plist[status.index].post_id}'">
 									<p class="thisContent">${plist[status.index].pcontent}</p>
@@ -162,8 +162,66 @@ pre {
 									
 									
 								</div>
+<<<<<<< HEAD
+<!-- =======
+						</div>
+
+					</div>
+					<div class="container video_contaner">
+						<video controls loop muted preload="auto" src="video/video01.mp4">
+							
+							
+						</video>
+					</div>
+
+					<div class="post_footer">
+
+						<span class="material-icons ms_icons chat" data-bs-toggle="modal" data-bs-target="#writeModal">chat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons repeat">repeat</span>
+						<h3>100</h3>
+						<span class="material-icons ms_icons favorite">favorite_border</span>
+						<h3>100</h3>
+						<div id="bookChk1">
+						<span class="material-icons bookmark" style="cursor: pointer; color: #BA68C8;">bookmark_border</span>
+						</div>
 
 
+					</div>
+
+				</div>
+
+			</div>
+			
+			<script>
+			 $(function(){
+				
+				$("#bookChk").click(function(){
+				    alert("z");
+				});
+			 });
+			</script>
+
+
+
+			<div class="post" style="position: relative;">
+
+				<div class="post_profile-image rounded-5">
+					<img class="" src="images/profile01.jpg" alt="profile">
+				</div>
+
+				<div class="post_body">
+					<div class="post_header">
+						<div class="post_header-text">
+							<h3>
+								만두 <span class="header-icon-section"> @Mandoo </span>
+							</h3>
+							<div style="margin-left: 1rem; text-align: center;">
+								<h3>24.01.01</h3>
+>>>>>>> refs/remotes/origin/hyg -->
+=======
+
+>>>>>>> refs/remotes/origin/BHY
 							</div>
 
 							<c:if
@@ -376,6 +434,82 @@ pre {
 
 				</c:forEach>
 
+
+
+
+
+<<<<<<< HEAD
+
+
+
+
+
+
+				<div class="post" style="position: relative;">
+
+					<div class="post_profile-image rounded-5">
+						<img class="" src="/images/profile01.jpg" alt="profile">
+						<div style="position: absolute; height: 100%; width: 80px;">
+							<div
+								style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
+
+							</div>
+						</div>
+					</div>
+
+					<div class="post_body">
+						<div class="post_header">
+							<div class="post_header-text">
+								<h3>
+									Java <span class="header-icon-section"> <span
+										class="material-icons post_badge">verified</span>@java
+									</span>
+								</h3>
+								<div style="margin-left: 1rem; text-align: center;">
+									<h3>24.01.01</h3>
+								</div>
+							</div>
+
+							<div class="post_header-discription"
+								onclick="location.href='/viewContent'">
+								<p>동영상</p>
+
+							</div>
+
+						</div>
+						<div class="container video_contaner">
+							<video controls loop muted preload="auto"
+								src="/video/video01.mp4">
+
+
+
+							</video>
+
+						</div>
+
+						<div class="post_footer">
+
+							<span class="material-icons ms_icons chat" data-bs-toggle="modal"
+								data-bs-target="#writeModal">chat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons repeat">repeat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons chart">bar_chart</span>
+							<h3>100</h3>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+=======
+>>>>>>> refs/remotes/origin/BHY
 				<div class="post" style="position: relative;">
 
 					<div class="post_profile-image rounded-5">
@@ -470,6 +604,334 @@ pre {
 
 				</div>
 
+
+
+
+<<<<<<< HEAD
+
+				<div class="post" style="position: relative;">
+
+					<div class="post_profile-image rounded-5">
+						<img class="" src="/images/profile01.jpg" alt="profile">
+						<div style="position: absolute; height: 100%; width: 80px;">
+							<div
+								style="width: 3px; height: 98%; top: -3px; background-color: var(--twitter-line-color); position: absolute; left: 25%;">
+
+							</div>
+						</div>
+					</div>
+
+					<div class="post_body">
+						<div class="post_header">
+							<div class="post_header-text">
+								<h3>
+									Java <span class="header-icon-section"> <span
+										class="material-icons post_badge">verified</span>@java
+									</span>
+								</h3>
+								<div style="margin-left: 1rem; text-align: center;">
+									<h3>24.01.01</h3>
+								</div>
+							</div>
+
+							<div class="post_header-discription"
+								onclick="location.href='/viewContent'">
+								<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+								<br>
+								<p>
+									Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+									notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+									https://social.ora.cl/6015KoqQN <br> Features:
+									https://social.ora.cl/6016KoqQ4 <br> 이게&nbsp; 맞나 ?&nbsp;
+									&nbsp; &nbsp;<br> 이게&nbsp; 맞나 ?&nbsp; &nbsp; &nbsp;<br>
+								</p>
+							</div>
+
+						</div>
+						<div class="container img-sm">
+							<div class="row row-cols-auto">
+								<div class="col-md-auto">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+								<div class="col-md-auto">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+							</div>
+
+							<div class="row row-cols-auto">
+								<div class="col-md-auto">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+								<div class="col-md-auto">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+							</div>
+						</div>
+
+						<div class="post_footer">
+
+							<span class="material-icons ms_icons" data-bs-toggle="modal"
+								data-bs-target="#writeModal">chat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons repeat">repeat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons">bar_chart</span>
+							<h3>100</h3>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+				<div class="post" style="position: relative;">
+
+					<div class="post_profile-image rounded-5">
+						<img class="" src="/images/profile01.jpg" alt="profile">
+						<div style="position: absolute; height: 100%; width: 80px;">
+						</div>
+					</div>
+
+					<div class="post_body">
+						<div class="post_header">
+							<div class="post_header-text">
+								<h3>
+									Java <span class="header-icon-section"> <span
+										class="material-icons post_badge">verified</span>@java
+									</span>
+								</h3>
+								<div style="margin-left: 1rem; text-align: center;">
+									<h3>24.01.01</h3>
+								</div>
+							</div>
+
+							<div class="post_header-discription"
+								onclick="location.href='/viewContent'">
+								<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+								<br>
+								<p>
+									Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+									notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+									https://social.ora.cl/6015KoqQN <br> Features:
+									https://social.ora.cl/6016KoqQ4 <br>
+								</p>
+							</div>
+
+						</div>
+
+						<div class="container">
+							<div class="row row-cols-auto">
+								<div class="col-md-auto img-md rounded-4">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+								<div class="col-md-auto">
+									<div class="row row-cols-auto">
+										<div class="col-md-auto img-sm">
+											<img src="/images/post-image.jpeg" class="rounded "
+												alt="java18" data-bs-toggle="modal"
+												data-bs-target="#exampleModal"
+												data-bs-whatever="images/post-image.jpeg">
+										</div>
+									</div>
+									<div class="row row-cols-auto">
+										<div class="col-md-auto img-sm">
+											<img src="/images/post-image.jpeg" class="rounded "
+												alt="java18" data-bs-toggle="modal"
+												data-bs-target="#exampleModal"
+												data-bs-whatever="images/post-image.jpeg">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="post_footer">
+
+							<span class="material-icons ms_icons" data-bs-toggle="modal"
+								data-bs-target="#writeModal">chat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons repeat">repeat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons">bar_chart</span>
+							<h3>100</h3>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="post" style="position: relative;">
+
+
+					<div class="post_profile-image rounded-5">
+						<img class="" src="/images/profile01.jpg" alt="profile">
+						<div style="position: absolute; height: 100%; width: 80px;">
+
+
+						</div>
+					</div>
+
+					<div class="post_body">
+						<div class="post_header">
+							<div class="post_header-text">
+								<h3>
+									Java <span class="header-icon-section"> <span
+										class="material-icons post_badge">verified</span>@java
+									</span>
+								</h3>
+								<div style="margin-left: 1rem; text-align: center;">
+									<h3>24.01.01</h3>
+								</div>
+							</div>
+
+							<div class="post_header-discription"
+								onclick="location.href='/viewContent'">
+								<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+								<br>
+								<p>
+									Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+									notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+									https://social.ora.cl/6015KoqQN <br> Features:
+									https://social.ora.cl/6016KoqQ4 <br>
+								</p>
+							</div>
+
+						</div>
+
+
+						<div class="container">
+							<div class="row row-cols-auto ">
+								<div class="col-md-auto img-lg rounded-4">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+								<div class="col-md-auto img-lg rounded-4">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="images/post-image.jpeg">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="post_footer">
+
+							<span class="material-icons ms_icons" data-bs-toggle="modal"
+								data-bs-target="#writeModal">chat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons repeat">repeat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons">bar_chart</span>
+							<h3>100</h3>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<div class="post" style="position: relative;">
+
+					<div class="post_profile-image rounded-5">
+						<img class="" src="/images/profile01.jpg" alt="profile">
+						<div style="position: absolute; height: 100%; width: 80px;">
+
+						</div>
+					</div>
+
+					<div class="post_body">
+						<div class="post_header">
+							<div class="post_header-text">
+								<h3>
+									Java <span class="header-icon-section"> <span
+										class="material-icons post_badge">verified</span>@java
+									</span>
+								</h3>
+								<div style="margin-left: 1rem; text-align: center;">
+									<h3>24.01.01</h3>
+								</div>
+							</div>
+
+							<div class="post_header-discription"
+								onclick="location.href='/viewContent'">
+								<p>Java 18 is now available! #Java18 #JDK18 #openjdk</p>
+								<br>
+								<p>
+									Download now: https://social.ora.cl/6012KoqQ0 <br> Release
+									notes: https://social.ora.cl/6013KoqQF <br> API Javadoc:
+									https://social.ora.cl/6015KoqQN <br> Features:
+									https://social.ora.cl/6016KoqQ4 <br>
+								</p>
+							</div>
+
+						</div>
+
+						<div class="container">
+							<div class="row row-cols-auto ">
+								<div class="col-md-auto img-xl rounded-4">
+									<img src="/images/post-image.jpeg" class="rounded "
+										alt="java18" data-bs-toggle="modal"
+										data-bs-target="#exampleModal"
+										data-bs-whatever="/images/post-image.jpeg">
+								</div>
+
+							</div>
+						</div>
+
+
+						<div class="post_footer">
+
+							<span class="material-icons ms_icons" data-bs-toggle="modal"
+								data-bs-target="#writeModal">chat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons repeat toggle">repeat</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons favorite">favorite_border</span>
+							<h3>100</h3>
+							<span class="material-icons ms_icons">bar_chart</span>
+							<h3>100</h3>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+=======
+>>>>>>> refs/remotes/origin/BHY
 			</div>
 
 
@@ -647,6 +1109,12 @@ pre {
 		</div>
 	</div>
 
+
+
+
+
+<<<<<<< HEAD
+=======
 <!-- 인용알티용 모달 -->
 	<div class="modal" id="quotationModal" tabindex="-1">
 		<div class="modal-dialog">
@@ -730,6 +1198,7 @@ pre {
 		</div>
 	</div>
 
+>>>>>>> refs/remotes/origin/BHY
 	<!-- Modal End -->
 </body>
 

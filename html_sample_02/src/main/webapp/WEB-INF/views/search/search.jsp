@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,10 +18,13 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/style_x_ui_hw.css">
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/css/style_x_ui.css">
+
 <script src="/js/cross/index.js"></script>
+
 
 
 </head>
@@ -71,7 +76,9 @@
 			   $(function() {
 			       $(".aside_input input").keyup(function(e) {
 			           if (e.keyCode == 13) {
+
 			               //alert($("#keyword").val());
+
 			               search_frm.submit();
 			           }
 			       });
@@ -86,8 +93,10 @@
 			<a href="search" ><div class="Latest_mini">최신<div class="underscore"></div></div></a>
 			<a href="user?keyword=${map.keyword}"><div class="user_mini" >사용자</div></a>
 			<a href="images?keyword=${map.keyword}" ><div class="media_mini" >미디어</div></a>				
+
 		</div>
 	<!--카테고리 -->
+
 	<div id="post_wrap">
 
 
@@ -263,16 +272,32 @@
 									data-indent="${plist[status.index].pindent}">chat</span>
 								<h3>${replycount[status.index]}</h3>
 									
-								<c:if test="${renoted[status.index]<1}">
-									<span class="material-icons ms_icons repeat"
-									data-post_id="${plist[status.index].post_id}">repeat</span>
-							
-								</c:if>
-								<c:if test="${renoted[status.index]>=1}">
-									<span class="material-icons ms_icons repeat toggle"
-									data-post_id="${plist[status.index].post_id}">repeat</span>
-							
-								</c:if>
+								<div class="dropdown">
+									<c:if test="${renoted[status.index]<1}">
+										<span class="material-icons ms_icons dropdown-toggle repeat" 
+										data-bs-toggle="dropdown" aria-expanded="false"
+										>repeat</span>
+								
+									</c:if>
+									<c:if test="${renoted[status.index]>=1}">
+										<span class="material-icons ms_icons dropdown-toggle repeat toggle"
+										data-bs-toggle="dropdown" aria-expanded="false"
+										>repeat</span>
+								
+									</c:if>
+									<c:if test="${renoted[status.index]<1}">
+									  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									    <li><span class="drpRepeat" data-post_id="${plist[status.index].post_id}"> 재게시</span></li>
+									    <li><span data-bs-toggle="modal" data-bs-target="#quotationModal"> 인용</span></li>
+									  </ul>
+									</c:if>
+									<c:if test="${renoted[status.index]>=1}">
+									  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									    <li><span class="drpRepeat" data-post_id="${plist[status.index].post_id}"> 재게시 취소</span></li>
+									    <li><span data-bs-toggle="modal" data-bs-target="#quotationModal"> 인용</span></li>
+									  </ul>
+									</c:if>
+								</div>
 							
 								<h3>${recount[status.index]}</h3>
 								
@@ -301,6 +326,7 @@
 
 				</c:forEach>
 
+
 	
 
 
@@ -310,7 +336,8 @@
 
 	</div>
 
-<!-- Modal -->
+
+ <!-- Modal -->
 
 	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -359,79 +386,11 @@
 						<label for="message-text" class="col-form-label  ">검색 결과:</label>
 						<div style="">
 
-							<div class="container text-center locArray"
+							<div id='placesList' class="container text-center locArray"
 								style="overflow-y: scroll; height: 100px;">
 
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation1">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation2">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation3">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation4">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation5">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation6">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation7">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation8">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr"
-									data-location="Loacation9">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
+								<!-- 키워드 검색결과 영역 -->
+								
 							</div>
 
 						</div>
@@ -473,7 +432,9 @@
 									<div id="modal_image-area" style=""></div>
 
 								</div>
+
 							</div>
+
 						</div>
 
 					</div>
@@ -497,7 +458,7 @@
 
 			</div>
 		</div>
-	</div>	
+	</div>
 
 
 
@@ -520,89 +481,18 @@
 				<div class="modal-body text-center">
 
 					<div class="mb-3">
-						<label for="recipient-name" class="col-form-label ">검색:</label> 
-						<input	type="text" class="form-control" id="locSearch"
+						<label for="recipient-name" class="col-form-label ">검색:</label> <input
+							type="text" class="form-control" id="locSearch2"
 							data-bs-keyboard="false">
 					</div>
 					<div class="mb-3">
 						<label for="message-text" class="col-form-label  ">검색 결과:</label>
 						<div style="">
 
-							<div class="container text-center locArray"
+							<div id="placesList2" class="container text-center locArray"
 								style="overflow-y: scroll; height: 100px;">
 
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation1">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation2">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation3">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation4">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation5">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation5">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2">
-									<div class="col col-2 border-end border-secondary mt-1"
-										data-location="Loacation6">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation7">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation8">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
-
-
-								<div class="w-100"></div>
-
-								<div class="row  align-items-start selAddr2"
-									data-location="Loacation9">
-									<div class="col col-2 border-end border-secondary mt-1">우편번호</div>
-									<div class="col col-5 mt-1">주소</div>
-								</div>
+								<!-- 키워드 검색결과 출력 -->
 							</div>
 
 						</div>
@@ -614,10 +504,91 @@
 		</div>
 	</div>
 
+<!-- 인용알티용 모달 -->
+	<div class="modal" id="quotationModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="height: 2rem;">
+					<h5 class="modal-title">답글쓰기</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<form id="modalForm" action="/modalSendPost" method="post" enctype="multipart/form-data">
+				<div id="modal_hidden"></div>
+					<div class="modal-body">
+						<div class="tweet_box">
+
+							<div class="tweet_box-input">
+								<div id="modal_text-area" class="rounded"
+									style="position: relative;">
+
+									<textarea rows="" cols="" class="content" id="modal_write-box" name="pcontent"
+										style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
+									<div id="modal_position_wrap" class="invis">
+										<div id="position-area" style="display: flex;">
+											<span class="material-icons">location_on</span>
+											<div id="modal_currLocation"></div>
+										</div>
+									</div>
+									<div id="modal_image-area" style=""></div>
+									
+									<div class="quotationPost">
+											<div class="rounded-4"
+												style="width: 450px; border: 1px solid var(--twitter-line-color); padding: 1rem;"
+												onclick="location.href='/viewContent'">
+												<div class="post_header">
+													<div class="post_header-text">
+														<h3>
+															만두 <span class="header-icon-section">@Mandoo</span>
+														</h3>
+														<div style="margin-left: 1rem; text-align: center;">
+															<h3>24.01.01</h3>
+														</div>
+													</div>
+												</div>
+		
+												<div class="post_header-renote" style="display: flex;">
+													<div class="container img-xs rounded" style="max-width: 50px; margin:0;">
+														<img src="/images/post-image.jpeg">
+													</div>
+													<div style="width: 200px; height: 50px;">
+														<p>Text Only</p>
+													</div>
+												</div>
+											</div>
+										</div>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<div class="modal_box-footer" style="">
 
 
+							<label for="modalFile" id="modalImgBtn"
+								class="btn btn-sm btn-dark">사진등록</label> 
+								<input type="file" name="files"	id="modalFile" multiple="multiple"> 
+								<label for="modalRegPosition" id="modalregBtn"
+								class="btn btn-sm btn-dark" data-bs-toggle="modal"
+								data-bs-target="#locationModal2" data-bs-whatever="Test">위치등록</label>
+							<input type="hidden" class="btn btn-sm btn-dark" id="modalRegPosition" name="plocation">
+							<input type="hidden" name="quo_post_id">
+							<button id="modal_write-btn" class="modal_write-btn btn btn-sm btn-dark">게시하기</button>
 
-	<!-- Modal End --> 
+
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal End -->
+
 
 
 </body>

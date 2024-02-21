@@ -62,13 +62,13 @@ li {
 }
 
 li:hover {
-    color: var(--twitter-theme-color);
+    /* color: var(--twitter-theme-color);
     background-color: var(--twitter-background-color);
-    /* opacity: 0.9; */
+    opacity: 0.9;
     border-radius: 30px;
     width: 200px; 
+    text-align: center;  */
     cursor: pointer;
-    text-align: center; 
 }
 
 #twittericon {

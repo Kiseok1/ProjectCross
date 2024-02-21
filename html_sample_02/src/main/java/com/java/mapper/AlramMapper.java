@@ -1,3 +1,4 @@
+
 package com.java.mapper;
 
 import java.util.List;
@@ -38,3 +39,4 @@ public interface AlramMapper {
 	void banCheck(String source_id);
 
 }
+

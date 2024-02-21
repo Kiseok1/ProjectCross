@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.java.dto.AlramCrossUserDto;
+
 import com.java.dto.AlramDto;
 import com.java.service.AlramService;
 
@@ -25,6 +27,7 @@ AlramService alramService;
 HttpSession session;
 	
 	//알람 전부 가져오기
+
 	@RequestMapping("/alram")
 	public String alram(String user_id,Model model) {
 		user_id = (String)session.getAttribute("session_id");
@@ -42,6 +45,7 @@ HttpSession session;
 	public String alramCheck(String user_id,Model model) {
 		user_id = (String)session.getAttribute("session_id");
 		List<AlramCrossUserDto> list = alramService.selectChecked(user_id);
+
 		model.addAttribute("list",list);
 		return "/alram/alramCheck";
 	}
@@ -49,7 +53,9 @@ HttpSession session;
 	@PostMapping("alramDelect")
 	@ResponseBody
 	public int alramDelect(int alram_id) {
+
 		System.out.println("알람삭제 : "+alram_id);
+
 		alramService.alramDelect(alram_id);
 		return alram_id;
 	}

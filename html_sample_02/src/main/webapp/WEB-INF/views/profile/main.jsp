@@ -11,6 +11,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Twitter Profile</title>
     <!-- <script src="/js/cross/profile.js"></script> -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
 
     
     <script>

@@ -44,4 +44,5 @@
 		update user_follow set target_id=#{user_id} where target_id=#{org_id}
 	</update>
  	
+
 </mapper>

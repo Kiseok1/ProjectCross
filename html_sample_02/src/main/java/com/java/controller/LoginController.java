@@ -112,6 +112,7 @@ public class LoginController {
 		//네이버로그인
 		@GetMapping("/naver")
 		@ResponseBody
+
 		public String oauth01(String code) {
 			//코드 값 받기
 			System.out.println("naver code : "+ code);
@@ -149,6 +150,7 @@ public class LoginController {
 		    ResponseEntity<String> response = rt.exchange(tokenUrl, HttpMethod.POST, naverTokenRequest,String.class);
 
 		    System.out.println("네이버 토큰 요청 응답 : "+response);
+
 
 			return "success";
 		}

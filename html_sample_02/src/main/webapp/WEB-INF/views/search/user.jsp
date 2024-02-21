@@ -106,7 +106,9 @@
 			   $(function() {
 			       $(".aside_input input").keyup(function(e) {
 			           if (e.keyCode == 13) {
+
 			               //alert($("#keyword").val());
+
 			               search_frm.submit();
 			           }
 			       });
@@ -122,9 +124,11 @@
 			<a href="images?keyword=${map.keyword}" ><div class="media_mini" >미디어</div></a>			
 		</div>
 		<!--카테고리 -->
+
 		
 		
 		<%-- 
+
 		<c:forEach var="Udto" items="${map.list}">
 		<div class="post">
 			<div class="search_post_profile-image">
@@ -166,6 +170,7 @@
 			</div>
 		</div>
 	</c:forEach>
+
 	 --%>
 	
 		<c:forEach var="Udto" items="${following}">
@@ -233,11 +238,13 @@
 					<div class="post_header-discription">
 						<div class="dropdown_bar" >
 						  <!-- <p class="dropdown_bardropdown_bar">팔로우</p> -->
+						  <c:if test="${Udto.user_id!=session_id}">
 						  <button class="followBtn">팔로우</button>
 						  <div class="dropdown_content" >
 						 		<div class="folbtn" id="${Udto.user_id}">팔로워</div>
 						 		<a href="">차단하기</a>
 						  </div>
+						   </c:if>
 						</div>
 					</div>
 				<!-- 드롭다운 -->
@@ -258,6 +265,7 @@
 	
 	
 	
+
 		<!--추천 유저 카테고리 -->
 		
 		<div id="myModal" class="modal">

@@ -10,7 +10,9 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Twitter Profile</title>
+
     <!-- <script src="/js/cross/profile.js"></script> -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=&libraries=services"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
@@ -131,8 +133,10 @@
                     	<img src="/images/header_default.jpg" alt="profile pic" id="profilepic">
                     </c:if>
                     <div class="yourpage">
+
                     	<!-- <div class="div_circle"><i class="fa-regular fa-bell alram" style="font-size: 20px;"></i></i></div>
                     	<div class="div_circle"><i class="fa-regular fa-envelope" style="font-size: 20px;"></i></i></div> -->
+
                     	<c:if test="${followDto==null}">
 	                    	<div class="followbtn">팔로우</div>
                     	</c:if>

@@ -8,6 +8,7 @@ import com.java.dto.Cross_userDto;
 import com.java.mapper.Cross_userMapper;
 import com.java.mapper.User_followMapper;
 
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.Message.RecipientType;
 import jakarta.mail.internet.InternetAddress;
@@ -45,6 +46,7 @@ public class TestServiceImpl implements TestService {
 			}
 			result = 1;
 		}
+
 		return result;
 	}
 

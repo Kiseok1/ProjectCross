@@ -5,20 +5,25 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.java.dto.Cross_userDto;
@@ -67,6 +72,7 @@ public class ProfileController {
 		 model.addAttribute("followingCount",map.get("followingCount"));
 		 model.addAttribute("followerCount",map.get("followerCount"));
 		 
+
 		
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
@@ -95,7 +101,7 @@ public class ProfileController {
 		 model.addAttribute("ilist", map.get("ilist"));
 		 model.addAttribute("followingCount",map.get("followingCount"));
 		 model.addAttribute("followerCount",map.get("followerCount"));
-		 
+
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
 		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
@@ -132,6 +138,7 @@ public class ProfileController {
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
 		 model.addAttribute("user_name",session.getAttribute("session_name").toString());
 	
+
 		return "/profile/reply";
 	}
 	
@@ -156,8 +163,10 @@ public class ProfileController {
 		 model.addAttribute("facount", map.get("facount")); 
 		 model.addAttribute("favorited", map.get("favorited"));
 		 model.addAttribute("replycount", map.get("replycount"));
+
 		 model.addAttribute("followingCount",map.get("followingCount"));
 		 model.addAttribute("followerCount",map.get("followerCount"));
+
 		
 		 model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		 model.addAttribute("user_profile",session.getAttribute("session_image").toString());
@@ -166,6 +175,7 @@ public class ProfileController {
 	}
 	
 	//상대방 프로필 이동
+
 	@RequestMapping("/your_content")
 	public String your_content(Model model,String user_id) {
 		
@@ -363,6 +373,7 @@ public class ProfileController {
 		return "/profile/follower";
 	}
 	
+
 	
 	
 	//mypage 메인 이동
@@ -376,6 +387,7 @@ public class ProfileController {
 		model.addAttribute("udto",udto);
 		model.addAttribute("followingCount",map.get("followingCount"));
 		model.addAttribute("followerCount",map.get("followerCount"));
+
 		
 		return "/profile/mypage";
 	}
@@ -390,6 +402,7 @@ public class ProfileController {
 		model.addAttribute("udto",udto);
 		model.addAttribute("followingCount",map.get("followingCount"));
 		model.addAttribute("followerCount",map.get("followerCount"));
+
 		return "/profile/mypage_account";
 	}
 	
@@ -404,6 +417,7 @@ public class ProfileController {
 		model.addAttribute("udto",udto);
 		model.addAttribute("followingCount",map.get("followingCount"));
 		model.addAttribute("followerCount",map.get("followerCount"));
+
 		
 		return "/profile/mypage_pw_modify";
 	}
@@ -555,8 +569,8 @@ public class ProfileController {
 		// 3
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    headers.add("X-Naver-Client-Id", "");
-	    headers.add("X-Naver-Client-Secret", "");
+	    headers.add("X-Naver-Client-Id", "0lnxZxy9qfLJCm_gDMA5");
+	    headers.add("X-Naver-Client-Secret", "_ug0Gy3eNT");
 
 		// 4
 	    HttpEntity formEntity = new HttpEntity<>(parameters, headers);
@@ -577,14 +591,15 @@ public class ProfileController {
 	    //3
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-	    headers.add("X-Naver-Client-Id", "");
-	    headers.add("X-Naver-Client-Secret", "");
+	    headers.add("X-Naver-Client-Id", "0lnxZxy9qfLJCm_gDMA5");
+	    headers.add("X-Naver-Client-Secret", "_ug0Gy3eNT");
 	    // 4
 	    HttpEntity formEntity = new HttpEntity<>(parameters, headers);
 	    ResponseEntity<String> text2 = restTemplate.postForEntity("https://openapi.naver.com/v1/papago/detectLangs", formEntity, String.class);
 	    text = (text2.getBody().substring(13));
 	    
 		return text;
+
 	}
 	
 }

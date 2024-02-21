@@ -64,11 +64,13 @@ PostService PService;
 //		return "/search/search";
 //	}
 	
+
 	//최신순 게시글 정렬
 	@RequestMapping("/search")
 	public String search(Model model,String keyword) {
 		System.out.println("keyword :"+keyword);
 		List<PostDto> list = null;
+
 		Map<String, Object> map = new HashMap<>();
 		if(keyword==null || keyword.equals("")) {
 			map = PService.selectnewest2();
@@ -88,10 +90,12 @@ PostService PService;
 
 		map.put("list", list);
 		map.put("keyword",keyword);
+
 		model.addAttribute("map",map);
 		return "/search/search";
 	}
 	
+
 	//인기순 게시글 정렬 (기존)
 //	@RequestMapping("/search_in")
 //	public String search_in(Model model,String keyword) {
@@ -110,10 +114,12 @@ PostService PService;
 //	}
 	
 	//인기순 게시글 정렬 
+
 	@RequestMapping("/search_in")
 	public String search_in(Model model,String keyword) {
 		System.out.println("keyword :"+keyword);
 		List<PostDto> list = null;
+
 		Map<String, Object> map = new HashMap<>();
 		if(keyword==null || keyword.equals("")) {
 			map = PService.selectLike2();
@@ -130,17 +136,18 @@ PostService PService;
 		model.addAttribute("favorited", map.get("favorited"));
 		model.addAttribute("replycount", map.get("replycount"));
 		
+
 		map.put("list", list);
 		map.put("keyword",keyword);
 		model.addAttribute("map",map);
 		return "/search/search_in";
 	}
-	
-	
+
 	//유저목록 보여주기
 	@RequestMapping("/user")
 	public String user(Model model,String keyword) {
 		List<Cross_userDto> list = null;
+
 		Map<String, Object> map = new HashMap<>();
 		
 		if(keyword==null || keyword.equals("")) {
@@ -158,6 +165,7 @@ PostService PService;
 		
 		
 		
+
 		return "/search/user";
 	}
 	@PostMapping("/likeUp")

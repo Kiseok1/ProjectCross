@@ -48,7 +48,7 @@
 	
 	<!-- (홈) 사용자 포스트 타임라인 불러오기 -->
 	 <select id="getMyTimeline" resultType="com.java.dto.PostDto">
- 		select * from(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc,  created desc) rnum, 
+ 	  <!-- select * from(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc,  created desc) rnum, 
  		ff.* from (select 
  		post.post_id, 
  		post.user_id, 
@@ -83,7 +83,60 @@
  		post.viewhit18, 
  		post.created, 
  		post.updated, 
- 		post.renote, post.plike) ff) where rnum between 1 and 20
+ 		post.renote, post.plike) ff) where rnum between 1 and 20 -->
+
+ 		<!-- select * from 
+		(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc) rnum, ff.* from
+		(select  * from (select * from 
+		(select post.post_id, post.user_id, post.pcontent, post.plocation, 
+		post.pgroup, post.pstep, post.pindent, post.hit, 
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, post.updated, post.renote, post.plike from 
+		( select * from user_follow  where source_id=#{id})uf, 
+		(select * from renote where user_id=#{id} )re, post  
+		where post.user_id = uf.target_id or post.user_id=#{id} or post.user_id=re.user_id
+		GROUP BY post.post_id, post.user_id, post.pcontent, post.plocation, 
+		post.pgroup, post.pstep, post.pindent, 
+		post.hit, post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, post.updated, post.renote, post.plike)
+		
+		union all select * from  (select * from 
+		(select post.post_id, post.user_id, post.pcontent, post.plocation, 
+		renote.post_order pgroup, post.pstep, post.pindent, post.hit, 
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18, 
+		post.created, renote.created updated, post.renote, post.plike from 
+		renote inner join post on renote.post_id = post.post_id where renote.user_id = #{id}) repo)) 
+		order by updated desc)ff)
+		where rnum between (20*#{pageCounter})+1  and (20*#{pageCounter})+20 --> 
+		
+		select * from
+		(select ROW_NUMBER() OVER (ORDER BY pgroup desc, pstep asc) rnum, ff.* from
+		(select  * from (select * from
+		(select post.post_id, post.user_id, post.pcontent, post.plocation,
+		post.pgroup, post.pstep, post.pindent, post.hit,
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18,
+		post.created, post.updated, post.renote, post.plike from
+		(select target_id from user_follow  where source_id=#{id} union all select null as target_id from dual where not exists(select * from user_follow  where source_id=#{id}))uf,
+		(select user_id from renote where user_id=#{id} union all select null as user_id from dual where not exists (select * from renote where user_id=#{id}))re, post
+		where post.user_id = uf.target_id or post.user_id=#{id} or post.user_id=re.user_id
+		GROUP BY post.post_id, post.user_id, post.pcontent, post.plocation,
+		post.pgroup, post.pstep, post.pindent,
+		post.hit, post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18,
+		post.created, post.updated, post.renote, post.plike)
+		
+		union all select * from  (select * from
+		(select post.post_id, post.user_id, post.pcontent, post.plocation,
+		renote.post_order pgroup, post.pstep, post.pindent, post.hit,
+		post.viewhit0, post.viewhit6, post.viewhit12, post.viewhit18,
+		post.created, renote.created updated, post.renote, post.plike from
+		renote inner join post on renote.post_id = post.post_id where renote.user_id = #{id}) repo))
+		order by updated desc)ff)
+		where rnum between (20*#{pageCounter})+1  and (20*#{pageCounter})+20
+
+ 	</select>
+ 	
+ 	<select id="getSelectedOne" resultType="com.java.dto.PostDto">
+ 		select * from post where post_id = #{post_id}
  	</select>
  	
  	<!-- 특정포스트(post_id) 타임라인 불러오기 -->
@@ -121,9 +174,10 @@
  		select count(*) from post_like where post_id = #{post_id}
  	</select>
  	
+
  	<!-- 특정포스트 좋아요 정보 불러오기 -->
- 	 <select id="getfavor" resultType="com.java.dto.PostLikeDto">
- 		select * from post_like where post_id = #{post_id}
+ 	 <select id="getfavor" resultType="com.java.dto.RenoteDto">
+  		select * from post_like where post_id = #{post_id}
  	</select>
  	
  	<!-- 사용자가 특정포스트(post_id)에 좋아요 했는지 여부 -->
@@ -139,6 +193,14 @@
 	 	
  	 <select id="getReply" resultType="com.java.dto.PostDto">
  		select * from post where pindent=#{post_id}
+ 	</select>
+	
+ 	 <select id="getPostRenote" resultType="int">
+ 		select renote from post where post_id = #{post_id}
+ 	</select>
+ 	
+ 	<select id="getPostFavor" resultType="int">
+ 		select plike from post where post_id = #{post_id}
  	</select>
 
  	<!-- 포스트 답글 등록시 기존포스트 step1 증가 -->
@@ -171,6 +233,35 @@
  	<delete id="deleteOne">
 		delete from post where post_id=#{post_id}
 	</delete>
+
+
+	<insert id="addRenote">
+		insert into renote values(renote_seq.nextval, #{post_id}, #{user_id},sysdate, post_seq.nextval )
+	</insert>
+	
+	<delete id="delRenote">
+		delete from renote where user_id=#{user_id} and post_id=#{post_id}
+	</delete>
+	
+	<insert id="addLike">
+		insert into post_like values(post_like_seq.nextval, #{post_id}, #{user_id},sysdate)
+	</insert>
+	
+	<delete id="delLike">
+		delete from post_like where user_id=#{user_id} and post_id=#{post_id}
+	</delete>
+		
+	<update id="hitViewhit0">
+		UPDATE post  SET viewhit0 = viewhit0+1 where post_id=${post_id}
+	</update>
+	
+	<update id="hitViewhit6">
+		UPDATE post  SET viewhit6 = viewhit6+1 where post_id=${post_id}
+	</update>
+	
+	<update id="hitViewhit12">
+		UPDATE post  SET viewhit12 = viewhit12+1 where post_id=${post_id}
+	</update>
 	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	

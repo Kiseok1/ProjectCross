@@ -21,8 +21,6 @@
 
  <!-- include summernote css/js-->
 
-
-
 <script>
 @import "../node_modules/bootstrap/scss/bootstrap";
 
@@ -283,6 +281,7 @@ $(function(){
     </div>
   </div>
 </div>
+
  <!--모달창  끝 -->
 		 <script>
       		$(function(){
@@ -345,32 +344,44 @@ $(function(){
 						<img src="/images/proflie_default.png" style="width: 50px; height: 49px;"> 
 					</c:if>
 
+
 					</div>
 			</div>
 
             <div class="post_body" id="${alramCrossUserDto.alramDto.source_id}" name="${alramCrossUserDto.alramDto.user_id}">
                 <div class="post_header">
                     <div class="post_header-text">
+
                         <h3>${alramCrossUserDto.cross_userDto.name}
+
                             <span class="header-icon-section">
+
                                 <span class="material-icons post_badge">verified</span>@${alramCrossUserDto.alramDto.source_id}
+
                             </span>
                         </h3>
                     </div>
+
                     <c:if test="${alramCrossUserDto.alramDto.checked == '0'}">
+
                     <div class="noCheck">
                     </c:if>
+
                     <c:if test="${alramCrossUserDto.alramDto.checked == '1'}">
+
                     <div class="yesCheck">
                     </c:if>
                         <p>
+
                            ${alramCrossUserDto.alramDto.user_id }님
 						   <c:if test="${alramCrossUserDto.alramDto.alram_type=='follow'}">을
+
 						   <div class="name">
 						   		팔로우하기 시작했습니다.
 						   </div>
 		                    </div>
 	                       </p>
+
 	                       <c:if test="${alramCrossUserDto.user_followDto.target_id != alramCrossUserDto.alramDto.source_id}">
 							   <button id="BtnFoll" class="followBtn">팔로우</button>
 	                       </c:if>
@@ -409,6 +420,7 @@ $(function(){
 						    <div class="photo-frame">
 						        <a href="/viewContent?post_id=${alramCrossUserDto.alramDto.post_id}">
 						        	<img src="/images/cross.jpg">
+
 						        </a>
 					      	</div>
 						   </c:if>

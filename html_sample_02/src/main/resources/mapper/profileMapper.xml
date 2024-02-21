@@ -8,4 +8,5 @@
 		select * from post where user_id=#{id} order by created desc
 	</select>
  	
+
 </mapper>

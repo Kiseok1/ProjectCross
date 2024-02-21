@@ -96,4 +96,5 @@
     		<result column="updated" property="updated"/>
     	</resultMap>
     	
+
     </mapper>

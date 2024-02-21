@@ -34,7 +34,9 @@ public class MessageController {
 	@Autowired
 	HttpSession session;
 	
+
 	@RequestMapping("/index")
+
 	public String mindex() {
 		return "/message/index";
 	}
@@ -72,6 +74,7 @@ public class MessageController {
 		mService.mInsert2(mdto);
 		mService.mInsert(mdto2);
 		return "/message/index";
+
 	}
 	
 	@PostMapping("/Group")//게시글 저장하기
@@ -148,7 +151,9 @@ public class MessageController {
 		System.out.println("MessageController search input : "+input);
 		List<Cross_userDto> list3 = mService.searchAll(input);
 		return list3;
+
 	}
+
 
 	@PostMapping("/search2")//검색 받은 쪽지결과 가져오기
 	@ResponseBody
@@ -173,6 +178,7 @@ public class MessageController {
 		ArrayList<MessCrossMediaDto> list = mService.receiveAll((String)session.getAttribute("session_id"));
 		 // list가 비어있는지 여부에 따라 result 설정
 	    model.addAttribute("list", list);
+
 
 		
 		return "/message/head";

@@ -2,6 +2,9 @@
 package com.java.service;
 
 import java.util.List;
+
+import java.time.LocalTime;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +64,9 @@ public  class PostServiceImpl implements PostService {
 		ArrayList<Integer> replycount = new ArrayList<>();
 				
 		//사용자 타임라인 불러오기
-		ArrayList<PostDto> plist = postMapper.getMyTimeline(id);
+
+		ArrayList<PostDto> plist = postMapper.getMyTimeline(id,0);
+
 
 		
 		for(int i = 0 ; i < plist.size() ; i++)
@@ -88,6 +93,53 @@ public  class PostServiceImpl implements PostService {
 		
 		return map;
 	}
+	
+	
+
+	//포스트 클릭 view이동
+	@Override
+	public Map<String, Object> getMyTimelineMore(String id, int pageCounter) {
+		
+		Map<String, Object> map = new HashMap<>();
+		ArrayList<Cross_userDto> ulist = new ArrayList<>();
+		ArrayList<MediaDto> mlist = new ArrayList<>();
+		ArrayList<Integer> recount = new ArrayList<>();
+		ArrayList<Integer> renoted = new ArrayList<>();
+		ArrayList<Integer> facount = new ArrayList<>();
+		ArrayList<Integer> favorited = new ArrayList<>();
+		ArrayList<Integer> replycount = new ArrayList<>();
+				
+		//사용자 타임라인 불러오기
+		ArrayList<PostDto> plist = postMapper.getMyTimeline(id,pageCounter);
+
+		
+		for(int i = 0 ; i < plist.size() ; i++)
+		{
+			//plist 활용 
+			ulist.add(cUserMapper.getUserProfile(plist.get(i).getUser_id())); //포스트에 표시할 유저정보
+			mlist.add(mediaMapper.getMedia(plist.get(i).getPost_id())); //포스트에 표시할 미디어 
+			recount.add(postMapper.getRenoteCounter(plist.get(i).getPost_id())); //리트윗 수 가져오기
+			renoted.add(postMapper.myRenoteCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 리트윗 했는지 여부
+			facount.add(postMapper.getFavorCounter(plist.get(i).getPost_id())); //좋아요 수 가져오기
+			favorited.add(postMapper.myFavorCounter(session.getAttribute("session_id").toString(),plist.get(i).getPost_id())); //사용자가 특정포스트(post_id)에 좋아요 했는지 여부
+			replycount.add(postMapper.getReplyCounter(plist.get(i).getPost_id())); //답글 수 가져오기
+			postMapper.updateHit(plist.get(i).getPost_id()); //노출수 1증가
+		}
+		
+		map.put("plist", plist);
+		map.put("ulist", ulist);
+		map.put("mlist", mlist);
+		map.put("recount", recount);
+		map.put("renoted", renoted);
+		map.put("facount", facount);
+		map.put("favorited", favorited);
+		map.put("replycount", replycount);
+		
+		return map;
+	}
+	
+	
+	
 
 	//포스트 클릭 view이동
 	@Override
@@ -106,12 +158,15 @@ public  class PostServiceImpl implements PostService {
 		ArrayList<Integer> bookmarked = new ArrayList<>();
 				
 		//특정포스트 타임라인 불러오기
+
+	//	PostDto postGroup = postMapper.getSelectedOne(post_id);
+	//	ArrayList<PostDto> plist = postMapper.getSelected(postGroup.getPgroup());
+
 		ArrayList<PostDto> plist = postMapper.getSelected(post_id);
-		
 
 		if(plist.size() >0)
 		{
-			
+			setAnalisticTime(post_id);
 			for(int i = 0 ; i < plist.size() ; i++)
 			{
 				ulist.add(cUserMapper.getUserProfile(plist.get(i).getUser_id()));
@@ -146,6 +201,13 @@ public  class PostServiceImpl implements PostService {
 		//포스트 답글 등록시 기존포스트 step1 증가
 		postMapper.upStep(postDto);
 		//포스트 답글 등록
+
+		
+		PostDto thisPost = postMapper.getSelectedOne(postDto.getPost_id());
+		System.out.println("thisPost.getPgroup() : " + thisPost.getPgroup());
+		postDto.setPgroup(thisPost.getPgroup());
+		postDto.setPstep(thisPost.getPstep());
+
 		int result = postMapper.sendModalPost(postDto);
 
 		PostDto targetDto = postMapper.getTargetId(postDto);
@@ -173,31 +235,33 @@ public  class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void repeatOn(int post_id) {
+	public int repeatOn(int post_id) {
 		postMapper.repeatOn(post_id);
+		postMapper.addRenote(post_id,session.getAttribute("session_id").toString());
+		
+		return postMapper.getPostRenote(post_id);
 		
 	}
 
 	@Override
-	public void repeatOff(int post_id) {
+	public int repeatOff(int post_id) {
 		// TODO Auto-generated method stub
 		postMapper.repeatOff(post_id);
+		postMapper.delRenote(post_id, session.getAttribute("session_id").toString());
+		return postMapper.getPostRenote(post_id);
 		
 	}
 
 	@Override
-	public void favoriteOn(int post_id) {
+	public int favoriteOn(int post_id) {
 		// TODO Auto-generated method stub
 		postMapper.favoriteOn(post_id);
 		
-	}
-
-	@Override
-	public void favoriteOff(int post_id) {
-		// TODO Auto-generated method stub
-		postMapper.favoriteOff(post_id);
+		postMapper.addLike(post_id, session.getAttribute("session_id").toString());
+		return postMapper.getPostFavor(post_id);
 		
 	}
+
 
 	//인기순으로 게시글 정렬
 	@Override
@@ -330,6 +394,10 @@ public  class PostServiceImpl implements PostService {
 		
 		map.put("follower", follower);
 		map.put("following", following);
+		
+		if(follower.size()==0 && following.size()==0) {
+			map.put("follower", list);
+		}
 		
 		return map;
 	}
@@ -464,6 +532,11 @@ public  class PostServiceImpl implements PostService {
 		}
 		map.put("follower", follower);
 		map.put("following", following);
+		
+		if(follower.size()==0 && following.size()==0) {
+			map.put("follower", list);
+		}
+		
 		
 		return map;
 	}
@@ -614,5 +687,49 @@ public  class PostServiceImpl implements PostService {
 		return map;
 	}
 
+
+
+	@Override
+	public int favoriteOff(int post_id) {
+		// TODO Auto-generated method stub
+		postMapper.favoriteOff(post_id);
+		
+		postMapper.delLike(post_id, session.getAttribute("session_id").toString());
+		return postMapper.getPostFavor(post_id);
+	}
+
+	
+	
+	
+
+
+	
+	
+	
+	
+	/* --------------------------private method--------------------------------------*/
+	
+	private void setAnalisticTime(int post_id)	{
+
+		LocalTime now = LocalTime.now();
+		int hour = now.getHour();
+		System.out.println("현재 시 : " + now.getHour());
+			
+		if(hour>=0 && hour <6)
+		{
+			postMapper.hitViewhit0(post_id);
+		}else if(hour>=6 && hour<12)
+		{
+			postMapper.hitViewhit6(post_id);
+		}else if(hour>=12 && hour<18) {
+			postMapper.hitViewhit12(post_id);
+		}else{
+			postMapper.hitViewhit18(post_id);
+		}
+
+	}
+
+
 }
+
 

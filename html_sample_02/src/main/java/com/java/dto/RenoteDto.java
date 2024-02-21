@@ -17,5 +17,6 @@ public class RenoteDto {
 	private int post_id;
 	private String user_id;
 	private Timestamp created;
+	private int post_order;
 	
 }

@@ -1,3 +1,4 @@
+
 package com.java.mapper;
 
 import java.util.ArrayList;
@@ -12,3 +13,4 @@ public interface ProfileMapper {
 	ArrayList<PostDto> selectDefault(String id);
 
 }
+

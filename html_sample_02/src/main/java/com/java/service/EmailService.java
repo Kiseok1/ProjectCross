@@ -1,3 +1,4 @@
+
 package com.java.service;
 
 public interface EmailService  {
@@ -13,3 +14,4 @@ public interface EmailService  {
 	String emailSend3(String email);
 
 }
+

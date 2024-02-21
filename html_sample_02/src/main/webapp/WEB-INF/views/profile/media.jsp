@@ -102,6 +102,7 @@
 					</c:if>
 					<c:if test="${!fn:contains(flist,'mp4')}">
 						<div class="media_box_3" onclick="location.href='/viewContent?post_id=${ilist[stat.index]}'"><img src="/upload/${flist}"></div>	
+
 					</c:if>
 					</div>
            			<div class="media_sub">

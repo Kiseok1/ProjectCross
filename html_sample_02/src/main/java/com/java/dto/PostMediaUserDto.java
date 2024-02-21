@@ -1,3 +1,4 @@
+
 package com.java.dto;
 
 import lombok.AllArgsConstructor;
@@ -15,3 +16,4 @@ public class PostMediaUserDto {
 	private MediaDto mediaDto;
 	private Cross_userDto cross_userDto;
 }
+

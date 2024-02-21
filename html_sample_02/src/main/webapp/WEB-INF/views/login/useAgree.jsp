@@ -10,10 +10,10 @@
 	</head>
 
 <!-- body -->	
-	<body>
+	<!-- <body>
 	<a href="#" title="top">
 	<div class="top">
-	</div>
+	</div> -->
 	</a>
 	<div class="frame">
 		<div class="ul">
