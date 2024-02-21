@@ -363,6 +363,7 @@ pre {
 								
 								
 								
+								
 								<span class="material-icons ms_icons chart"
 								data-post_id="${plist[status.index].post_id}">bar_chart</span>
 								<h3>${plist[status.index].hit+1}</h3>
