@@ -65,7 +65,7 @@
 
         <div class="Menu_options side_notice">
             <span class="material-icons">notifications</span>
-            <h2>알림</h2><span class="badge text-bg-light rounded-pill align-text-bottom">new</span>
+            <h2>알림</h2><!-- <span class="badge text-bg-light rounded-pill align-text-bottom">new</span> -->
         </div>
 
 

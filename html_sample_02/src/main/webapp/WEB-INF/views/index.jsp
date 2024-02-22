@@ -270,14 +270,14 @@ pre {
 								</c:if>
 
 								<c:if test="${fn:length(img)==4}">
-									<div class="container img-sm">
+									<div class="container">
 										<div class="row">
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="/upload/${img[0]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="/upload/${img[0]}">
 											</div>
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="/upload/${img[1]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="/upload/${img[1]}">
@@ -285,12 +285,12 @@ pre {
 										</div>
 
 										<div class="row">
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="/upload/${img[2]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="/upload/${img[2]}">
 											</div>
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="/upload/${img[3]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="/upload/${img[3]}">

@@ -263,6 +263,10 @@
 		UPDATE post  SET viewhit12 = viewhit12+1 where post_id=${post_id}
 	</update>
 	
+	<update id="hitViewhit18">
+		UPDATE post  SET viewhit18 = viewhit18+1 where post_id=${post_id}
+	</update>
+	
 	<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
 	<!-- 정환(기석) 작업 -->

@@ -41,6 +41,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired MessageMapper messageMapper;
 	@Autowired BookmarkMapper bookmarkMapper;
 	
+	
 	//작성글 가져오기
 	@Override
 	public ArrayList<PostMediaUserDto> selectDefault(String id) {
@@ -74,6 +75,7 @@ public class ProfileServiceImpl implements ProfileService {
 		postMapper.accountUpdate1(user_id,org_id);
 		postLikeMapper.accountUpdate1(user_id,org_id);
 		bookmarkMapper.accountUpdate(user_id,org_id);
+		bookmarkMapper.accountUpdate_renote(user_id,org_id);
 		//리트윗,북마크 추가해야함
 	}
 

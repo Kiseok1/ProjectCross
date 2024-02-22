@@ -262,7 +262,7 @@ $(function() {
 
 		let element = $(e.currentTarget).attr("data-location");
 		$(".locSelected").remove();
-		$(e.currentTarget).append('<span class="material-icons locSelected">close</span>');
+		$(e.currentTarget).append('<span class="material-icons locSelected" data-bs-dismiss="modal" aria-label="Close">close</span>');
 		console.log(element);
 		$("#position_wrap").removeClass("invis");
 		$("#currLocation").html(element);
@@ -278,7 +278,7 @@ $(function() {
 
 		let element = $(e.currentTarget).attr("data-location");
 		$(".locSelectedM").remove();
-		$(e.currentTarget).append('<span class="material-icons locSelectedM">close</span>');
+		$(e.currentTarget).append('<span class="material-icons locSelectedM" data-bs-dismiss="modal" aria-label="Close">close</span>');
 		console.log(element);
 		$("#modal_position_wrap").removeClass("invis");
 		$("#modal_currLocation").html(element);
@@ -981,7 +981,7 @@ $(function() {
 
 		var el = document.createElement('div');
 		
-		let addrHtml = '<div class="row  align-items-start selAddr"';
+		let addrHtml = '<div class="row  align-items-start selAddr" data-bs-dismiss="modal" aria-label="Close"';
 		addrHtml += 'data-location="'+places.place_name	+'">';
 		
 		addrHtml += '<div class="col col-2 border-end border-secondary mt-1 addrHead">';
@@ -1070,7 +1070,7 @@ $(function() {
 
 		var el = document.createElement('div');
 		
-		let addrHtml = '<div class="row  align-items-start selAddr2"';
+		let addrHtml = '<div class="row  align-items-start selAddr2" data-bs-dismiss="modal" aria-label="Close"';
 		addrHtml += 'data-location="'+places.place_name	+'"';
 		addrHtml += 'data-bs-dismiss="modal" aria-label="Close"';
 		addrHtml += '>';
@@ -1171,7 +1171,7 @@ $(function() {
 			postHtml += '				<div class="post_header">';
 			postHtml += '					<div class="post_header-text">';
 			postHtml += '						<h3>';
-			postHtml += '							'+data.ulist[i].name+'<span class="header-icon-section">@'+data.ulist[i].name;
+			postHtml += '							'+data.ulist[i].name+'<span class="header-icon-section">@'+data.ulist[i].user_id;
 			postHtml += '							</span>';
 			postHtml += '						</h3>';
 			postHtml += '						<div style="margin-left: 1rem; text-align: center;">';
