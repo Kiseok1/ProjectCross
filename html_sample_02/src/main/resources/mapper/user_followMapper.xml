@@ -5,11 +5,13 @@
 <mapper namespace="com.java.mapper.User_followMapper">
 	
 	<insert id="insertFollow1">
-		insert into user_follow values (user_follow_seq.nextval, #{source_id}, #{source_id}, #{target_id}, sysdate, sysdate)
+		insert into user_follow values 
+		(user_follow_seq.nextval, #{source_id}, #{source_id}, #{target_id}, sysdate, sysdate)
 	</insert>
 	
 	<insert id="insertFollow2">
-		insert into user_follow values (user_follow_seq.nextval, #{target_id}, #{source_id}, #{target_id}, sysdate, sysdate)
+		insert into user_follow values 
+		(user_follow_seq.nextval, #{target_id}, #{source_id}, #{target_id}, sysdate, sysdate)
 	</insert>
 	
 	<delete id="deleteFollow">

@@ -159,6 +159,7 @@ public class MessageController {
 	@ResponseBody
 	public List<MessCrossMediaDto>search2(String input) {
 		System.out.println("MessageController search input : "+input);
+		//String id = session.getAttribute("session_id").toString();
 		List<MessCrossMediaDto> search2 = mService.search2(input);
 		return search2;
 	}

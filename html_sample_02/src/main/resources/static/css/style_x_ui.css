@@ -271,10 +271,17 @@ main::-webkit-scrollbar{
     transform: translate(-50%, -50%);
 }
 
+.post_body .img-sm{
+	max-height: 180px;
+	overflow: hidden;
+    border-radius: 20px;
+    margin-top:0.12rem;
+}
+
 .post_body .img-sm img{
     width: 230px;
-    object-fit: contain;
-    border-radius: 20px;
+    object-fit: cover;
+
 
 }
 

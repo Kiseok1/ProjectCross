@@ -9,6 +9,10 @@
 		update bookmark set user_id=#{user_id} where user_id=#{org_id}
 	</update>
 	
+	<update id="accountUpdate_renote">
+		update renote set user_id=#{user_id} where user_id=#{org_id}
+	</update>
+	
 	<!-- 북마크 체크 -->
 	<insert id="bookmarkCheck">
 		insert into bookmark values (bookmark_seq.nextval,#{post_id},#{user_id},sysdate)

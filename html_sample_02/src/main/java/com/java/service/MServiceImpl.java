@@ -92,12 +92,12 @@ public class MServiceImpl implements MService {
 
 	@Override//check update
 	public MessCrossMediaDto checkUpdate(int msg_id, String stat) {
-		messageMapper.checkUpdate(msg_id);
 		MessCrossMediaDto mcDto = null;
 		if(stat.equals("send")) {
-			mcDto = messageMapper.sendOne(msg_id);
+			mcDto = messageMapper.sendOne(msg_id);			
 		} else {
 			mcDto = messageMapper.receiveOne(msg_id); 			
+			messageMapper.checkUpdate(msg_id);
 		}
 		
 		return mcDto;

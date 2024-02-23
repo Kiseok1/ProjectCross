@@ -360,7 +360,7 @@ $(function(){
         <!-- 검색 -->
       <div class="d-flex align-items-center">
 	    <form class="w-100 me-3" role="search" name="search">
-           <input style="width: 100%; margin-left: 10px; height: 30px; margin-bottom: 10px; margin-top: 10px;" type="search" class="form-control" placeholder="검색" aria-label="Search" name="searchInput3" id="searchInput3">
+           <input type="hidden" style="width: 100%; margin-left: 10px; height: 30px; margin-bottom: 10px; margin-top: 10px;" type="search" class="form-control" placeholder="검색" aria-label="Search" name="searchInput3" id="searchInput3">
          </form>
 	    <!-- 선택삭제,전체삭제 -->
 	    <button class="delete-button" id="deleteBtn1" style="position: relative; left: 18px;">선택삭제</button>

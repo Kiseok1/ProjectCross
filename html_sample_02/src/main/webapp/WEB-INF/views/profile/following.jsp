@@ -59,51 +59,44 @@
 	         dropdownContent.css("display", "none");
 	     });
 	     
+	     
+	     // 팔로우 버튼 클릭시 작동
 	     $(".folbtn").click(function(){
 	    	 	
 				if($(this).text()=="언팔로우"){
 					$(this).parent().prev().text("팔로우")
 					$(this).text("팔로워")
-					console.log("팔로잉->팔로우(언팔)");
 					let stat = "delete";
-					let target_id=$(this).attr("id");
-					
-					console.log(target_id)
+					let target_id=$(this).attr("id");					
 					$.ajax({
 						url:"/profile/followBtn",
 						type:"post",
 						data:{"stat":stat,"target_id":target_id},
 						datatype:"text",
 						success:function(data){
-							
 						},
 						error:function(){
 							alert("실패");
 						}
 					})
 					
-					
 				} else if($(this).text()=="팔로워"){
 					$(this).parent().prev().text("팔로잉")
 					$(this).text("언팔로우")
-					console.log("팔로우->팔로잉");
 					let stat = "insert";
 					let target_id=$(this).attr("id");
-					console.log(target_id)
 					$.ajax({
 						url:"/profile/followBtn",
 						type:"post",
 						data:{"stat":stat,"target_id":target_id},
 						datatype:"text",
 						success:function(data){
-							
 						},
 						error:function(){
 							alert("실패");
 						}
 					})
 				} 
-		 
 			})
 			
 		
@@ -176,7 +169,7 @@
 							  <button class="followBtn">팔로잉</button>
 							  <div class="dropdown_content" >
 							 		<div class="folbtn" id="${Udto.user_id}">언팔로우</div>
-							 		<div>차단하기</div>
+							 		<!-- <div>차단하기</div> -->
 							  </div>
 						  	  </c:if>
 						  	  <c:if test="${Udto.user_id!=followingDto[stat.index].target_id}">
@@ -184,7 +177,7 @@
 							  
 							  <div class="dropdown_content" >
 							 		<div class="folbtn" id="${Udto.user_id}">팔로워</div>
-							 		<div>차단하기</div>
+							 		<!-- <div>차단하기</div> -->
 							  </div>
 						  	  </c:if>
 						  </c:if>

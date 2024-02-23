@@ -38,10 +38,6 @@
     
     <script>
     	$(function(){
-    		let img_location = "";
-    		let header_img="${udto.header_img}";
-    		let profile_img="${udto.profile_img}";
-    		
     		$(".heading_media").click(function(){
     			location.href = "media2";
     		})
@@ -58,7 +54,12 @@
     			location.href = "mypage";
     		})
     		
-    		<!-- 프로필 수정_이미지파일 시작 -->
+    		<!-- 프로필 수정_이미지파일 -->
+    		
+    		let img_location = "";
+    		let header_img="${udto.header_img}";
+    		let profile_img="${udto.profile_img}";
+
     		$(".header_camera").click(function(){
     			img_location = "header_camera";
     			console.log(img_location);
@@ -71,38 +72,17 @@
     			$('#file').click();
     		})
     		
-    		$("#file").on("change",function(e){
-	    		//  console.log(e);
-	    		//  console.log(e.target.files.length);
-	    		  var felement = e.target.files;
-	    			 $("#image-area").html("");
-	    			 fileCount=0;
-	    		  for(var i = 0 ; i < e.target.files.length ; i++)
-    			  {
-	    			  if(fileCount>3)
-			  	        {
-			  	        	alert("파일은 최대 네개까지만 첨부가능합니다.");
-			  	        	break;
-			  	        }
-    			  		
-    			  		var file = e.target.files[i];
-    			  		
+    		$("#file").on("change",function(e){	    		
+	    		  
+    			  		var file = e.target.files[0];
     			  		let name=file.name;
     			  		
-    			  		//console.log(name);
-    			  		
-    			  	    if(isImageFile(file)) {
-    			  	    	
+    			  	    if(isImageFile(file)) { 
     			  	      var reader = new FileReader(); 
     			  	      reader.onload = function(e) {	
     			  	    	 var img = document.createElement("img");
-    			  	    //	console.log("isImageFile",e.target);
     			  	         img.setAttribute("src", e.target.result);
-    			  	       	 img.setAttribute("class", "userfile");
-    			  	       	 img.setAttribute("onmouseover","this.src='images/cancel.png'");
-    			  	       	 img.setAttribute("onmouseout","this.src='"+e.target.result+"'");
-    			  	       	 img.setAttribute("style","width:80px; height:80px; object-fit:cover;");
-    						 img.setAttribute("data-set",name);	 
+    						 
     						 if(img_location=="header_camera"){
 	    			  	       	 $("#headerimage").attr("src",img.src);
 	    			  	         var form_data = new FormData(); //form객체선언
@@ -117,15 +97,14 @@
 		    			  			 contentType:false,
 		    			  			 enctype:"multipart/form-data",
 		    			  			 processData:false,
-		    			  			 
 		    			  			 success:function(data){ //업로드 된 url링크 주소를 data에 전송
-		    			  			 	console.log(data);
 		    			  			 	header_img=data;
 		    			  		   	 },
 		    			  			 error:function(){
 		    			  				alert("실패");
 		    			  			 }
 		    			  		 });//ajax
+    						 
     						 } else {
     							 $("#profilepic").attr("src",img.src);
     							 var form_data = new FormData(); //form객체선언
@@ -140,9 +119,7 @@
 		    			  			 contentType:false,
 		    			  			 enctype:"multipart/form-data",
 		    			  			 processData:false,
-		    			  			 
 		    			  			 success:function(data){ //업로드 된 url링크 주소를 data에 전송
-		    			  			 	console.log(data);
 		    			  			 	profile_img=data;
 		    			  		   	 },
 		    			  			 error:function(){
@@ -150,13 +127,10 @@
 		    			  			 }
 		    			  		 });//ajax
     						 }
-    			  	       
     			  	      }
 	    			  	reader.readAsDataURL(file);
-    			  	    }
-    			  	  fileCount++;
-
-    			  }
+    			  	    } 
+    			  	  
 	    	  })
 
 	    	  function isImageFile(file) {

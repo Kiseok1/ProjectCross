@@ -41,6 +41,7 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired MessageMapper messageMapper;
 	@Autowired BookmarkMapper bookmarkMapper;
 	
+	
 	//작성글 가져오기
 	@Override
 	public ArrayList<PostMediaUserDto> selectDefault(String id) {
@@ -74,6 +75,7 @@ public class ProfileServiceImpl implements ProfileService {
 		postMapper.accountUpdate1(user_id,org_id);
 		postLikeMapper.accountUpdate1(user_id,org_id);
 		bookmarkMapper.accountUpdate(user_id,org_id);
+		bookmarkMapper.accountUpdate_renote(user_id,org_id);
 		//리트윗,북마크 추가해야함
 	}
 
@@ -86,8 +88,10 @@ public class ProfileServiceImpl implements ProfileService {
 
 	//프로필 변경
 	@Override
-	public void profileUpdate(String name, String profile_txt, String user_loc, String user_url, String header_img, String profile_img, String user_id) {
-		cross_userMapper.profileUpdate(name,profile_txt,user_loc,user_url,header_img,profile_img,user_id);
+	public void profileUpdate(String name, String profile_txt, String user_loc, 
+			String user_url, String header_img, String profile_img, String user_id) {
+		cross_userMapper.profileUpdate(name,profile_txt,user_loc,
+				user_url,header_img,profile_img,user_id);
 		
 	}
 
@@ -98,8 +102,7 @@ public class ProfileServiceImpl implements ProfileService {
 		user_followMapper.insertFollow2(source_id,target_id);
 		alramMapper.insertFollowAlram(source_id,target_id);
 		session.setAttribute("session_followerCount", user_followMapper.followerCount(source_id));
-		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));
-		
+		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));		
 	}
 
 	//팔로잉->팔로우(언팔)
@@ -107,8 +110,7 @@ public class ProfileServiceImpl implements ProfileService {
 	public void deleteFollow(String source_id, String target_id) {
 		user_followMapper.deleteFollow(source_id,target_id);
 		session.setAttribute("session_followerCount", user_followMapper.followerCount(source_id));
-		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));
-		
+		session.setAttribute("session_followingCount", user_followMapper.followingCount(source_id));		
 	}
 
 	//팔로우 정보 가져오기

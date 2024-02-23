@@ -176,7 +176,12 @@
 		<c:forEach var="Udto" items="${following}">
 		<div class="post">
 			<div class="search_post_profile-image">
-			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			<c:if test="${Udto.profile_img!=null}">
+				<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			</c:if>
+			<c:if test="${Udto.profile_img==null}">
+				<div class="user_profile"><img src="/upload/proflie_default.png"></div>
+			</c:if>
 			</div>
 			<div class="post_body">
 				<div class="post_header">
@@ -222,7 +227,12 @@
 		<c:forEach var="Udto" items="${follower}">
 		<div class="post">
 			<div class="search_post_profile-image">
-			<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			<c:if test="${Udto.profile_img!=null}">
+				<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>	
+			</c:if>
+			<c:if test="${Udto.profile_img==null}">
+				<div class="user_profile"><img src="/upload/proflie_default.png"></div>
+			</c:if>
 			</div>
 			<div class="post_body">
 				<div class="post_header">

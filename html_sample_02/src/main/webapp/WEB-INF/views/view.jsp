@@ -154,8 +154,8 @@
 													class="visually-hidden">Toggle Dropdown</span>
 											</div>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="#">팔로우하기</a></li>
-												<li><a class="dropdown-item" href="#">차단하기</a></li>
+												<!-- <li><a class="dropdown-item" href="#">팔로우하기</a></li>
+												<li><a class="dropdown-item" href="#">차단하기</a></li> -->
 												<li><div class="dropdown-item translate">번역하기</div></li>
 											</ul>
 										</c:if>
@@ -256,14 +256,14 @@
 								</c:if>
 
 								<c:if test="${fn:length(img)==4}">
-									<div class="container img-sm">
+									<div class="container">
 										<div class="row">
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="upload/${img[0]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="upload/${img[0]}">
 											</div>
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="upload/${img[1]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="upload/${img[1]}">
@@ -271,12 +271,12 @@
 										</div>
 
 										<div class="row">
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="upload/${img[2]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="upload/${img[2]}">
 											</div>
-											<div class="col-md-auto">
+											<div class="col-md-auto img-sm rounded">
 												<img src="upload/${img[3]}" class="rounded " alt="java18"
 													data-bs-toggle="modal" data-bs-target="#exampleModal"
 													data-bs-whatever="upload/${img[3]}">
