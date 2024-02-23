@@ -29,10 +29,10 @@ public interface MService {
 	Cross_userDto UserData(String user_id);
 
 	//받은쪽지 검색
-	List<MessCrossMediaDto> search2(String input);
+	List<MessCrossMediaDto> search2(String input,String id);
 
 	//보낸쪽지 검색
-	List<MessCrossMediaDto> search3(String input);
+	List<MessCrossMediaDto> search3(String input,String id);
 
 
 	//보낸글 선택삭제하기

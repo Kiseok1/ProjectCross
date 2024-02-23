@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/css/style_x_ui_jw.css">
 <link rel="stylesheet" href="/node_modules/reset.css/reset.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/headers/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -81,13 +82,21 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 	         }); 
 
        		 //click하지 않았을때는 post를 숨기고 .welcom 보이기
-	        $(document).click(function(e) {
-	             if (!$(e.target).is('input[type="search"]')) {
-	                 $('.welcom').show();
-	                 $('.group').hide();
-	                 $('.post').hide(); 
-	             }
-	         }); 
+	       $(document).click(function(e) {
+		    if (!$(e.target).is('input[type="search"]')) {
+		        var inputValue = $('input[type="search"]').val().trim(); // 입력된 값 가져오기
+		        if (inputValue !== "") {
+		            $('.welcom').hide(); // 입력된 값이 있으면 환영 메시지 숨기기
+		            $('.post').hide(); // 모든 데이터 숨기기
+		            $('.post:contains("' + inputValue + '")').show(); // 입력된 값이 포함된 데이터만 보이기
+		        } else {
+		            $('.welcom').show(); // 입력된 값이 없으면 환영 메시지 보이기
+		            $('.group').empty().hide(); // 그룹 데이터 비우고 숨기기
+		            $('.post').hide();
+		        }
+		    }
+		});
+
             
        		
             // .post 클래스를 가진 요소를 클릭했을 때의 이벤트 리스너
@@ -137,7 +146,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                     $("#name").text("@"+data.user_id);
                     $("#name1").val(data.user_id);
                     
-                    $('#messageModal').modal('show');
+                    $('.modal1').modal('show');
                 },
                 error: function() {
                     alert("실패");
@@ -147,6 +156,15 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 
         //그룹쪽지보내기
        $(document).on('click', '.add', function() {
+    		// .group 내부에 .user_data 요소가 있는지 확인
+    	     if ($('.group').find('.user_data').length === 0 || $('.group').find('.user_data').length === 1) {
+	        // .group에 데이터가 없는 경우에만 이벤트 핸들러 실행
+	        console.log("No data in .group, event handler will not execute.");
+	        // input[type="search"]에 포커스를 주는 부분 추가
+	        $('input[type="search"]').focus();
+	        return; // 이벤트 핸들러 종료
+	    }
+    	   
 		    var userIds = []; // 사용자 ID를 저장할 배열
 		    var userIdstring = "";
 		    $(".group .user_data").each(function() {
@@ -166,58 +184,23 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 		    console.log(userIdstring);
 		    $("#name2").val(userIdstring);
 		    // 모달 창 띄우기 등 원하는 동작 수행
-		    $('#messageModal2').modal('show');
+		    $('.modal2').modal('show');
 		});
 
-      /*  $(document).on('click', '#send_btn_g', function() {
-    	   var userIds = []; // 사용자 ID를 저장할 배열
-    	   $(".group .user_data").each(function() {
-    	       var userIdWithSuffix = $(this).attr("id"); // 각 요소의 id 속성으로 user_id 추출
-    	       var userId = userIdWithSuffix.replace("_data", ""); // "_data"를 제거하여 user_id 추출
-    	       userIds.push(userId);
-    	   });  		  
-    	   
-    	   var file = $("#file_g").val();
-    	   alert(file);
-    	   var formData = new FormData();
-    	   
-    	   // userIds 배열을 문자열로 변환하여 FormData에 추가
-    	   var userIdsString = userIds.join(','); // userIds를 쉼표로 구분된 문자열로 변환
-    	   formData.append('user_ids', userIdsString); // 변환된 문자열을 FormData에 추가
-		   //alert(formData.get('user_ids'));
-		   //alert(userIdsString);
-		   console.log(formData);
-		   
-    	   // Ajax를 사용하여 서버로 데이터 전송
-    	   $.ajax({
-    	       url: "/message/Group",
-    	       type: "POST",
-    	       data: formData,
-    	       processData: false, // 필요한 경우 FormData를 직렬화하지 않도록 설정
-    	       contentType: false, // FormData의 Content-Type을 설정하지 않도록 설정
-    	       success: function(response) {
-    	    	   alert("성공");
-    	           // 성공적으로 서버 응답을 처리하는 코드
-    	           console.log(formData);
-		    	   
-    	       },
-    	       error: function(xhr, status, error) {
-    	           // 오류가 발생했을 때 처리하는 코드
-    	           alert("실패");
-    	           console.error("실패");
-    	       }
-    	       
-    	   }); 
-    	   
-       	}); */
-       
+
+
        
 		//그룹정보 가져오기
         $(function(){
         	 var prev_data = "";
         	 var initialDataLoaded = false; // 처음 데이터를 받았는지 여부를 나타내는 변수
             $("#searchResults").on("click", ".check", function(event) {
-            	var user_id = $(this).closest(".post").attr('id');
+
+            	 $(this).css("color","red");
+            	    var post = $(this).closest(".post");
+            	    var user_id = post.attr('id');
+
+
                 //alert(user_id);
                
                 // 데이터가 로드되지 않은 경우, AJAX 요청을 보냄
@@ -230,11 +213,12 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                         console.log(data);
                         if (data) { // 단일 객체로 데이터를 받음
                             var item = data; // 단일 객체이므로 item에 할당
-                            var leftPosition = initialDataLoaded ? (50 * ($(".group").children().length)) : 0;
+                            var leftPosition = initialDataLoaded ? (51 * ($(".group").children().length)) : 0;
                             var userDataHtml = '<div class="user_data" style="position:relative; left:'+ leftPosition +'px;" id="' + item.user_id + '_data">';
-                            userDataHtml += '<div class="profile-image" style="overflow: hidden; height: 40px; width: 40px; border-radius: 50%; position: relative; left: 5px; top: 3px;">';
+                            userDataHtml += '<i class="bi bi-x-circle gx" id="myIcon" style=""></i>';
+                            userDataHtml += '<div class="profile-image" data-user-id="' + item.user_id + '" onmouseover="showGx(this.getAttribute(\'data-user-id\'))" onmouseout="hideGx(this.getAttribute(\'data-user-id\'))" style="overflow: hidden; height: 40px; width: 40px; border-radius: 50%; position: relative; left: 10px; bottom: 12px; cursor: pointer;">';
                             userDataHtml += '<img src="/upload/' + item.profile_img + '" style="width: 40px; height: 40px; position: relative; right: 1px; border-radius: 50%;"></div>';
-                            userDataHtml += '<div class="body" style="position: relative; bottom: 36px; left: 50px;">';
+                            userDataHtml += '<div class="body" style="position: relative; bottom: 48px; left: 50px;">';
                             userDataHtml += '<span class="header-icon-section" style="position: relative; right: 3px font-size: 10px;">@' + item.name + '';
                             userDataHtml += '</span>';
                             userDataHtml += '<h3 style="font-size: 12px;">' + item.user_id + '';
@@ -243,7 +227,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                             userDataHtml += '</div>';
                             userDataHtml += '</div>';
                             userDataHtml += '</div>';
-							
+                            post.remove(); // .post 요소 삭제
                             // 새로운 데이터를 옆으로 추가
                             if (!initialDataLoaded) {
                                 $(".group").append(userDataHtml); // 처음 데이터를 추가
@@ -255,9 +239,20 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 
                             $(".group").show();
                             initialDataLoaded = true;
+                         	// 만약 데이터가 5개 이상이라면 추가된 요소를 숨기기
+                            if ($(".group").children().length > 5) {
+                                $(".group .user_data:nth-child(n+6)").hide();
+                            }//if
                         } else {
                             $(".group").hide();
-                        }
+                        }//data
+                        
+                        // 프로필 이미지 클릭하여 해당 데이터 삭제하는 함수와 이벤트 핸들러
+                        $(".profile-image").on("click", function() {
+                            var userId = $(this).data("user-id");
+                            $("#" + userId + "_data").remove();
+                        });
+                        
                     },
                     error: function() {
                         alert("실패");
@@ -267,7 +262,30 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                 // .check 클릭 이벤트가 .post 클릭 이벤트를 중지시킴
                 event.stopPropagation();
             });
+        
         });
+
+     	// 각 프로필 이미지에 해당하는 .gx를 보여주는 함수
+        function showGx(userId) {
+            $(".gx").css("visibility", "hidden"); // 모든 .gx를 숨김
+            $("#" + userId + "_data .gx").css("visibility", "visible"); // 해당 userId에 대한 .gx를 보임
+        }
+
+        // 각 프로필 이미지에 해당하는 .gx를 숨기는 함수
+        function hideGx(userId) {
+            $("#" + userId + "_data .gx").css("visibility", "hidden"); // 해당 userId에 대한 .gx를 숨김
+        }
+		
+        $(".profile-image").on("mouseover", function() {
+            var userId = $(this).data("user-id"); // 해당 프로필 이미지의 user_id를 가져옴
+            showGx(userId);
+        });
+
+        $(".profile-image").on("mouseout", function() {
+            var userId = $(this).data("user-id"); // 해당 프로필 이미지의 user_id를 가져옴
+            hideGx(userId);
+        });
+		
 
         </script>
         
@@ -295,7 +313,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 
 		
 	<!-- 모달 창 -->
-		<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade modal1" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
 		      <div class="modal-header">
@@ -350,7 +368,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         </div>
 
 		<!-- messageModal2 -->
-		<div class="modal fade" id="messageModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade modal2" id="messageModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content" style="border: 2px solid #b19cd9; border-radius: 1rem;">
 		      <div class="modal-header">
@@ -364,7 +382,7 @@ pre{    white-space: pre-wrap;    background: #EEE;}
 					<div id="modal_text-area" class="rounded" style="position: relative; height: 250px;">
 						<input type="hidden" name="target_id" id="name2">
 						<textarea rows="" cols="" class="content" name="mcontent" id="modal_write-box"
-							style="outline: none; width: 380px; border: none; resize: none; overflow: hidden"></textarea>
+							style="width:380px; outline: none; border: none; resize: none; overflow: hidden"></textarea>
 						<div id="modal_position_wrap" class="invis">
 							<div id="position-area" style="display: flex;">
 								<span class="material-icons">location_on</span>

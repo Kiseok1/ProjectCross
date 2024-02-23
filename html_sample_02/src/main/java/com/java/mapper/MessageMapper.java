@@ -31,10 +31,10 @@ public interface MessageMapper {
 	Cross_userDto UserData(String user_id);
 
 	//받은쪽지 검색
-	List<MessCrossMediaDto> search2(String input);
+	List<MessCrossMediaDto> search2(String input,String id);
 
 	//보낸쪽지 검색
-	List<MessCrossMediaDto> search3(String input);
+	List<MessCrossMediaDto> search3(String input,String id);
 
 
 	//보낸글 선택삭제하기
@@ -42,7 +42,6 @@ public interface MessageMapper {
 	void deleteMedia(int msg_id);
 
 	//메시지 저장하기
-	
 	void mInsert2(MessageDto mdto);
 	void mInsert(MediaDto mdto2);
 

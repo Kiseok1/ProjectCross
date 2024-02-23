@@ -6,7 +6,7 @@ $(function() {
 /*index 모달 기능 */
 	const DEFAULT_HEIGHT = 16; // textarea 기본 height
 
-	$("#write-box").on("keydown", function(e) {
+	$(".modal1 #write-box").on("keydown", function(e) {
 		console.log($(e.target).val());
 		//	  console.log(e.target.style);
 		let text = $(e.target).val();
@@ -22,7 +22,39 @@ $(function() {
 
 	})
 	
-	$("#modal_write-box").on("keydown", function(e) {
+	$(".modal1 #modal_write-box").on("keydown", function(e) {
+		console.log($(e.target).val());
+		//	  console.log(e.target.style);
+		let text = $(e.target).val();
+		e.target.style.height = 0;
+		e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight + 'px';
+		//					    		 
+		if (text.length > 150) {
+			console.log("글자수입력제한");
+			$(e.target).val(($(e.target).val().substring(0, 150)));
+			e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight - 32 + 'px';
+		}
+
+
+	})
+	
+	$(".modal2 #write-box").on("keydown", function(e) {
+		console.log($(e.target).val());
+		//	  console.log(e.target.style);
+		let text = $(e.target).val();
+		e.target.style.height = 0;
+		e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight + 'px';
+		//					    		 
+		if (text.length > 150) {
+			console.log("글자수입력제한");
+			$(e.target).val(($(e.target).val().substring(0, 150)));
+			e.target.style.height = DEFAULT_HEIGHT + e.target.scrollHeight - 32 + 'px';
+		}
+
+
+	})
+	
+	$(".modal2 #modal_write-box").on("keydown", function(e) {
 		console.log($(e.target).val());
 		//	  console.log(e.target.style);
 		let text = $(e.target).val();
@@ -39,149 +71,127 @@ $(function() {
 	})
 	
 
-	$("#text-area").click(function() {
+	$(".modal1 #text-area").click(function() {
 		$("#write-box").focus();
 	})
 	
-	$("#modal_text-area").click(function() {
+	$(".modal1 #modal_text-area").click(function() {
+		$("#modal_write-box").focus();
+	})
+
+	$(".modal2 #text-area").click(function() {
+		$("#write-box").focus();
+	})
+	
+	$(".modal2 #modal_text-area").click(function() {
 		$("#modal_write-box").focus();
 	})
 	
+$("#file_g").on("change", function(e) {
+    var felement = e.target.files;
+    
+    console.log(e);
+    var fileCount = 0;
 
-	$("#file").on("change", function(e) {
-	//  console.log(e);
-		//  console.log(e.target.files.length);
-		console.log($("#modal_image-area"));
-		var felement = e.target.files;
-		$("#modal_image-area").html("");
-	
-		fileCount = 0;
-		for (var i = 0; i < e.target.files.length; i++) {
+    for (var i = 0; i < e.target.files.length; i++) {
+        var file = e.target.files[i];
+        let name = file.name;
 
-			var file = e.target.files[i];
+        if (isImageFile(file)) {
+            if (fileCount > 3) {
+                alert("이미지 파일은 최대 네개까지만 첨부가능합니다.");
+                break;
+            }
 
-			let name = file.name;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.createElement("img");
+                img.setAttribute("src", e.target.result);
+                img.setAttribute("class", "modal_userfile");
+                img.setAttribute("onmouseover", "this.src='/images/cancel.png'");
+                img.setAttribute("onmouseout", "this.src='" + e.target.result + "'");
+                img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
+                img.setAttribute("data-set", name);
+                // Append to second modal area
+                $(".modal2 #modal_image-area_g").append(img);
+            };
+            reader.readAsDataURL(file);
+        } else if (isVideoFile(file)) {
+            if (fileCount > 0) {
+                alert("영상 파일은 최대 하나까지만 첨부가능합니다.");
+                break;
+            }
 
-			console.log(name);
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var video = document.createElement("video");
+                video.setAttribute("src", e.target.result);
+                video.setAttribute("controls", "controls");
+                video.setAttribute("loop", "loop");
+                video.setAttribute("muted", "muted");
+                video.setAttribute("preload", "preload");
+                video.setAttribute("style", "width:80px; height:80px;");
+                // Append to second modal area
+                $(".modal2 #modal_image-area_g").append(video);
+            };
+            reader.readAsDataURL(file);
+        }
+        fileCount++;
+    }
+});
 
-			if (isImageFile(file)) {
-				if (fileCount > 3) {
-					alert("이미지 파일은 최대 네개까지만 첨부가능합니다.");
-					break;
-				}
+$("#file").on("change", function(e) {
+    var felement = e.target.files;
+    var fileCount = 0;
 
+    for (var i = 0; i < e.target.files.length; i++) {
+        var file = e.target.files[i];
+        let name = file.name;
 
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var img = document.createElement("img");
-					//	console.log("isImageFile",e.target);
-					img.setAttribute("src", e.target.result);
-					img.setAttribute("class", "modal_userfile");
-					img.setAttribute("onmouseover", "this.src='/images/cancel.png'");
-					img.setAttribute("onmouseout", "this.src='" + e.target.result + "'");
-					img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
-					img.setAttribute("data-set", name);
-					$("#modal_image-area").prepend(img);
-					console.log("imageFileReader");
+        if (isImageFile(file)) {
+            if (fileCount > 3) {
+                alert("이미지 파일은 최대 네개까지만 첨부가능합니다.");
+                break;
+            }
 
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.createElement("img");
+                img.setAttribute("src", e.target.result);
+                img.setAttribute("class", "modal_userfile");
+                img.setAttribute("onmouseover", "this.src='/images/cancel.png'");
+                img.setAttribute("onmouseout", "this.src='" + e.target.result + "'");
+                img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
+                img.setAttribute("data-set", name);
+                // Append to first modal area
+                $(".modal1 #modal_image-area").append(img);
+            };
+            reader.readAsDataURL(file);
+        } else if (isVideoFile(file)) {
+            if (fileCount > 0) {
+                alert("영상 파일은 최대 하나까지만 첨부가능합니다.");
+                break;
+            }
 
-				}
-				
-				reader.readAsDataURL(file);
-			}else if(isVideoFile(file)){
-				if (fileCount > 0) {
-					alert("영상 파일은 최대 하나까지만 첨부가능합니다.");
-					break;
-				}
-				
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var video = document.createElement("video");
-					console.log("isVideoFile",e.target);
-					video.setAttribute("src", e.target.result);
-					video.setAttribute("controls", "controls");
-					video.setAttribute("loop", "loop");
-					video.setAttribute("muted", "muted");
-					video.setAttribute("preload", "preload");
-					$("#modal_image-area").prepend(video);
-					console.log("FileReader");
-
-				}
-				
-				reader.readAsDataURL(file);
-			}
-			fileCount++;
-
-		}
-	})
-	
-	$("#file_g").on("change", function(e) {
-	//  console.log(e);
-		//  console.log(e.target.files.length);
-		console.log($("#modal_image-area"));
-		
-		var felement = e.target.files;
-		$("#modal_image-area_g").html("");
-	
-		fileCount = 0;
-		for (var i = 0; i < e.target.files.length; i++) {
-
-			var file = e.target.files[i];
-
-			let name = file.name;
-
-			console.log(name);
-
-			if (isImageFile(file)) {
-				if (fileCount > 3) {
-					alert("이미지 파일은 최대 네개까지만 첨부가능합니다.");
-					break;
-				}
-
-
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var img = document.createElement("img");
-					//	console.log("isImageFile",e.target);
-					img.setAttribute("src", e.target.result);
-					img.setAttribute("class", "modal_userfile");
-					img.setAttribute("onmouseover", "this.src='/images/cancel.png'");
-					img.setAttribute("onmouseout", "this.src='" + e.target.result + "'");
-					img.setAttribute("style", "width:80px; height:80px; object-fit:cover;");
-					img.setAttribute("data-set", name);
-					$("#modal_image-area_g").prepend(img);
-					console.log("imageFileReader");
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var video = document.createElement("video");
+                video.setAttribute("src", e.target.result);
+                video.setAttribute("controls", "controls");
+                video.setAttribute("loop", "loop");
+                video.setAttribute("muted", "muted");
+                video.setAttribute("preload", "preload");
+                video.setAttribute("style", "width:80px; height:80px;");
+                // Append to first modal area
+                $(".modal1 #modal_image-area").append(video);
+            };
+            reader.readAsDataURL(file);
+        }
+        fileCount++;
+    }
+});
 
 
-				}
-				
-				reader.readAsDataURL(file);
-			}else if(isVideoFile(file)){
-				if (fileCount > 0) {
-					alert("영상 파일은 최대 하나까지만 첨부가능합니다.");
-					break;
-				}
-				
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					var video = document.createElement("video");
-					console.log("isVideoFile",e.target);
-					video.setAttribute("src", e.target.result);
-					video.setAttribute("controls", "controls");
-					video.setAttribute("loop", "loop");
-					video.setAttribute("muted", "muted");
-					video.setAttribute("preload", "preload");
-					$("#modal_image-area").prepend(video);
-					console.log("FileReader");
-
-				}
-				
-				reader.readAsDataURL(file);
-			}
-			fileCount++;
-
-		}
-	})
 
 	function isImageFile(file) {
 		// 파일명에서 확장자를 가져옴

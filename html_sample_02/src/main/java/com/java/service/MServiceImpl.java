@@ -55,14 +55,14 @@ public class MServiceImpl implements MService {
 	}
 
 	@Override//받은쪽지 검색
-	public List<MessCrossMediaDto> search2(String input) {
-		List<MessCrossMediaDto> search2 = messageMapper.search2(input);
+	public List<MessCrossMediaDto> search2(String input,String id) {
+		List<MessCrossMediaDto> search2 = messageMapper.search2(input,id);
 		return search2;
 	}
 
 	@Override//보낸쪽지 검색
-	public List<MessCrossMediaDto> search3(String input) {
-		List<MessCrossMediaDto> search3 = messageMapper.search3(input);
+	public List<MessCrossMediaDto> search3(String input,String id) {
+		List<MessCrossMediaDto> search3 = messageMapper.search3(input,id);
 		return search3;
 	}
 
@@ -85,8 +85,7 @@ public class MServiceImpl implements MService {
 	}
 	@Override
 	public void mInsert2(MessageDto mdto) {
-		messageMapper.mInsert2(mdto);
-		
+			messageMapper.mInsert2(mdto);
 		
 	}
 
