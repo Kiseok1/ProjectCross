@@ -77,7 +77,7 @@ $(function() {
 		//  console.log(e);
 		//  console.log(e.target.files.length);
 		
-		alert("test2");
+		//alert("test2");
 		var felement = e.target.files;
 		$("#image-area").html("");
 		fileCount = 0;
@@ -140,7 +140,7 @@ $(function() {
 	$("#modalFile").on("change", function(e) {
 		//  console.log(e);
 		//  console.log(e.target.files.length);
-		alert("test");
+	//	alert("test");
 		var felement = e.target.files;
 		$("#modal_image-area").html("");
 		fileCount = 0;
@@ -254,11 +254,51 @@ $(function() {
 	});
 
 
+	$(document).on("click", ".selAddr", function(e) {
+		let element = $(e.currentTarget).attr("data-location");
+		$(".locSelected").remove();
+		$(e.currentTarget).append('<span class="material-icons locSelected" data-bs-dismiss="modal" aria-label="Close">close</span>');
+		console.log(element);
+		$("#position_wrap").removeClass("invis");
+		$("#currLocation").html(element);
+		$("#regPosition").val(element);
+		$("#locationModal").modal("hide");
+		$(".modal-backdrop").modal("hide");
+		$(".modal-backdrop").modal("hide");
+	});
+	$(document).on("click", ".selAddr2", function(e) {
+		let element = $(e.currentTarget).attr("data-location");
+		$(".locSelectedM").remove();
+		$(e.currentTarget).append('<span class="material-icons locSelectedM" data-bs-dismiss="modal" aria-label="Close">close</span>');
+		console.log(element);
+		$("#modal_position_wrap").removeClass("invis");
+		$("#modal_currLocation").html(element);
+		$("#modalRegPosition").val(element);
+		$("#locationModal2").modal("hide");
+		$("#writeModal").modal("show");
+	});
 
+	$(document).on("click", ".locSelected", function(e) {
+		e.stopPropagation();
+		$("#position_wrap").addClass("invis");
+		$("#currLocation").html("");
+		$("#currLocation").text("");
+		e.currentTarget.remove();
+		console.log("locSelected");
+		$("#locationModal").modal("hide");
+		$(".modal-backdrop").modal("hide");
+	});
+	$(document).on("click", ".locSelectedM", function(e) {
+		e.stopPropagation();
+		$("#modal_position_wrap").addClass("invis");
+		$("#modal_currLocation").html("");
+		e.currentTarget.remove();
+		$("#locationModal2").modal("hide");
+		$(".modal-backdrop").modal("hide");
+		$("#writeModal").modal("show");
+	});
 
-
-
-	$(document).on("click",".selAddr",function(e) {
+	/*$(document).on("click",".selAddr",function(e) {
 
 		let element = $(e.currentTarget).attr("data-location");
 		$(".locSelected").remove();
@@ -290,11 +330,11 @@ $(function() {
 
 
 
-	});
+	});*/
 	
 	
 
-	$(document).on("click", ".locSelected", function(e) {
+	/*$(document).on("click", ".locSelected", function(e) {
 		e.stopPropagation();
 		$("#position_wrap").addClass("invis");
 		$("#currLocation").html("");
@@ -306,9 +346,9 @@ $(function() {
 		$(".modal-backdrop").modal("hide");
 		$("#writeModal").modal("show");
 		
-	});
+	});*/
 
-	$(document).on("click", ".locSelectedM", function(e) {
+	/*$(document).on("click", ".locSelectedM", function(e) {
 		e.stopPropagation();
 		$("#modal_position_wrap").addClass("invis");
 		$("#modal_currLocation").html("");
@@ -317,7 +357,7 @@ $(function() {
 		$("#locationModal2").modal("hide");
 		$(".modal-backdrop").modal("hide");
 		$("#writeModal").modal("show");
-	});
+	});*/
 
 
 

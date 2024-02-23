@@ -48,7 +48,7 @@ public class KakaoController {
 		String content_type = "application/x-www-form-urlencoded;charset=utf-8";
 		//body에 담기
 		String grant_type = "authorization_code";
-		String client_id = "372e1e99bb3b540f6d9b77dbd77173ef";
+		String client_id = "fe714f17477232187f3fb8741b56d8bd";
 		String redirect_uri = "http://localhost:8000/kakao/oauth";
 		//code = code;
 

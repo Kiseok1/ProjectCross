@@ -130,21 +130,23 @@
                 <span></span>
             </div>
         </section>
-		   <section class="tweets">
+		<section class="tweets">
                <div class="heading">
                    <div class="heading_content" onclick="location.href='/profile/follower?id=${udto.user_id}'">팔로워<div class="content_underbar"></div></div>
                    <div class="heading_like" onclick="location.href='/profile/following?id=${udto.user_id}'">팔로잉</div>
                </div>
-           </section>
+        </section>
            
-		   <section>
+           
+           
+		<section>
 		   <c:forEach items="${follower}" var="Udto" varStatus="stat">
-		   	 <c:if test="${Udto.user_id!=session_id}">
-		   	<div class="post" onclick="location.href='your_content?user_id=${Udto.user_id}'">
-		   </c:if>
-		   <c:if test="${Udto.user_id==session_id}">
-		   	<div class="post" onclick="location.href='content?user_id=${Udto.user_id}'">
-		   </c:if>
+		   	<c:if test="${Udto.user_id!=session_id}">
+		   	   <div class="post" onclick="location.href='your_content?user_id=${Udto.user_id}'">
+		    </c:if>
+		    <c:if test="${Udto.user_id==session_id}">
+		       <div class="post" onclick="location.href='content?user_id=${Udto.user_id}'">
+		    </c:if>
 			<div class="search_post_profile-image">
 			<c:if test="${Udto.profile_img!=null}">
 				<div class="user_profile"><img src="/upload/${Udto.profile_img}"></div>
@@ -156,13 +158,11 @@
 			</div>
 			<div class="post_body">
 				<div class="post_header">
-					 <div class="post_header">
-				<!-- 이름들어가는 자리 -->
-					<div class="search_user_head" >
+					 <div class="post_header">				
+					 <div class="search_user_head" >
 						<h3>${Udto.name} <span class="header-icon-section"> <span class="material-icons post_badge">verified</span>@${Udto.user_id}</span>
 						</h3>
-					</div>
-			    <!-- 이름들어가는 자리 -->
+					 </div>
 					
 				<!-- 드롭다운 -->
 					<div class="post_header-discription">
@@ -173,14 +173,12 @@
 							  <button class="followBtn">팔로잉</button>
 							  <div class="dropdown_content" >
 							 		<div class="folbtn" id="${Udto.user_id}">언팔로우</div>
-							 		<div>차단하기</div>
 							  </div>
 						  	  </c:if>
 						  	  <c:if test="${Udto.user_id!=followerDto[stat.index].target_id}">
 							  <button class="followBtn">팔로우</button>
 							  <div class="dropdown_content" >
 							 		<div class="folbtn" id="${Udto.user_id}">팔로워</div>
-							 		<div>차단하기</div>
 							  </div>
 						  	  </c:if>
 						  </c:if>
@@ -199,6 +197,8 @@
 				</c:if>
 				</div>
 			</div>
+		
+		
 		</div>
 		   </c:forEach>
 		   	</div>

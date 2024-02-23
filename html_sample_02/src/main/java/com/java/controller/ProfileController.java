@@ -517,7 +517,6 @@ public class ProfileController {
 		} else if(stat.equals("delete")) {
 			pService.deleteFollow(source_id,target_id);
 		}
-		
 		String result = "";
 		
 		return result;

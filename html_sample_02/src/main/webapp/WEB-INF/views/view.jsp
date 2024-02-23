@@ -154,8 +154,8 @@
 													class="visually-hidden">Toggle Dropdown</span>
 											</div>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" href="#">팔로우하기</a></li>
-												<li><a class="dropdown-item" href="#">차단하기</a></li>
+												<!-- <li><a class="dropdown-item" href="#">팔로우하기</a></li>
+												<li><a class="dropdown-item" href="#">차단하기</a></li> -->
 												<li><div class="dropdown-item translate">번역하기</div></li>
 											</ul>
 										</c:if>
