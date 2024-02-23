@@ -154,6 +154,15 @@ pre{    white-space: pre-wrap;    background: #EEE;}
         });
         //그룹쪽지보내기
        $(document).on('click', '.add', function() {
+    		// .group 내부에 .user_data 요소가 있는지 확인
+    	     if ($('.group').find('.user_data').length === 0 || $('.group').find('.user_data').length === 1) {
+	        // .group에 데이터가 없는 경우에만 이벤트 핸들러 실행
+	        console.log("No data in .group, event handler will not execute.");
+	        // input[type="search"]에 포커스를 주는 부분 추가
+	        $('input[type="search"]').focus();
+	        return; // 이벤트 핸들러 종료
+	    }
+    	   
 		    var userIds = []; // 사용자 ID를 저장할 배열
 		    var userIdstring = "";
 		    $(".group .user_data").each(function() {
@@ -200,8 +209,8 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                             var item = data; // 단일 객체이므로 item에 할당
                             var leftPosition = initialDataLoaded ? (51 * ($(".group").children().length)) : 0;
                             var userDataHtml = '<div class="user_data" style="position:relative; left:'+ leftPosition +'px;" id="' + item.user_id + '_data">';
-                            userDataHtml += '<i class="bi bi-x-circle gx" style=""></i>';
-                            userDataHtml += '<div class="profile-image" style="overflow: hidden; height: 40px; width: 40px; border-radius: 50%; position: relative; left: 10px; bottom: 12px;">';
+                            userDataHtml += '<i class="bi bi-x-circle gx" id="myIcon" style=""></i>';
+                            userDataHtml += '<div class="profile-image" data-user-id="' + item.user_id + '" onmouseover="showGx(this.getAttribute(\'data-user-id\'))" onmouseout="hideGx(this.getAttribute(\'data-user-id\'))" style="overflow: hidden; height: 40px; width: 40px; border-radius: 50%; position: relative; left: 10px; bottom: 12px; cursor: pointer;">';
                             userDataHtml += '<img src="/upload/' + item.profile_img + '" style="width: 40px; height: 40px; position: relative; right: 1px; border-radius: 50%;"></div>';
                             userDataHtml += '<div class="body" style="position: relative; bottom: 48px; left: 50px;">';
                             userDataHtml += '<span class="header-icon-section" style="position: relative; right: 3px font-size: 10px;">@' + item.name + '';
@@ -231,6 +240,13 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                         } else {
                             $(".group").hide();
                         }//data
+                        
+                        // 프로필 이미지 클릭하여 해당 데이터 삭제하는 함수와 이벤트 핸들러
+                        $(".profile-image").on("click", function() {
+                            var userId = $(this).data("user-id");
+                            $("#" + userId + "_data").remove();
+                        });
+                        
                     },
                     error: function() {
                         alert("실패");
@@ -240,7 +256,29 @@ pre{    white-space: pre-wrap;    background: #EEE;}
                 // .check 클릭 이벤트가 .post 클릭 이벤트를 중지시킴
                 event.stopPropagation();
             });
+        
         });
+     	// 각 프로필 이미지에 해당하는 .gx를 보여주는 함수
+        function showGx(userId) {
+            $(".gx").css("visibility", "hidden"); // 모든 .gx를 숨김
+            $("#" + userId + "_data .gx").css("visibility", "visible"); // 해당 userId에 대한 .gx를 보임
+        }
+
+        // 각 프로필 이미지에 해당하는 .gx를 숨기는 함수
+        function hideGx(userId) {
+            $("#" + userId + "_data .gx").css("visibility", "hidden"); // 해당 userId에 대한 .gx를 숨김
+        }
+		
+        $(".profile-image").on("mouseover", function() {
+            var userId = $(this).data("user-id"); // 해당 프로필 이미지의 user_id를 가져옴
+            showGx(userId);
+        });
+
+        $(".profile-image").on("mouseout", function() {
+            var userId = $(this).data("user-id"); // 해당 프로필 이미지의 user_id를 가져옴
+            hideGx(userId);
+        });
+		
         </script>
         
         <!-- 검색 -->

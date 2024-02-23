@@ -126,23 +126,24 @@ public class MessageController {
 	@PostMapping("/search2")//검색 받은 쪽지결과 가져오기
 	@ResponseBody
 	public List<MessCrossMediaDto>search2(String input) {
+		String id = (String) session.getAttribute("session_id");
 		System.out.println("MessageController search input : "+input);
-		List<MessCrossMediaDto> search2 = mService.search2(input);
+		List<MessCrossMediaDto> search2 = mService.search2(input,id);
 		return search2;
 	}
 
 	@PostMapping("/search3")//검색 보낸 쪽지결과 가져오기
 	@ResponseBody
 	public List<MessCrossMediaDto>search3(String input) {
+		String id = (String) session.getAttribute("session_id");
 		System.out.println("MessageController search input : "+input);
-		List<MessCrossMediaDto> search3 = mService.search3(input);
+		List<MessCrossMediaDto> search3 = mService.search3(input,id);
 		return search3;
 	}
 	
 	@RequestMapping("/head")
 	public String head(Model model) {
 		//답글 모두 가져오기
-
 		ArrayList<MessCrossMediaDto> list = mService.receiveAll((String)session.getAttribute("session_id"));
 		 // list가 비어있는지 여부에 따라 result 설정
 	    model.addAttribute("list", list);

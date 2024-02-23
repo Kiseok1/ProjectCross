@@ -53,12 +53,12 @@
 	
 	<!-- 검색 받은 쪽지 가져오기 messCrossDto-->
 	<select id="search2" resultMap="messCrossMediaDto">
-		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.source_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.target_id='ccc' and (message.source_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.source_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.target_id=#{id} and (message.source_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
 	</select>
 
 	<!-- 검색 보낸 쪽지 가져오기 messCrossDto-->
 	<select id="search3" resultMap="messCrossMediaDto">
-		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.target_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.source_id='ccc' and (message.target_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
+		select message.*, cross_user.name, cross_user.profile_img, media.file_name from message join cross_user on message.target_id = cross_user.user_id left join media on message.msg_id = media.msg_id where  message.source_id=#{id} and (message.target_id like '%'||#{input}||'%' or cross_user.name like '%'||#{input}||'%' )  	 
 	</select>
 	
 	<select id="UserData" resultType="com.java.dto.Cross_userDto">

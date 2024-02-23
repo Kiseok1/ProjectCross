@@ -11,9 +11,10 @@
     position: relative;
     font-size: 15px; 
     left: 5px;
+    visibility: hidden;
+    color:red;
 } 
-.gx.hover {visibility:hidden;}
-.profile-image:hover ~ .gx.hover {visibility:visible;}
+
 
 .add{
 	font-size: 34px;
