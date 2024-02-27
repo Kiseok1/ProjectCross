@@ -31,6 +31,7 @@
 <script>
     $(function() {
 
+    	
         var dropdown = $(".dropdown_bar");
         var dropdownContent = $(".dropdown_content");
 
