@@ -38,7 +38,10 @@
 
 <script src="/js/cross/index.js"></script>
 <script src="/js/cross/sidebar.js"></script>
+
 <script>
+
+
 	$(function(){
 		$(".translate").click(function(){
 			let text = $(this).parent().parent().parent().parent().next().find("p").text();
@@ -62,6 +65,9 @@
 		})
 		
 	})//jquery
+
+	
+	
 </script>
 
 

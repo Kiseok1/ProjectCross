@@ -18,12 +18,12 @@
 		delete from user_follow where source_id=#{source_id} and target_id=#{target_id}
 	</delete>
 	
-	<select id="selectFollowInfo">
-		select * from user_follow where source_id=#{id} and target_id=#{your_id} and user_id=#{id}
-	</select>
-	
 	<select id="selectFollow">
 		select * from user_follow where user_id=#{id}
+	</select>
+	
+	<select id="selectFollowInfo">
+		select * from user_follow where source_id=#{id} and target_id=#{your_id} and user_id=#{id}
 	</select>
 	
 	<select id="followerCount">

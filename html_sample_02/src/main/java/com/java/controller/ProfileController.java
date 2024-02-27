@@ -334,6 +334,7 @@ public class ProfileController {
 		 model.addAttribute("follower",map.get("follower"));			 
 		 model.addAttribute("followerDto",map.get("followerDto"));
 		 model.addAttribute("followingDto",map.get("followingDto"));
+		 
 		 model.addAttribute("followingCount",map.get("followingCount"));
 		 model.addAttribute("followerCount",map.get("followerCount"));
 		 
@@ -353,22 +354,26 @@ public class ProfileController {
 		Cross_userDto udto = pService.selectOne(id); 
 		ArrayList<PostMediaUserDto> list = pService.selectDefault(id); 
 		ArrayList<PostLikeDto> list2 = pService.selectLike(id);
-		Map<String, Object> map = pService.selectFollow(id);
 		
 		model.addAttribute("udto",udto); 
 		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
+
+		Map<String, Object> map = pService.selectFollow(id);
 		
 		model.addAttribute("following",map.get("following"));
 		model.addAttribute("follower",map.get("follower"));			 
 		model.addAttribute("followerDto",map.get("followerDto"));
 		model.addAttribute("followingDto",map.get("followingDto"));
+		
+		
 		model.addAttribute("followingCount",map.get("followingCount"));
 		model.addAttribute("followerCount",map.get("followerCount"));
 		
 		model.addAttribute("user_id",session.getAttribute("session_id").toString());
 		model.addAttribute("user_profile",session.getAttribute("session_image").toString());
 		model.addAttribute("user_name",session.getAttribute("session_name").toString());
+		
 		
 		return "/profile/follower";
 	}

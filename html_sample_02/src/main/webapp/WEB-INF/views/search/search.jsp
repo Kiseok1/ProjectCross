@@ -167,6 +167,101 @@
 								</div>
 							</c:if>
 
+							<%-- <c:if
+								test="${fn:contains(mlist[status.index].file_type,'image')}">
+								<c:set var="img"
+									value="${fn:split(mlist[status.index].file_name,',')}" />
+								<c:if test="${fn:length(img)==1}">
+									<div class="container">
+										<div class="row row-cols-auto ">
+											<div class="col-md-auto img-xl rounded-4">
+												<img src="/upload/${mlist[status.index].file_name}"
+													class="rounded " alt="java18" data-bs-toggle="modal"
+													data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${mlist[status.index].file_name}">
+											</div>
+
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==2}">
+									<div class="container">
+										<div class="row row-cols-auto ">
+											<div class="col-md-auto img-lg rounded-4">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto img-lg rounded-4">
+												<img src="/upload/${img[1]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[1]}">
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==3}">
+									<div class="container">
+										<div class="row row-cols-auto">
+											<div class="col-md-auto img-md rounded-4">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto">
+												<div class="row row-cols-auto">
+													<div class="col-md-auto img-sm">
+														<img src="/upload/${img[1]}" class="rounded " alt="java18"
+															data-bs-toggle="modal" data-bs-target="#exampleModal"
+															data-bs-whatever="/upload/${img[1]}">
+													</div>
+												</div>
+												<div class="row row-cols-auto">
+													<div class="col-md-auto img-sm">
+														<img src="/upload/${img[2]}" class="rounded " alt="java18"
+															data-bs-toggle="modal" data-bs-target="#exampleModal"
+															data-bs-whatever="/upload/${img[2]}">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${fn:length(img)==4}">
+									<div class="container">
+										<div class="row">
+											<div class="col-md-auto img-sm rounded">
+												<img src="/upload/${img[0]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[0]}">
+											</div>
+											<div class="col-md-auto img-sm rounded">
+												<img src="/upload/${img[1]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[1]}">
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-auto img-sm rounded">
+												<img src="/upload/${img[2]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[2]}">
+											</div>
+											<div class="col-md-auto img-sm rounded">
+												<img src="/upload/${img[3]}" class="rounded " alt="java18"
+													data-bs-toggle="modal" data-bs-target="#exampleModal"
+													data-bs-whatever="/upload/${img[3]}">
+											</div>
+										</div>
+									</div>
+								</c:if>
+
+							</c:if> --%>
+							
 							<c:if
 								test="${fn:contains(mlist[status.index].file_type,'image')}">
 								<c:set var="img"

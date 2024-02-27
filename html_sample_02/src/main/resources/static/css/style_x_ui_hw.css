@@ -364,8 +364,8 @@ main::-webkit-scrollbar{
 
 
 .post_body .img-lg img{
-    width: 360px;
-    height:200px;
+   /*  width: 360px;
+    height:200px; */
     object-fit: contain;
     border-radius: 20px;
     position: absolute;
@@ -377,8 +377,8 @@ main::-webkit-scrollbar{
 
 
 .post_body .img-md img{
-    width: 360px;
-    height:200px;
+    /* width: 360px;
+    height:200px; */
     object-fit: contain;
     border-radius: 20px;
     position: absolute;

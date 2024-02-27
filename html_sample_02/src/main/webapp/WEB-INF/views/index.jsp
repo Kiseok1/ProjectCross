@@ -117,8 +117,14 @@ pre {
 					<div class="post" style="position: relative;">
 
 						<div class="post_profile-image rounded-5">
+							<c:if test="${ulist[status.index].profile_img!=null}">
 							<img class="" src="/upload/${ulist[status.index].profile_img}"
 								alt="profile">
+							</c:if>
+							<c:if test="${ulist[status.index].profile_img==null}">
+							<img class="" src="/upload/proflie_default.png"
+								alt="profile">
+							</c:if>
 							<div style="position: absolute; height: 100%; width: 80px;">
 
 

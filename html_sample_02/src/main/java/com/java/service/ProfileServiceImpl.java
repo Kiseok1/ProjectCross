@@ -122,14 +122,15 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Map<String, Object> selectFollow(String id) {
-		ArrayList<User_followDto> followList = user_followMapper.selectFollow(id); //팔로우정보 
-		ArrayList<User_followDto> myfollowList = user_followMapper.selectFollow(session.getAttribute("session_id").toString()); //내 팔로우정보 비교용
 		ArrayList<Cross_userDto> following = new ArrayList<>();
 		ArrayList<Cross_userDto> follower = new ArrayList<>();
 		ArrayList<User_followDto> followerDto = new ArrayList<>();
 		ArrayList<User_followDto> followingDto = new ArrayList<>();
 		Map<String, Object> map = new HashMap<>();		
+		ArrayList<User_followDto> myfollowList = user_followMapper.selectFollow(session.getAttribute("session_id").toString()); //내 팔로우정보 비교용
 				
+		ArrayList<User_followDto> followList = user_followMapper.selectFollow(id); //팔로우정보 
+		
 		for(int i=0;i<followList.size();i++) {
 			if(!id.equals(followList.get(i).getSource_id())) {
 				follower.add(cross_userMapper.selectOne( followList.get(i).getSource_id() ));
