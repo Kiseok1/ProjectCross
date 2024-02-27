@@ -108,6 +108,8 @@
 								}
 							});//ajax
 							
+							
+							
 								
 							
 						});
@@ -127,7 +129,9 @@
 								
 								location.href="/login/useAgree";
 							
-						});  
+						}); 
+						
+						
 						
 					});
 				</script>

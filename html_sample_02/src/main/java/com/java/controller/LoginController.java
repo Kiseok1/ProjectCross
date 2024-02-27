@@ -56,6 +56,8 @@ public class LoginController {
 		return "/login/login";
 	}
 	
+	
+	
 	//로그인확인
 	@PostMapping("/ajaxLogin")
 	@ResponseBody

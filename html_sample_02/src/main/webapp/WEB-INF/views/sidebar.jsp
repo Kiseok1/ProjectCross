@@ -26,6 +26,17 @@
 	 			<div style="margin:0 4px 0 10px;"><h4>팔로워</h4></div> 
 	 			<div style="margin:0;">100</div>
 	 		</div>
+	 		
+	 		<script>
+	 		$(function(){
+	 			$("#Klogout").click(function(){
+	 			     console.log("결과값 : "+${result});
+	 			     alert("로그아웃 되었습니다.");
+	 			     location.href="/";
+	 			});
+	 		});
+	 		
+	 		</script>
 	 	
 	 	</div>
 	 
@@ -76,10 +87,11 @@
 		<div><br></div>
 	 
 
+<!-- <div id="Klogout" onclick="location.href='https://kauth.kakao.com/oauth/logout?client_id=fe714f17477232187f3fb8741b56d8bd&logout_redirect_uri=http://localhost:8000/kakao/logout'"> -->
 	 	<div class="Menu_options side_logout">
 	 		<span class="material-icons">logout</span>
 	 		<h2>로그아웃</h2>
 	 	</div>
-
+<!-- </div> -->
 	 </nav>
  
